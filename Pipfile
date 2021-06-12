@@ -5,8 +5,11 @@ name = "pypi"
 
 [packages]
 flask = "*"
+python-dotenv = "*"
 
 [dev-packages]
+pytest = "*"
+black = "==21.5b2"
 
 [requires]
 python_version = "3.8"
