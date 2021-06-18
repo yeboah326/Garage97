@@ -1,14 +1,13 @@
 from flask import Blueprint
 
-main = Blueprint(
-    "main",
+api = Blueprint(
+    "api",
     __name__,
     static_folder="static",
-    url_prefix="/main",
-    template_folder="templates/main",
+    url_prefix="/api",
+    template_folder="templates/api",
 )
 
-
-@main.route("hello")
+@api.route("hello")
 def hello():
-    return "Main Blueprint Created successfully"
+    return "API Blueprint Created successfully"
