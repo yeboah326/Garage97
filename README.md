@@ -18,6 +18,11 @@ pipenv install
 ```
 Run this to install all the packages without the dev packages
 
+### Create a MySQL database instance
+```
+CREATE DATABASE database_name;
+```
+
 ### Add environment variables in the root of the project folder
 ```
 touch .flaskenv .env
@@ -28,6 +33,14 @@ Add these lines to the .flaskenv file
 FLASK_APP=run.py
 FLASK_ENV=development
 FLASK_RUN_PORT=9000
+```
+
+Add these lines to the .env file. Replace username, password and database_name with their respective values
+```
+MYSQL_USERNAME = username
+MYSQL_PASSWORD = password
+MYSQL_SERVER = localhost
+MYSQL_DATABASE_NAME = database_name
 ```
 
 ### Run the project
