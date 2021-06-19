@@ -1,13 +1,11 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 
 main = Blueprint(
     "main",
     __name__,
-    static_folder="static",
     url_prefix="/main",
-    template_folder="templates/main",
 )
 
 @main.route("hello")
 def hello():
-    return "Main Blueprint Created successfully"
+    return jsonify({"message":"Main Blueprint Created successfully"})
