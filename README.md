@@ -2,18 +2,24 @@
 A web app for managing inventory
 
 # Project Setup
+### Install node modules
+```
+npm install
+```
 ### Install pipenv on your system
 ```
 pip install pipenv
 ```
 ### Install packages (including dev)
 ```
+cd sima_web_api
 pipenv install --dev
 ```
 Run this instruction to install the packages (including dev packages) associated with the project
 
 ### Install all packages (no dev packages)
 ```
+cd sima_web_api
 pipenv install
 ```
 Run this to install all the packages without the dev packages
@@ -43,7 +49,12 @@ MYSQL_SERVER = localhost
 MYSQL_DATABASE_NAME = database_name
 ```
 
-### Run the project
+### Start the api
 ```
-flask run
+npm run start-api
+```
+
+### Start the react web app
+```
+npm run start
 ```

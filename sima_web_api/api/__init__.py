@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -24,4 +24,4 @@ migrate = Migrate(app, db)
 # Error Handling Pages
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template("error_pages/404.html")
+    return jsonify({"message":"Page not found"}), 404
