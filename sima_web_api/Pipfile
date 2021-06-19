@@ -9,6 +9,7 @@ python-dotenv = "*"
 flask-sqlalchemy = "*"
 mysql-connector-python = "*"
 flask-migrate = "*"
+environ = "*"
 
 [dev-packages]
 pytest = "*"
