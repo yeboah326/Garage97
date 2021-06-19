@@ -2,6 +2,12 @@
 A web app for managing inventory
 
 # Project Setup
+### Needed software
+* Python 3.8.5
+* npm
+* VSCode
+* Draw.io Integration :VSCode Extension
+  
 ### Install node modules
 ```
 npm install
@@ -51,7 +57,7 @@ MYSQL_DATABASE_NAME = database_name
 
 ### Start the api
 ```
-npm run start-api
+npm run api
 ```
 
 ### Start the react web app
