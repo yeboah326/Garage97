@@ -6,6 +6,7 @@ main = Blueprint(
     url_prefix="/main",
 )
 
+
 @main.route("hello")
 def hello():
-    return jsonify({"message":"Main Blueprint Created successfully"})
+    return jsonify({"message": "Main Blueprint Created successfully"})

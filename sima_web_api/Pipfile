@@ -10,6 +10,7 @@ flask-sqlalchemy = "*"
 mysql-connector-python = "*"
 flask-migrate = "*"
 environ = "*"
+pyjwt = "*"
 
 [dev-packages]
 pytest = "*"
