@@ -1,5 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
+from werkzeug.security import generate_password_hash
 from sima_web_api.api.users.models import User
+from sima_web_api.api import db
+import uuid
 
 users = Blueprint(
     "users",
@@ -26,7 +29,7 @@ def get_all_users():
 
     users_json = [
         {
-            "id": user.public_id,
+            "public_id": user.public_id,
             "name": user.name,
             "dateOfBirth": user.dateOfBirth,
             "email": user.email,
@@ -54,6 +57,15 @@ def get_new_user_form():
 # TODO: Define create_new_user route
 @users.route("/", methods=["POST"])
 def create_new_user():
+    data = request.get_json()
+
+    hashed_password = generate_password_hash(data['password'], method='sha256')
+
+    new_user = User(public_id=str(uuid.uuid4()), name=data['name'], password=hashed_password, dateOfBirth=data['dateOfBirth'], email,contactOne="",contactTwo="")
+
+    db.session.add(new_user)
+    db.session.commit()
+
     pass
 
 
