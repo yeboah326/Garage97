@@ -11,6 +11,7 @@ mysql-connector-python = "*"
 flask-migrate = "*"
 environ = "*"
 pyjwt = "*"
+uuid = "*"
 
 [dev-packages]
 pytest = "*"
