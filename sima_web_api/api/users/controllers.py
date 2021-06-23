@@ -99,5 +99,8 @@ def delete_all_users():
 
 # TODO: Define delete_user_by_id route
 @users.route("/<public_id>", methods=["DELETE"])
-def delete_user_by_id():
-    pass
+def delete_user_by_id(public_id):
+    user = User.query.filter_by(public_id=public_id).first()
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({"message":"User deleted successfully"})

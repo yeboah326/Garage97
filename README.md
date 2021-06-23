@@ -55,6 +55,15 @@ MYSQL_SERVER = localhost
 MYSQL_DATABASE_NAME = database_name
 ```
 
+### Perform database migrations
+```
+cd sima_web_api/
+flask db init
+flask db stamp head
+flask db migrate
+flask db upgrade
+```
+
 ### Start the api
 ```
 npm run api
