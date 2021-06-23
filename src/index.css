@@ -1,13 +1,188 @@
+@import url('./fonts.css');
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  display: flex;
+}
+#root{
+  height: 100vh;
+  width: 100%;
+}
+.logo{
+  padding: 0;
+  margin-top: 0;
+}
+.logo h1{
+  margin-top: 10px;
+  margin-left: 10px;
+  font-family: PoppinsRegular;
+  color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container{
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  background-image: url("./Images/Background.png");
+  background-repeat: repeat;
+  flex-direction: column;
+
 }
+
+.d-flex{
+  display:flex;
+}
+
+.login-form{
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content:center;
+}
+.login-form form {
+  min-width: 200px;
+  min-height: 300px;
+	display: flex;
+	flex-direction: column;
+	height: 50%;
+	width:20%;
+	/* justify-content: space-evenly; */
+	background-color: white;
+	padding: 20px;
+	border-radius: 0 20px;
+  border: #6880FE;
+}
+
+.login-form .label,.login-form input{
+  margin: 10px;
+  display: block;
+}
+.login-form .label{
+  margin-top: 30px;
+  font-family: 'PoppinsLight';
+  color: #6880FE;
+}
+
+
+.login-form input{
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #6880FE;
+  width: 90%;
+  /* height:50%; */
+  padding: 0;
+  font-size: 1.2rem;
+}
+.forgot-pass{
+  margin-top: 5%;
+  margin-right: 5%;
+  float: left;
+  margin-bottom: 5%;
+  align-self: flex-end;
+  color: #6880FE;
+}
+.forgot-pass-link{
+  text-decoration: none;
+  color: #6880FE;
+}
+#login{
+  width: 40%;
+  margin-top: 0;
+  margin-bottom:0;
+  background-color: #6880FE;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding:0.5em ;
+  align-self: center;
+  cursor: pointer;
+}
+.signup{
+  align-self: center;
+  color:#6880FE;
+  margin: 0;
+  margin-top: 5%;
+}
+.sign-up-link{
+  text-decoration: none;
+  color: #6880FE;
+}
+.register{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.register-form{
+  background: white;
+  min-width: 200px;
+  min-height: 300px;
+  height:70%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 20px;
+  border: #6880FE;
+  padding: 20px;
+}
+
+.register-form label,.register-form input{
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  display: block;
+}
+
+.register-form input{
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #6880FE;
+  width: 80%;
+  /* height:50%; */
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+.register-form label{
+  margin-top: 20px;
+  font-family: 'PoppinsLight';
+  color: #6880FE;
+}
+
+#sign-up{
+  min-width: 80px;
+  min-height: 40px;
+  height: 20%;
+  width: 30%;
+  padding: 0.5rem;
+  background-color: #6880FE;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.registered{
+  align-self: center;
+  color: #6880FE;
+  margin-bottom: 5%;
+}
+.log-in{
+  text-decoration: none;
+  color:#6880FE;
+}
+
+
+
