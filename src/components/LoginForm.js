@@ -11,7 +11,7 @@ const LoginForm = () => {
                 <Input type="password" required="true" label="Password"/>
                 <p  className="forgot-pass"><Link className="forgot-pass-link">Forgot password?</Link></p>
                 <input type="submit" id="login" value="Login"/>
-                <p className="signup">Not registered? < Link to="/register" className="sign-up-link">Sign Up </Link></p>
+                < Link to="/register" className="sign-up-link">Not registered? Sign Up </Link>
             </form>
 
         </div>
