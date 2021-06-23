@@ -86,9 +86,36 @@ def create_new_user():
 
 
 # TODO: Define update_user_info route
-@users.route("/", methods=["PUT"])
-def update_user_info():
-    pass
+@users.route("/<public_id>", methods=["PUT"])
+def update_user_info(public_id):
+    #EMAIL,DISPLAY_NAME, CONTACT ONE, CONTACT TWO
+    user = User.query.filter_by(public_id=public_id).first()
+    
+    data = request.get_json()
+
+    try:
+        if data['email']:
+            user.email = data['email']
+    except KeyError:
+        pass
+
+    try:
+        if data['displayName']:
+            user.displayName = data['displayName']
+    except KeyError:
+        pass
+    try:
+        if data['contactOne']:
+            user.contactOne = data['contactOne']
+    except KeyError:
+        pass
+    try:
+        if data['contactTwo']:
+            user.contactTwo = data['contactTwo']
+    except KeyError:
+        pass
+    db.session.commit()
+    return jsonify({"message":"User info updated successfully"})
 
 
 # TODO: Define delete_all_users route
