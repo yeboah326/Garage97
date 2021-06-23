@@ -134,3 +134,4 @@ dmypy.json
 
 node_modules/
 help.txt
+migrations/
