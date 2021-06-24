@@ -1,5 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
+from werkzeug.security import generate_password_hash
 from sima_web_api.api.users.models import User
+from sima_web_api.api import db
+import uuid
 
 users = Blueprint(
     "users",
@@ -26,7 +29,7 @@ def get_all_users():
 
     users_json = [
         {
-            "id": user.public_id,
+            "public_id": user.public_id,
             "name": user.name,
             "dateOfBirth": user.dateOfBirth,
             "email": user.email,
@@ -36,25 +39,50 @@ def get_all_users():
         }
         for user in users
     ]
-    return jsonify(users_json)
+    return jsonify(users_json), 200
 
 
 # TODO: Define get_user_by_id route
 @users.route("/<public_id>", methods=["GET"])
-def get_user_by_id(id):
-    pass
+def get_user_by_id(public_id):
+    user = User.query.filter_by(public_id=public_id).first()
+    if user:
+        user_json = {
+            "public_id": user.public_id,
+            "name": user.name,
+            "dateOfBirth": user.dateOfBirth,
+            "email": user.email,
+            "displayName": user.displayName,
+            "contactOne": user.contactOne,
+            "contactTwo": user.contactTwo,
+        }
+        return jsonify(user_json), 200
+    return jsonify({"message": "User not found"}), 200
 
 
-# TODO: Define get_new_user_form route
-@users.route("/new", methods=["GET"])
-def get_new_user_form():
-    pass
 
 
 # TODO: Define create_new_user route
 @users.route("/", methods=["POST"])
 def create_new_user():
-    pass
+    data = request.get_json()
+
+    hashed_password = generate_password_hash(data["password"], method="sha256")
+
+    new_user = User(
+        public_id=str(uuid.uuid4()),
+        name=data["name"],
+        password=hashed_password,
+        dateOfBirth=data["dateOfBirth"],
+        email=data["email"],
+        contactOne="",
+        contactTwo="",
+        displayName="",
+    )
+
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({"message": "New user created"}), 200
 
 
 # TODO: Define update_user_info route
@@ -71,5 +99,8 @@ def delete_all_users():
 
 # TODO: Define delete_user_by_id route
 @users.route("/<public_id>", methods=["DELETE"])
-def delete_user_by_id():
-    pass
+def delete_user_by_id(public_id):
+    user = User.query.filter_by(public_id=public_id).first()
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({"message":"User deleted successfully"})
