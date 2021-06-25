@@ -12,6 +12,8 @@ flask-migrate = "*"
 environ = "*"
 pyjwt = "*"
 uuid = "*"
+datetime = "*"
+flask-cors = "*"
 
 [dev-packages]
 pytest = "*"
