@@ -1,8 +1,11 @@
 from flask import Blueprint, jsonify, request
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from sima_web_api.api.users.models import User
 from sima_web_api.api import db
+import os
 import uuid
+import jwt
+import datetime
 
 users = Blueprint(
     "users",
@@ -19,8 +22,18 @@ def hello():
 # TODO: Define user_login route
 @users.route("login/")
 def user_login():
-    pass
+    auth = request.get_json()
+    if not auth or not auth["email"] or not auth["password"]:
+        return jsonify({"message":"Error with data passed"}) 
+    user = User.query.filter_by(email=auth["email"]).first()
 
+    if not user:
+        return jsonify({"message":"User not found"})
+
+    if check_password_hash(user.password,auth.password):
+        token = jwt.encode({'public_id':user.public_id,'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},os.environ.get('SECRET_KEY'))
+
+    return jsonify({"message":"Authorization failed"}), 401
 
 # TODO: Define get_all_users route
 @users.route("/", methods=["GET"])
@@ -73,7 +86,7 @@ def create_new_user():
         public_id=str(uuid.uuid4()),
         name=data["name"],
         password=hashed_password,
-        dateOfBirth=data["dateOfBirth"],
+        dateOfBirth=None,
         email=data["email"],
         contactOne="",
         contactTwo="",
@@ -86,9 +99,36 @@ def create_new_user():
 
 
 # TODO: Define update_user_info route
-@users.route("/", methods=["PUT"])
-def update_user_info():
-    pass
+@users.route("/<public_id>", methods=["PUT"])
+def update_user_info(public_id):
+    #EMAIL,DISPLAY_NAME, CONTACT ONE, CONTACT TWO
+    user = User.query.filter_by(public_id=public_id).first()
+    
+    data = request.get_json()
+
+    try:
+        if data['email']:
+            user.email = data['email']
+    except KeyError:
+        pass
+
+    try:
+        if data['displayName']:
+            user.displayName = data['displayName']
+    except KeyError:
+        pass
+    try:
+        if data['contactOne']:
+            user.contactOne = data['contactOne']
+    except KeyError:
+        pass
+    try:
+        if data['contactTwo']:
+            user.contactTwo = data['contactTwo']
+    except KeyError:
+        pass
+    db.session.commit()
+    return jsonify({"message":"User info updated successfully"})
 
 
 # TODO: Define delete_all_users route
