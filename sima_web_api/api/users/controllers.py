@@ -73,7 +73,7 @@ def create_new_user():
         public_id=str(uuid.uuid4()),
         name=data["name"],
         password=hashed_password,
-        dateOfBirth=data["dateOfBirth"],
+        dateOfBirth=None,
         email=data["email"],
         contactOne="",
         contactTwo="",
