@@ -1,6 +1,6 @@
 import React from 'react'
-import Avatar from './Avatar'
-import Options from './Options'
+import Avatar from '../Avatar'
+import Options from '../Options'
 
 
 const SideNavBar = () => {
