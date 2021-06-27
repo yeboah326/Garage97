@@ -35,14 +35,15 @@ const RegistrationForm = () => {
                 "email": user.email,
                 "password": user.password
             }
-        
-        const response = await fetch('https://localhost:9000/users/',{
+        console.log(data)
+        const response = await fetch('http://localhost:9000/users/',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
             },
             body: JSON.stringify(data)
         })
+        
         if(response.status !== 200){
             throw new Error(`Request failed:${response.status}`)
         }
