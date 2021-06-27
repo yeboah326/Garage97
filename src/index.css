@@ -295,6 +295,33 @@ body {
   padding: 10px;
 }
 
+.delete-product p{
+  font-family: PoppinsBold;
+  color:#273475
+}
+.delete-product span{
+  font-family: PoppinsRegular;
+}
+
+.delete-product div{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.delete-product .button{
+  height: 30px;
+  width: 80px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  color: white;
+  font-family: PoppinsRegular;
+}
+.delete-product .button:hover{
+  cursor: pointer;
+}
 
 .business-dashboard{
   display: flex;
