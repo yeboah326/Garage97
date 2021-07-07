@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@svgr/cli": "^5.5.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -13,6 +14,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "svgr": "svgr -d src/Assets/icons/ icons/",
     "start": "react-scripts start",
     "api": "cd sima_web_api && flask run",
     "build": "react-scripts build",
@@ -37,5 +39,8 @@
       "last 1 safari version"
     ],
     "proxy": "http://localhost:9000/"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0"
   }
 }
