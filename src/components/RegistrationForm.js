@@ -1,9 +1,14 @@
-import {useState} from 'react'
 import Input from './Input'
-import {Link} from 'react-router-dom'
+import BusinessesDashboard from './BusinessesDashboard/BusinessesDashboard'
+import Logo from './Logo'
+
+import {useState} from 'react'
+import {Link,Redirect} from 'react-router-dom'
+
 
 const RegistrationForm = () => {
     const [user,setUser] = useState({"name":"","email":"","password":"","confirm-password":""})
+    const [userCreated,setUserCreated] = useState(false)
 
     const handleChange = (event) => {
         const {name,value} = event.target
@@ -17,6 +22,7 @@ const RegistrationForm = () => {
         try{
             if(user['password'] === user['confirm-password']){
             await createUser()
+            setUserCreated(true)
             alert('Your registration was successfully submitted!')
             setUser({'name':'','email':'','password':'',"confirm-password":''})
         }
@@ -51,7 +57,10 @@ const RegistrationForm = () => {
             
       
     return (
-        <div className="register">
+        userCreated ? <Redirect to={BusinessesDashboard}/>:
+        <div className='container'>
+            <Logo/>
+            <div className="register">
             <form className="d-flex register-form" onSubmit={handleSubmit}>
                 <Input label="Name" type="text" name="name" onChange={handleChange} required="true"/>
                 <Input label="Email" type="email" name="email" onChange={handleChange} required="true"/>
@@ -62,6 +71,8 @@ const RegistrationForm = () => {
             </form>
 
         </div>
+        </div>
+        
     )
 
 }
