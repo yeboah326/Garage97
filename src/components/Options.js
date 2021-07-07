@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Options = ({optionName,icon,alt}) => {
+const Options = ({optionName,component}) => {
     return (
-        <div className="options">
-            <img src={icon} alt={alt}/><span>{optionName}</span>
-        </div>
+        <span className="options">
+           {optionName}
+        </span>
     )
 }
 
