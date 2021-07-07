@@ -17,6 +17,14 @@ body {
   height: 100vh;
   width: 100%;
 }
+
+.container-main{
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  height: 100%;
+}
+/* Background for splash page */
 .logo{
   width:200;
   padding: 0;
@@ -35,7 +43,7 @@ body {
   padding: 0;
   height: 100%;
   display: flex;
- background: url(./Images/Background.png);
+  background-image: url("./Assets/Images/Background.png");
   background-repeat: repeat;
   flex-direction: column;
  
@@ -45,6 +53,7 @@ body {
   display:flex;
 }
 
+/* Login Form */
 .login-form{
   width: 100%;
   height: 100%;
@@ -54,15 +63,16 @@ body {
 .login-form form {
   min-width: 200px;
   min-height: 300px;
+  max-height: max-content;
 	display: flex;
 	flex-direction: column;
 	height: 50%;
 	width:20%;
-	/* justify-content: space-evenly; */
+	justify-content: center;
 	background-color: white;
-	padding: 20px;
+	padding: 1.4rem;
 	border-radius: 0 20px;
-  border: #6880FE;
+  border: #383a46;
 }
 
 .login-form .label,.login-form input{
@@ -84,6 +94,7 @@ body {
   /* height:50%; */
   padding: 0;
   font-size: 1.2rem;
+  margin-bottom: 15px;
 }
 .forgot-pass{
   margin-top: 5%;
@@ -121,6 +132,8 @@ body {
   text-decoration: none;
   
 }
+
+/* Registration Form */
 .register{
   display: flex;
   align-items: center;
@@ -130,12 +143,15 @@ body {
 }
 .register-form{
   background: white;
-  min-width: 200px;
-  min-height: 300px;
+  min-width: 250px;
+  min-height: 450px;
+  max-height: 500px;
+  max-width: 300px;
   height:70%;
   width: 25%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border-radius: 0 20px;
   border: #6880FE;
   padding: 20px;
@@ -160,7 +176,7 @@ body {
 
 .register-form label{
   margin-top: 20px;
-  font-family: 'PoppinsLight';
+  font-family: PoppinsLight;
   color: #6880FE;
 }
 
@@ -170,15 +186,19 @@ body {
   height: 40px;
   width: 80px;
   padding: 0.5rem;
+  margin: 0;
+  margin-top: 2rem;
   background-color: #6880FE;
   color: white;
   border-radius: 10px;
   text-align: center;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   align-self: center;
   border: none;
   cursor: pointer;
+  align-self: center;
+  font-family: PoppinsRegular;
   
 }
 
@@ -187,9 +207,178 @@ body {
   align-self: center;
   color: #6880FE;
   margin-bottom: 5%;
-  margin-top: 5%;
+  margin-top: 2%;
   text-decoration: none;
   color:#6880FE;
+  font-family: PoppinsLight;
+}
+
+/* Side Nav Bar */
+.container-businesses{
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  background-color: #f0f3f5;
+  flex-direction: row;
+}
+.side-nav-bar{
+  height:100vh;
+  width: 185px;
+  background-color: #fefffe;
+  border-radius: 0 30px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar{
+  width: 100%;
+  height: 30%;
+  min-height: 200px ;
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+  margin-top: 20%;
+  margin-left: 0%;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar img{
+  width: 130px;
+  height: 125px;
+  background-color: #f0f3f5;
+  border-radius: 50%;
+  align-self: center;
+  margin-top: 10%;
+  text-align: center;
+  margin-left: 0%;
+  border: 1px solid  #fff;
 }
 
 
+.avatar span{
+  justify-self: end;
+  align-self: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-family: PoppinsBold;
+}
+
+
+.option{
+  height: 5%;
+  width: 100%;
+  margin-top: 30px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  
+}
+.option svg{
+  /* margin-right: 10px; */
+  color: #c0c0c0;
+}
+
+.options{
+  font-size: 1.2rem;
+  color: #c0c0c0;
+  margin-left: 10px;
+
+}
+.options-link-1{
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  margin-left: 10%;
+}
+.options-link-1:active{
+  color: #7e39fe;
+}
+/* .options image{
+  height: 20px;
+  width: 20px;
+} */
+
+/* Businesses Page */
+.business{
+  width: 30%;
+  height: 25%;
+  max-height: 200px;
+  padding: 10px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 10px 10px 30px #888;
+  margin: 20px;
+}
+
+.business span{
+  text-align: start;
+  font-weight: bold;
+  font-size: 1.2rem; 
+}
+
+.businesses{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.business-section{
+  display: flex;
+  flex-direction: row;
+  background-color: #f0f3f5;
+  height: 100vh;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  width: 82%;
+  padding: 10px;
+}
+
+.delete-product p{
+  font-family: PoppinsBold;
+  color:#273475
+}
+.delete-product span{
+  font-family: PoppinsRegular;
+}
+
+.delete-product div{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.delete-product .button{
+  height: 30px;
+  width: 80px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  color: white;
+  font-family: PoppinsRegular;
+}
+.delete-product .button:hover{
+  cursor: pointer;
+}
+
+.business-dashboard{
+  display: flex;
+  flex-direction: row;
+}
+
+.add-button{
+  font-size: 3.5rem;
+  padding: 5px;
+  color: #273475;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 10px 10px 30px #888;
+  padding: 3px 15px 5px 15px;
+}
