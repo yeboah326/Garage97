@@ -1,6 +1,6 @@
 import React from 'react'
 import SideNavBar from './SideNavBar'
-import Businesses from './Businesses'
+import Businesses from './Products'
 
 const BusinessesDashboard = () => {
     return (

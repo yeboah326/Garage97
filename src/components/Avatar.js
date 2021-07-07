@@ -3,7 +3,7 @@ import React from 'react'
 const Avatar = ({image,name}) => {
     return (
         <div className="avatar">
-            <img src={image} alt="Profile" className="profile-picture"/>
+            <img src={image} alt="" className="profile-picture"/>
             <span>{name}</span>
         </div>
     )
