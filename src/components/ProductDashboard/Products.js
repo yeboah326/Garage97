@@ -1,5 +1,5 @@
 import React from 'react'
-import Business from './Business'
+import Business from './Product'
 import AddButton from './AddButton'
 
 const Businesses = () => {
