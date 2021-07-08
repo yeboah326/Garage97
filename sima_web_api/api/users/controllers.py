@@ -20,7 +20,7 @@ def hello():
 
 
 # TODO: Define user_login route
-@users.route("login/")
+@users.route("/login", methods=["POST"])
 def user_login():
     auth = request.get_json()
     if not auth or not auth["email"] or not auth["password"]:
@@ -30,8 +30,9 @@ def user_login():
     if not user:
         return jsonify({"message":"User not found"})
 
-    if check_password_hash(user.password,auth.password):
+    if check_password_hash(user.password,auth['password']):
         token = jwt.encode({'public_id':user.public_id,'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},os.environ.get('SECRET_KEY'))
+        return jsonify({"token":token}), 200
 
     return jsonify({"message":"Authorization failed"}), 401
 

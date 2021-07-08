@@ -20,10 +20,12 @@ migrate = Migrate(app, db)
 
 from sima_web_api.api.main.controllers import main
 from sima_web_api.api.users.controllers import users
+from sima_web_api.api.business.controllers import business
 
 # Blueprints
 app.register_blueprint(main)
 app.register_blueprint(users)
+app.register_blueprint(business)
 
 # Error Handling Pages
 @app.errorhandler(404)
