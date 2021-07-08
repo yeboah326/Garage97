@@ -1,5 +1,5 @@
 import React from 'react'
-import Business from './Product'
+import Product from './Product'
 import AddButton from './AddButton'
 
 const Businesses = () => {
@@ -7,16 +7,16 @@ const Businesses = () => {
     return (
         <div className="business-section">
             <div className="businesses">
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
-                <Business name="Kako Inc" description={description}/>
+                <Product name="Kako Bingi" description={description}/>
+                <Product name="Kako Grawgraw" description={description}/>
+                <Product name="Kako Pro Max" description={description}/>
+                <Product name="Kako Granula" description={description}/>
+                <Product name="Kako Toppings" description={description}/>
+                <Product name="Kako Mini" description={description}/>
+                <Product name="Kako Papa" description={description}/>
+                <Product name="Kako Cube" description={description}/>
+                <Product name="Kako Cube Mini" description={description}/>
+                <Product name="Kako Cube Pro" description={description}/>
             </div>
             <div className="addButtonSection">
                 <AddButton/>
