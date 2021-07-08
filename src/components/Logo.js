@@ -1,3 +1,7 @@
+import React from 'react'
+
+import logo from '../Images/circle-cropped.png';
+
 const Logo = () => {
     return (
         
