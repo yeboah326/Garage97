@@ -24,11 +24,11 @@ def hello():
 def user_login():
     auth = request.get_json()
     if not auth or not auth["email"] or not auth["password"]:
-        return jsonify({"message":"Error with data passed"}) 
+        return jsonify({"message":"User not found or data is invalid"}), 400
     user = User.query.filter_by(email=auth["email"]).first()
 
     if not user:
-        return jsonify({"message":"User not found"}), 400
+        return jsonify({"message":"User not found or data is invalid"}), 400
 
     if check_password_hash(user.password,auth['password']):
         token = jwt.encode({'public_id':user.public_id,'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},os.environ.get('SECRET_KEY'))
