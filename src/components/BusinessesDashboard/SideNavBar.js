@@ -3,23 +3,19 @@ import Avatar from '../Avatar'
 import Options from '../Options'
 import SvgHome from '../../Assets/icons/Home'
 import SvgBoxThin from '../../Assets/icons/BoxThin'
-import { Link } from 'react-router-dom'
-import {useState} from 'react'
+import SvgLogOut from '../../Assets/icons/LogOut'
+import { NavLink } from 'react-router-dom'
+
 
 
 const SideNavBar = () => {
-    const [active,setActive] = useState({'home':'false','businesses':'false'})
-    const onHomeClick = () => {
-        setActive({'home':'true','businesses':'false'})
-    }
-    const onBusinessesClick = () => {
-        setActive({'home':'false','businesses':'true'})
-    }
+  
     return (
         <div className="side-nav-bar">
             <Avatar name="Joseph Barnes" image=""/>
-            <div className='option'><Link to='/dashboard-home' className='options-link-1' onClick={onHomeClick}><SvgHome fill={active['home']?'#7e39fe':'#c0c0c0'}/><Options optionName="Home"/></Link></div>
-            <div className='option'><Link to='/dashboard-businesses' className='options-link-1' onClick={onBusinessesClick}><SvgBoxThin stroke={active['businesses']?'#7e39fe':'#c0c0c0'}/><Options optionName="Businesses"/></Link></div>
+            <div className='option'><NavLink exact to='/dashboard-home' className='options-link-1' activeClassName='active'><SvgHome fill='#c0c0c0'/><Options optionName="Home"/></NavLink></div>
+            <div className='option'><NavLink exact to='/dashboard-businesses' className='options-link-1' activeClassName='active'><SvgBoxThin stroke="#c0c0c0" fill="#c0c0c0"/><Options optionName="Businesses"/></NavLink></div>
+            <div className='logout'><NavLink to=''><SvgLogOut stroke='#c0c0c0' fill='#c0c0c0'/></NavLink></div>
         </div>
     )
 }
