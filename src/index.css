@@ -216,7 +216,7 @@ body {
 }
 .side-nav-bar{
   height:100vh;
-  width: 185px;
+  width: 200px;
   background-color: #fefffe;
   border-radius: 0 30px 0 0;
   display: flex;
@@ -228,7 +228,6 @@ body {
   width: 100%;
   height: 30%;
   min-height: 200px ;
-  /* background-color: aqua; */
   display: flex;
   flex-direction: column;
   margin-top: 20%;
@@ -260,7 +259,7 @@ body {
 
 
 .option{
-  height: 5%;
+  height: 50px;
   width: 100%;
   margin-top: 30px;
   align-items: center;
@@ -268,15 +267,14 @@ body {
   flex-direction: row;
   
 }
-.option svg{
-  /* margin-right: 10px; */
-  color: #c0c0c0;
-}
+
 
 .options{
   font-size: 1.2rem;
   color: #c0c0c0;
   margin-left: 10px;
+  height: 100%;
+  width: auto;
 
 }
 .options-link-1{
@@ -285,32 +283,68 @@ body {
   width: 100%;
   margin-left: 10%;
 }
-.options-link-1:active{
-  color: #7e39fe;
+.active .options{
+  color:#6880fe;
 }
-/* .options image{
-  height: 20px;
-  width: 20px;
-} */
+.option .active{
+  border-right: 4px solid #6880fe;
+  /* height: 50px; */
+  align-items: center;
+}
+.option .active svg{
+  fill:#6880fe;
+  stroke: #6880fe;
+}
+.options .active{
+  align-self: center;
+}
+
+.logout{
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: 10px;
+  
+}
+
 
 /* Businesses Page */
 .business{
-  width: 30%;
-  height: 25%;
-  max-height: 200px;
+  width: 400px;
+  height: 120px;
   padding: 10px;
+  padding-left: 20px;
   background: white;
   border-radius: 20px;
-  box-shadow: 10px 10px 30px #888;
+  box-shadow: 0px 00px 5px #888;
   margin: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .business span{
   text-align: start;
-  font-weight: bold;
-  font-size: 1.2rem; 
+  font-size: 1.3rem; 
+  display: block;
+  color: #273475;
+  font-family: PoppinsBold;
+  display: flex;
+  align-items: center;
 }
+.business .delete-button{
+  margin-left: auto;
+  height: 5px;
 
+}
+.business .delete-button svg{
+  fill:red;
+}
+.business p{
+  text-align: start;
+  color: #273475;
+  font-size: 0.8rem;
+  font-family: PoppinsRegular;
+}
 .businesses{
   display: flex;
   flex-wrap: wrap;
@@ -327,8 +361,20 @@ body {
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none; 
-  width: 82%;
+  width: 100%;
   padding: 10px;
+}
+.add-button{
+  font-size: 3.5rem;
+  color: #273475;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px #888;
+  padding: 0px 15px 3px 15px;
+  background-color: #fff;
+  margin-top: 40px;
+  align-self: auto;
+  cursor: pointer;
 }
 
 .delete-product p{
@@ -364,12 +410,3 @@ body {
   flex-direction: row;
 }
 
-.add-button{
-  font-size: 3.5rem;
-  padding: 5px;
-  color: #273475;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 10px 10px 30px #888;
-  padding: 3px 15px 5px 15px;
-}
