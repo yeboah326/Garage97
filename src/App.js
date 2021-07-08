@@ -16,7 +16,7 @@ function App() {
             <Route exact path = '/register' component={RegistrationForm}/>
             <Route exact path = '/dashboard-home' component={BusinessesDashboard}/> 
             <Route exact  path = '/dashboard-businesses' component={BusinessPage}/>
-            <Route exact path='/business/products' component={ProductsPage}/>
+            <Route exact path='/products' component={ProductsPage}/>
           </div>
             
         
