@@ -16,7 +16,7 @@ users = Blueprint(
 
 @users.route("hello")
 def hello():
-    return jsonify({"message": "Users Blueprint Created successfully"})
+    return jsonify({"message": "Users Blueprint Created successfully"}), 200
 
 
 # TODO: Define user_login route
@@ -28,7 +28,7 @@ def user_login():
     user = User.query.filter_by(email=auth["email"]).first()
 
     if not user:
-        return jsonify({"message":"User not found"})
+        return jsonify({"message":"User not found"}), 400
 
     if check_password_hash(user.password,auth['password']):
         token = jwt.encode({'public_id':user.public_id,'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},os.environ.get('SECRET_KEY'))
@@ -96,7 +96,7 @@ def create_new_user():
 
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({"message": "New user created"}), 200
+    return jsonify({"message": "New user created"}), 201
 
 
 # TODO: Define update_user_info route
@@ -129,7 +129,7 @@ def update_user_info(public_id):
     except KeyError:
         pass
     db.session.commit()
-    return jsonify({"message":"User info updated successfully"})
+    return jsonify({"message":"User info updated successfully"}), 200
 
 
 # TODO: Define delete_all_users route
@@ -144,4 +144,4 @@ def delete_user_by_id(public_id):
     user = User.query.filter_by(public_id=public_id).first()
     db.session.delete(user)
     db.session.commit()
-    return jsonify({"message":"User deleted successfully"})
+    return jsonify({"message":"User deleted successfully"}), 200
