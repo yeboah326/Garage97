@@ -25,13 +25,16 @@ z-index: 1;
   }
 
 .button{
-  background-color: #18266f;
+  background-color: #fdfdfd;
   border-radius: 29px;
-  border: 1px solid ;
+  border: 1px solid white ;
   display: inline-block;
-  padding: 16px 31px;
+  padding: 10px 20px;
   text-decoration: none;
   text-shadow: 0px 1px 0px ;
+  /* margin-left: 10px; */
+  /* margin-right: 10px; */
+  font-family: PoppinsRegular;
   
 }
 .button:hover{
@@ -69,12 +72,16 @@ z-index: 1;
       background-color: aliceblue;
       height: 50%;
       width: 70%;
-      display: f;
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      margin: auto;
+      margin-bottom: 200px;
 
   }
   .welcomeVibe h1{
       
-      width: 00.5rem;
+    width: 100%;
      margin : 70px;
   
     font-family: PoppinsBold;
