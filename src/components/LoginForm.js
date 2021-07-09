@@ -1,11 +1,14 @@
 import React from 'react'
 import Input from './Input'
+import Logo from './Logo'
 import {Link} from 'react-router-dom'
 // import SubmitButton from './SubmitButton'
 
 const LoginForm = () => {
     return (
-        <div className="d-flex login-form">
+        <div className='container'>
+            <Logo/>
+            <div className="d-flex login-form">
             <form>
                 <Input type="email" required="true" label="Email"/>
                 <Input type="password" required="true" label="Password"/>
@@ -14,6 +17,7 @@ const LoginForm = () => {
                 < Link to="/register" className="sign-up-link">Not registered? Sign Up </Link>
             </form>
 
+        </div>
         </div>
     )
 }

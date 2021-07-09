@@ -1,0 +1,7 @@
+export { default as BoxThin } from './BoxThin'
+export { default as Delivery } from './Delivery'
+export { default as Home } from './Home'
+export { default as LogOut } from './LogOut'
+export { default as Tag } from './Tag'
+export { default as TrashCan } from './TrashCan'
+export { default as User } from './User'

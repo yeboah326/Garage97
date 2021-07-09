@@ -16,26 +16,32 @@ users = Blueprint(
 
 @users.route("hello")
 def hello():
-    return jsonify({"message": "Users Blueprint Created successfully"})
+    return jsonify({"message": "Users Blueprint Created successfully"}), 200
 
 
-# TODO: Define user_login route
-@users.route("login/")
+@users.route("/login", methods=["POST"])
 def user_login():
     auth = request.get_json()
     if not auth or not auth["email"] or not auth["password"]:
-        return jsonify({"message":"Error with data passed"}) 
+        return jsonify({"message": "User not found or data is invalid"}), 400
     user = User.query.filter_by(email=auth["email"]).first()
 
     if not user:
-        return jsonify({"message":"User not found"})
+        return jsonify({"message": "User not found or data is invalid"}), 400
 
-    if check_password_hash(user.password,auth.password):
-        token = jwt.encode({'public_id':user.public_id,'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},os.environ.get('SECRET_KEY'))
+    if check_password_hash(user.password, auth["password"]):
+        token = jwt.encode(
+            {
+                "public_id": user.public_id,
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30),
+            },
+            os.environ.get("SECRET_KEY"),
+        )
+        return jsonify({"token": token}), 200
 
-    return jsonify({"message":"Authorization failed"}), 401
+    return jsonify({"message": "Authorization failed"}), 401
 
-# TODO: Define get_all_users route
+
 @users.route("/", methods=["GET"])
 def get_all_users():
     users = User.query.all()
@@ -55,7 +61,6 @@ def get_all_users():
     return jsonify(users_json), 200
 
 
-# TODO: Define get_user_by_id route
 @users.route("/<public_id>", methods=["GET"])
 def get_user_by_id(public_id):
     user = User.query.filter_by(public_id=public_id).first()
@@ -73,9 +78,6 @@ def get_user_by_id(public_id):
     return jsonify({"message": "User not found"}), 200
 
 
-
-
-# TODO: Define create_new_user route
 @users.route("/", methods=["POST"])
 def create_new_user():
     data = request.get_json()
@@ -95,40 +97,39 @@ def create_new_user():
 
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({"message": "New user created"}), 200
+    return jsonify({"message": "New user created"}), 201
 
 
-# TODO: Define update_user_info route
 @users.route("/<public_id>", methods=["PUT"])
 def update_user_info(public_id):
-    #EMAIL,DISPLAY_NAME, CONTACT ONE, CONTACT TWO
+    # EMAIL,DISPLAY_NAME, CONTACT ONE, CONTACT TWO
     user = User.query.filter_by(public_id=public_id).first()
-    
+
     data = request.get_json()
 
     try:
-        if data['email']:
-            user.email = data['email']
+        if data["email"]:
+            user.email = data["email"]
     except KeyError:
         pass
 
     try:
-        if data['displayName']:
-            user.displayName = data['displayName']
+        if data["displayName"]:
+            user.displayName = data["displayName"]
     except KeyError:
         pass
     try:
-        if data['contactOne']:
-            user.contactOne = data['contactOne']
+        if data["contactOne"]:
+            user.contactOne = data["contactOne"]
     except KeyError:
         pass
     try:
-        if data['contactTwo']:
-            user.contactTwo = data['contactTwo']
+        if data["contactTwo"]:
+            user.contactTwo = data["contactTwo"]
     except KeyError:
         pass
     db.session.commit()
-    return jsonify({"message":"User info updated successfully"})
+    return jsonify({"message": "User info updated successfully"}), 200
 
 
 # TODO: Define delete_all_users route
@@ -137,10 +138,9 @@ def delete_all_users():
     pass
 
 
-# TODO: Define delete_user_by_id route
 @users.route("/<public_id>", methods=["DELETE"])
 def delete_user_by_id(public_id):
     user = User.query.filter_by(public_id=public_id).first()
     db.session.delete(user)
     db.session.commit()
-    return jsonify({"message":"User deleted successfully"})
+    return jsonify({"message": "User deleted successfully"}), 200

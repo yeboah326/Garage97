@@ -1,0 +1,90 @@
+
+
+.container-splash{
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    background-color: aqua;
+    background-repeat: repeat;
+    flex-direction: column;
+  
+}
+
+.first-row{
+display: flex;
+justify-content: space-between;
+z-index: 1;
+}
+.buttonspace{
+  height: 2rem;
+   z-index: 1;
+ 
+
+  }
+
+.button{
+  background-color: #18266f;
+  border-radius: 29px;
+  border: 1px solid ;
+  display: inline-block;
+  padding: 16px 31px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px ;
+  
+}
+.button:hover{
+  opacity: 0.5;
+}
+
+
+
+.bottom-curve{
+  position: fixed;
+  bottom: -150px;
+  right: 700px;
+  width: 100%;
+  
+}
+
+.bottom-circle{
+    position: fixed;
+    bottom: -190px;
+    right: -75%;
+    width: 100%;
+    
+  }
+  .curved-upper{
+    position: fixed;
+    top: 0px;
+    right: 0;
+    width: 100%;
+    z-index: 0;
+  }
+  .welcomeVibe{
+      position: relative;
+      margin-left: 15%;
+     border-radius: 20px;
+      background-color: aliceblue;
+      height: 50%;
+      width: 70%;
+      display: f;
+
+  }
+  .welcomeVibe h1{
+      
+      width: 00.5rem;
+     margin : 70px;
+  
+    font-family: PoppinsBold;
+    color: rgb(3, 51, 66);
+   
+  }
+.welcomeVibe p,h3{
+    width: 60%;
+   display: block;
+    margin: auto;
+    padding: auto;
+    font-family: PoppinsRegular;
+}
