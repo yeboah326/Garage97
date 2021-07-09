@@ -12,3 +12,4 @@ class User(db.Model):
     displayName = db.Column(db.String(15))
     contactOne = db.Column(db.String(10))
     contactTwo = db.Column(db.String(10))
+    businesses = db.relationship('Business',backref='User',lazy=True)
