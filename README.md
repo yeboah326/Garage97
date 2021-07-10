@@ -53,6 +53,13 @@ MYSQL_USERNAME = username
 MYSQL_PASSWORD = password
 MYSQL_SERVER = localhost
 MYSQL_DATABASE_NAME = database_name
+SECRET_KEY=generated_key
+```
+
+### SECRET_KEY can be generated using
+```
+import secrets
+secrets.token_hex(32)
 ```
 
 ### Perform database migrations
