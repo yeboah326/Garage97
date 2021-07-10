@@ -124,9 +124,9 @@ body {
 }
 
 .sign-up-link{
-  background-color: #6880FE;
+  /* background-color: #6880FE; */
   align-self: center;
-  color:#fff;
+  color:#6880fe;
   margin: 0;
   margin-top: 5px;
   text-decoration: none;
