@@ -1,17 +1,19 @@
 import React from 'react'
 import Input from './Input'
 import Logo from './Logo'
-import {Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 import {useState} from 'react'
-// import SubmitButton from './SubmitButton'
+import {login,useAuth} from "../auth/index"
+
 
 const LoginForm = () => {
     const [details,setDetails] = useState({'email':'','password':''})
+    const [logged] = useAuth()
 
     const onSubmitClick = async (e) => {
         e.preventDefault()
         const data = {
-            "username":details['email'],
+            "email":details['email'],
             "password":details['password']
         }
         console.log(data)
@@ -19,15 +21,17 @@ const LoginForm = () => {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json',
-                'Access-Control-Allow-Origin':'*'
             },
             body: JSON.stringify(data)
         })
-        const res = response.json()
-        console.log(res)
-        if(response.status === 200){
-            alert('User successfully Logged in')
+        const res = await response.json()
+        if(res.token){
+            login(res.token)
+            console.log(res.token)
         }
+        // if(response.status === 200){
+        //     alert('User successfully Logged in')
+        // }
         else{
             throw new Error(`Request failed:${response.status}`)
         }
@@ -41,6 +45,7 @@ const LoginForm = () => {
     }
     
     return (
+        !logged ?
         <div className='container'>
             <Logo/>
             <div className="d-flex login-form">
@@ -54,6 +59,7 @@ const LoginForm = () => {
 
         </div>
         </div>
+        : <Redirect to='/dashboard-home'/>
     )
 }
 
