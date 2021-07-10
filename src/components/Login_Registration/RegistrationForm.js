@@ -1,5 +1,5 @@
-import Input from './Input'
-import BusinessesDashboard from './BusinessesDashboard/BusinessesDashboard'
+import Input from '../Input'
+import BusinessesDashboard from './../BusinessesDashboard/BusinessesDashboard'
 import Logo from './Logo'
 
 import {useState} from 'react'

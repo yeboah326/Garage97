@@ -1,9 +1,9 @@
 import React from 'react'
-import Input from './Input'
+import Input from '../Input'
 import Logo from './Logo'
 import {Link,Redirect} from 'react-router-dom'
 import {useState} from 'react'
-import {login,useAuth} from "../auth/index"
+import {login,useAuth} from '../../auth/index'
 
 
 const LoginForm = () => {
