@@ -1,6 +1,6 @@
-@import url('./fonts.css');
-@import url('./splash.css');
-
+@import "./fonts.css";
+@import url("./splash.css");
+@import url("./stocks.css");
 
 
 
@@ -23,34 +23,6 @@ body {
   width: 100%;
   padding: 0;
   height: 100%;
-}
-/* Background for splash page */
-.logo{
-  width:200;
-  padding: 0;
-  margin-top: 0;
-}
-.logo h1 {
-  margin-top: 10px;
-  margin-left: 10px;
-  font-family: PoppinsRegular;
-  color: white;
-}
-
-.container{
-  margin: 0;
-  width: 100%;
-  padding: 0;
-  height: 100%;
-  display: flex;
-  background-image: url("./Assets/Images/Background.png");
-  background-repeat: repeat;
-  flex-direction: column;
- 
-}
-
-.d-flex{
-  display:flex;
 }
 
 /* Login Form */
