@@ -1,14 +1,91 @@
 import React from 'react'
+import AddButton from './AddButton'
+import SideNavBar from './SideNavBar'
 
-import { NavLink } from 'react-router-dom'
-import SideNavBar from './BusinessesDashboard/BusinessesDashboard'
 
-const Stocks = () => {
+
+const BusinessesDashboard = () => {
     return (
-        <div >
-             
+        <div className="stocks-body">
+            <div className="sidebar"> <SideNavBar/> </div>
+             <div className="table"><table>
+           
+                    
+                 <thead>
+                    <th>stocks</th>
+                    <th>stocks id</th>
+                     <th>Qty</th>
+                     <th>Date</th>
+                 </thead>
+                 <tbody>
+                     <tr >
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+                     <tr>
+                     <td>stocks</td>
+                     <td>stocks id</td>
+                     <td>Qty</td>
+                     <td>Date</td>
+                     </tr>
+
+
+                 </tbody>
+             </table>
+             </div>
+             <div className="adder"><AddButton/></div>
         </div>
     )
 }
 
-export default Stocks
+export default BusinessesDashboard

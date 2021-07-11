@@ -1,5 +1,5 @@
-import Input from './Input'
-import BusinessesDashboard from './BusinessesDashboard/BusinessesDashboard'
+import Input from '../Input'
+import BusinessesDashboard from './../BusinessesDashboard/BusinessesDashboard'
 import Logo from './Logo'
 
 import {useState} from 'react'
@@ -50,7 +50,7 @@ const RegistrationForm = () => {
             body: JSON.stringify(data)
         })
         
-        if(response.status !== 200){
+        if(response.status !== 201){
             throw new Error(`Request failed:${response.status}`)
         }
     }
