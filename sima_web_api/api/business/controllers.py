@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from sima_web_api.api.business.utils import token_required
-from sima_web_api.api.business.models import Business
+from sima_web_api.api.business.models import (Business, Product)
 from sima_web_api.api import db
 
 business = Blueprint(
@@ -33,7 +33,7 @@ def business_create_new(current_user):
 @token_required
 def business_get_all(current_user):
     businesses = Business.query.filter_by(user_id=current_user.id)
-    businesses_json = [{"name":business.name} for business in businesses]
+    businesses_json = [{"id":business.id,"name":business.name} for business in businesses]
     return jsonify(businesses_json), 200
 
 @business.route("/<business_id>",methods=["GET"])
@@ -77,4 +77,64 @@ def business_delete_by_id(current_user,business_id):
         db.session.commit()
         return jsonify({"message":"Business deleted"}), 200
     return jsonify({"message":"Business not found"}), 404
+
+# ------------ Business Section ------------
+@business.route("/<business_id>/product",methods=["GET"])
+@token_required
+def product_get_all(current_user,business_id):
+    business_products = Product.query.filter_by(business_id=business_id)
+    business_products_json = [
+        {"name":product.name}
+        for product in business_products
+    ]
+    return jsonify(business_products_json), 200
+
+@business.route("/<business_id>/product/<product_id>",methods=["GET"])
+@token_required
+def product_get_by_id(current_user,business_id,product_id):
+    product = Product.query.filter_by(id=product_id).first()
+    product_json = {"name":product.name}
+    return jsonify(product_json), 200
+
+@business.route("/<business_id>/product",methods=["POST"])
+@token_required
+def product_create_new(current_user,business_id):
+    data = request.get_json()
     
+    new_product = Product(
+        name=data["name"],
+        business_id=business_id
+    )
+
+    db.session.add(new_product)
+    db.session.commit()
+
+    return jsonify({"message":"Product created successfully"}), 201
+
+@business.route("/<business_id>/product/<product_id>",methods=["DELETE"])
+@token_required
+def product_delete_by_id(current_user,product_id):
+    product = Product.query.filter_by(id=product_id).first()
+
+    if product:
+        db.session.delete(product)
+        db.session.save()
+
+    return jsonify({"message":"Product deleted successfully"}), 200
+
+@business.route("/<business_id>/product/<product_id>",methods=["PUT"])
+@token_required
+def product_update_by_id(current_user,business_id,product_id):
+    product = Product.query.filter_by(id=product_id).first()
+
+    data = request.get_json()
+
+    try:
+        if data["name"]:
+            product.name = data["name"]
+    except KeyError:
+        pass
+
+    db.session.commit()
+
+    return jsonify({"message": "User info updated successfully"}), 200
