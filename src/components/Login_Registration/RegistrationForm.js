@@ -1,7 +1,6 @@
 import Input from '../Input'
-import BusinessesDashboard from './../BusinessesDashboard/BusinessesDashboard'
 import Logo from './Logo'
-
+import { login, useAuth } from '../../auth'
 import {useState} from 'react'
 import {Link,Redirect} from 'react-router-dom'
 
@@ -9,6 +8,7 @@ import {Link,Redirect} from 'react-router-dom'
 const RegistrationForm = () => {
     const [user,setUser] = useState({"name":"","email":"","password":"","confirm-password":""})
     const [userCreated,setUserCreated] = useState(false)
+    const [logged] = useAuth()
 
     const handleChange = (event) => {
         const {name,value} = event.target
@@ -17,14 +17,34 @@ const RegistrationForm = () => {
         }))
     }
 
+    const Login = async () => {
+        const details = {
+            'email': user['email'],
+            'password': user['password']
+        }
+        const response = await fetch('http://localhost:9000/users/login',{
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(details)
+        })
+        const res = await response.json()
+        if (res.token){
+            login(res.token)
+        }
+        setUser({'name':'','email':'','password':'',"confirm-password":''})
+    }
     const handleSubmit = async (event) => {
         event.preventDefault();
         try{
             if(user['password'] === user['confirm-password']){
             await createUser()
+            Login()
             setUserCreated(true)
             alert('Your registration was successfully submitted!')
-            setUser({'name':'','email':'','password':'',"confirm-password":''})
+            
+            
         }
             else{
             alert('Passwords do not match')
@@ -41,7 +61,6 @@ const RegistrationForm = () => {
                 "email": user.email,
                 "password": user.password
             }
-        console.log(data)
         const response = await fetch('http://localhost:9000/users/',{
             method:'POST',
             headers:{
@@ -57,7 +76,7 @@ const RegistrationForm = () => {
             
       
     return (
-        userCreated ? <Redirect to={BusinessesDashboard}/>:
+        userCreated && logged ? <Redirect to='/dashboard-home'/>:
         <div className='container'>
             <Logo/>
             <div className="register">
