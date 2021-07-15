@@ -155,6 +155,7 @@ def sale_create_new(current_user, product_id):
     db.session.commit()
     return jsonify({"message":"Sale created successfully"}), 201
 
+#Modify route
 @business.route("/<product_id>/sale", methods=["GET"])
 @token_required
 def sale_get_all(current_user, product_id):
@@ -168,7 +169,7 @@ def sale_get_all(current_user, product_id):
     ]
     return jsonify(product_sales_json), 200
 
-#Add route later
+
 @business.route("/<business_id>/product/<product_id>/sale/<sale_id>", methods=["GET"])
 @token_required
 def sale_get_by_id(current_user,business_id,product_id,sale_id):
@@ -200,3 +201,14 @@ def sale_update_by_id(current_user,business_id,product_id,sale_id):
 
     return jsonify({"message": "Sale of product updated successfully"}), 200
 
+
+@business.route("/<business_id>/product/<product_id>/sale/<sale_id>", methods=["DELETE"])
+@token_required
+def sale_delete_by_id(current_user, sale_id):
+    sale = Sale.query.filter_by(id=sale_id).first()
+
+    if sale:
+        db.session.delete(sale)
+        db.session.save()
+    
+    return jsonify({"message":"Sale deleted successfully"}), 200
