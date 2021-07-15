@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from sima_web_api.api.business.utils import token_required
+from sima_web_api.api.users.utils import token_required
 from sima_web_api.api.stock.models import (Stock, StockList)
 
 stock = Blueprint(
