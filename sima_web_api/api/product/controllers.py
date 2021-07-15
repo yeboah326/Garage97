@@ -95,7 +95,16 @@ def sale_delete_all(current_user,product_id):
 @product.route("<product_id>/sale_list", methods=["GET"])
 @token_required
 def sale_list_get_all(current_user,product_id):
-    pass
+    product_sales_list = SaleList.query.filter_by(product_id=product_id)
+    product_sales_list_json = [
+        {
+            "name": sales_list.name,
+            "customerName": sales_list.customerName,
+            "customerContact": sales_list.customerContact
+        }
+        for sales_list in product_sales_list
+    ]
+    return jsonify(product_sales_list_json), 200
 
 @product.route("<product_id>/sale_list", methods=["DELETE"])
 @token_required
