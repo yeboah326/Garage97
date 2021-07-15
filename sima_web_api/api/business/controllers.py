@@ -180,3 +180,23 @@ def sale_get_by_id(current_user, product_id):
     return jsonify(sale_json), 200
 
 
+@business.route("/<business_id>/product/<product_id>/sale/<sale_id>", methods=["PUT"])
+@token_required
+def sale_update_by_id(current_user,business_id,product_id,sale_id):
+    sale = Sale.query.filter_by(id=sale_id).first()
+
+    data = request.get_json()
+
+    try:
+        if data["quantity"]:
+            sale.quantity = data["quantity"]
+
+        if data["sellingPrice"]:
+            sale.sellingPrice = data["sellingPrice"]
+    except KeyError:
+        pass
+
+    db.session.commit()
+
+    return jsonify({"message": "Sale of product updated successfully"}), 200
+
