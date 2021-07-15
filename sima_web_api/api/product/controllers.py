@@ -80,8 +80,8 @@ def sale_get_all(current_user, product_id):
 
 @product.route("/<product_id>/sale", methods=["DELETE"])
 @token_required
-def sale_delete_all():
-    sales = Sale.query.all()
+def sale_delete_all(current_user,product_id):
+    sales = Sale.query.filter_by(product_id=product_id)
     if sales:
         db.session.delete(sales)
         db.session.save()
