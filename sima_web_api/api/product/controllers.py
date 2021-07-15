@@ -48,7 +48,7 @@ def product_update_by_id(current_user,product_id):
 
     return jsonify({"message": "User info updated successfully"}), 200
 
-# Sale
+# ----- Sale -----
 @product.route("/<product_id>/sale", methods=["POST"])
 @token_required
 def sale_create_new(current_user, product_id):
@@ -64,6 +64,7 @@ def sale_create_new(current_user, product_id):
     db.session.commit()
     return jsonify({"message":"Sale created successfully"}), 201
 
+# TODO: Check relevance of endpoint
 @product.route("/<product_id>/sale", methods=["GET"])
 @token_required
 def sale_get_all(current_user, product_id):
@@ -77,4 +78,37 @@ def sale_get_all(current_user, product_id):
     ]
     return jsonify(product_sales_json), 200
 
-# Stock
+# ----- Sale List ----
+@product.route("<product_id>/sale_list", methods=["GET"])
+@token_required
+def sale_list_get_all(current_user,product_id):
+    pass
+
+@product.route("<product_id>/sale_list", methods=["DELETE"])
+@token_required
+def sale_list_delete_all(current_user,product_id):
+    pass
+
+# ----- Stock -----
+
+@product.route("/<product_id>/stock", methods=["GET"])
+@token_required
+def stock_create_new(current_user,product_id):
+    pass
+
+# TODO: Check relevance of endpoint
+@product.route("/<product_id>/stock", methods=["GET"])
+@token_required
+def stock_get_all(current_user,product_id):
+    pass
+
+# ----- Stock List -----
+@product.route("<product_id>/stock_list", methods=["GET"])
+@token_required
+def stock_list_get_all(current_user,product_id):
+    pass
+
+@product.route("<product_id>/stock_list", methods=["DELETE"])
+@token_required
+def stock_list_delete_all(current_user,product_id):
+    pass

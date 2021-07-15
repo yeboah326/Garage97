@@ -14,7 +14,7 @@ def hello():
     return "Hello"
 
 
-
+# ----- Sale -----
 @sale.route("/<sale_id>", methods=["GET"])
 @token_required
 def sale_get_by_id(current_user,sale_id):
@@ -57,3 +57,19 @@ def sale_delete_by_id(current_user, sale_id):
         db.session.save()
     
     return jsonify({"message":"Sale deleted successfully"}), 200
+
+# ----- SaleList -----
+@sale.route("/list/<sale_list_id>",methods=["GET"])
+@token_required
+def sale_list_get_by_id(current_user,sale_list_id):
+    pass
+
+@sale.route("/list/<sale_list_id>",methods=["DELETE"])
+@token_required
+def sale_list_delete_by_id(current_user,sale_list_id):
+    pass
+
+@sale.route("/list/<sale_list_id>",methods=["PUT"])
+@token_required
+def sale_list_update_by_id(current_user,sale_list_id):
+    pass

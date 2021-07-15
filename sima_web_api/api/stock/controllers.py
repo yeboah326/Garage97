@@ -11,4 +11,31 @@ stock = Blueprint(
 @stock.route("/hello")
 def hello():
     return "Hello"
-    
+
+# ----- Stock -----
+@stock.route("/<stock_id>",methods=["GET"])
+@token_required
+def stock_get_by_id(current_user,stock_id):
+    pass
+
+@stock.route("/<stock_list_id>",methods=["DELETE"])
+@token_required
+def stock_delete_by_id(current_user,stock_list_id):
+    pass
+
+@stock.route("/list/<stock_list_id>",methods=["PUT"])
+@token_required
+def stock_update_by_id(current_user,stock_list_id):
+    pass
+
+
+# ----- Stock List -----
+@stock.route("/list/<stock_list_id>",methods=["GET"])
+@token_required
+def stock_list_get_by_id(current_user,stock_list_id):
+    pass
+
+@stock.route("/list/<stock_list_id>",methods=["DELETE"])
+@token_required
+def stock_list_delete_by_id(current_user,stock_list_id):
+    pass
