@@ -111,7 +111,7 @@ def sale_list_get_all(current_user,product_id):
 def sale_list_delete_all(current_user,product_id):
     pass
 
-# ----- Stock -----
+# ----- Stock ------
 
 @product.route("/<product_id>/stock", methods=["GET"])
 @token_required
