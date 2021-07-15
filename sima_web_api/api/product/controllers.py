@@ -78,6 +78,19 @@ def sale_get_all(current_user, product_id):
     ]
     return jsonify(product_sales_json), 200
 
+@product.route("/<product_id>/sale", methods=["DELETE"])
+@token_required
+def sale_delete_all():
+    sales = Sale.query.all()
+    if sales:
+        db.session.delete(sales)
+        db.session.save()
+
+    return jsonify({"message": "Sales deleted successfully"}), 200
+
+
+
+
 # ----- Sale List ----
 @product.route("<product_id>/sale_list", methods=["GET"])
 @token_required
