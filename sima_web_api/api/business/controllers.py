@@ -173,7 +173,7 @@ def sale_get_all(current_user, product_id):
 @business.route("/<business_id>/product/<product_id>/sale/<sale_id>", methods=["GET"])
 @token_required
 def sale_get_by_id(current_user,business_id,product_id,sale_id):
-    sale = Sale.query.filter_by(id=product_id).first()
+    sale = Sale.query.filter_by(id=sale_id).first()
     sale_json = {
         "quantity":sale.quantity,
         "sellingPrice":sale.sellingPrice
