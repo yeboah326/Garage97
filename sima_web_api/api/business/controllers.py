@@ -167,3 +167,16 @@ def sale_get_all(current_user, product_id):
         for sale in product_sales
     ]
     return jsonify(product_sales_json), 200
+
+#Add route later
+@business.route("", methods=["GET"])
+@token_required
+def sale_get_by_id(current_user, product_id):
+    sale = Sale.query.filter_by(id=product_id).first()
+    sale_json = {
+        "quantity":sale.quantity,
+        "sellingPrice":sale.sellingPrice
+    }
+    return jsonify(sale_json), 200
+
+
