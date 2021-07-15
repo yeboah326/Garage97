@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from sima_web_api.api.business.utils import token_required
-from sima_web_api.api.business.models import (Business, Product)
+from sima_web_api.api.business.models import (Business, Product, Sale, SaleList)
 from sima_web_api.api import db
 
 business = Blueprint(
@@ -66,7 +66,7 @@ def business_update_info(current_user,business_id):
 @business.route("/<business_id>",methods=["DELETE"])
 @token_required
 def business_delete_all(current_user,business_id):
-    pass
+    business = Business.query.all()
 
 @business.route("/<business_id>",methods=["DELETE"])
 @token_required
@@ -138,3 +138,20 @@ def product_update_by_id(current_user,business_id,product_id):
     db.session.commit()
 
     return jsonify({"message": "User info updated successfully"}), 200
+
+#<----Sales Section---->
+@business.route("/<product_id>/sale", methods=["POST"])
+@token_required
+def sale_create_new(current_user, product_id):
+    data = request.get_json()
+
+    new_sale = Sale(
+        quantity=data["quantity"],
+        sellingPrice=data["sellingPrice"],
+        product_id=product_id
+    )
+
+    db.session.add(new_sale)
+    db.session.commit()
+    return jsonify({"message":"Sale created successfully"}), 201
+
