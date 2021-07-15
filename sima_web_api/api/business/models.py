@@ -7,4 +7,4 @@ class Business(db.Model):
     name = db.Column(db.String(100))
     user_id = db.Column(db.Integer,db.ForeignKey('User.id'),nullable=False)
     products = db.relationship('Product',backref='Business',lazy=True)
-
+    description = db.Column(db.String(100))
