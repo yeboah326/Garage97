@@ -6,7 +6,7 @@ class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     user_id = db.Column(db.Integer,db.ForeignKey('User.id'),nullable=False)
-    prodcuts = db.relationship('Product',backref='Business',lazy=True)
+    products = db.relationship('Product',backref='Business',lazy=True)
 
 
 class Product(db.Model):
