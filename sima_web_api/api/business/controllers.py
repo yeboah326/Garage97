@@ -139,7 +139,7 @@ def product_update_by_id(current_user,business_id,product_id):
 
     return jsonify({"message": "User info updated successfully"}), 200
 
-#<----Sales Section---->
+#------------ Sales Section ----------
 @business.route("/<product_id>/sale", methods=["POST"])
 @token_required
 def sale_create_new(current_user, product_id):
@@ -155,3 +155,15 @@ def sale_create_new(current_user, product_id):
     db.session.commit()
     return jsonify({"message":"Sale created successfully"}), 201
 
+@business.route("/<product_id>/sale", methods=["GET"])
+@token_required
+def sale_get_all(current_user, product_id):
+    product_sales = Sale.query.filter_by(product_id=product_id)
+    product_sales_json = [
+        {
+        "quantity":sale.quantity, 
+        "sellingPrice":sale.sellingPrice
+        }
+        for sale in product_sales
+    ]
+    return jsonify(product_sales_json), 200
