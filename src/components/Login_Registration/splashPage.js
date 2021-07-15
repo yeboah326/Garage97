@@ -1,6 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-router-dom';
-import {Link} from 'react-dom'
+// import ReactDOM from 'react-router-dom';
+import {Link} from 'react-router-dom'
 
 
 
@@ -25,9 +25,9 @@ const SplashPage =()=> {
               <div className="splash-logo"></div>
               <div></div>
               <div className="buttonspace">
-                  <Link to="../Stocks"><div className="log-in">About</div></Link>
-                  <div className="log-in">Login</div>
-                  <div className="log-in">SignUp</div>
+                  <Link to="/stocks1" className="log-in button">About</Link>
+                  <Link to="/register" className="log-in button">Login</Link>
+                  <Link to="/register" className="log-in button">SignUp</Link>
               </div>
               <div className="message">
               <h1> Simplified Inventory Management Application</h1>

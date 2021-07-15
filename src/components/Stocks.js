@@ -1,21 +1,25 @@
 import React from 'react'
-import AddButton from './AddButton'
-import SideNavBar from './SideNavBar'
+import AddButton from './ProductDashboard/AddButton'
+import SideNavBar from './BusinessesDashboard/SideNavBar'
 
 
 
-const BusinessesDashboard = () => {
+const Stocks = () => {
     return (
         <div className="stocks-body">
             <div className="sidebar"> <SideNavBar/> </div>
-             <div className="table"><table>
+             <div className="table-div"  >
+                 <h1>Stocks</h1>
+                 <table className="table" >
            
                     
-                 <thead>
-                    <th>stocks</th>
+                 <thead><tr>
+                 <th>stocks</th>
                     <th>stocks id</th>
                      <th>Qty</th>
                      <th>Date</th>
+                 </tr>
+                   
                  </thead>
                  <tbody>
                      <tr >
@@ -88,4 +92,4 @@ const BusinessesDashboard = () => {
     )
 }
 
-export default BusinessesDashboard
+export default Stocks
