@@ -2,6 +2,7 @@ from flask import request, jsonify
 from sima_web_api.api import app
 import jwt
 from sima_web_api.api.users.models import User
+from functools import wraps
 
 
 def token_required(f):
