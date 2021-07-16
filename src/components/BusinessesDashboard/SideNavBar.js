@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Avatar from '../Avatar'
 import Options from '../Options'
 import SvgHome from '../../Assets/icons/Home'
@@ -6,11 +6,27 @@ import SvgBoxThin from '../../Assets/icons/BoxThin'
 import SvgLogOut from '../../Assets/icons/LogOut'
 import { NavLink } from 'react-router-dom'
 import {logout} from '../../auth/index'
+import {user} from '../Login_Registration/LoginForm'
 
 
 
 const SideNavBar = () => {
-  
+    const [User,setUser] = useState({})
+    const fetchUser = async ()=> {
+        const response = await fetch(`http://localhost:9000/users/${user}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+
+        const res = await response.json()
+        console.log(res)
+        setUser(res)
+    }
+    useEffect(()=>{
+        fetchUser()
+    },[])
     return (
         <div className="side-nav-bar">
             <Avatar name="Joseph Barnes" image=""/>
