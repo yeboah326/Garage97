@@ -33,7 +33,7 @@ def user_login():
         token = jwt.encode(
             {
                 "public_id": user.public_id,
-                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30),
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
             },
             os.environ.get("SECRET_KEY"),
         )
