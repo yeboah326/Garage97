@@ -12,7 +12,6 @@ def token_required(f):
         
         if "Authorization" in request.headers:
             token = request.headers["Authorization"].split()[1]
-
         if not token:
             return jsonify({"message": "Token is missing!"})
 

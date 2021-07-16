@@ -16,7 +16,6 @@ const LoginForm = () => {
             "email":details['email'],
             "password":details['password']
         }
-        console.log(data)
         const response = await fetch('http://localhost:9000/users/login',{
             method: 'POST',
             headers: {

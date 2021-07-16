@@ -2,5 +2,5 @@ import { createAuthProvider } from "react-token-auth";
 
 export const[useAuth,authFetch,login,logout] = createAuthProvider({
     accessTokenKey: 'token',
-    // onUpdateToken: (token) => fetch('')
+    accessTokenExpireKey: 'exp',
 })
