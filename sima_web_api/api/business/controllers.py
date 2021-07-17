@@ -30,7 +30,7 @@ def business_create_new(current_user):
     db.session.commit()
     return jsonify({"message":"New business successfully created"}), 201
 
-@business.route("/",methods=["GET"])
+@business.route("",methods=["GET"])
 @token_required
 def business_get_all(current_user):
     businesses = Business.query.filter_by(user_id=current_user.id)
