@@ -3,7 +3,7 @@ import Input from '../Input'
 import Button from '../Button'
 import { logout} from '../../auth'
 
-const AddBusiness = ({toggle}) => {
+const AddBusiness = ({toggle,businesses}) => {
     const [business,setBusiness] = useState({'name':'','description':''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
@@ -23,13 +23,12 @@ const AddBusiness = ({toggle}) => {
             },
             body: JSON.stringify(newBusiness)
         })
-        const res = await response.json()
         if(response.status === 401){
             logout()
             alert('Session has expired')
         }
         else if(response.status === 201){
-            alert(res.message)
+                businesses.push(newBusiness)
         }
         else{
             alert('Could not create business. Try again')
