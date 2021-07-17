@@ -61,7 +61,7 @@ const LoginForm = () => {
 
         </div>
         </div>
-        : <Redirect to='/dashboard-home'/>
+        : <Redirect to='/home'/>
     )
 }
 
