@@ -39,6 +39,7 @@ const Businesses = () => {
     useEffect(()=>{
         return ;
     },[businesses])
+    
 
     const onAdd = () => {
         setAddBusiness(!addbusiness)
