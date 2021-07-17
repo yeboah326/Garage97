@@ -30,8 +30,8 @@ function App() {
             <Route exact path = '/' component={SplashPage}/>
             <Route exact path = '/login'component={LoginForm}/>
             <Route exact path = '/register' component={RegistrationForm}/>
-            <PrivateRoute exact path = '/dashboard-home' component={BusinessesDashboard}/> 
-            <PrivateRoute exact  path = '/dashboard-businesses' component={BusinessPage}/>
+            <PrivateRoute exact path = '/home' component={BusinessesDashboard}/> 
+            <PrivateRoute exact  path = '/businesses' component={BusinessPage}/>
             <PrivateRoute exact path='/products' component={ProductsPage}/>
           </div>
             
