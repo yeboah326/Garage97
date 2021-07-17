@@ -76,7 +76,7 @@ const RegistrationForm = () => {
             
       
     return (
-        userCreated && logged ? <Redirect to='/dashboard-home'/>:
+        userCreated && logged ? <Redirect to='/home'/>:
         <div className='container'>
             <Logo/>
             <div className="register">
