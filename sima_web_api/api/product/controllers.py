@@ -12,6 +12,9 @@ product = Blueprint(
     url_prefix="/product",
 )
 
+@product.route("/hello")
+def product_hello():
+    return jsonify({"message":"Hello"}), 200
 
 @product.route("/<product_id>",methods=["GET"])
 @token_required
