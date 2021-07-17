@@ -37,11 +37,13 @@ const Businesses = () => {
     fetchData()
     },[])
     useEffect(()=>{
-        console.log(businesses)
+        return ;
     },[businesses])
 
     const onAdd = () => {
         setAddBusiness(!addbusiness)
+
+        
     }
     const onDelete = (id) => {
         setDeleteBusiness(!deletebusiness)
@@ -56,24 +58,30 @@ const Businesses = () => {
         <div className="business-section">
             {addbusiness ?
             <div className='popup'>
-                <AddBusiness toggle={onAdd}/>
+                <AddBusiness toggle={onAdd} businesses={businesses}/>
             </div> :
             null
             }
             {deletebusiness ? 
             <div className='popup'>
-                <DeleteBusiness onClick={()=>{onDelete(id)}} id={id}/>
+                <DeleteBusiness onClick={()=>{onDelete(id)}} id={id} businesses={businesses}/>
             </div> :
             null
             }
-            <div className="businesses">
-                {businesses.map(business => {
-                    return(
-                    <Business name={business.name} description={description} showDelete={()=>{onDelete(business.id)}} id={business.id}/>
-                    )
-                    })
-                }
+            {businesses.length === 0 ? 
+                <div className="no-business" onClick={onAdd}>
+                    <p>No businesses added yet? Click to add business</p>
+                </div> :
+                <div className="businesses">
+                    {businesses.map(business => {
+                        return(
+                        <Business name={business.name} description={description} showDelete={()=>{onDelete(business.id)}} id={business.id} />
+                        )
+                        })
+            }
             </div>
+            }
+
             <div className="addButtonSection" onClick={onAdd}>
                 <AddButton/>
             </div>
