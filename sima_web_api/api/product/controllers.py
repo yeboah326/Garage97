@@ -4,6 +4,7 @@ from sima_web_api.api.product.models import Product
 from sima_web_api.api.stock.models import (Stock, StockList)
 from sima_web_api.api.sale.models import (Sale, SaleList)
 from sima_web_api.api import db
+import datetime
 
 product = Blueprint(
     "product",
@@ -51,8 +52,13 @@ def product_update_by_id(current_user,product_id):
 # ----- Sale -----
 @product.route("/<product_id>/sale", methods=["POST"])
 @token_required
-def sale_create_new(current_user, product_id):
+def sale_list_create_new(current_user, product_id):
     data = request.get_json()
+
+    new_sale_list = SaleList(
+        created_on=str(datetime.date.today()),
+        product_id=product_id
+    )
 
     new_sale = Sale(
         quantity=data["quantity"],
@@ -89,8 +95,6 @@ def sale_delete_all(current_user,product_id):
     return jsonify({"message": "Sales deleted successfully"}), 200
 
 
-
-
 # ----- Sale List ----
 @product.route("<product_id>/sale_list", methods=["GET"])
 @token_required
@@ -106,30 +110,56 @@ def sale_list_get_all(current_user,product_id):
     ]
     return jsonify(product_sales_list_json), 200
 
+# TODO: Implement later
 @product.route("<product_id>/sale_list", methods=["DELETE"])
 @token_required
 def sale_list_delete_all(current_user,product_id):
     pass
 
-# ----- Stock ------
 
-@product.route("/<product_id>/stock", methods=["GET"])
-@token_required
-def stock_create_new(current_user,product_id):
-    pass
-
-# TODO: Check relevance of endpoint
-@product.route("/<product_id>/stock", methods=["GET"])
-@token_required
-def stock_get_all(current_user,product_id):
-    pass
 
 # ----- Stock List -----
+@product.route("/<product_id>/stock", methods=["POST"])
+@token_required
+def stock_list_create_new(current_user,product_id):
+    data = request.get_json()
+
+    new_stock_list = StockList(
+        created_on=str(datetime.date.today()),
+        product_id=product_id
+    )
+    db.session.commit(new_stock_list)
+    db.session.save()
+
+    for stock in data:
+        new_stock = Stock(
+            quantity=stock["quantity"],
+            buying_price=stock["buying_price"],
+            created_on=str(datetime.date.today()),
+            product_id=product_id,
+            stock_list_id=new_stock_list.id
+        )
+        db.session.commit(new_stock)
+        db.session.save()
+    
+    return jsonify({"message":"Sale list created sucessfully"})
+
+
 @product.route("<product_id>/stock_list", methods=["GET"])
 @token_required
 def stock_list_get_all(current_user,product_id):
-    pass
+    product_stock_list = StockList.query.filter_by(product_id=product_id)
 
+    product_stock_list_json = [
+        {
+            "id":stock_list.id,
+            "name":stock_list.name,
+            "created_on":stock_list.created_on,
+        }
+        for stock_list in product_stock_list
+    ]
+
+# TODO: Implement later
 @product.route("<product_id>/stock_list", methods=["DELETE"])
 @token_required
 def stock_list_delete_all(current_user,product_id):
