@@ -63,10 +63,10 @@ def business_update_info(current_user,business_id):
     return jsonify({"message": "User info updated successfully"}), 200
 
 # TODO: Implement later
-@business.route("/<business_id>",methods=["DELETE"])
-@token_required
-def business_delete_all(current_user,business_id):
-    pass
+# @business.route("/<business_id>",methods=["DELETE"])
+# @token_required
+# def business_delete_all(current_user,business_id):
+#     pass
 
 @business.route("/<business_id>",methods=["DELETE"])
 @token_required
