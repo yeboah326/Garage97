@@ -182,3 +182,26 @@ def sale_list_delete_by_id(current_user, sale_list_id):
 def sale_list_delete_all(current_user):
     sale_list_all = SaleList.query.all().delete()
     return jsonify({"message": "All salelists deleted"})
+
+
+@sale.route("/list/<sale_list_id>", methods=["PUT"])
+@token_required
+def sale_list_update_by_id(current_user,sale_list_id):
+    sale_list = SaleList.query.filter_by(id=sale_list_id).first()
+    data = request.get_json()
+
+    try:
+        if data["name"]:
+            sale_list.name = data["name"]
+
+        if data["customer_name"]:
+            sale_list.customer_name = data["customer_name"]
+
+        if data["customer_contact"]:
+            sale_list.customer_contact = data["customer_contact"]
+
+    except KeyError:
+        return jsonify({"message": "Wrong data passed"})
+
+    db.sesion.commit()
+    return jsonify({"message": "Product Sale list updated sucessfully"}), 200
