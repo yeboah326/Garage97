@@ -68,11 +68,11 @@ def get_user_by_id(public_id):
         user_json = {
             "public_id": user.public_id,
             "name": user.name,
-            "dateOfBirth": user.dateOfBirth,
+            "date_of_birth": user.date_of_birth,
             "email": user.email,
-            "displayName": user.displayName,
-            "contactOne": user.contactOne,
-            "contactTwo": user.contactTwo,
+            "display_name": user.display_name,
+            "contact_one": user.contact_one,
+            "contact_two": user.contact_two,
         }
         return jsonify(user_json), 200
     return jsonify({"message": "User not found"}), 200
