@@ -20,7 +20,7 @@ Body
 {
     "name":"John Doe",
     "password":"123456",
-    "dateOfBirth":"2000-01-01",
+    "date_of_birth":"2000-01-01",
     "email":"jdoe@gmail.com"
 }
 </pre>
@@ -40,10 +40,10 @@ SUCCESS: **200 OK**
 <pre>
 {
     {
-        "contactOne": "",
-        "contactTwo": "",
-        "dateOfBirth": null,
-        "displayName": "",
+        "contact_one": "",
+        "contact_two": "",
+        "date_of_birth": null,
+        "display_name": "",
         "email": "jdoe@gmail.com",
         "name": "John Doe",
         "public_id": "80d70372-44ad-4a19-855c-bf1115c3fb6d"
@@ -62,10 +62,10 @@ SUCCESS: **200 OK**
 
 <pre>
 {
-    "contactOne": "",
-    "contactTwo": "",
-    "dateOfBirth": null,
-    "displayName": "",
+    "contact_one": "",
+    "contact_two": "",
+    "date_of_birth": null,
+    "display_name": "",
     "email": "jdoe@gmail.com",
     "name": "John Doe",
     "public_id": "80d70372-44ad-4a19-855c-bf1115c3fb6d"
