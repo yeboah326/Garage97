@@ -33,11 +33,11 @@ def user_login():
         token = jwt.encode(
             {
                 "public_id": user.public_id,
-                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30),
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(days=1),
             },
             os.environ.get("SECRET_KEY"),
         )
-        return jsonify({"token": token}), 200
+        return jsonify({"public_id": user.public_id, "token": token}), 200
 
     return jsonify({"message": "Authorization failed"}), 401
 
@@ -50,11 +50,11 @@ def get_all_users():
         {
             "public_id": user.public_id,
             "name": user.name,
-            "dateOfBirth": user.dateOfBirth,
+            "date_of_birth": user.date_of_birth,
             "email": user.email,
-            "displayName": user.displayName,
-            "contactOne": user.contactOne,
-            "contactTwo": user.contactTwo,
+            "display_name": user.display_name,
+            "contact_one": user.contact_one,
+            "contact_two": user.contact_two,
         }
         for user in users
     ]
@@ -68,11 +68,11 @@ def get_user_by_id(public_id):
         user_json = {
             "public_id": user.public_id,
             "name": user.name,
-            "dateOfBirth": user.dateOfBirth,
+            "date_of_birth": user.date_of_birth,
             "email": user.email,
-            "displayName": user.displayName,
-            "contactOne": user.contactOne,
-            "contactTwo": user.contactTwo,
+            "display_name": user.display_name,
+            "contact_one": user.contact_one,
+            "contact_two": user.contact_two,
         }
         return jsonify(user_json), 200
     return jsonify({"message": "User not found"}), 200
@@ -88,11 +88,11 @@ def create_new_user():
         public_id=str(uuid.uuid4()),
         name=data["name"],
         password=hashed_password,
-        dateOfBirth=None,
+        date_of_birth=None,
         email=data["email"],
-        contactOne="",
-        contactTwo="",
-        displayName="",
+        contact_one="",
+        contact_two="",
+        display_name="",
     )
 
     db.session.add(new_user)
@@ -114,18 +114,18 @@ def update_user_info(public_id):
         pass
 
     try:
-        if data["displayName"]:
-            user.displayName = data["displayName"]
+        if data["display_name"]:
+            user.display_name = data["display_name"]
     except KeyError:
         pass
     try:
-        if data["contactOne"]:
-            user.contactOne = data["contactOne"]
+        if data["contact_one"]:
+            user.contact_one = data["contact_one"]
     except KeyError:
         pass
     try:
-        if data["contactTwo"]:
-            user.contactTwo = data["contactTwo"]
+        if data["contact_two"]:
+            user.contact_two = data["contact_two"]
     except KeyError:
         pass
     db.session.commit()

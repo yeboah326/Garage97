@@ -1,7 +1,11 @@
 from flask import Blueprint, jsonify, request
-from sima_web_api.api.business.utils import token_required
-from sima_web_api.api.business.models import (Business, Product)
+from sima_web_api.api.users.utils import token_required
+from sima_web_api.api.business.models import Business
+from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
+from sima_web_api.api.sale.models import SaleList
+from sima_web_api.api.stock.models import StockList
+
 
 business = Blueprint(
     "business",
@@ -15,40 +19,43 @@ business = Blueprint(
 def hello(current_user):
     return jsonify({"message": "Business Blueprint Created successfully"}), 200
 
+
 @business.route("", methods=["POST"])
 @token_required
 def business_create_new(current_user):
     data = request.get_json()
 
-    new_business = Business(
-        name=data['name'],
-        user_id=current_user.id
-    )
+    new_business = Business(name=data["name"], user_id=current_user.id)
 
     db.session.add(new_business)
     db.session.commit()
-    return jsonify({"message":"New business successfully created"}), 201
+    return jsonify({"message": "New business successfully created"}), 201
 
-@business.route("/",methods=["GET"])
+
+@business.route("", methods=["GET"])
 @token_required
 def business_get_all(current_user):
     businesses = Business.query.filter_by(user_id=current_user.id)
-    businesses_json = [{"id":business.id,"name":business.name} for business in businesses]
+    businesses_json = [
+        {"id": business.id, "name": business.name} for business in businesses
+    ]
     return jsonify(businesses_json), 200
 
-@business.route("/<business_id>",methods=["GET"])
-@token_required
-def business_get_by_id(current_user,business_id):
-    business = Business.query.filter_by(user_id=current_user.id,id=business_id).first()
-    if business:
-        business_json = {"name":business.name}
-        return jsonify(business_json), 200
-    return jsonify({"message":"Business not found"}), 404
 
-@business.route("/<business_id>",methods=["PUT"])
+@business.route("/<business_id>", methods=["GET"])
 @token_required
-def business_update_info(current_user,business_id):
-    business = Business.query.filter_by(id=business_id,user_id=current_user.id).first()
+def business_get_by_id(current_user, business_id):
+    business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
+    if business:
+        business_json = {"name": business.name}
+        return jsonify(business_json), 200
+    return jsonify({"message": "Business not found"}), 404
+
+
+@business.route("/<business_id>", methods=["PUT"])
+@token_required
+def business_update_info(current_user, business_id):
+    business = Business.query.filter_by(id=business_id, user_id=current_user.id).first()
 
     data = request.get_json()
 
@@ -62,79 +69,107 @@ def business_update_info(current_user,business_id):
 
     return jsonify({"message": "User info updated successfully"}), 200
 
-# TODO: Implement later
-@business.route("/<business_id>",methods=["DELETE"])
-@token_required
-def business_delete_all(current_user,business_id):
-    pass
 
-@business.route("/<business_id>",methods=["DELETE"])
+# TODO: Implement later
+@business.route("/", methods=["DELETE"])
 @token_required
-def business_delete_by_id(current_user,business_id):
-    business = Business.query.filter_by(user_id=current_user.id,id=business_id).first()
+def business_delete_all(current_user, business_id):
+    businesses = Business.query.all().delete()
+    return jsonify({"message": "Businesses deleted successfully"}), 200
+
+
+@business.route("/<business_id>", methods=["DELETE"])
+@token_required
+def business_delete_by_id(current_user, business_id):
+    business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
     if business:
         db.session.delete(business)
         db.session.commit()
-        return jsonify({"message":"Business deleted"}), 200
-    return jsonify({"message":"Business not found"}), 404
+        return jsonify({"message": "Business deleted"}), 200
+    return jsonify({"message": "Business not found"}), 404
 
-# ------------ Business Section ------------
-@business.route("/<business_id>/product",methods=["GET"])
+
+# Product related views
+@business.route("/<business_id>/product", methods=["GET"])
 @token_required
-def product_get_all(current_user,business_id):
+def business_get_all_product(current_user, business_id):
     business_products = Product.query.filter_by(business_id=business_id)
-    business_products_json = [
-        {"name":product.name}
-        for product in business_products
-    ]
+    business_products_json = [{"name": product.name} for product in business_products]
     return jsonify(business_products_json), 200
 
-@business.route("/<business_id>/product/<product_id>",methods=["GET"])
-@token_required
-def product_get_by_id(current_user,business_id,product_id):
-    product = Product.query.filter_by(id=product_id).first()
-    product_json = {"name":product.name}
-    return jsonify(product_json), 200
 
-@business.route("/<business_id>/product",methods=["POST"])
+@business.route("/<business_id>/product", methods=["POST"])
 @token_required
-def product_create_new(current_user,business_id):
+def busines_create_new_product(current_user, business_id):
     data = request.get_json()
-    
-    new_product = Product(
-        name=data["name"],
-        business_id=business_id
-    )
+
+    new_product = Product(name=data["name"], business_id=business_id)
 
     db.session.add(new_product)
     db.session.commit()
 
-    return jsonify({"message":"Product created successfully"}), 201
+    return jsonify({"message": "Product created successfully"}), 201
 
-@business.route("/<business_id>/product/<product_id>",methods=["DELETE"])
+
+@business.route("/<business_id>/sale_list")
 @token_required
-def product_delete_by_id(current_user,product_id):
-    product = Product.query.filter_by(id=product_id).first()
+def business_get_all_sale_list(current_user, business_id):
+    business_sale_lists = SaleList.query.filter_by(business_id=business_id)
 
-    if product:
-        db.session.delete(product)
-        db.session.save()
+    if business_sale_lists:
+        business_sale_lists_json = [
+            {
+                "id": sale_list.id,
+                "customer_name": sale_list.customer_name,
+                "customer_contact": sale_list.customer_contact,
+                "created_on": sale_list.created_on,
+            }
+            for sale_list in business_sale_lists
+        ]
 
-    return jsonify({"message":"Product deleted successfully"}), 200
+        business_sale_lists_json = {
+            "business": Business.query.filter_by(id=business_id),
+            "business_sale_lists": business_sale_lists_json,
+        }
 
-@business.route("/<business_id>/product/<product_id>",methods=["PUT"])
+        return jsonify(business_sale_lists_json)
+
+
+@business.route("/<business_id>/stock_list")
 @token_required
-def product_update_by_id(current_user,business_id,product_id):
-    product = Product.query.filter_by(id=product_id).first()
+def business_get_all_stock_list(current_user, business_id):
+    business_stock_lists = StockList.query.filter_by(businesss_id=business_id)
 
-    data = request.get_json()
+    if business_stock_lists:
+        business_stock_lists_json = [
+            {
+                "id": stock_list.id,
+                "customer_name": stock_list.customer_name,
+                "customer_contact": stock_list.customer_contact,
+                "created_on": stock_list.created_on,
+            }
+            for stock_list in business_stock_lists
+        ]
 
-    try:
-        if data["name"]:
-            product.name = data["name"]
-    except KeyError:
-        pass
+        business_sale_lists_json = {
+            "business": Business.query.filter_by(id=business_id),
+            "business_stock_lists": business_stock_lists_json,
+        }
 
-    db.session.commit()
+        return jsonify(business_sale_lists_json)
 
-    return jsonify({"message": "User info updated successfully"}), 200
+
+@stock.route("/list/<stock_list_id>", methods=["GET"])
+@token_required
+def stock_list_get_by_id(current_user, stock_list_id):
+    stock_list = StockList.query.filter_by(id=stock_list_id).first()
+
+    stock_list_json = {
+        "id": stock_list.id,
+        "name": stock_list.name,
+        "created_on": stock_list.created_on,
+    }
+
+    return jsonify(stock_list_json)
+
+#---Stock list---
