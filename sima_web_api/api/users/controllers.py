@@ -88,11 +88,11 @@ def create_new_user():
         public_id=str(uuid.uuid4()),
         name=data["name"],
         password=hashed_password,
-        dateOfBirth=None,
+        date_of_birth=None,
         email=data["email"],
-        contactOne="",
-        contactTwo="",
-        displayName="",
+        contact_one="",
+        contact_two="",
+        display_name="",
     )
 
     db.session.add(new_user)
@@ -114,18 +114,18 @@ def update_user_info(public_id):
         pass
 
     try:
-        if data["displayName"]:
-            user.displayName = data["displayName"]
+        if data["display_name"]:
+            user.display_name = data["display_name"]
     except KeyError:
         pass
     try:
-        if data["contactOne"]:
-            user.contactOne = data["contactOne"]
+        if data["contact_one"]:
+            user.contact_one = data["contact_one"]
     except KeyError:
         pass
     try:
-        if data["contactTwo"]:
-            user.contactTwo = data["contactTwo"]
+        if data["contact_two"]:
+            user.contact_two = data["contact_two"]
     except KeyError:
         pass
     db.session.commit()
