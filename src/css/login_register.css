@@ -47,7 +47,8 @@
       background-color: white;
       padding: 1.4rem;
       border-radius: 0 20px;
-    border: #383a46;
+      border: 1px solid #999;
+     
   }
   
   .login-form .label,.login-form input{

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+// import { useState } from 'react';
+
 import AddButton from './ProductDashboard/AddButton'
 import SideNavBar from './BusinessesDashboard/SideNavBar'
 import TableHead from './tableHead'
 import TableRow from './tableRow'
+import AddStocks from './addStocks';
 
 
 class Stocks1 extends Component {
@@ -17,9 +20,18 @@ class Stocks1 extends Component {
               {stock_id:35, stock:'stock',qty:'qty',date:'date' }
               ,{stock_id:35, stock:'stock',qty:'qty',date:'date' }
 
-        ]
-      }
+        ],
+      addRow : (eachRow)=>{
+            let tempRows = [...this.state.rows,eachRow];
+            this.setState({
+                rows:tempRows
+            })
+          }}
+      
+      
   }
+ 
+  
 
 render(){
     return (
@@ -32,7 +44,10 @@ render(){
                         <TableRow rowData={this.state.rows}/>
                         
                         </div>
-                        <div  className='adder'> <AddButton/></div>
+                        <div  className='adder'> 
+                        <AddButton onClick={this.handleClick}/>
+                         <AddStocks trigger = {true} addRow = {this.state.addRow}/>
+                        </div>
 
 
 

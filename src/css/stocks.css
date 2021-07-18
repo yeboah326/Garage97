@@ -6,20 +6,21 @@
 
  h1 {
      text-align: start ;
-     margin-left: 20px;
+     margin-left: 5%;
      font-family: PoppinsBold;
+     color: #273475;
 
  }
 .sidebar{
     grid-column: 1/2;
 }
 .table-div{
-grid-column: 2/7;
+grid-column: 2/9;
 background-color: #fff;
 box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 overflow: hidden;
 margin: 25px 5%;
-border-radius: 5% ;
+border-radius: 20px ;
 height: 90%;
 
 }
@@ -35,7 +36,7 @@ height: 90%;
 
 
 .adder{
-    grid-column: 7/9;
+    grid-column: 9/10;
     justify-self: center;
 
 }
@@ -43,12 +44,12 @@ table th ,
 .tableHead ,
 .tableRow
 {
-    padding: 20px 30px;
+padding: 20px 30px;
 display: grid;
 grid-template-columns: 2fr 1fr 1fr 2fr;
 text-align: left;
 font-family: PoppinsBold;
-color: #009878;
+color: #273475;
 align-items: flex-start;
 justify-items: stretch;
 margin-bottom: 20px;
@@ -64,27 +65,11 @@ table th, table td {
 
     
 }
-/* 
-.tableHead .stock_id,
-.tableRow .stock_id{
-    grid-column:1/3 ;
-}
-.tableHead .stock,
-.tableRow .stock{
-    grid-column:3/4 ;
-}
-.tableHead .qty,
-.tableRow .qty{
-    grid-column:4/5 ;
-}
-.tableHead .date,
-.tableRow .date{
-    grid-column:5/7 ;
-} */
 
-.table > div:nth-child(even){
+
+.table .tableRow {
     background-color: #e2e7f9;
-    border-radius:15px;
+    border-radius:17px;
 }
 
 

@@ -23,18 +23,19 @@ const SplashPage =()=> {
            
           <div className="first-row" >
               <div className="splash-logo"></div>
-              <div></div>
+              {/* <div></div> */}
               <div className="buttonspace">
                   <Link to="/stocks1" className="log-in button">About</Link>
-                  <Link to="/register" className="log-in button">Login</Link>
+                  <Link to="/login" className="log-in button">Login</Link>
                   <Link to="/register" className="log-in button">SignUp</Link>
+              </div>
               </div>
               <div className="message">
               <h1> Simplified Inventory Management Application</h1>
               <p>have you been getting bored managing long catalogues?  just want faster more efficient fix?</p>
               <h3> Manage effortlessly with SIMA at your disposable</h3>
               </div>
-          </div>
+         
      
         </div>
     )

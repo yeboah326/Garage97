@@ -1,6 +1,7 @@
 import React from 'react'
 
 function TableRow (props){
+ 
 
    const {rowData} =props;
    const displayRow = rowData.map(eachRow=>{
