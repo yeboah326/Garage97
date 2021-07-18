@@ -17,4 +17,4 @@ class SaleList(db.Model):
     customer_name = db.Column(db.String(50))
     customer_contact = db.Column(db.String(10))
     created_on = db.Column(db.DateTime)
-    product_id = db.Column(db.Integer,db.ForeignKey("Product.id"), nullable=False)
+    business_id = db.Column(db.Integer,db.ForeignKey("Business.id"),nullable=False)

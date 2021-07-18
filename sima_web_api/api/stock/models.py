@@ -15,5 +15,5 @@ class StockList(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(100))
     created_on = db.Column(db.DateTime)
-    product_id = db.Column(db.Integer,db.ForeignKey("Product.id"), nullable=False)
+    business_id = db.Column(db.Integer,db.ForeignKey("Business.id"), nullable=False)
     stocks = db.relationship("Stock",backref="StockList",lazy=True)
