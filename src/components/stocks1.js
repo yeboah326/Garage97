@@ -5,7 +5,7 @@ import AddButton from './ProductDashboard/AddButton'
 import SideNavBar from './BusinessesDashboard/SideNavBar'
 import TableHead from './tableHead'
 import TableRow from './tableRow'
-import AddStocks from './addStocks';
+import AddStocks from './addStocks';  
 
 
 class Stocks1 extends Component {
@@ -15,10 +15,7 @@ class Stocks1 extends Component {
           rows:[
               {stock_id:3, stock:'stock',qty:'qty',date:'date' },
               {stock_id:34, stock:'stock',qty:'qty',date:'date' },
-              {stock_id:345, stock:'stock',qty:'qty',date:'date' },
-              {stock_id:36, stock:'stock',qty:'qty',date:'date' },
-              {stock_id:35, stock:'stock',qty:'qty',date:'date' }
-              ,{stock_id:35, stock:'stock',qty:'qty',date:'date' }
+              {stock_id:345, stock:'stock',qty:'qty',date:'date' }
 
         ],
       addRow : (eachRow)=>{
@@ -26,14 +23,31 @@ class Stocks1 extends Component {
             this.setState({
                 rows:tempRows
             })
-          }}
+          },
+      trigger:false,
+      setTrigger: (trigger) =>{
+         this.setState(
+            {trigger:!trigger})}
+            ,
+        submitTrigger : (trigger) =>{
+          this.setState(
+             {trigger:trigger})}
+         }
+        }
+
       
-      
-  }
- 
+      handleClick =(e)=>{
+        this.state.setTrigger();
+      }
+    
+
+   
+
   
 
 render(){
+  // const [buttonPop,setButtonPop] = useState(false);
+
     return (
         <div className="stocks-body">
                         <div className="sidebar"> <SideNavBar/> </div>
@@ -44,10 +58,11 @@ render(){
                         <TableRow rowData={this.state.rows}/>
                         
                         </div>
-                        <div  className='adder'> 
-                        <AddButton onClick={this.handleClick}/>
-                         <AddStocks trigger = {true} addRow = {this.state.addRow}/>
+                        <div  className='adder' onClick={this.handleClick} > 
+                        <AddButton />
+                         
                         </div>
+                        <AddStocks trigger = {this.state.trigger} addRow = {this.state.addRow} submitTrigger={this.state.submitTrigger}/>
 
 
 

@@ -13,6 +13,7 @@ function TableRow (props){
         <div className='date'>{eachRow.date}</div>
 
       </div>
+      
     )
    })
 
