@@ -42,7 +42,7 @@ def user_login():
     return jsonify({"message": "Authorization failed"}), 401
 
 
-@users.route("/", methods=["GET"])
+@users.route("", methods=["GET"])
 def get_all_users():
     users = User.query.all()
 
@@ -78,7 +78,7 @@ def get_user_by_id(public_id):
     return jsonify({"message": "User not found"}), 200
 
 
-@users.route("/", methods=["POST"])
+@users.route("", methods=["POST"])
 def create_new_user():
     data = request.get_json()
 
@@ -133,9 +133,11 @@ def update_user_info(public_id):
 
 
 # TODO: Define delete_all_users route
-@users.route("/", methods=["DELETE"])
+@users.route("", methods=["DELETE"])
 def delete_all_users():
-    pass
+    User.query.delete()
+
+    return jsonify({"message":"All users deleted successfully"})
 
 
 @users.route("/<public_id>", methods=["DELETE"])
