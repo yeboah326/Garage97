@@ -3,6 +3,8 @@ from sima_web_api.api.users.utils import token_required
 from sima_web_api.api.business.models import Business
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
+from sima_web_api.api.sale.models import SaleList
+from sima_web_api.api.stock.models import StockList
 
 business = Blueprint(
     "business",
@@ -84,7 +86,7 @@ def business_delete_by_id(current_user,business_id):
 # Product related views
 @business.route("/<business_id>/product",methods=["GET"])
 @token_required
-def product_get_all(current_user,business_id):
+def business_get_all_product(current_user,business_id):
     business_products = Product.query.filter_by(business_id=business_id)
     business_products_json = [
         {"name":product.name}
@@ -94,7 +96,7 @@ def product_get_all(current_user,business_id):
 
 @business.route("/<business_id>/product",methods=["POST"])
 @token_required
-def product_create_new(current_user,business_id):
+def busines_create_new_product(current_user,business_id):
     data = request.get_json()
     
     new_product = Product(
@@ -107,4 +109,48 @@ def product_create_new(current_user,business_id):
 
     return jsonify({"message":"Product created successfully"}), 201
 
-# TODO: Add delete all products in a business endpoint
+@business.route("/<business_id>/sale_list")
+@token_required
+def business_get_all_sale_list(business_id):
+    business_sale_lists = SaleList.query.filter_by(business_id=business_id)
+
+    if business_sale_lists:
+        business_sale_lists_json = [
+            {
+                "id":sale_list.id,
+                "customer_name":sale_list.customer_name,
+                "customer_contact":sale_list.customer_contact,
+                "created_on":sale_list.created_on
+            }
+            for sale_list in business_sale_lists
+        ]
+
+        business_sale_lists_json = {
+            "business": Business.query.filter_by(id=business_id),
+            "business_sale_lists" : business_sale_lists_json
+        }
+
+        return jsonify(business_sale_lists_json)
+        
+@business.route("/<business_id>/stock_list")
+@token_required
+def business_get_all_stock_list(current_user,business_id):
+    business_stock_lists = StockList.query.filter_by(businesss_id=business_id)
+
+    if business_stock_lists:
+        business_stock_lists_json = [
+            {
+                "id":stock_list.id,
+                "customer_name":stock_list.customer_name,
+                "customer_contact":stock_list.customer_contact,
+                "created_on":stock_list.created_on
+            }
+            for stock_list in business_stock_lists
+        ]
+
+        business_sale_lists_json = {
+            "business": Business.query.filter_by(id=business_id),
+            "business_stock_lists" : business_stock_lists_json
+        }
+
+        return jsonify(business_sale_lists_json)
