@@ -50,11 +50,11 @@ def get_all_users():
         {
             "public_id": user.public_id,
             "name": user.name,
-            "dateOfBirth": user.dateOfBirth,
+            "date_of_birth": user.date_of_birth,
             "email": user.email,
-            "displayName": user.displayName,
-            "contactOne": user.contactOne,
-            "contactTwo": user.contactTwo,
+            "display_name": user.display_name,
+            "contact_one": user.contact_one,
+            "contact_two": user.contact_two,
         }
         for user in users
     ]
