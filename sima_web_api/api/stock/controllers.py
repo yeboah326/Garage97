@@ -104,37 +104,21 @@ def stock_update_by_id(current_user, stock_id):
 
 
 # ----- Stock List -----
-@stock.route("/list/<stock_list_id>", methods=["GET"])
+@business.route("/stock", methods=["POST"])
 @token_required
-def stock_list_get_by_id(current_user, stock_list_id):
-    stock_list = StockList.query.filter_by(id=stock_list_id).first()
-
-    stock_list_json = {
-        "id": stock_list.id,
-        "name": stock_list.name,
-        "created_on": stock_list.created_on,
-    }
-
-    return jsonify(stock_list_json)
-
-
-@stock.route("/<product_id>/stock", methods=["POST"])
-@token_required
-def stock_list_create_new(current_user, product_id):
+def stock_list_create_new(current_user):
     data = request.get_json()
 
-    new_stock_list = StockList(
-        created_on=str(datetime.date.today()), product_id=product_id
-    )
+    new_stock_list = StockList(created_on=str(datetime.date.today()))
     db.session.commit(new_stock_list)
     db.session.save()
 
-    for stock in data:
+    for stock in data["stock_list"]:
         new_stock = Stock(
             quantity=stock["quantity"],
             buying_price=stock["buying_price"],
             created_on=str(datetime.date.today()),
-            product_id=product_id,
+            product_id=stock["product_id"],
             stock_list_id=new_stock_list.id,
         )
         db.session.commit(new_stock)
