@@ -30,7 +30,7 @@ def business_create_new(current_user):
     db.session.commit()
     return jsonify({"message":"New business successfully created"}), 201
 
-@business.route("/",methods=["GET"])
+@business.route("",methods=["GET"])
 @token_required
 def business_get_all(current_user):
     businesses = Business.query.filter_by(user_id=current_user.id)
@@ -64,14 +64,12 @@ def business_update_info(current_user,business_id):
     return jsonify({"message": "User info updated successfully"}), 200
 
 # TODO: Implement later
-@business.route("/<business_id>",methods=["DELETE"])
+@business.route("/",methods=["DELETE"])
 @token_required
 def business_delete_all(current_user,business_id):
-    businesses = Business.query.all()
-    if businesses:
-        db.session.delete(businesses)
-        db.session.save()
+    businesses = Business.query.all().delete()
     return jsonify({"message": "Businesses deleted successfully"}), 200
+
 
 @business.route("/<business_id>",methods=["DELETE"])
 @token_required
