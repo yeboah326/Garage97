@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from sima_web_api.api.users.utils import token_required
-from sima_web_api.api.stock.models import (Stock, StockList)
-from sima_web_api.api.product.models import (Product)
+from sima_web_api.api.stock.models import Stock, StockList
+from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
 import datetime
 
@@ -11,9 +11,11 @@ stock = Blueprint(
     url_prefix="/stock",
 )
 
+
 @stock.route("/hello")
 def hello():
-    return jsonify({"message":"Hello"})
+    return jsonify({"message": "Hello"})
+
 
 # ----- Stock -----
 @stock.route("/all", methods=["GET"])
@@ -23,62 +25,66 @@ def stock_get_all(current_user):
 
     stocks_json = [
         {
-            "id":stock.id,
-            "product":Product.query.filter_by(id=stock.product_id),
-            "buying_price":stock.buying_price,
-            "quantity":stock.quantity,
-            "created_on":stock.created_on,
+            "id": stock.id,
+            "product": Product.query.filter_by(id=stock.product_id),
+            "buying_price": stock.buying_price,
+            "quantity": stock.quantity,
+            "created_on": stock.created_on,
         }
         for stock in stocks
     ]
 
     return jsonify(stocks_json)
 
+
 @stock.route("/stock_list/<stock_list_id>", methods=["GET"])
 @token_required
-def stock_get_all_by_stock_list_id(current_user,stock_list_id):
+def stock_get_all_by_stock_list_id(current_user, stock_list_id):
     stocks_by_stock_list_id = Stock.query.filter_by(stock_list_id=stock_list_id).first()
     stocks_by_stock_list_id_json = [
         {
-            "id":stock.id,
-            "product":Product.query.filter_by(id=stock.product_id),
-            "buying_price":stock.buying_price,
-            "quantity":stock.quantity,
-            "created_on":stock.created_on,
+            "id": stock.id,
+            "product": Product.query.filter_by(id=stock.product_id),
+            "buying_price": stock.buying_price,
+            "quantity": stock.quantity,
+            "created_on": stock.created_on,
         }
         for stock in stocks_by_stock_list_id
     ]
 
     return jsonify(stocks_by_stock_list_id_json)
 
-@stock.route("/<stock_id>",methods=["GET"])
+
+@stock.route("/<stock_id>", methods=["GET"])
 @token_required
-def stock_get_by_id(current_user,stock_id):
+def stock_get_by_id(current_user, stock_id):
     stock = Stock.query.filter_by(id=stock_id).first()
     stock_json = {
-            "id":stock.id,
-            "product":Product.query.filter_by(id=stock.product_id),
-            "buying_price":stock.buying_price,
-            "quantity":stock.quantity,
-            "created_on":stock.created_on
-            }
+        "id": stock.id,
+        "product": Product.query.filter_by(id=stock.product_id),
+        "buying_price": stock.buying_price,
+        "quantity": stock.quantity,
+        "created_on": stock.created_on,
+    }
     return jsonify(stock_json), 200
 
-@stock.route("/<stock_id>",methods=["DELETE"])
+
+@stock.route("/<stock_id>", methods=["DELETE"])
 @token_required
-def stock_delete_by_id(current_user,stock_id):
+def stock_delete_by_id(current_user, stock_id):
     stock = Stock.query.filter_by(id=stock_id).first()
-    
+
     if stock:
         db.session.delete(stock)
         db.session.commit()
-        return jsonify({"message":"Stock deleted successfully"})
+        return jsonify({"message": "Stock deleted successfully"})
     else:
-        return jsonify({"message":"Could not delete stock"})
+        return jsonify({"message": "Could not delete stock"})
 
-@stock.route("/<stock_id>",methods=["PUT"])
+
+@stock.route("/<stock_id>", methods=["PUT"])
 @token_required
-def stock_update_by_id(current_user,stock_id):
+def stock_update_by_id(current_user, stock_id):
     stock = Stock.query.filter_by(id=stock_id).first()
 
     data = request.get_json()
@@ -89,24 +95,24 @@ def stock_update_by_id(current_user,stock_id):
 
         if data["buying_price"]:
             stock.buying_price = data["buying_price"]
-    
+
     except KeyError:
         return jsonify({"message": "Wrong data passed"})
 
     db.session.commit()
-    return jsonify({"message":"Stock updated successfully"})
+    return jsonify({"message": "Stock updated successfully"})
 
 
 # ----- Stock List -----
-@stock.route("/list/<stock_list_id>",methods=["GET"])
+@stock.route("/list/<stock_list_id>", methods=["GET"])
 @token_required
-def stock_list_get_by_id(current_user,stock_list_id):
+def stock_list_get_by_id(current_user, stock_list_id):
     stock_list = StockList.query.filter_by(id=stock_list_id).first()
 
     stock_list_json = {
-        "id":stock_list.id,
-        "name":stock_list.name,
-        "created_on":stock_list.created_on,
+        "id": stock_list.id,
+        "name": stock_list.name,
+        "created_on": stock_list.created_on,
     }
 
     return jsonify(stock_list_json)
@@ -114,12 +120,11 @@ def stock_list_get_by_id(current_user,stock_list_id):
 
 @stock.route("/<product_id>/stock", methods=["POST"])
 @token_required
-def stock_list_create_new(current_user,product_id):
+def stock_list_create_new(current_user, product_id):
     data = request.get_json()
 
     new_stock_list = StockList(
-        created_on=str(datetime.date.today()),
-        product_id=product_id
+        created_on=str(datetime.date.today()), product_id=product_id
     )
     db.session.commit(new_stock_list)
     db.session.save()
@@ -130,43 +135,45 @@ def stock_list_create_new(current_user,product_id):
             buying_price=stock["buying_price"],
             created_on=str(datetime.date.today()),
             product_id=product_id,
-            stock_list_id=new_stock_list.id
+            stock_list_id=new_stock_list.id,
         )
         db.session.commit(new_stock)
         db.session.save()
-    
-    return jsonify({"message":"Sale list created sucessfully"})
+
+    return jsonify({"message": "Sale list created sucessfully"})
 
 
 @stock.route("<product_id>/stock_list", methods=["GET"])
 @token_required
-def stock_list_get_all(current_user,product_id):
+def stock_list_get_all(current_user, product_id):
     product_stock_list = StockList.query.filter_by(product_id=product_id)
 
     product_stock_list_json = [
         {
-            "id":stock_list.id,
-            "name":stock_list.name,
-            "created_on":stock_list.created_on,
+            "id": stock_list.id,
+            "name": stock_list.name,
+            "created_on": stock_list.created_on,
         }
         for stock_list in product_stock_list
     ]
 
-@stock.route("/list/<stock_list_id>",methods=["DELETE"])
+
+@stock.route("/list/<stock_list_id>", methods=["DELETE"])
 @token_required
-def stock_list_delete_by_id(current_user,stock_list_id):
+def stock_list_delete_by_id(current_user, stock_list_id):
     stock_list = StockList.query.filter_by(id=stock_list_id)
 
     if stock_list:
         db.session.delete(stock_list)
         db.session.commit()
-        return jsonify({"message":"Stock list deleted successfully"})
+        return jsonify({"message": "Stock list deleted successfully"})
     else:
-        return jsonify({"message":"Could not delete stock list"})
+        return jsonify({"message": "Could not delete stock list"})
+
 
 @stock.route("<product_id>/stock_list", methods=["DELETE"])
 @token_required
-def stock_list_delete_all(current_user,product_id):
+def stock_list_delete_all(current_user, product_id):
     stock_lists = StockList.query.all().delete()
 
-    return jsonify({"message":"All stocklists successfully deleted"})
+    return jsonify({"message": "All stocklists successfully deleted"})

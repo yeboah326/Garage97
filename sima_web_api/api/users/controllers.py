@@ -37,7 +37,7 @@ def user_login():
             },
             os.environ.get("SECRET_KEY"),
         )
-        return jsonify({"public_id":user.public_id,"token": token}), 200
+        return jsonify({"public_id": user.public_id, "token": token}), 200
 
     return jsonify({"message": "Authorization failed"}), 401
 

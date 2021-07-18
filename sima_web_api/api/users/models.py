@@ -12,4 +12,4 @@ class User(db.Model):
     display_name = db.Column(db.String(15))
     contact_one = db.Column(db.String(10))
     contact_two = db.Column(db.String(10))
-    businesses = db.relationship('Business',backref='User',lazy=True)
+    businesses = db.relationship("Business", backref="User", lazy=True)

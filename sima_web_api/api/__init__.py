@@ -37,4 +37,3 @@ app.register_blueprint(stock)
 @app.errorhandler(404)
 def page_not_found(error):
     return jsonify({"message": "Page not found"}), 404
-
