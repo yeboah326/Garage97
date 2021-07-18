@@ -112,8 +112,9 @@ def sale_list_create_new(current_user):
 
     new_sale_list = SaleList(
         created_on=str(datetime.date.today()),
-        customer_name=data["customer_details"]["customer_name"],
-        customer_contact=data["customer_details"]["customer_contact"],
+        customer_name=data['customer_details']["customer_name"],
+        customer_contact=data['customer_details']["customer_contact"],
+        business_id=data["business_id"]
     )
     db.session.add(new_sale_list)
     db.session.commit()
