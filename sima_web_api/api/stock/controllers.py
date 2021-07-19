@@ -23,9 +23,9 @@ def hello():
 def stock_get_all(current_user):
     """
     stock_get_all(current_user)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     stocks = Stock.query.all()
@@ -49,9 +49,9 @@ def stock_get_all(current_user):
 def stock_get_all_by_stock_list_id(current_user, stock_list_id):
     """
     stock_get_all_by_stock_list_id(current_user, stock_list_id)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     stocks_by_stock_list_id = Stock.query.filter_by(stock_list_id=stock_list_id).first()
@@ -74,9 +74,9 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id):
 def stock_get_by_id(current_user, stock_id):
     """
     stock_get_by_id(current_user, stock_id)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     stock = Stock.query.filter_by(id=stock_id).first()
@@ -95,9 +95,9 @@ def stock_get_by_id(current_user, stock_id):
 def stock_delete_by_id(current_user, stock_id):
     """
     stock_delete_by_id(current_user, stock_id)
-    
+
     HTTP Methods - DELETE
-    
+
     Deletes resource
     """
     stock = Stock.query.filter_by(id=stock_id).first()
@@ -174,9 +174,9 @@ def stock_list_create_new(current_user):
 def stock_list_get_all(current_user, product_id):
     """
     stock_list_get_all(current_user, product_id)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     product_stock_list = StockList.query.filter_by(product_id=product_id)

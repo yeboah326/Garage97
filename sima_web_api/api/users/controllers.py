@@ -18,9 +18,9 @@ users = Blueprint(
 def hello():
     """
     hello()
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     return jsonify({"message": "Users Blueprint Created successfully"}), 200
@@ -187,7 +187,7 @@ def delete_all_users():
     """
     User.query.delete()
 
-    return jsonify({"message":"All users deleted successfully"})
+    return jsonify({"message": "All users deleted successfully"})
 
 
 @users.route("/<public_id>", methods=["DELETE"])

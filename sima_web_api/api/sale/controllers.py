@@ -49,9 +49,9 @@ def sale_get_all(current_user):
 def sales_get_all_by_sale_list_id(current_user, sale_list_id):
     """
     sales_get_all_by_sale_list_id(current_user, sale_list_id)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     sales_by_sale_list_id = Sale.query.filter_by(sale_list_id=sale_list_id)
@@ -75,9 +75,9 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id):
 def sale_get_by_id(current_user, sale_id):
     """
     sale_get_by_id(current_user, sale_id)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     sale = Sale.query.filter_by(id=sale_id).first()
@@ -116,9 +116,9 @@ def sale_delete_by_id(current_user, sale_id):
 def sale_update_by_id(current_user, sale_id):
     """
     sale_update_by_id(current_user, sale_id)
-    
+
     HTTP Methods - PUT
-    
+
     Updates existing resources
     """
     sale = Sale.query.filter_by(id=sale_id).first()
@@ -154,9 +154,9 @@ def sale_list_create_new(current_user):
 
     new_sale_list = SaleList(
         created_on=str(datetime.date.today()),
-        customer_name=data['customer_details']["customer_name"],
-        customer_contact=data['customer_details']["customer_contact"],
-        business_id=data["business_id"]
+        customer_name=data["customer_details"]["customer_name"],
+        customer_contact=data["customer_details"]["customer_contact"],
+        business_id=data["business_id"],
     )
     db.session.add(new_sale_list)
     db.session.commit()
@@ -257,7 +257,7 @@ def sale_list_delete_all(current_user):
 
 @sale.route("/list/<sale_list_id>", methods=["PUT"])
 @token_required
-def sale_list_update_by_id(current_user,sale_list_id):
+def sale_list_update_by_id(current_user, sale_list_id):
     """
     sale_list_update_by_id(current_user,sale_list_id)
 

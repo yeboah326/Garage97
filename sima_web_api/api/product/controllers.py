@@ -23,9 +23,9 @@ def product_hello():
 def product_get_by_id(current_user, product_id):
     """
     product_get_by_id(current_user, product_id)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     product = Product.query.filter_by(id=product_id).first()
