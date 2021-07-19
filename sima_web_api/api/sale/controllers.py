@@ -21,6 +21,13 @@ def hello():
 @sale.route("/all", methods=["GET"])
 @token_required
 def sale_get_all(current_user):
+    """
+    sale_get_all(current_user)
+
+    HTTP Methods - GET
+
+    To test if the module is working
+    """
     sales = Sale.query.all()
 
     sales_json = [
@@ -40,6 +47,13 @@ def sale_get_all(current_user):
 @sale.route("/sale_list/<sale_list_id>", methods=["GET"])
 @token_required
 def sales_get_all_by_sale_list_id(current_user, sale_list_id):
+    """
+    sales_get_all_by_sale_list_id(current_user, sale_list_id)
+    
+    HTTP Methods - GET
+    
+    To test if the module is working
+    """
     sales_by_sale_list_id = Sale.query.filter_by(sale_list_id=sale_list_id)
 
     sales_by_sale_list_id_json = [
@@ -59,6 +73,13 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id):
 @sale.route("/<sale_id>", methods=["GET"])
 @token_required
 def sale_get_by_id(current_user, sale_id):
+    """
+    sale_get_by_id(current_user, sale_id)
+    
+    HTTP Methods - GET
+    
+    To test if the module is working
+    """
     sale = Sale.query.filter_by(id=sale_id).first()
     sale_json = {
         "id": sale.id,
@@ -73,6 +94,13 @@ def sale_get_by_id(current_user, sale_id):
 @sale.route("/<sale_id>", methods=["DELETE"])
 @token_required
 def sale_delete_by_id(current_user, sale_id):
+    """
+    sale_delete_by_id(current_user, sale_id)
+
+    HTTP Methods - DELETE
+
+    Deletes resource
+    """
     sale = Sale.query.filter_by(id=sale_id).first()
 
     if sale:
@@ -86,6 +114,13 @@ def sale_delete_by_id(current_user, sale_id):
 @sale.route("/<sale_id>", methods=["PUT"])
 @token_required
 def sale_update_by_id(current_user, sale_id):
+    """
+    sale_update_by_id(current_user, sale_id)
+    
+    HTTP Methods - PUT
+    
+    Updates existing resources
+    """
     sale = Sale.query.filter_by(id=sale_id).first()
 
     data = request.get_json()
@@ -108,6 +143,13 @@ def sale_update_by_id(current_user, sale_id):
 @sale.route("/list", methods=["POST"])
 @token_required
 def sale_list_create_new(current_user):
+    """
+    sale_list_create_new(current_user)
+
+    HTTP Methods - POST
+
+    To send data
+    """
     data = request.get_json()
 
     new_sale_list = SaleList(
@@ -135,6 +177,13 @@ def sale_list_create_new(current_user):
 @sale.route("<product_id>/sale_list", methods=["GET"])
 @token_required
 def sale_list_get_all(current_user, product_id):
+    """
+    sale_list_get_all(current_user, product_id)
+
+    HTTP Methods - GET
+
+    To test if the module is working
+    """
     sales_list = SaleList.query.all()
 
     product_sales_list_json = [
@@ -151,6 +200,13 @@ def sale_list_get_all(current_user, product_id):
 @sale.route("/list/<sale_list_id>", methods=["GET"])
 @token_required
 def sale_list_get_by_id(current_user, sale_list_id):
+    """
+    sale_list_get_by_id(current_user, sale_list_id)
+
+    HTTP Methods - GET
+
+    To test if the module is working
+    """
     sale_list = SaleList.query.filter_by(id=sale_list_id).first()
 
     sale_list_json = {
@@ -167,6 +223,13 @@ def sale_list_get_by_id(current_user, sale_list_id):
 @sale.route("/list/<sale_list_id>", methods=["DELETE"])
 @token_required
 def sale_list_delete_by_id(current_user, sale_list_id):
+    """
+    sale_list_delete_by_id(current_user, sale_list_id)
+
+    HTTP Methods - DELETE
+
+    Deletes resource
+    """
     sale_list = SaleList.query.filter_by(id=sale_list_id).first()
 
     if sale_list:
@@ -181,6 +244,13 @@ def sale_list_delete_by_id(current_user, sale_list_id):
 @sale.route("<product_id>/sale_list", methods=["DELETE"])
 @token_required
 def sale_list_delete_all(current_user):
+    """
+    sale_list_delete_all(current_user)
+
+    HTTP Methods - DELETE
+
+    Deletes resource
+    """
     sale_list_all = SaleList.query.all().delete()
     return jsonify({"message": "All salelists deleted"})
 
@@ -188,6 +258,13 @@ def sale_list_delete_all(current_user):
 @sale.route("/list/<sale_list_id>", methods=["PUT"])
 @token_required
 def sale_list_update_by_id(current_user,sale_list_id):
+    """
+    sale_list_update_by_id(current_user,sale_list_id)
+
+    HTTP Methods - PUT
+
+    Updates existing resources
+    """
     sale_list = SaleList.query.filter_by(id=sale_list_id).first()
     data = request.get_json()
 
