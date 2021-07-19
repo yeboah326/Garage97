@@ -104,7 +104,7 @@ def stock_update_by_id(current_user, stock_id):
 
 
 # ----- Stock List -----
-@business.route("/stock", methods=["POST"])
+@stock.route("/stock", methods=["POST"])
 @token_required
 def stock_list_create_new(current_user):
     data = request.get_json()
