@@ -159,7 +159,7 @@ def business_get_all_stock_list(current_user, business_id):
         return jsonify(business_sale_lists_json)
 
 
-@stock.route("/list/<stock_list_id>", methods=["GET"])
+@business.route("/list/<stock_list_id>", methods=["GET"])
 @token_required
 def stock_list_get_by_id(current_user, stock_list_id):
     stock_list = StockList.query.filter_by(id=stock_list_id).first()
