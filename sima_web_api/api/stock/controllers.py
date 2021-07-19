@@ -21,6 +21,13 @@ def hello():
 @stock.route("/all", methods=["GET"])
 @token_required
 def stock_get_all(current_user):
+    """
+    stock_get_all(current_user)
+    
+    HTTP Methods - GET
+    
+    To test if the module is working
+    """
     stocks = Stock.query.all()
 
     stocks_json = [
@@ -40,6 +47,13 @@ def stock_get_all(current_user):
 @stock.route("/stock_list/<stock_list_id>", methods=["GET"])
 @token_required
 def stock_get_all_by_stock_list_id(current_user, stock_list_id):
+    """
+    stock_get_all_by_stock_list_id(current_user, stock_list_id)
+    
+    HTTP Methods - GET
+    
+    To test if the module is working
+    """
     stocks_by_stock_list_id = Stock.query.filter_by(stock_list_id=stock_list_id).first()
     stocks_by_stock_list_id_json = [
         {
@@ -58,6 +72,13 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id):
 @stock.route("/<stock_id>", methods=["GET"])
 @token_required
 def stock_get_by_id(current_user, stock_id):
+    """
+    stock_get_by_id(current_user, stock_id)
+    
+    HTTP Methods - GET
+    
+    To test if the module is working
+    """
     stock = Stock.query.filter_by(id=stock_id).first()
     stock_json = {
         "id": stock.id,
@@ -72,6 +93,13 @@ def stock_get_by_id(current_user, stock_id):
 @stock.route("/<stock_id>", methods=["DELETE"])
 @token_required
 def stock_delete_by_id(current_user, stock_id):
+    """
+    stock_delete_by_id(current_user, stock_id)
+    
+    HTTP Methods - DELETE
+    
+    Deletes resource
+    """
     stock = Stock.query.filter_by(id=stock_id).first()
 
     if stock:
@@ -85,6 +113,13 @@ def stock_delete_by_id(current_user, stock_id):
 @stock.route("/<stock_id>", methods=["PUT"])
 @token_required
 def stock_update_by_id(current_user, stock_id):
+    """
+    stock_update_by_id(current_user, stock_id)
+
+    HTTP Methods - PUT
+
+    Updates existing resources
+    """
     stock = Stock.query.filter_by(id=stock_id).first()
 
     data = request.get_json()
@@ -107,6 +142,13 @@ def stock_update_by_id(current_user, stock_id):
 @stock.route("/stock", methods=["POST"])
 @token_required
 def stock_list_create_new(current_user):
+    """
+    stock_list_creat_new(current_user)
+
+    HTTP Methods - POST
+
+    To send data
+    """
     data = request.get_json()
 
     new_stock_list = StockList(created_on=str(datetime.date.today()))
@@ -130,6 +172,13 @@ def stock_list_create_new(current_user):
 @stock.route("<product_id>/stock_list", methods=["GET"])
 @token_required
 def stock_list_get_all(current_user, product_id):
+    """
+    stock_list_get_all(current_user, product_id)
+    
+    HTTP Methods - GET
+    
+    To test if the module is working
+    """
     product_stock_list = StockList.query.filter_by(product_id=product_id)
 
     product_stock_list_json = [
@@ -145,6 +194,13 @@ def stock_list_get_all(current_user, product_id):
 @stock.route("/list/<stock_list_id>", methods=["DELETE"])
 @token_required
 def stock_list_delete_by_id(current_user, stock_list_id):
+    """
+    stock_list_delete_by_id(current_user, stock_list_id)
+
+    HTTP Methods - DELETE
+
+    Deletes resource
+    """
     stock_list = StockList.query.filter_by(id=stock_list_id)
 
     if stock_list:
@@ -158,6 +214,13 @@ def stock_list_delete_by_id(current_user, stock_list_id):
 @stock.route("<product_id>/stock_list", methods=["DELETE"])
 @token_required
 def stock_list_delete_all(current_user, product_id):
+    """
+    stock_list_delete_all(current_user, product_id)
+
+    HTTP Methods - DELETE
+
+    Deletes resource
+    """
     stock_lists = StockList.query.all().delete()
 
     return jsonify({"message": "All stocklists successfully deleted"})
