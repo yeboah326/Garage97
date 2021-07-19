@@ -68,9 +68,9 @@ def business_get_all(current_user):
 def business_get_by_id(current_user, business_id):
     """
     business_get_by_id(current_user, business_id)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
@@ -146,7 +146,7 @@ def business_get_all_product(current_user, business_id):
     business_get_all_product(current_user, business_id)
 
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     business_products = Product.query.filter_by(business_id=business_id)
@@ -176,7 +176,7 @@ def busines_create_new_product(current_user, business_id):
 
 @business.route("/<business_id>/sale_list")
 @token_required
-def business_get_all_sale_list(current_user, business_id):    
+def business_get_all_sale_list(current_user, business_id):
     business_sale_lists = SaleList.query.filter_by(business_id=business_id)
 
     if business_sale_lists:
@@ -227,9 +227,9 @@ def business_get_all_stock_list(current_user, business_id):
 def stock_list_get_by_id(current_user, stock_list_id):
     """
     stock_list_get_by_id(current_user, stock_list_id)
-    
+
     HTTP Methods - GET
-    
+
     To test if the module is working
     """
     stock_list = StockList.query.filter_by(id=stock_list_id).first()
@@ -242,4 +242,5 @@ def stock_list_get_by_id(current_user, stock_list_id):
 
     return jsonify(stock_list_json)
 
-#---Stock list---
+
+# ---Stock list---
