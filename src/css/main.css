@@ -71,12 +71,13 @@
     font-size: 3.5rem;
     color: #273475;
     border: none;
-    border-radius: 15px;
+    border-radius: 18px;
     box-shadow: 0px 0px 5px #888;
-    padding: 0px 15px 3px 15px;
+    padding:  0px 15px;
     background-color: #fff;
     margin-top: 40px;
     align-self: auto;
+    justify-self: auto;
     cursor: pointer;
   }
   .no-business{
