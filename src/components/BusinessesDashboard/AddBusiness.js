@@ -3,7 +3,7 @@ import Input from '../Input'
 import Button from '../Button'
 import { logout} from '../../auth'
 
-const AddBusiness = ({toggle,businesses}) => {
+const AddBusiness = ({toggle,businesses,onClick}) => {
     const [business,setBusiness] = useState({'name':'','description':''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
@@ -29,10 +29,12 @@ const AddBusiness = ({toggle,businesses}) => {
         }
         else if(response.status === 201){
                 businesses.push(newBusiness)
+                onClick()
         }
         else{
             alert('Could not create business. Try again')
         }
+        
         toggle()
     }
     return (
