@@ -4,13 +4,17 @@ import AddButton from './AddButton'
 import AddBusiness from './AddBusiness'
 import DeleteBusiness from './DeleteBusiness'
 import { logout } from '../../auth/index'
+import {Redirect} from 'react-router-dom'
 
 
+
+export let business_id;
 
 const Businesses = () => {
     const [addbusiness,setAddBusiness] = useState(false)
     const [deletebusiness,setDeleteBusiness] = useState(false)
     const [businesses,setBusinesses] = useState([])
+    const [business_select,setBusinessSelect] = useState(false)
     const [id,setID] = useState()
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
@@ -43,23 +47,26 @@ const Businesses = () => {
 
     const onAdd = () => {
         setAddBusiness(!addbusiness)
-
-        
     }
     const onDelete = (id) => {
         setDeleteBusiness(!deletebusiness)
         setID(id)
     }
-   
+    const selectBusiness = (id) => {
+        setBusinessSelect(true)
+        business_id = id
+        console.log(business_id)
+    }
+
 
 
     const description = "Production and distribution of genetically modified Kako across the 16 regions of Ghana."
     return (
-        
+        !business_select ?
         <div className="business-section">
             {addbusiness ?
             <div className='popup'>
-                <AddBusiness toggle={onAdd} businesses={businesses}/>
+                <AddBusiness toggle={onAdd} businesses={businesses} onClick={fetchData}/>
             </div> :
             null
             }
@@ -76,7 +83,7 @@ const Businesses = () => {
                 <div className="businesses">
                     {businesses.map(business => {
                         return(
-                        <Business name={business.name} description={description} showDelete={()=>{onDelete(business.id)}} id={business.id} />
+                        <Business name={business.name} description={description} showDelete={()=>{onDelete(business.id)}} id={business.id} onClick={()=>{selectBusiness(business.id)}}/>
                         )
                         })
             }
@@ -86,8 +93,11 @@ const Businesses = () => {
             <div className="addButtonSection" onClick={onAdd}>
                 <AddButton/>
             </div>
+            
 
-        </div>
+        </div> :
+        <Redirect to='/overview'/>
+        
         
     )
 }
