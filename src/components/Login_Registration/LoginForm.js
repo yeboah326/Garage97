@@ -5,8 +5,9 @@ import {Link,Redirect} from 'react-router-dom'
 import {useState} from 'react'
 import {login,useAuth} from '../../auth/index'
 
-export let user = ''
 
+
+export let user;
 const LoginForm = () => {
     const [details,setDetails] = useState({'email':'','password':''})
     const [logged] = useAuth()
