@@ -9,6 +9,7 @@ import BusinessesDashboard from './components/BusinessesDashboard/BusinessesDash
 import BusinessPage from './components/BusinessesDashboard/BusinessPage'
 import ProductsPage from './components/ProductDashboard/ProductsPage'
 import {useAuth} from './auth/index'
+import Overview from './components/Overview/Overview'
 
 
 
@@ -42,13 +43,14 @@ function App() {
             <PrivateRoute exact path = '/home' component={BusinessesDashboard}/> 
             <PrivateRoute exact  path = '/businesses' component={BusinessPage}/>
             <PrivateRoute exact path='/products' component={ProductsPage}/>
+            <PrivateRoute exact path='/overview' component={Overview}/>
           </div>
             
         
       </Switch>
     </Router>
     
-  );
+  ); 
 }
 
 export default App;
