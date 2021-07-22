@@ -3,7 +3,7 @@ import Button from '../Button'
 import { logout } from '../../auth'
 
 
-const DeleteProduct = ({products,onClick,id}) => {
+const DeleteProduct = ({onClick,id,fetchData}) => {
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
     const deleteproduct = async () => {
@@ -20,12 +20,7 @@ const DeleteProduct = ({products,onClick,id}) => {
             alert('Session has expired')
         }
         if(response.status === 200){
-            for(var a = 0; a <products.length;a++){
-                if(products[a].id === id){
-                    products.splice(a,1)
-                }
-            }
-            
+          fetchData()   
         }
         else{
             alert(res.message)

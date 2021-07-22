@@ -49,7 +49,6 @@ const Products = () => {
     const onDelete = (id) => {
         setDeleteProduct(!deleteproduct)
         setID(id)
-        console.log(id)
     }
 
 
@@ -65,7 +64,7 @@ const Products = () => {
             }
             {deleteproduct ? 
             <div className='popup'>
-                <DeleteProduct onClick={()=>{onDelete(id)}} id={id} products={products}/>
+                <DeleteProduct onClick={()=>{onDelete(id)}} fetchData={fetchData} id={id} products={products}/>
             </div> :
             null
             }
@@ -76,7 +75,7 @@ const Products = () => {
                 <div className="businesses">
                     {products.map(product => {
                         return(
-                        <Product name={product.name} description={description} showDelete={()=>{onDelete(product.id)}} id={product.id} />
+                        <Product name={product.name} description={description} showDelete={()=>{onDelete(product.product_id)}} id={product.product_id} />
                         )
                         })
                     }
