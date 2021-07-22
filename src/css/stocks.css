@@ -21,7 +21,7 @@ box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 overflow: hidden;
 margin: 25px 5%;
 border-radius: 20px ;
-height: 90%;
+height: fit-content;
 
 }
 .table{    
@@ -73,14 +73,32 @@ table th, table td {
 }
 
 
-tbody tr {
-    
-    border-bottom: 40px solid #fff;
-    background-color:  #009878;
-  
-    border-radius: 100%;
-    width: 200px;
-    }
+.Tfooter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    cursor: grabbing;
+}
+.greater ,
+.lesser {
+    color:#6880fe;
+    padding: 2px;
+    margin: 2px;
+}
+
+.page_id{
+   width: 34px;
+   background-color: #6880fe;
+   text-align: center;
+   border-radius: 7px;
+}
+ .table-div:last-child{
+     position: absolute;
+     bottom: 5px;
+ }
+
+
 
     
 

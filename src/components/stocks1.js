@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-// import { useState } from 'react';
-
 import AddButton from './ProductDashboard/AddButton'
 import SideNavBar from './BusinessesDashboard/SideNavBar'
 import TableHead from './tableHead'
 import TableRow from './tableRow'
-import AddStocks from './addStocks';  
+import AddStocks from './addStocks'
+import Tfooter from "./tfooter"
+// import  {useRef } from 'react'
+
 
 
 class Stocks1 extends Component {
@@ -13,13 +14,11 @@ class Stocks1 extends Component {
       super(props);
       this.state = {
           rows:[
-              {stock_id:3, stock:'stock',qty:'qty',date:'date' },
-              {stock_id:34, stock:'stock',qty:'qty',date:'date' },
-              {stock_id:345, stock:'stock',qty:'qty',date:'date' }
+              
 
         ],
       addRow : (eachRow)=>{
-            let tempRows = [...this.state.rows,eachRow];
+            let tempRows = [eachRow,...this.state.rows,];
             this.setState({
                 rows:tempRows
             })
@@ -31,14 +30,23 @@ class Stocks1 extends Component {
             ,
         submitTrigger : (trigger) =>{
           this.setState(
-             {trigger:trigger})}
+             {trigger:trigger})},
+
+             getHeight:()=> {
+              const height = this.divElement.clientHeight;
+              this.setState({ height });
+              return height
+            }
          }
         }
+       
 
       
       handleClick =(e)=>{
         this.state.setTrigger();
+
       }
+      
     
 
    
@@ -52,19 +60,19 @@ render(){
         <div className="stocks-body">
                         <div className="sidebar"> <SideNavBar/> </div>
 
-                        <div className="table-div"  > 
+                        <div className="table-div"  ref={ (divElement) => { this.divElement = divElement } }  > 
                         <h1>Stocks</h1>
                         < TableHead />
                         <TableRow rowData={this.state.rows}/>
-                        
+                        <Tfooter/>
                         </div>
                         <div  className='adder' onClick={this.handleClick} > 
                         <AddButton />
                          
                         </div>
-                        <AddStocks trigger = {this.state.trigger} addRow = {this.state.addRow} submitTrigger={this.state.submitTrigger}/>
+                        <AddStocks trigger = {this.state.trigger} addRow = {this.state.addRow} submitTrigger={this.state.submitTrigger} getHeight={this.state.getHeight}/>
 
-
+                        
 
         </div>
         
