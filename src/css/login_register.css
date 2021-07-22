@@ -83,6 +83,8 @@
   .forgot-pass-link{
     text-decoration: none;
     color: #6880FE;
+    font-family: PoppinsLight;
+    font-size: 0.8rem;
   }
   #login{
     width: 40%;
@@ -97,6 +99,7 @@
     padding:0.5em ;
     align-self: center;
     cursor: pointer;
+    font-family: PoppinsRegular;
   }
   
   .sign-up-link{
@@ -106,6 +109,7 @@
     margin: 0;
     margin-top: 5px;
     text-decoration: none;
+    font-family: PoppinsRegular;
     
   }
   
