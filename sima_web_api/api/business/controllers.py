@@ -106,9 +106,9 @@ def business_update_info(current_user, business_id):
 
 
 # TODO: Implement later
-@business.route("/", methods=["DELETE"])
+@business.route("", methods=["DELETE"])
 @token_required
-def business_delete_all(current_user, business_id):
+def business_delete_all(current_user):
     """
     business_delete_all(current_user, business_id)
 
@@ -116,7 +116,8 @@ def business_delete_all(current_user, business_id):
 
     Deletes resource
     """
-    businesses = Business.query.all().delete()
+    businesses = Business.query.filter_by(user_id=current_user.id).delete()
+    db.session.commit()
     return jsonify({"message": "Businesses deleted successfully"}), 200
 
 
