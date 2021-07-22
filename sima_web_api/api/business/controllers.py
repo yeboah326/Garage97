@@ -58,7 +58,7 @@ def business_get_all(current_user):
     """
     businesses = Business.query.filter_by(user_id=current_user.id)
     businesses_json = [
-        {"id": business.id, "name": business.name} for business in businesses
+        {"id": business.id, "name": business.name,"description":business.description} for business in businesses
     ]
     return jsonify(businesses_json), 200
 
@@ -75,7 +75,7 @@ def business_get_by_id(current_user, business_id):
     """
     business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
     if business:
-        business_json = {"name": business.name}
+        business_json = {"name": business.name,"description":business.description}
         return jsonify(business_json), 200
     return jsonify({"message": "Business not found"}), 404
 
@@ -150,7 +150,7 @@ def business_get_all_product(current_user, business_id):
     To test if the module is working
     """
     business_products = Product.query.filter_by(business_id=business_id)
-    business_products_json = [{"name": product.name} for product in business_products]
+    business_products_json = [{"name": product.name,"product_id":product.id} for product in business_products]
     return jsonify(business_products_json), 200
 
 
