@@ -60,7 +60,7 @@ const Businesses = () => {
 
 
 
-    const description = "Production and distribution of genetically modified Kako across the 16 regions of Ghana."
+    // const description = "Production and distribution of genetically modified Kako across the 16 regions of Ghana."
     return (
         !business_select ?
         <div className="business-section">
@@ -72,7 +72,7 @@ const Businesses = () => {
             }
             {deletebusiness ? 
             <div className='popup'>
-                <DeleteBusiness onClick={()=>{onDelete(id)}} id={id} businesses={businesses}/>
+                <DeleteBusiness onClick={()=>{onDelete(id)}} id={id} fetchData={fetchData}/>
             </div> :
             null
             }
@@ -83,7 +83,7 @@ const Businesses = () => {
                 <div className="businesses">
                     {businesses.map(business => {
                         return(
-                        <Business name={business.name} description={description} showDelete={()=>{onDelete(business.id)}} id={business.id} onClick={()=>{selectBusiness(business.id)}}/>
+                        <Business name={business.name} description={business.description} showDelete={()=>{onDelete(business.id)}} id={business.id} onClick={()=>{selectBusiness(business.id)}}/>
                         )
                         })
             }

@@ -2,7 +2,7 @@ import React from 'react'
 import { logout } from '../../auth'
 import Button from '../Button'
 
-const DeleteBusiness = ({onClick,id,businesses}) => {
+const DeleteBusiness = ({onClick,id,fetchData}) => {
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
     const deletebusiness = async () => {
@@ -19,11 +19,7 @@ const DeleteBusiness = ({onClick,id,businesses}) => {
             alert('Session has expired')
         }
         if(response.status === 200){
-            for(var a = 0; a <businesses.length;a++){
-                if(businesses[a].id === id){
-                    businesses.splice(a,1)
-                }
-            }
+            fetchData()
             
         }
         else{
