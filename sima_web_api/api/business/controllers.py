@@ -150,7 +150,7 @@ def business_get_all_product(current_user, business_id):
     To test if the module is working
     """
     business_products = Product.query.filter_by(business_id=business_id)
-    business_products_json = [{"name": product.name,"product_id":product.id} for product in business_products]
+    business_products_json = [{"name": product.name} for product in business_products]
     return jsonify(business_products_json), 200
 
 
