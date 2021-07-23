@@ -234,3 +234,17 @@ ERROR: **404 BAD REQUEST**
     "message":"Business not found"
 }
 </pre>
+#
+# Product Endpoints
+### Check product blueprint endpoint
+`GET /product/hello`
+
+SUCCESS: **200 OK**
+
+<pre>
+{
+    "message": "Hello"
+}
+</pre>
+
+ERROR: **400 BAD REQUEST**
