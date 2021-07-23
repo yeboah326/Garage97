@@ -1,6 +1,14 @@
 from sima_web_api.api import db
 from sima_web_api.api.users.models import User
+from sima_web_api.api.business.models import Business
+from sima_web_api.api.product.models import Product
 import json
+
+
+def drop_all_table_data():
+    Product.query.delete()
+    Business.query.delete()
+    User.query.delete()
 
 
 def test_user_hello(app, client):
@@ -16,8 +24,7 @@ def test_user_login(app, client):
     Test: POST request to test user login
     """
 
-    # Drop existing users from the Users table before test
-    User.query.delete()
+    drop_all_table_data()
 
     # Create a new user
     client.post(
@@ -48,8 +55,7 @@ def test_user_get_all(app, client):
     Test: GET request to retrieve all users
     """
 
-    # Drop existing users from the Users table before test
-    User.query.delete()
+    drop_all_table_data()
 
     # Create two new users
     client.post(
@@ -80,17 +86,13 @@ def test_user_get_all(app, client):
     assert response.json[0]["name"] == "John Doe"
     assert response.json[1]["name"] == "Jane Doe"
 
-    # Drop existing users from the Users table before test
-    User.query.delete()
-
 
 def test_user_get_by_id(app, client):
     """
     Test: GET request to retrieve a single user by id
     """
 
-    # Drop existing users from the Users table before test
-    User.query.delete()
+    drop_all_table_data()
 
     # Create a new user
     client.post(
@@ -112,17 +114,13 @@ def test_user_get_by_id(app, client):
     assert response.status_code == 200
     assert response.json["public_id"] == user.public_id
 
-    # Drop existing users from the Users table before test
-    User.query.delete()
-
 
 def test_user_create_new(app, client):
     """
     Test: POST request for the creation of a new user
     """
 
-    # Drops existing users from the Users table
-    User.query.delete()
+    drop_all_table_data()
 
     # Make request to create a new user
     response = client.post(
@@ -138,17 +136,13 @@ def test_user_create_new(app, client):
     assert response.status_code == 201
     assert response.json == {"message": "New user created"}
 
-    # Drops existing users from the Users table after test
-    User.query.delete()
-
 
 def test_user_update_info(app, client):
     """
     TEST: PUT request to update user info
     """
 
-    # Drops existing users from the Users table
-    User.query.delete()
+    drop_all_table_data()
 
     # Create a new user
     response = client.post(
@@ -187,8 +181,7 @@ def test_user_delete_all(app, client):
     Test: DELETE request to delete all users
     """
 
-    # Drop existing users from the Users table before test
-    User.query.delete()
+    drop_all_table_data()
 
     # Create two new users
     client.post(
@@ -225,17 +218,13 @@ def test_user_delete_all(app, client):
     assert response.status_code == 200
     assert response.json == {"message": "All users deleted successfully"}
 
-    # Drop existing users from the Users table before test
-    User.query.delete()
-
 
 def test_user_delete_by_id(app, client):
     """
     Test: DELETE request to delete a single user by id
     """
 
-    # Drop existing users from the Users table before test
-    User.query.delete()
+    drop_all_table_data()
 
     # Create a new user
     client.post(
@@ -256,6 +245,3 @@ def test_user_delete_by_id(app, client):
 
     assert response.status_code == 200
     assert response.json == {"message": "User deleted successfully"}
-
-    # Drop existing users from the Users table before test
-    User.query.delete()
