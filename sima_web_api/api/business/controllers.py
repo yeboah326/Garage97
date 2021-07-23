@@ -75,7 +75,7 @@ def business_get_by_id(current_user, business_id):
     """
     business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
     if business:
-        business_json = {"name": business.name}
+        business_json = {"name": business.name,"description":business.description}
         return jsonify(business_json), 200
     return jsonify({"message": "Business not found"}), 404
 

@@ -1,10 +1,10 @@
-import React from 'react'
 import DeleteButton from './DeleteButton'
 
-const Business = ({name,description}) => {
+const Business = ({name,description,showDelete,id,onClick}) => {
+
     return (
-        <div className="business">
-            <span>{name} <DeleteButton/></span>
+        <div className="business" id={id} onClick={onClick}>
+            <span>{name} <DeleteButton onClick={showDelete}/></span>
             <p>{description}</p>
         </div>
     )

@@ -11,6 +11,9 @@
     justify-content: center;
     flex-direction: column;
   }
+  .business:hover{
+    cursor: pointer;
+  }
   
   .business span{
     text-align: start;
@@ -30,6 +33,9 @@
     height: 20px;
     /* width: 20px; */
   }
+  .business .delete-button svg:hover{
+    cursor: pointer;
+  }
   .business p{
     text-align: start;
     color: #273475;
@@ -37,23 +43,29 @@
     font-family: PoppinsRegular;
   }
   .businesses{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,400px);
+    grid-template-rows: repeat(auto-fit,120px);
+    column-gap: 60px;
+    row-gap: 50px;
     padding: 20px;
-    align-items: center;
+    align-items: start;
     justify-content: center;
+    width: 100%;
   }
   
   .business-section{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: 9fr 1fr;
     background-color: #f0f3f5;
+    justify-items: center;
     height: 100vh;
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none; 
     width: 100%;
-    padding: 10px;
+    /* padding: 10px; */
   }
   .add-button{
     font-size: 3.5rem;
@@ -68,30 +80,63 @@
     justify-self: auto;
     cursor: pointer;
   }
+  .no-business{
+    color: #273475;
+    align-self: center;
+    margin-left: 40%;
+    font-family: PoppinsBold;
+    font-size: 1.5rem;
+    width: 100%;
+    z-index: 1;
+  }
+  .no-business:hover{
+    cursor: pointer;
+  }
+
   
+  .delete-product{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    height: 170px;
+    border: 1px solid white;
+    justify-self: center;
+    align-self: center;
+    border-radius: 20px;
+    padding: 0.5% 1%;
+    background-color: white;
+    margin: auto;
+  }
+
   .delete-product p{
     font-family: PoppinsBold;
-    color:#273475
+    color:#273475;
+    font-size: 1.2rem;
   }
   .delete-product span{
     font-family: PoppinsRegular;
+    color: #273475;
+    font-size: 1rem;
   }
   
   .delete-product div{
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+    margin-top: auto;
+    margin-bottom: 10px;
   }
   
   .delete-product .button{
     height: 30px;
-    width: 80px;
+    width: 100px;
     border-radius: 10px;
     border: none;
     margin-right: 10px;
-    margin-top: 10px;
     color: white;
-    font-family: PoppinsRegular;
+    font-family: PoppinsLight;
+    padding: 5px;
+
   }
   .delete-product .button:hover{
     cursor: pointer;
@@ -103,5 +148,90 @@
     background-color: #f0f3f5;
   }
   
+
+  .add{
+    background-color: white;
+    /* height: 45%;
+    width: 15%; */
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 350px;
+    align-self: center;
+    justify-self: center;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: 1px solid #273475;
+    margin: auto;
+    
+  }
+
+  .add p{
+    color: #273475;
+    font-family: PoppinsBold;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
   
+  .add input{
+    display: block;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    border: solid 1px #273475;
+    font-size: 1.2rem;
+    outline: none;
+    margin-bottom: 5%;
+  }
+
+  .add textarea{
+    border-radius: 10px;
+    border: solid 1px #273475;
+    height: 50%;
+    width: 100%;
+    font-size: 1.1rem;
+    outline: none;
+    resize: none;
+  }
+
+  .add label{
+    display: block;
+    margin-bottom: 4%;
+    color:#273475;
+    font-family: PoppinsRegular;
+  }
   
+  .add .button{
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+    border: solid white;
+    outline: none;
+    margin-left: 20px;
+    margin-top: 3%;
+    margin-right: 0;
+    color: white;
+    font-family: PoppinsRegular;
+    padding: 0;
+  }
+
+  .add button:hover{
+    cursor:pointer;
+  }
+  .button-div{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-self: flex-end;
+    margin-bottom: auto;
+  }
+  .popup{
+    display: flex;
+    justify-content: center;
+    position:fixed;
+    z-index: 5;
+    width: 200%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    padding: 0;
+  }
