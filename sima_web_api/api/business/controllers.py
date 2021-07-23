@@ -58,7 +58,7 @@ def business_get_all(current_user):
     """
     businesses = Business.query.filter_by(user_id=current_user.id)
     businesses_json = [
-        {"id": business.id, "name": business.name} for business in businesses
+        {"id": business.id, "name": business.name,"description":business.description} for business in businesses
     ]
     return jsonify(businesses_json), 200
 
