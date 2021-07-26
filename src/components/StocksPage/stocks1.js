@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import AddButton from './ProductDashboard/AddButton'
-import SideNavBar from './BusinessesDashboard/SideNavBar'
+import AddButton from '../ProductDashboard/AddButton'
+import SideNavBar from '../ProductDashboard/SideNavBar'
 import TableHead from './tableHead'
 import TableRow from './tableRow'
 import AddStocks from './addStocks'
@@ -40,12 +40,15 @@ class Stocks1 extends Component {
          }
         }
        
-
+       
       
       handleClick =(e)=>{
         this.state.setTrigger();
 
       }
+      // openForm=(e) =>{
+      //   document.getElementById("myForm").style.display = "block";
+      // }
       
     
 
@@ -70,7 +73,8 @@ render(){
                         <AddButton />
                          
                         </div>
-                        <AddStocks trigger = {this.state.trigger} addRow = {this.state.addRow} submitTrigger={this.state.submitTrigger} getHeight={this.state.getHeight}/>
+                        
+                        <AddStocks trigger = {this.state.trigger} addRow = {this.state.addRow} submitTrigger={this.state.submitTrigger} getHeight={this.state.getHeight} openForm={this.openForm}/>
 
                         
 
