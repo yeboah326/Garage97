@@ -1,8 +1,9 @@
 import json
-from functools import wraps
 from sima_web_api.api.users.models import User
 from sima_web_api.api.business.models import Business
 from sima_web_api.api.product.models import Product
+from sima_web_api.api.sale.models import Sale, SaleList
+from sima_web_api.api.stock.models import Stock, StockList
 
 
 def drop_all_table_data():
@@ -25,6 +26,7 @@ def login_user(app, client):
         },
     )
 
+    # Send request to login user
     response = client.post(
         "/users/login", json={"email": "jodoe@gmail.com", "password": "123456"}
     )
@@ -104,7 +106,7 @@ def test_business_get_by_id(app, client):
     )
 
     assert response.status_code == 200
-    assert response.json == {"name": "Kako Inc"}
+    assert response.json == {"description": None, "name": "Kako Inc"}
 
 
 def test_business_update_by_id(app, client):
@@ -201,9 +203,23 @@ def test_business_get_all_product(app, client):
 
 # TODO: Add when adding sale tests
 def test_business_get_all_sale_list(app, client):
-    pass
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    id = new_business.id
+
+    create_business_products(client, login["token"], id)
 
 
 # TODO: Add when adding stock tests
 def test_business_get_all_stock_list(app, client):
-    pass
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    id = new_business.id
+
+    create_business_products(client, login["token"], id)
