@@ -174,8 +174,8 @@ def busines_create_new_product(current_user, business_id):
 
     return jsonify({"message": "Product created successfully"}), 201
 
-
-@business.route("/<business_id>/sale_list")
+# Sale and SaleList
+@business.route("/<business_id>/sale_list",methods=["GET"])
 @token_required
 def business_get_all_sale_list(current_user, business_id):
     business_sale_lists = SaleList.query.filter_by(business_id=business_id)
@@ -198,7 +198,14 @@ def business_get_all_sale_list(current_user, business_id):
 
         return jsonify(business_sale_lists_json)
 
+@business.route("/<business_id>/sale_list",methods=["DELETE"])
+@token_required
+def business_delete_all_sale_list(current_User,business_id):
+    business_sale_lists = SaleList.query.filter_by(business_id=business_id).delete()
+    return jsonify({"message":f"All salelist from {Business.filter_by(id=business_id)} have been deleted"}), 200
 
+
+# Stock and StockList
 @business.route("/<business_id>/stock_list")
 @token_required
 def business_get_all_stock_list(current_user, business_id):
@@ -225,9 +232,9 @@ def business_get_all_stock_list(current_user, business_id):
 
 @business.route("/list/<stock_list_id>", methods=["GET"])
 @token_required
-def stock_list_get_by_id(current_user, stock_list_id):
+def business_get_stock_list_by_id(current_user, stock_list_id):
     """
-    stock_list_get_by_id(current_user, stock_list_id)
+    business_get_stock_list_by_id(current_user, stock_list_id)
 
     HTTP Methods - GET
 
@@ -242,6 +249,3 @@ def stock_list_get_by_id(current_user, stock_list_id):
     }
 
     return jsonify(stock_list_json)
-
-
-# ---Stock list---
