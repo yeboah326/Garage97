@@ -240,19 +240,6 @@ def sale_list_delete_by_id(current_user, sale_list_id):
         return jsonify({"message": "Could not delete sale list"})
 
 
-# TODO: Implement later
-@sale.route("<product_id>/sale_list", methods=["DELETE"])
-@token_required
-def sale_list_delete_all(current_user):
-    """
-    sale_list_delete_all(current_user)
-
-    HTTP Methods - DELETE
-
-    Deletes resource
-    """
-    sale_list_all = SaleList.query.all().delete()
-    return jsonify({"message": "All salelists deleted"})
 
 
 @sale.route("/list/<sale_list_id>", methods=["PUT"])
