@@ -139,7 +139,7 @@ def stock_update_by_id(current_user, stock_id):
 
 
 # ----- Stock List -----
-@stock.route("/stock", methods=["POST"])
+@stock.route("/list", methods=["POST"])
 @token_required
 def stock_list_create_new(current_user):
     """
@@ -151,9 +151,12 @@ def stock_list_create_new(current_user):
     """
     data = request.get_json()
 
-    new_stock_list = StockList(created_on=str(datetime.date.today()))
-    db.session.commit(new_stock_list)
-    db.session.save()
+    new_stock_list = StockList(
+        created_on=str(datetime.date.today()),
+        business_id=data["business_id"]  
+        )
+    db.session.add(new_stock_list)
+    db.session.commit()
 
     for stock in data["stock_list"]:
         new_stock = Stock(
@@ -163,10 +166,10 @@ def stock_list_create_new(current_user):
             product_id=stock["product_id"],
             stock_list_id=new_stock_list.id,
         )
-        db.session.commit(new_stock)
-        db.session.save()
+        db.session.add(new_stock)
+        db.session.commit()
 
-    return jsonify({"message": "Sale list created sucessfully"})
+    return jsonify({"message": "Stocks created sucessfully"}), 201
 
 
 @stock.route("<product_id>/stock_list", methods=["GET"])
