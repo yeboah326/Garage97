@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import Input from '../Input'
 
-// import Tfooter from './tfooter'
 
 class AddStocks extends Component{
     constructor (props){
@@ -17,9 +17,11 @@ class AddStocks extends Component{
 } 
      
  
+ 
+  
      handleChange=(e)=>{
          this.setState({
-             [e.target.id]:e.target.value
+             [e.target.name]:e.target.value
          })
 
      }
@@ -41,22 +43,27 @@ class AddStocks extends Component{
 
             
      }
+     close=(e)=>{this.props.submitTrigger()}
+     
   render(){
 
     return (this.props.trigger) ?
     
-        (  <div className=" login-form popup">
-        <form onSubmit={this.handleSubmit} > 
+        ( 
+             <div className=" form-pop" id="myForm" >
+        <form onSubmit={this.handleSubmit} className="form-container"  > 
             <h1>add new stock</h1>
-           <label htmlFor= "stock_id">stock_id</label>
-           <input type="text" id='stock_id' onChange={this.handleChange}></input>
-           <label htmlFor= "stock" >stock</label>
-           <input type="text" id='stock' onChange={this.handleChange}></input>
-           <label htmlFor= "qty">qty</label>
-           <input type="text" id='qty' onChange={this.handleChange}></input>
-           <label htmlFor= "date">date</label>
-           <input type="text" id='date' onChange={this.handleChange}></input>
-           <button className='button add' >add</button>
+            <Input type="text" name='stock_id' required="true" onChange={this.handleChange} label="stock_id"/>
+            <Input type="text" name='stock' required="true" onChange={this.handleChange} label="stock"/>
+            <Input type="text" name='qty' required="true" onChange={this.handleChange} label="qty"/>
+            <Input type="text" name='date' required="true" onChange={this.handleChange} label="date"/>
+
+           <button className='btn ' >add</button>
+           <button className='btn cancel'  onClick={this.close}>close</button>
+
+
+
+
            
            
 
