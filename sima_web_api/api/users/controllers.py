@@ -21,7 +21,7 @@ def hello():
 
     HTTP Methods - GET
 
-    To test if the module is working
+    To get the blueprint endpoint
     """
     return jsonify({"message": "Users Blueprint Created successfully"}), 200
 
@@ -33,7 +33,7 @@ def user_login():
 
     HTTP Methods - POST
 
-    TO send data
+    to send user data
     """
     auth = request.get_json()
     if not auth or not auth["email"] or not auth["password"]:
@@ -63,7 +63,7 @@ def get_all_users():
 
     HTTP Methods - GET
 
-    To test if the module is working
+    To get all users details
     """
     users = User.query.all()
 
@@ -89,7 +89,7 @@ def get_user_by_id(public_id):
 
     HTTP Methods - GET
 
-    To test if the module is working
+    To get user info by the id
     """
 
     user = User.query.filter_by(public_id=public_id).first()
@@ -114,7 +114,7 @@ def create_new_user():
 
     HTTP Methods - POST
 
-    To send data
+    To create a new user
     """
     data = request.get_json()
 
@@ -143,7 +143,7 @@ def update_user_info(public_id):
 
     HTTP Methods - PUT
 
-    Updates existing resources
+    Update user details
     """
     # EMAIL,DISPLAY_NAME, CONTACT ONE, CONTACT TWO
     user = User.query.filter_by(public_id=public_id).first()
@@ -183,7 +183,7 @@ def delete_all_users():
 
     HTTP Methods - DELETE
 
-    Deletes resource
+    Delete user details
     """
     User.query.delete()
 
@@ -197,7 +197,7 @@ def delete_user_by_id(public_id):
 
     HTTP Methods - DELETE
 
-    Deletes resource
+    Delete user details by id
     """
     user = User.query.filter_by(public_id=public_id).first()
     db.session.delete(user)
