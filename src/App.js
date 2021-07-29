@@ -1,7 +1,7 @@
 import SplashPage from './components/Login_Registration/splashPage'
-import Stocks from './components/Stocks'
-import Stocks1 from './components/stocks1'
-import AddStocks from './components/addStocks'
+import Sales from './components/salesPage/sales'
+import Stocks1 from './components/StocksPage/stocks1'
+import AddStocks from './components/StocksPage/addStocks'
 import LoginForm from './components/Login_Registration/LoginForm'
 import RegistrationForm from './components/Login_Registration/RegistrationForm'
 import {BrowserRouter as Router,Switch, Route, Redirect} from 'react-router-dom'
@@ -33,8 +33,8 @@ function App() {
           <div className='container'>
             <Route exact path = '/' component={SplashPage}/>
             <Route exact path = '/login'component={LoginForm}/>
-            <Route exact path = '/stocks1'component={Stocks1}/>
-            <Route exact path = '/stocks'component={Stocks}/>
+            <Route exact path = '/stocks'component={Stocks1}/>
+            <Route exact path = '/sales'component={Sales}/>
             <Route exact path = '/addstocks'component={AddStocks}/>
 
 

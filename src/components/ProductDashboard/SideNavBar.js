@@ -17,8 +17,8 @@ const SideNavBar = () => {
             <div className='option main'><NavLink exact to='/home' className='options-link-1' activeClassName='active'><SvgHome fill='#c0c0c0'/><Options optionName="Home"/></NavLink></div>
             <div className='option main'><NavLink exact to='/overview' className='options-link-1' activeClassName='active'><SvgUser fill='#c0c0c0'/><Options optionName="Overview"/></NavLink></div>
             <div className='option main'><NavLink exact to='/products' className='options-link-1' activeClassName='active'><SvgBoxThin fill='#c0c0c0'/><Options optionName="Products"/></NavLink></div>
-            <div className='option main'><NavLink exact to='/stocks1' className='options-link-1' activeClassName='active'><SvgDelivery fill='#c0c0c0'/><Options optionName="Stock"/></NavLink></div>
-            <div className='option main'><NavLink exact to='/Sales' className='options-link-1' activeClassName='active'><SvgTag fill='#c0c0c0'/><Options optionName="Sales"/></NavLink></div>
+            <div className='option main'><NavLink exact to='/stocks' className='options-link-1' activeClassName='active'><SvgDelivery fill='#c0c0c0'/><Options optionName="Stock"/></NavLink></div>
+            <div className='option main'><NavLink exact to='/sales' className='options-link-1' activeClassName='active'><SvgTag fill='#c0c0c0'/><Options optionName="Sales"/></NavLink></div>
             <div className='option main'><NavLink exact to='/dashboard-home' className='options-link-1' activeClassName='active'><SvgUser fill='#c0c0c0'/><Options optionName="Customers"/></NavLink></div>
             <div className='logout'><NavLink to=''><SvgLogOut stroke='#c0c0c0' fill='#c0c0c0'/></NavLink></div>
         </div>
