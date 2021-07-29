@@ -1,14 +1,10 @@
+import json
 from sima_web_api.api import db
 from sima_web_api.api.users.models import User
 from sima_web_api.api.business.models import Business
 from sima_web_api.api.product.models import Product
-import json
+from sima_web_api.api.tests.test_utils import drop_all_table_data
 
-
-def drop_all_table_data():
-    Product.query.delete()
-    Business.query.delete()
-    User.query.delete()
 
 
 def test_user_hello(app, client):

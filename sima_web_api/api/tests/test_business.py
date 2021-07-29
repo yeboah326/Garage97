@@ -1,58 +1,16 @@
 import json
-from functools import wraps
 from sima_web_api.api.users.models import User
 from sima_web_api.api.business.models import Business
 from sima_web_api.api.product.models import Product
-
-
-def drop_all_table_data():
-    Product.query.delete()
-    Business.query.delete()
-    User.query.delete()
-
-
-def login_user(app, client):
-    drop_all_table_data()
-
-    # Create a new user
-    client.post(
-        "/users",
-        json={
-            "name": "John Doe",
-            "password": "123456",
-            "date_of_birth": "2000-01-01",
-            "email": "jodoe@gmail.com",
-        },
-    )
-
-    response = client.post(
-        "/users/login", json={"email": "jodoe@gmail.com", "password": "123456"}
-    )
-
-    return response.json
-
-
-def create_new_business(client, token):
-    # Create new business
-    client.post(
-        "/business",
-        json={"name": "Kako Inc"},
-        headers={"Authorization": f"Bearer {token}"},
-    )
-
-
-def create_business_products(client, token, busisness_id):
-    # Create three new products in a business
-    response = None
-
-    for num in range(2):
-        response = client.post(
-            f"/business/{busisness_id}/product",
-            json={"name": f"Product {num}", "business_id": busisness_id},
-            headers={"Authorization": f"Bearer {token}"},
-        )
-
-    return response
+from sima_web_api.api.sale.models import Sale, SaleList
+from sima_web_api.api.stock.models import Stock, StockList
+from sima_web_api.api.tests.test_utils import (
+    create_business_products,
+    create_new_business,
+    create_product_salelist,
+    create_product_stocklist,
+    login_user
+)
 
 
 def test_business_hello(app, client):
@@ -104,7 +62,7 @@ def test_business_get_by_id(app, client):
     )
 
     assert response.status_code == 200
-    assert response.json == {"name": "Kako Inc"}
+    assert response.json == {"description": None, "name": "Kako Inc"}
 
 
 def test_business_update_by_id(app, client):
@@ -199,11 +157,111 @@ def test_business_get_all_product(app, client):
     assert len(response.json) == 2
 
 
-# TODO: Add when adding sale tests
+# Sale and SaleList
 def test_business_get_all_sale_list(app, client):
-    pass
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+    # Create a new salelist
+    create_product_salelist(client,login["token"],product_id)
+
+    response = client.get(
+        f"business/{business_id}/sale_list",
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    assert "business" in response.json
+    assert "business_sale_lists" in response.json
+    assert len(response.json["business_sale_lists"]) == 1
 
 
-# TODO: Add when adding stock tests
+def test_business_delete_all_sale_list(app, client):
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+
+    create_product_salelist(client,login["token"],product_id)
+
+    response = client.delete(
+        f"business/{business_id}/sale_list",
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    assert response.status_code == 200
+    assert response.json == {"message":f"All salelist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}
+
+# Stock and StockList
 def test_business_get_all_stock_list(app, client):
-    pass
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+    
+    # Create a new stocklist
+    create_product_stocklist(client,login["token"],product_id)
+
+
+    response = client.get(
+        f"business/{business_id}/stock_list",
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    assert response.status_code == 200
+    assert "business" in response.json
+    assert "business_stock_lists" in response.json
+    assert len(response.json["business_stock_lists"]) == 1
+
+
+def test_business_delete_all_stock_list(app, client):
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+    
+    # Create a new stocklist
+    create_product_stocklist(client,login["token"],product_id)
+
+    response = client.delete(
+        f"business/{business_id}/stock_list",
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    assert response.status_code == 200
+    assert response.json == {"message":f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}
+

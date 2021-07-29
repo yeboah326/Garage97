@@ -109,6 +109,34 @@ def product_get_all_sale(current_user, product_id):
     return jsonify(product_sales_json), 200
 
 
+@product.route("/<product_id>/stock")
+@token_required
+def product_get_all_stock(current_user, product_id):
+    """
+    product_get_all_stock(current_user, product_id)
+
+    HTTP Methods - GET
+
+    To test if the module is working
+    """
+    product_stocks = Stock.query.filter_by(product_id=product_id)
+    product_stocks_json = [
+        {
+            "id": stock.id,
+            "quantity": stock.quantity,
+            "buying_price": str(stock.buying_price),
+            "created_on": stock.created_on,
+        }
+        for stock in product_stocks
+    ]
+
+    product_stocks_json = {
+        "product": Product.query.filter_by(id=product_id).first().name,
+        "product_stocks": product_stocks_json,
+    }
+    return jsonify(product_stocks_json), 200
+
+
 @product.route("/<product_id>/sale", methods=["DELETE"])
 @token_required
 def product_delete_all_sale(current_user, product_id):
