@@ -11,9 +11,9 @@
      color: #273475;
 
  }
-.sidebar{
+/* .sidebar{
     grid-column: 1/2;
-}
+} */
 .table-div{
 grid-column: 2/9;
 background-color: #fff;

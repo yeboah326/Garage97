@@ -60,7 +60,7 @@
     grid-template-columns: 9fr 1fr;
     background-color: #f0f3f5;
     justify-items: center;
-    height: 100vh;
+    /* height: 100vh; */
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none; 
