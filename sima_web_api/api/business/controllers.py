@@ -151,7 +151,7 @@ def business_get_all_product(current_user, business_id):
     To test if the module is working
     """
     business_products = Product.query.filter_by(business_id=business_id)
-    business_products_json = [{"product_id":product.id,"name": product.name} for product in business_products]
+    business_products_json = [{"product_id":product.id,"name": product.name,"description":product.description} for product in business_products]
     return jsonify(business_products_json), 200
 
 
@@ -167,7 +167,7 @@ def busines_create_new_product(current_user, business_id):
     """
     data = request.get_json()
 
-    new_product = Product(name=data["name"], business_id=business_id)
+    new_product = Product(name=data["name"],description=data["description"], business_id=business_id)
 
     db.session.add(new_product)
     db.session.commit()

@@ -29,7 +29,7 @@ def product_get_by_id(current_user, product_id):
     To test if the module is working
     """
     product = Product.query.filter_by(id=product_id).first()
-    product_json = {"name": product.name}
+    product_json = {"name": product.name,"description":product.description}
     return jsonify(product_json), 200
 
 
