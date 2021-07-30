@@ -42,7 +42,7 @@ const AddBusiness = ({toggle,businesses,onClick}) => {
             <p>Add Business</p>
             <Input label="Name" name='name' required='true' type="text" onChange={onHandleChange}/>
              <label>Description</label>
-             <textarea name='description' onChange={onHandleChange}></textarea>
+             <textarea name='description' required onChange={onHandleChange}></textarea>
              <div className="button-div"><Button name="Add" color="#273475" toggle={Submit}/><Button name="Cancel" color="red" toggle={toggle}/></div>
         </div>
     )

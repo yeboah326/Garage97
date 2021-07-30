@@ -3,9 +3,9 @@ import DeleteButton from './DeleteButton'
 const Business = ({name,description,showDelete,id,onClick}) => {
 
     return (
-        <div className="business" id={id} onClick={onClick}>
+        <div className="business" id={id} /**/>
             <span>{name} <DeleteButton onClick={showDelete}/></span>
-            <p>{description}</p>
+            <p onClick={onClick}>{description}</p>
         </div>
     )
 }

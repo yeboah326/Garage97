@@ -8,7 +8,7 @@ import {Redirect} from 'react-router-dom'
 
 
 
-export let business_id;
+
 
 const Businesses = () => {
     const [addbusiness,setAddBusiness] = useState(false)
@@ -54,8 +54,7 @@ const Businesses = () => {
     }
     const selectBusiness = (id) => {
         setBusinessSelect(true)
-        business_id = id
-        console.log(business_id)
+        localStorage.setItem("business_id",id)
     }
 
 
