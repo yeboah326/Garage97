@@ -32,9 +32,9 @@ const LoginForm = () => {
             user = res.public_id
             login(res.token)
         }
-        // if(response.status === 200){
-        //     alert('User successfully Logged in')
-        // }
+        else if(response.status === 400){
+            alert('User login failed')
+        }
         else{
             throw new Error(`Request failed:${response.status}`)
         }
