@@ -5,7 +5,7 @@ import DeleteProduct from './DeleteProduct'
 import AddProducts from './AddProducts'
 import { useState,useEffect } from 'react'
 import { logout } from '../../auth/index'
-import {business_id} from '../BusinessesDashboard/Businesses'
+
 
 
 const Products = () => {
@@ -14,9 +14,9 @@ const Products = () => {
     const [products,setProducts] = useState([])
     const [id,setID] = useState()
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-
+    const business_id = JSON.parse(localStorage.getItem('business_id'))
     const fetchData = async () => {
-        console.log(business_id)
+        
         const response = await fetch(`http://localhost:9000/business/${business_id}/product`,{
         method: 'GET',    
         headers:{
@@ -34,6 +34,8 @@ const Products = () => {
             setProducts(res)
         }
     }
+
+    
 
     useEffect(()=>{
     fetchData()
@@ -75,7 +77,7 @@ const Products = () => {
                 <div className="businesses">
                     {products.map(product => {
                         return(
-                        <Product name={product.name} description={description} showDelete={()=>{onDelete(product.product_id)}} id={product.product_id} />
+                        <Product name={product.name} description={product.description} showDelete={()=>{onDelete(product.product_id)}} id={product.product_id} />
                         )
                         })
                     }
