@@ -13,6 +13,8 @@ class Stocks1 extends Component {
   constructor(props){
       super(props);
       this.state = {
+        products:[],
+        stocklist:[],
           rows:[
               
 
@@ -61,7 +63,7 @@ render(){
 
     return (
         <div className="stocks-body">
-                        <div className="sidebar"> <SideNavBar/> </div>
+                        {/*<div className="sidebar">*/} <SideNavBar/> {/* </div> */}
 
                         <div className="table-div"  ref={ (divElement) => { this.divElement = divElement } }  > 
                         <h1>Stocks</h1>
