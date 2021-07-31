@@ -2,6 +2,7 @@
     display: grid;
     align-items: flex-start;
     background-color:#f0f3f5 ;
+    height: 100%;
 }
 
  h1 {
@@ -11,9 +12,10 @@
      color: #273475;
 
  }
-/* .sidebar{
+.sidebar{
     grid-column: 1/2;
-} */
+    height: 100%;
+}
 .table-div{
 grid-column: 2/9;
 background-color: #fff;

@@ -4,11 +4,10 @@ import Button from '../Button'
 import { useState } from 'react'
 import { logout } from '../../auth'
 
-const AddStocks = ({toggle}) => {
-    const [addstock,setAddStock] = useState(false)
+const AddStocks = (props) => {
     const [products,setProducts] = useState([])
     const [stockList,setStockList] = useState([])
-    const [stock,setStock] = useState({quantity:'',buying_price:'',product_id:''})
+    const [stock,setStock] = useState({quantity:null,buying_price:null,product_id:null})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
     const business_id = JSON.parse(localStorage.getItem('business_id'))
 
@@ -27,7 +26,10 @@ const AddStocks = ({toggle}) => {
     const onAdd = () => {
         const Stock = stock 
         setStockList([...stockList,Stock])
+
+        setStock({product_name:null, qty:null,buying_price:null})
         alert("Stock added")
+       
     }
 
     const fetchData = async () => {
@@ -69,9 +71,27 @@ const AddStocks = ({toggle}) => {
             alert("Stocks could not be created.Try again")
         }
     }
+//    const randomNumber=Math.floor(Math.random()*9000)
+  
+//    const allStocksBuyingPrices = stockList.map(stock=>{return stock.buying_price} )  //adding up buying prices for total prices
+//    const totalPrice = allStocksBuyingPrices.reduce(
+//        function(sum,buying_price){return sum + Number(buying_price)},0)
+
+//  const allStocksQuantities = stockList.map(stock=>{return stock.quantity} )   //adding up quantities for stocklist quantity
+//  const totalQty = allStocksQuantities.reduce(
+//     function(pum,quantity){return pum + Number(quantity)},0)
 
     const onDone = () => {
         console.log(stockList)
+        alert("Done")
+
+
+
+        // const time = Date.now()
+        // const Rows = {stock_id:randomNumber,qty:totalQty,total_price:totalPrice,date:time}
+            //  console.log(Rows)
+     // //  toggle()
+ 
         postStockList()
     }
 
@@ -104,8 +124,9 @@ const AddStocks = ({toggle}) => {
     // }
 
 
-    return (
-    <div className="add">
+    return (props.trigger) ?
+        (
+        <div className=" pop form">
         <p>Add new Stock</p>
         <label for='product'>Product</label>
         <select id='product' name='product_id' onChange={onHandleChange} >
@@ -116,10 +137,14 @@ const AddStocks = ({toggle}) => {
         </select>
         <Input label='Unit Cost Price (GHC)' required='true' name='buying_price' type='number' onChange={onHandleChange}/>
         <Input label='Quantity' type='number' required='true' name='quantity' onChange={onHandleChange}/>
-        <div className="button-div"><Button name="Done" color="#273475" toggle={onDone}/><Button name="Add" color="red" toggle={onAdd}/></div>
+        <div className="button-div" > <Button name="Add" color="red" toggle={onAdd}/> </div>   
+        <div className="button-div" onClick={()=>props.setAddStock(false)}><Button name="Done" color="#273475" toggle={onDone}  /></div>
 
-   </div>
-    )
+
+   </div>):"";
+    
+    
+    
 }
 
 export default AddStocks

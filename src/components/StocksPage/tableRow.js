@@ -1,15 +1,14 @@
 import React from 'react'
 
-function TableRow (props){
+function TableRow (rows){
  
 
-   const {rowData} =props;
-   const displayRow = rowData.map(eachRow=>{
+   const displayRow = ()=>rows.map(eachRow=>{
     return (
       <div  className="tableRow" key={eachRow.stocks_id}> 
         <div className='stock_id'>{eachRow.stock_id}</div>
-        <div className='stock'>{eachRow.stock}</div>
         <div className='qty'>{eachRow.qty}</div>
+        <div className='total_price'>{eachRow.total_price}</div>
         <div className='date'>{eachRow.date}</div>
 
       </div>
