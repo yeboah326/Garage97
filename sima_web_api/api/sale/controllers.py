@@ -170,7 +170,7 @@ def sale_list_create_new(current_user):
             sale_list_id=new_sale_list.id,
         )
         db.session.add(new_sale)
-      8  db.session.commit()
+        db.session.commit()
     return jsonify({"message": "Sale created successfully"}), 201
 
 
