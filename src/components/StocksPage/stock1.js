@@ -7,7 +7,7 @@ import TableRow from './tableRow'
 import Tfooter from "./tfooter"
 // import  {useRef } from 'react'
 
-function Stocks2() {
+function Stocks1() {
 const [rows,addRows] = useState([])
 const [addstock,setAddStock] = useState(false)
 
@@ -46,4 +46,4 @@ const stockList=(Rows)=>{
     
 }
 
-export default Stocks2
+export default Stocks1

@@ -1,6 +1,6 @@
 import SplashPage from './components/Login_Registration/splashPage'
 import Sales from './components/salesPage/sales'
-import Stocks2 from './components/StocksPage/stock2'
+import Stocks1 from './components/StocksPage/stock1'
 import AddStocks from './components/StocksPage/addStocks'
 import LoginForm from './components/Login_Registration/LoginForm'
 import RegistrationForm from './components/Login_Registration/RegistrationForm'
@@ -33,7 +33,7 @@ function App() {
           <div className='container'>
             <Route exact path = '/' component={SplashPage}/>
             <Route exact path = '/login'component={LoginForm}/>
-            <Route exact path = '/stocks2'component={Stocks2}/>
+            <Route exact path = '/stocks2'component={Stocks1}/>
             <Route exact path = '/sales'component={Sales}/>
             <Route exact path = '/addstocks'component={AddStocks}/>
 

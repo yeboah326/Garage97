@@ -9,7 +9,7 @@ import Tfooter from "./tfooter"
 
 
 
-class Stocks1 extends Component {
+class Stocks2 extends Component {
   constructor(props){
       super(props);
       this.state = {
@@ -93,4 +93,4 @@ render(){
     
     
     }
-    export  default Stocks1;
+    export  default Stocks2;
