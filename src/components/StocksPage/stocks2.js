@@ -34,19 +34,35 @@ class Stocks2 extends Component {
           this.setState(
              {trigger:trigger})},
 
-             getHeight:()=> {
-              const height = this.divElement.clientHeight;
-              this.setState({ height });
-              return height
-            }
+        getHeight:()=> {
+            const height = this.divElement.clientHeight;
+            this.setState({ height });
+            return height
+            },
+        business_id : JSON.parse(localStorage.getItem('business_id')),
+        token: JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
          }
+         
         }
+        
        
        
       
       handleClick =(e)=>{
         this.state.setTrigger();
 
+      }
+
+      fetchStockList = async() => {
+        const response = await fetch(`http://localhost:9000/${this.state.business_id}/stock_list`,{
+          method:'GET',
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Bearer ${this.state.token}`
+          }
+        })
+        const res = await response.json
+        this.setState({stocklist:res.business_stock_lists})
       }
       // openForm=(e) =>{
       //   document.getElementById("myForm").style.display = "block";

@@ -1,11 +1,11 @@
 import * as React from "react";
 
-function SvgHome(props) {
+function SvgMenu(props) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} {...props}>
-      <path d="M21 13v10h-6v-6H9v6H3V13H0L12 1l12 12h-3zm-1-5.907V2h-3v2.093l3 3z" />
+      <path d="M24 6H0V2h24v4zm0 4H0v4h24v-4zm0 8H0v4h24v-4z" />
     </svg>
   );
 }
 
-export default SvgHome;
+export default SvgMenu;
