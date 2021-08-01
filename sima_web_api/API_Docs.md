@@ -148,7 +148,7 @@ ERROR: **401 UNAUTHORIZED**
 SUCCESS: **200 OK**
 <pre>
 {
-    "message": "Users Blueprint successfully"
+    "message": "Business Blueprint successfully"
 }
 </pre>
 #
@@ -232,5 +232,81 @@ ERROR: **404 BAD REQUEST**
 <pre>
 {
     "message":"Business not found"
+}
+</pre>
+#
+# Product Endpoints
+### Check product blueprint endpoint
+`GET /product/hello`
+
+SUCCESS: **200 OK**
+
+<pre>
+{
+    "message": "Hello"
+}
+</pre>
+
+ERROR: **400 BAD REQUEST**
+#
+### Create new product
+`POST/product`
+
+SUCCESS: **201 CREATED**
+
+`"message": "Product created successfully"}`
+
+ERROR: **400 BAD REQUEST**
+
+#
+### Get all product
+`GET/product`
+
+SUCCESS: **200 OK**
+
+ERROR: **400 BAD REQUEST**
+#
+### Get product by id
+`GET/product/{product_id}`
+
+SUCCESS: **200 OK**
+
+
+ERROR: **400 BAD REQUEST**
+#
+### Update product info
+`PUT/product/{product_id}`
+
+SUCCESS: **200 OK**
+
+<pre>
+{
+    "message": "Product info updated successfully"
+}
+</pre>
+
+ERROR: **400 BAD REQUEST**
+
+<pre>
+{
+    "message": "Product not found"
+}
+</pre>
+
+#
+### Delete product by id
+`DELETE/product/{product_id}`
+
+SUCCESS: **200 OK**
+<pre>
+{
+    "message": "Sales deleted successfully"
+}
+</pre>
+
+ERROR: **400 BAD REQUEST**
+<pre>
+{
+    "message": "Error sales not deleted"
 }
 </pre>
