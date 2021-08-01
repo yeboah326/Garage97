@@ -49,7 +49,6 @@ const AddStocks = (props) => {
         }
         else{
             setProducts(res)
-            console.log(res)
         }
     }
 

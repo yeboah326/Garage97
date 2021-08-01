@@ -24,9 +24,8 @@ const fetchStockList = async() => {
         'Authorization':`Bearer ${token}`
       }
     })
-    const res = await response.json
+    const res = await response.json()
     setStockList(res.business_stock_lists)
-    console.log(stocklist)
   }
 
   useEffect(()=>{
