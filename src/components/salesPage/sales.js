@@ -41,7 +41,7 @@ const fetchStockList = async() => {
         <div className="sidebar"> <SideNavBar/> </div>
 
         <div className="table-div"   > 
-        <h1>Stocks</h1>
+        <h1>Sales</h1>
         <SalesHead />
         <TableSales rows={salelist}/>
         <Tfooter/>

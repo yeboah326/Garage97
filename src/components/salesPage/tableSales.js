@@ -1,15 +1,14 @@
 import React from 'react'
 
-function TableSales (props){
+function TableSales (rows){
  
 
-   const {rowData} =props;
-   const displayRow = rowData.map(eachRow=>{
+   const displayRow = ()=>rows.map(eachRow=>{
     return (
       <div  className="tableRow" key={eachRow.sale_id}> 
-        <div className='sale_id'>{eachRow.sale_id}</div>
-        <div className='sale'>{eachRow.sale}</div>
+        <div className='stock_id'>{eachRow.sale_id}</div>
         <div className='qty'>{eachRow.qty}</div>
+        <div className='total_price'>{eachRow.total_price}</div>
         <div className='date'>{eachRow.date}</div>
 
       </div>
