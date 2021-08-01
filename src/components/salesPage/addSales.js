@@ -127,7 +127,7 @@ const AddSales = (props) => {
     return (props.trigger) ?
         (
         <div className=" pop form">
-        <p>Add new S</p>
+        <p>Add new Sales</p>
         <label for='product'>Product</label>
         <select id='product' name='product_id' onChange={onHandleChange} >
             <option selected></option>
@@ -138,7 +138,7 @@ const AddSales = (props) => {
         <Input label='Unit Cost Price (GHC)' required='true' name='buying_price' type='number' onChange={onHandleChange}/>
         <Input label='Quantity' type='number' required='true' name='quantity' onChange={onHandleChange}/>
         <div className="button-div" > <Button name="Add" color="red" toggle={onAdd}/> </div>   
-        <div className="button-div" onClick={()=>props.setAddStock(false)}><Button name="Done" color="#273475" toggle={onDone}  /></div>
+        <div className="button-div" onClick={()=>props.setAddSale(false)}><Button name="Done" color="#273475" toggle={onDone}  /></div>
 
 
    </div>):"";
