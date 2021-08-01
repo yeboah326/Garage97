@@ -8,16 +8,13 @@ import Tfooter from "./tfooter"
 // import  {useRef } from 'react'
 
 function Stocks1() {
-const [rows,addRows] = useState([])
 const [addstock,setAddStock] = useState(false)
 const [stocklist,setStockList] = useState([])
 const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 const business_id = JSON.parse(localStorage.getItem('business_id'))
 
 
-const stockList=(Rows)=>{ 
-    addRows([...rows, Rows])
-}
+
 
 const fetchStockList = async() => {
     const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list`,{
@@ -29,7 +26,7 @@ const fetchStockList = async() => {
     })
     const res = await response.json
     setStockList(res.business_stock_lists)
-    console.log(stockList)
+    console.log(stocklist)
   }
 
   useEffect(()=>{
@@ -47,7 +44,7 @@ const fetchStockList = async() => {
         <div className="table-div"   > 
         <h1>Stocks</h1>
         < TableHead />
-        <TableRow rows={rows}/>
+        <TableRow rows={stocklist}/>
         <Tfooter/>
         </div>
         <div  className='adder'  onClick={()=>setAddStock(!addstock)} > 

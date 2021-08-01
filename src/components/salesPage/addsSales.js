@@ -127,7 +127,7 @@ const AddSales = (props) => {
     return (props.trigger) ?
         (
         <div className=" pop form">
-        <p>Add new Sale</p>
+        <p>Add new S</p>
         <label for='product'>Product</label>
         <select id='product' name='product_id' onChange={onHandleChange} >
             <option selected></option>
