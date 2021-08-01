@@ -1,12 +1,19 @@
 @import url('./fonts.css');
 
+.home__image {
+    width: 100%;
+    z-index: -1;
+    margin-bottom: -150px;
+    mask-image: linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0));
+}
+
 .container-splash{
     margin: 0;
     width: 100%;
     padding: 0;
     height: 100%;
     display: flex;
-    background-color: aqua;
+    background-color: black;
     background-repeat: repeat;
     flex-direction: column;
   
@@ -66,17 +73,19 @@ z-index: 1;
     z-index: 0;
   }
   .welcomeVibe{
-      position: relative;
+      position: unset;
       margin-left: 15%;
      border-radius: 20px;
       background-color: aliceblue;
-      height: 50%;
-      width: 70%;
+      height: 100%;
+      width: 60%;
       display: flex;
       flex-direction: column;
       align-self: center;
-      margin: auto;
-      margin-bottom: 200px;
+      margin: unset;
+      margin-bottom: auto;
+  
+      
 
   }
   .welcomeVibe h1{
@@ -92,6 +101,6 @@ z-index: 1;
     width: 60%;
    display: block;
     margin: auto;
-    padding: auto;
+    padding: inherit;
     font-family: PoppinsRegular;
 }
