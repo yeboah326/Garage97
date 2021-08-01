@@ -9,7 +9,7 @@ import Tfooter from "./tfooter"
 
 function Stocks1() {
 const [rows,addRows] = useState([])
-const [addstock,setAddStock] = useState(false)
+const [addsale,setAddSale] = useState(false)
 
 const stockList=(Rows)=>{ 
     addRows([...rows, Rows])
@@ -30,12 +30,12 @@ const stockList=(Rows)=>{
         <TableRow rows={rows}/>
         <Tfooter/>
         </div>
-        <div  className='adder'  onClick={()=>setAddStock(!addstock)} > 
+        <div  className='adder'  onClick={()=>setAddSale(!addsale)} > 
         <AddButton />
          
         </div>
         
-        <AddStocks trigger={addstock} setAddStock={setAddStock} />
+        <AddStocks trigger={addsale} setAddSale={setAddSale} />
 
         
 
