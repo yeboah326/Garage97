@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import AddButton from '../ProductDashboard/AddButton'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import AddStocks from './addStocks'
@@ -10,11 +10,31 @@ import Tfooter from "./tfooter"
 function Stocks1() {
 const [rows,addRows] = useState([])
 const [addstock,setAddStock] = useState(false)
+const [stocklist,setStockList] = useState([])
+const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
+const business_id = JSON.parse(localStorage.getItem('business_id'))
+
 
 const stockList=(Rows)=>{ 
     addRows([...rows, Rows])
 }
 
+const fetchStockList = async() => {
+    const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list`,{
+      method:'GET',
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${token}`
+      }
+    })
+    const res = await response.json
+    setStockList(res.business_stock_lists)
+    console.log(stockList)
+  }
+
+  useEffect(()=>{
+      fetchStockList()
+  },[])
     
 
 
