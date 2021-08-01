@@ -132,7 +132,7 @@ def test_product_create_new_sale_list(app, client):
     response = create_product_salelist(client, login["token"], product_id)
 
     assert response.status_code == 201
-    assert response.json == {"message": "Sales created successfully"}
+    assert response.json == {"message": "Sale created successfully"}
     assert SaleList.query.filter_by(business_id=business_id)
 
 
