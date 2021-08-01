@@ -1,13 +1,13 @@
 import React,{useEffect, useState} from 'react'
 import AddButton from '../ProductDashboard/AddButton'
 import SideNavBar from '../ProductDashboard/SideNavBar'
-import AddStocks from './addStocks'
-import TableHead from './tableHead'
-import TableRow from './tableRow'
-import Tfooter from "./tfooter"
-// import  {useRef } from 'react'
+import Tfooter from '../StocksPage/tfooter'
+import AddSale from './addSales'
+import TableSales from './tableSales'
+import SalesHead from './SalesHead'
 
-function Stocks1() {
+
+function Sale() {
 const [addsale,setAddSale] = useState(false)
 const [salelist,setSaleList] = useState([])
 const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
@@ -42,8 +42,8 @@ const fetchStockList = async() => {
 
         <div className="table-div"   > 
         <h1>Stocks</h1>
-        < TableHead />
-        <TableRow rows={salelist}/>
+        <SalesHead />
+        <TableSales rows={salelist}/>
         <Tfooter/>
         </div>
         <div  className='adder'  onClick={()=>setAddSale(!addsale)} > 
@@ -51,7 +51,7 @@ const fetchStockList = async() => {
          
         </div>
         
-        <AddStocks trigger={addsale} setAddSale={setAddSale} />
+        <AddSale trigger={addsale} setAddSale={setAddSale} />
 
         
 
@@ -62,4 +62,4 @@ const fetchStockList = async() => {
     
 }
 
-export default Stocks1
+export default Sale

@@ -52,7 +52,7 @@ const fetchStockList = async() => {
          
         </div>
         
-        <AddStocks trigger={addstock} setAddSale={setAddStock} />
+        <AddStocks trigger={addstock} setAddStock={setAddStock} />
 
         
 
