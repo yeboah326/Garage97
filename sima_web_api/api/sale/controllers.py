@@ -14,35 +14,10 @@ sale = Blueprint(
 
 @sale.route("/hello")
 def hello():
-    return jsonify({"message": "Sale blueprint working"})
+    return jsonify({"message": "Sale blueprint working"}), 200
 
 
 # ----- Sale -----
-@sale.route("/all", methods=["GET"])
-@token_required
-def sale_get_all(current_user):
-    """
-    sale_get_all(current_user)
-
-    HTTP Methods - GET
-
-    To test if the module is working
-    """
-    sales = Sale.query.all()
-
-    sales_json = [
-        {
-            "id": sale.id,
-            "product": Product.query.filter_by(id=sale.product_id),
-            "selling_price": sale.selling_price,
-            "quantity": sale.quantity,
-            "created_on": sale.created_on,
-        }
-        for sale in sales
-    ]
-
-    return jsonify(sales_json)
-
 
 @sale.route("/sale_list/<sale_list_id>", methods=["GET"])
 @token_required
@@ -52,23 +27,25 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id):
 
     HTTP Methods - GET
 
-    To test if the module is working
+    For getting all the sales from the sales list id
     """
+
     sales_by_sale_list_id = Sale.query.filter_by(sale_list_id=sale_list_id)
 
-    sales_by_sale_list_id_json = [
-        {
-            "id": sale.id,
-            "product": Product.query.filter_by(id=sale.product_id),
-            "selling_price": sale.selling_price,
-            "quantity": sale.quantity,
-            "created_on": sale.created_on,
-        }
-        for sale in sales_by_sale_list_id
-    ]
+    if sales_by_sale_list_id:
+        sales_by_sale_list_id_json = [
+            {
+                "id": sale.id,
+                "product": Product.query.filter_by(id=sale.product_id).first().name,
+                "selling_price": str(sale.selling_price),
+                "quantity": sale.quantity,
+                "created_on": sale.created_on,
+            }
+            for sale in sales_by_sale_list_id
+        ]
 
-    return jsonify(sales_by_sale_list_id_json)
-
+        return jsonify(sales_by_sale_list_id_json), 200
+    return jsonify({"mesage":"Error processing request"}), 400
 
 @sale.route("/<sale_id>", methods=["GET"])
 @token_required
@@ -78,17 +55,19 @@ def sale_get_by_id(current_user, sale_id):
 
     HTTP Methods - GET
 
-    To test if the module is working
+    For getting the sales by the user id
     """
     sale = Sale.query.filter_by(id=sale_id).first()
-    sale_json = {
-        "id": sale.id,
-        "product": Product.query.filter_by(id=sale.product_id),
-        "quantity": sale.quantity,
-        "sellingPrice": sale.sellingPrice,
-        "created_on": sale.created_on,
-    }
-    return jsonify(sale_json), 200
+    if sale:
+        sale_json = {
+            "id": sale.id,
+            "product": Product.query.filter_by(id=sale.product_id).first().name,
+            "quantity": sale.quantity,
+            "selling_price": str(sale.selling_price),
+            "created_on": sale.created_on,
+        }
+        return jsonify(sale_json), 200
+    return jsonify({"message":"Error processing request"}), 400
 
 
 @sale.route("/<sale_id>", methods=["DELETE"])
@@ -99,16 +78,16 @@ def sale_delete_by_id(current_user, sale_id):
 
     HTTP Methods - DELETE
 
-    Deletes resource
+    For deleting the sales made by id
     """
     sale = Sale.query.filter_by(id=sale_id).first()
 
     if sale:
         db.session.delete(sale)
-        db.session.save()
+        db.session.commit()
         return jsonify({"message": "Sale deleted successfully"}), 200
     else:
-        return jsonify({"message": "Could not delete sale"})
+        return jsonify({"message": "Could not delete sale"}), 400
 
 
 @sale.route("/<sale_id>", methods=["PUT"])
@@ -119,25 +98,26 @@ def sale_update_by_id(current_user, sale_id):
 
     HTTP Methods - PUT
 
-    Updates existing resources
+    For updating the sales made by id
     """
     sale = Sale.query.filter_by(id=sale_id).first()
 
-    data = request.get_json()
+    if sale:
+        data = request.get_json()
+        try:
+            if data["quantity"]:
+                sale.quantity = data["quantity"]
+        except KeyError:
+            pass
+        try:
+            if data["selling_rice"]:
+                sale.selling_price = data["selling_price"]
+        except KeyError:
+            pass
 
-    try:
-        if data["quantity"]:
-            sale.quantity = data["quantity"]
-
-        if data["sellingPrice"]:
-            sale.sellingPrice = data["sellingPrice"]
-
-    except KeyError:
-        return jsonify({"message": "Wrong data passed"})
-
-    db.session.commit()
-    return jsonify({"message": "Sale of product updated successfully"}), 200
-
+        db.session.commit()
+        return jsonify({"message": "Sale of product updated successfully"}), 200
+    return jsonify({"message":"Could not process request"}), 400
 
 # ----- SaleList -----
 @sale.route("/list", methods=["POST"])
@@ -148,7 +128,7 @@ def sale_list_create_new(current_user):
 
     HTTP Methods - POST
 
-    To send data
+    For creating a new a new sale list
     """
     data = request.get_json()
 
@@ -174,29 +154,6 @@ def sale_list_create_new(current_user):
     return jsonify({"message": "Sale created successfully"}), 201
 
 
-@sale.route("<product_id>/sale_list", methods=["GET"])
-@token_required
-def sale_list_get_all(current_user, product_id):
-    """
-    sale_list_get_all(current_user, product_id)
-
-    HTTP Methods - GET
-
-    To test if the module is working
-    """
-    sales_list = SaleList.query.all()
-
-    product_sales_list_json = [
-        {
-            "name": sale_list.name,
-            "customer_name": sales_list.custome_name,
-            "customer_contact": sales_list.customer_contact,
-        }
-        for sale_list in sales_list
-    ]
-    return jsonify(product_sales_list_json), 200
-
-
 @sale.route("/list/<sale_list_id>", methods=["GET"])
 @token_required
 def sale_list_get_by_id(current_user, sale_list_id):
@@ -205,19 +162,20 @@ def sale_list_get_by_id(current_user, sale_list_id):
 
     HTTP Methods - GET
 
-    To test if the module is working
+    For getting the sale listusing the customers id
     """
     sale_list = SaleList.query.filter_by(id=sale_list_id).first()
-
-    sale_list_json = {
-        "id": sale_list.id,
-        "name": sale_list.name,
-        "created_on": sale_list.created_on,
-        "customer_name": sale_list.customer_name,
-        "customer_contact": sale_list.customer_contact,
-    }
-
-    return jsonify(sale_list_json)
+    
+    if sale_list:
+        sale_list_json = {
+            "id": sale_list.id,
+            "name": sale_list.name,
+            "created_on": sale_list.created_on,
+            "customer_name": sale_list.customer_name,
+            "customer_contact": sale_list.customer_contact,
+        }
+        return jsonify(sale_list_json), 200
+    return jsonify({"message":"Could not process request"}), 400
 
 
 @sale.route("/list/<sale_list_id>", methods=["DELETE"])
@@ -228,16 +186,16 @@ def sale_list_delete_by_id(current_user, sale_list_id):
 
     HTTP Methods - DELETE
 
-    Deletes resource
+    For deleting the sale list
     """
     sale_list = SaleList.query.filter_by(id=sale_list_id).first()
 
     if sale_list:
         db.session.delete(sale_list)
         db.session.commit()
-        return jsonify({"message": "Sale list deleted successfully"})
+        return jsonify({"message": "Sale list deleted successfully"}), 200
     else:
-        return jsonify({"message": "Could not delete sale list"})
+        return jsonify({"message": "Could not delete sale list"}), 400
 
 
 
@@ -250,23 +208,29 @@ def sale_list_update_by_id(current_user, sale_list_id):
 
     HTTP Methods - PUT
 
-    Updates existing resources
+    For updating the sale list
     """
+    
     sale_list = SaleList.query.filter_by(id=sale_list_id).first()
-    data = request.get_json()
+    if sale_list:
+        data = request.get_json()
 
-    try:
-        if data["name"]:
-            sale_list.name = data["name"]
+        try:
+            if data["name"]:
+                sale_list.name = data["name"]
+        except KeyError:
+            pass
+        try:
+            if data["customer_name"]:
+                sale_list.customer_name = data["customer_name"]
+        except KeyError:
+            pass
+        try:
+            if data["customer_contact"]:
+                sale_list.customer_contact = data["customer_contact"]
+        except KeyError:
+            pass
 
-        if data["customer_name"]:
-            sale_list.customer_name = data["customer_name"]
-
-        if data["customer_contact"]:
-            sale_list.customer_contact = data["customer_contact"]
-
-    except KeyError:
-        return jsonify({"message": "Wrong data passed"})
-
-    db.sesion.commit()
-    return jsonify({"message": "Product Sale list updated sucessfully"}), 200
+        db.session.commit()
+        return jsonify({"message": "Sale list updated sucessfully"}), 200
+    return jsonify({"message":"Could not process request"}), 400

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from sima_web_api.api.users.utils import token_required
 from sima_web_api.api.business.models import Business
+from sima_web_api.api.business.utils import compute_total_buying_price
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
 from sima_web_api.api.sale.models import SaleList
@@ -216,6 +217,8 @@ def business_get_all_stock_list(current_user, business_id):
             {
                 "id": stock_list.id,
                 "created_on": stock_list.created_on,
+                "total_quantity": len(stock_list.stocks),
+                "total_buying_price": str(compute_total_buying_price(stock_list.stocks)["total_buying_price"])
             }
             for stock_list in business_stock_lists
         ]

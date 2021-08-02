@@ -26,7 +26,7 @@ def product_get_by_id(current_user, product_id):
 
     HTTP Methods - GET
 
-    To test if the module is working
+    for getting a product by the id
     """
     product = Product.query.filter_by(id=product_id).first()
     product_json = {"name": product.name}
@@ -41,7 +41,7 @@ def product_delete_by_id(current_user, product_id):
 
     HTTP Methods - DELETE
 
-    Deletes resource
+    for deleting a product by the id
     """
     product = Product.query.filter_by(id=product_id).first()
 
@@ -60,7 +60,7 @@ def product_update_by_id(current_user, product_id):
 
     HTTP Methods - PUT
 
-    Updates existing resources
+    For updating a product by the id
     """
     product = Product.query.filter_by(id=product_id).first()
 
@@ -89,7 +89,7 @@ def product_get_all_sale(current_user, product_id):
 
     HTTP Methods - GET
 
-    To test if the module is working
+    For getting all product sales
     """
     product_sales = Sale.query.filter_by(product_id=product_id)
     product_sales_json = [
@@ -117,7 +117,7 @@ def product_get_all_stock(current_user, product_id):
 
     HTTP Methods - GET
 
-    To test if the module is working
+    For getting all product stocks
     """
     product_stocks = Stock.query.filter_by(product_id=product_id)
     product_stocks_json = [
@@ -145,7 +145,7 @@ def product_delete_all_sale(current_user, product_id):
 
     HTTP Methods - DELETE
 
-    Deletes resource
+    deletes all product sales
     """
     product_sales = Sale.query.filter_by(product_id=product_id).delete()
     if product_sales:
