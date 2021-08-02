@@ -84,6 +84,7 @@ def create_business_salelist(client, token, product_id):
 
     return response
 
+
 def create_business_stocklist(client, token, product_id):
     # Create three new stock and a stock_list for the product
     response = None
@@ -107,4 +108,3 @@ def create_business_stocklist(client, token, product_id):
     )
 
     return response
-

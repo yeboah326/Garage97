@@ -45,7 +45,7 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id):
         ]
 
         return jsonify(sales_by_sale_list_id_json), 200
-    return jsonify({"mesage":"Error processing request"})
+    return jsonify({"mesage":"Error processing request"}), 400
 
 @sale.route("/<sale_id>", methods=["GET"])
 @token_required
@@ -67,7 +67,7 @@ def sale_get_by_id(current_user, sale_id):
             "created_on": sale.created_on,
         }
         return jsonify(sale_json), 200
-    return jsonify({"message":"Error processing request"})
+    return jsonify({"message":"Error processing request"}), 400
 
 
 @sale.route("/<sale_id>", methods=["DELETE"])
@@ -232,5 +232,5 @@ def sale_list_update_by_id(current_user, sale_list_id):
             pass
 
         db.session.commit()
-        return jsonify({"message": "Product Sale list updated sucessfully"}), 200
+        return jsonify({"message": "Sale list updated sucessfully"}), 200
     return jsonify({"message":"Could not process request"}), 400
