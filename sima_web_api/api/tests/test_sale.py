@@ -9,8 +9,9 @@ from sima_web_api.api.tests.test_utils import (
     create_new_business,
     create_business_salelist,
     create_business_stocklist,
-    login_user
+    login_user,
 )
+
 
 def test_sale_hello(app, client):
     response = client.get("/sale/hello")
@@ -30,14 +31,14 @@ def test_sale_get_all_by_sale_list_id(app, client):
     business_id = new_business.id
 
     # Create products for business
-    create_business_products(client,login["token"],business_id)
+    create_business_products(client, login["token"], business_id)
 
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
 
     # Create business sale_list
-    create_business_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     # Retrieve salelist id for created salelist
     salelist_id = SaleList.query.filter_by(business_id=business_id).first().id
@@ -49,6 +50,7 @@ def test_sale_get_all_by_sale_list_id(app, client):
 
     assert response.status_code == 200
     assert len(response.json) == 3
+
 
 def test_sale_get_by_id(app, client):
     # Login the user
@@ -62,19 +64,18 @@ def test_sale_get_by_id(app, client):
     business_id = new_business.id
 
     # Create products for business
-    create_business_products(client,login["token"],business_id)
+    create_business_products(client, login["token"], business_id)
 
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
 
     # Create business sale_list
-    create_business_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     # Retrieve salelist id for created salelist
     salelist_id = SaleList.query.filter_by(business_id=business_id).first().id
     sale_id = Sale.query.filter_by(sale_list_id=salelist_id).first().id
-
 
     response = client.get(
         f"sale/{sale_id}",
@@ -82,8 +83,9 @@ def test_sale_get_by_id(app, client):
     )
 
     assert response.status_code == 200
-    assert "product" in response.json    
+    assert "product" in response.json
     assert len(response.json) == 5
+
 
 def test_sale_delete_by_id(app, client):
     # Login the user
@@ -97,14 +99,14 @@ def test_sale_delete_by_id(app, client):
     business_id = new_business.id
 
     # Create products for business
-    create_business_products(client,login["token"],business_id)
+    create_business_products(client, login["token"], business_id)
 
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
 
     # Create business sale_list
-    create_business_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     # Retrieve salelist id for created salelist
     salelist_id = SaleList.query.filter_by(business_id=business_id).first().id
@@ -115,7 +117,8 @@ def test_sale_delete_by_id(app, client):
         headers={"Authorization": f"Bearer {login['token']}"},
     )
     assert response.status_code == 200
-    assert response.json == {"message":"Sale deleted successfully"}
+    assert response.json == {"message": "Sale deleted successfully"}
+
 
 def test_sale_update_by_id(app, client):
     # Login the user
@@ -129,14 +132,14 @@ def test_sale_update_by_id(app, client):
     business_id = new_business.id
 
     # Create products for business
-    create_business_products(client,login["token"],business_id)
+    create_business_products(client, login["token"], business_id)
 
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
 
     # Create business sale_list
-    create_business_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     # Retrieve salelist id for created salelist
     salelist_id = SaleList.query.filter_by(business_id=business_id).first().id
@@ -145,14 +148,14 @@ def test_sale_update_by_id(app, client):
     response = client.put(
         f"sale/{sale_id}",
         headers={"Authorization": f"Bearer {login['token']}"},
-        json={"quantity":"7"}
+        json={"quantity": "7"},
     )
 
     assert response.status_code == 200
     assert response.json == {"message": "Sale of product updated successfully"}
 
 
-def test_sale_list_create_new(app,client):
+def test_sale_list_create_new(app, client):
     # Login the user
     login = login_user(app, client)
 
@@ -164,7 +167,7 @@ def test_sale_list_create_new(app,client):
     business_id = new_business.id
 
     # Create products for business
-    create_business_products(client,login["token"],business_id)
+    create_business_products(client, login["token"], business_id)
 
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
@@ -189,6 +192,7 @@ def test_sale_list_create_new(app,client):
     assert response.status_code == 201
     assert response.json == {"message": "Sale created successfully"}
 
+
 def test_sale_list_get_by_id(app, client):
     # Login the user
     login = login_user(app, client)
@@ -200,14 +204,14 @@ def test_sale_list_get_by_id(app, client):
     new_business = Business.query.filter_by(name="Kako Inc").first()
     business_id = new_business.id
     # Create products for business
-    create_business_products(client,login["token"],business_id)
+    create_business_products(client, login["token"], business_id)
 
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
 
     # Create business sale_list
-    create_business_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     # Retrieve salelist id for created salelist
     salelist_id = SaleList.query.filter_by(business_id=business_id).first().id
@@ -221,6 +225,7 @@ def test_sale_list_get_by_id(app, client):
     assert "name" in response.json
     assert len(response.json) == 5
 
+
 def test_sale_list_delete_by_id(app, client):
     # Login the user
     login = login_user(app, client)
@@ -232,14 +237,14 @@ def test_sale_list_delete_by_id(app, client):
     new_business = Business.query.filter_by(name="Kako Inc").first()
     business_id = new_business.id
     # Create products for business
-    create_business_products(client,login["token"],business_id)
+    create_business_products(client, login["token"], business_id)
 
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
 
     # Create business sale_list
-    create_business_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     # Retrieve salelist id for created salelist
     salelist_id = SaleList.query.filter_by(business_id=business_id).first().id
@@ -252,7 +257,8 @@ def test_sale_list_delete_by_id(app, client):
     assert response.status_code == 200
     assert response.json == {"message": "Sale list deleted successfully"}
 
-def test_sale_list_update_by_id(app,client):
+
+def test_sale_list_update_by_id(app, client):
     # Login the user
     login = login_user(app, client)
 
@@ -263,14 +269,14 @@ def test_sale_list_update_by_id(app,client):
     new_business = Business.query.filter_by(name="Kako Inc").first()
     business_id = new_business.id
     # Create products for business
-    create_business_products(client,login["token"],business_id)
+    create_business_products(client, login["token"], business_id)
 
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
 
     # Create business sale_list
-    create_business_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     # Retrieve salelist id for created salelist
     salelist_id = SaleList.query.filter_by(business_id=business_id).first().id
@@ -278,7 +284,7 @@ def test_sale_list_update_by_id(app,client):
     response = client.put(
         f"sale/list/{salelist_id}",
         headers={"Authorization": f"Bearer {login['token']}"},
-        json={"customer_name":"Ama"}
+        json={"customer_name": "Ama"},
     )
 
     assert response.status_code == 200

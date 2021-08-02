@@ -6,13 +6,14 @@ from sima_web_api.api.product.models import Product
 from sima_web_api.api.sale.models import Sale, SaleList
 from sima_web_api.api.stock.models import Stock, StockList
 from sima_web_api.api.tests.test_utils import (
-    create_business_products, 
-    create_new_business, 
-    create_business_salelist, 
+    create_business_products,
+    create_new_business,
+    create_business_salelist,
     create_business_stocklist,
-    drop_all_table_data, 
+    drop_all_table_data,
     login_user,
-    )
+)
+
 
 def test_product_hello(app, client):
     response = client.get("/product/hello")
@@ -108,6 +109,7 @@ def test_product_update_by_id(app, client):
     assert response.json == {"message": "Product info updated successfully"}
     assert Product.query.filter_by(id=product_id).first().name == "Product 400"
 
+
 def test_product_get_all_sale(app, client):
     # Login user
     login = login_user(app, client)
@@ -140,6 +142,7 @@ def test_product_get_all_sale(app, client):
     assert len(response.json["product_sales"]) == 3
     assert response.json["product_sales"][0]["quantity"] == 5
     assert response.json["product_sales"][0]["selling_price"] == "15.00"
+
 
 def test_product_get_all_stock(app, client):
     # Login user
@@ -174,7 +177,8 @@ def test_product_get_all_stock(app, client):
     assert response.json["product_stocks"][0]["quantity"] == 5
     assert response.json["product_stocks"][0]["buying_price"] == "15.00"
 
-def test_product_delete_all_sale(app,client):
+
+def test_product_delete_all_sale(app, client):
     # Login user
     login = login_user(app, client)
 
@@ -193,7 +197,7 @@ def test_product_delete_all_sale(app,client):
     product_id = new_product.id
 
     # Create stocks and a stock list for the created product
-    create_business_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     response = client.delete(
         f"product/{product_id}/sale",
@@ -201,4 +205,4 @@ def test_product_delete_all_sale(app,client):
     )
 
     assert response.status_code == 200
-    assert response.json == {'message': 'Sales deleted successfully'}
+    assert response.json == {"message": "Sales deleted successfully"}
