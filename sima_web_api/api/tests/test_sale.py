@@ -282,4 +282,4 @@ def test_sale_list_update_by_id(app,client):
     )
 
     assert response.status_code == 200
-    assert response.json == {"message": "Product Sale list updated sucessfully"}
+    assert response.json == {"message": "Sale list updated sucessfully"}
