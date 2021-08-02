@@ -7,8 +7,8 @@ from sima_web_api.api.stock.models import Stock, StockList
 from sima_web_api.api.tests.test_utils import (
     create_business_products,
     create_new_business,
-    create_product_salelist,
-    create_product_stocklist,
+    create_business_salelist,
+    create_business_stocklist,
     login_user
 )
 
@@ -34,6 +34,7 @@ def test_business_create_new(app, client):
 
 
 def test_business_get_all(app, client):
+    # Login user
     login = login_user(app, client)
 
     create_new_business(client, login["token"])
@@ -173,7 +174,7 @@ def test_business_get_all_sale_list(app, client):
     product_id = new_product.id
 
     # Create a new salelist
-    create_product_salelist(client,login["token"],product_id)
+    create_business_salelist(client,login["token"],product_id)
 
     response = client.get(
         f"business/{business_id}/sale_list",
@@ -200,7 +201,7 @@ def test_business_delete_all_sale_list(app, client):
     product_id = new_product.id
 
 
-    create_product_salelist(client,login["token"],product_id)
+    create_business_salelist(client,login["token"],product_id)
 
     response = client.delete(
         f"business/{business_id}/sale_list",
@@ -226,7 +227,7 @@ def test_business_get_all_stock_list(app, client):
     product_id = new_product.id
     
     # Create a new stocklist
-    create_product_stocklist(client,login["token"],product_id)
+    create_business_stocklist(client,login["token"],product_id)
 
 
     response = client.get(
@@ -255,7 +256,7 @@ def test_business_delete_all_stock_list(app, client):
     product_id = new_product.id
     
     # Create a new stocklist
-    create_product_stocklist(client,login["token"],product_id)
+    create_business_stocklist(client,login["token"],product_id)
 
     response = client.delete(
         f"business/{business_id}/stock_list",
