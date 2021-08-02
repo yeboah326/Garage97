@@ -240,6 +240,9 @@ def test_business_get_all_stock_list(app, client):
     assert "business" in response.json
     assert "business_stock_lists" in response.json
     assert len(response.json["business_stock_lists"]) == 1
+    assert "total_quantity" in response.json["business_stock_lists"][0]
+    assert "total_buying_price" in response.json["business_stock_lists"][0]
+
 
 
 def test_business_delete_all_stock_list(app, client):
