@@ -1,8 +1,9 @@
 import Input from '../Input'
-import Logo from './Logo'
 import { login, useAuth } from '../../auth'
 import {useState} from 'react'
 import {Link,Redirect} from 'react-router-dom'
+import Button from '../Button'
+import SvgBack from '../../Assets/icons/Back'
 
 
 const RegistrationForm = () => {
@@ -76,17 +77,25 @@ const RegistrationForm = () => {
             
       
     return (
-        userCreated && logged ? <Redirect to='/home'/>:
-        <div className='container'>
-            <Logo/>
+        userCreated && logged ? <Redirect to='/businesses'/>:
+        <div className='container-log-reg'>
+            <div className='left-section'>
+                <div className='button-desktop'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
+                <div className='left-section-image'></div>
+            </div>
             <div className="register">
             <form className="d-flex register-form" onSubmit={handleSubmit}>
+                <div className='button-mobile'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
+                <span className='logreg-header'>Sign Up</span>
                 <Input label="Name" type="text" name="name" onChange={handleChange} required="true"/>
                 <Input label="Email" type="email" name="email" onChange={handleChange} required="true"/>
                 <Input label="Password" type="password" name="password" onChange={handleChange} required="true"/>
                 <Input label="Confirm Password" type="password" name="confirm-password" onChange={handleChange} required="true"/>
-                <input type="submit" id="sign-up" value="Sign Up" />
-                <Link to="/login" className="log-in">Already registered?Log In</Link>
+                <div className='log-reg-btns'>
+                    <input type="submit" id="sign-up" value="Register" />
+                    <Link to="/login" className="log-in">Already have an account?</Link>
+                </div>
+                
             </form>
 
         </div>

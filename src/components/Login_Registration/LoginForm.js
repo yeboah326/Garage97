@@ -1,13 +1,13 @@
 import React from 'react'
 import Input from '../Input'
-import Logo from './Logo'
 import {Link,Redirect} from 'react-router-dom'
 import {useState} from 'react'
 import {login,useAuth} from '../../auth/index'
+import Button from '../Button'
+import SvgBack from '../../Assets/icons/Back'
 
 
 
-export let user;
 const LoginForm = () => {
     const [details,setDetails] = useState({'email':'','password':''})
     const [logged] = useAuth()
@@ -29,7 +29,7 @@ const LoginForm = () => {
         })
         const res = await response.json()
         if(res.token){
-            user = res.public_id
+           localStorage.setItem('User',res.public_id)
             login(res.token)
         }
         // if(response.status === 200){
@@ -49,20 +49,27 @@ const LoginForm = () => {
     
     return (
         !logged ?
-        <div className='container'>
-            <Logo/>
+        <div className='container-log-reg'>
+            <div className='left-section'>
+            <div className='button-desktop'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
+                <div className='left-section-image'></div>
+            </div>
             <div className="d-flex login-form">
             <form onSubmit={onSubmitClick}>
+            <div className='button-mobile'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
+            <span className='logreg-header'>Login</span>
                 <Input type="email" name='email' required="true" onChange={handleChange} label="Email"/>
                 <Input type="password" name='password'required="true" onChange={handleChange} label="Password"/>
                 <p  className="forgot-pass"><Link className="forgot-pass-link">Forgot password?</Link></p>
-                <input type="submit" id="login" value="Login"/>
-                < Link to="/register" className="sign-up-link">Not registered? Sign Up </Link>
+                <div className='log-reg-btns'>
+                    <input type="submit" id="login" value="Login"/>
+                    < Link to="/register" className="sign-up-link">Don't have an account?</Link>
+                </div>
             </form>
 
         </div>
         </div>
-        : <Redirect to='/home'/>
+        : <Redirect to='/businesses'/>
     )
 }
 
