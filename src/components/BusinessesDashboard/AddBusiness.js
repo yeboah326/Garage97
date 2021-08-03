@@ -3,7 +3,7 @@ import Input from '../Input'
 import Button from '../Button'
 import { logout} from '../../auth'
 
-const AddBusiness = ({toggle,businesses,onClick}) => {
+const AddBusiness = ({toggle,onClick}) => {
     const [business,setBusiness] = useState({'name':'','description':''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
@@ -28,7 +28,6 @@ const AddBusiness = ({toggle,businesses,onClick}) => {
             alert('Session has expired')
         }
         else if(response.status === 201){
-                businesses.push(newBusiness)
                 onClick()
         }
         else{
