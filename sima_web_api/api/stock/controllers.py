@@ -41,7 +41,7 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id):
             for stock in stocks_by_stock_list_id
         ]
         return jsonify(stocks_by_stock_list_id_json), 200
-    return jsonify({"mesage":"Error processing request"}), 400
+    return jsonify({"mesage":"Could not process request"}), 400
 
 @stock.route("/<stock_id>", methods=["GET"])
 @token_required
@@ -63,7 +63,7 @@ def stock_get_by_id(current_user, stock_id):
             "created_on": stock.created_on,
         }
         return jsonify(stock_json), 200
-    return jsonify({"mesage":"Error processing request"}), 400
+    return jsonify({"mesage":"Could not process request"}), 400
 
 
 @stock.route("/<stock_id>", methods=["DELETE"])
@@ -82,7 +82,7 @@ def stock_delete_by_id(current_user, stock_id):
         db.session.delete(stock)
         db.session.commit()
         return jsonify({"message": "Stock deleted successfully"}), 200
-    return jsonify({"message": "Could not delete stock"}), 400
+    return jsonify({"message": "Could not process request"}), 400
 
 
 @stock.route("/<stock_id>", methods=["PUT"])

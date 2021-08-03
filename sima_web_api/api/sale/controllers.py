@@ -45,7 +45,7 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id):
         ]
 
         return jsonify(sales_by_sale_list_id_json), 200
-    return jsonify({"mesage":"Error processing request"}), 400
+    return jsonify({"mesage":"Could not process request"}), 400
 
 @sale.route("/<sale_id>", methods=["GET"])
 @token_required
@@ -67,7 +67,7 @@ def sale_get_by_id(current_user, sale_id):
             "created_on": sale.created_on,
         }
         return jsonify(sale_json), 200
-    return jsonify({"message":"Error processing request"}), 400
+    return jsonify({"mesage":"Could not process request"}), 400
 
 
 @sale.route("/<sale_id>", methods=["DELETE"])
@@ -87,7 +87,7 @@ def sale_delete_by_id(current_user, sale_id):
         db.session.commit()
         return jsonify({"message": "Sale deleted successfully"}), 200
     else:
-        return jsonify({"message": "Could not delete sale"}), 400
+        return jsonify({"mesage":"Could not process request"}), 400
 
 
 @sale.route("/<sale_id>", methods=["PUT"])
@@ -195,7 +195,7 @@ def sale_list_delete_by_id(current_user, sale_list_id):
         db.session.commit()
         return jsonify({"message": "Sale list deleted successfully"}), 200
     else:
-        return jsonify({"message": "Could not delete sale list"}), 400
+        return jsonify({"message": "Could not process request"}), 400
 
 
 
