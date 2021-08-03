@@ -1,13 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 
 const Logo = () => {
     return (
-        
-        <div className="d-flex logo">
+        <Link to="/">
+ <div className="d-flex logo">
             <h1>SiMA</h1>
         </div>
+        </Link>
+       
         
     )
 }
