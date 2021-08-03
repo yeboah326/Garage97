@@ -5,7 +5,8 @@ import { logout } from '../../auth/index'
 import { useState } from 'react'
 import { business_id } from '../BusinessesDashboard/Businesses'
 
-const AddProducts = ({products,toggle,onClick}) => {
+
+const AddProducts = ({fetchData,toggle}) => {
     const [product,setProduct] = useState({'name':'','description':''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
@@ -30,8 +31,7 @@ const AddProducts = ({products,toggle,onClick}) => {
             alert('Session has expired')
         }
         else if(response.status === 201){
-                products.push(newProduct)
-                onClick()
+                fetchData()
         }
         else{
             alert('Could not create product. Try again')
@@ -45,7 +45,7 @@ const AddProducts = ({products,toggle,onClick}) => {
              <p>Add new product</p>
             <Input label="Name" type="text" onChange={onHandleChange} required='true' name='name'/>
              <label>Description</label>
-             <textarea onChange={onHandleChange}></textarea>
+             <textarea onChange={onHandleChange} name='description'></textarea>
              <div className="button-div"><Button name="Add" color="#273475" toggle={Submit}/><Button name="Cancel" color="red" toggle={toggle}/></div>
 
         </div>
