@@ -1,54 +1,60 @@
 @import url('./fonts.css');
 
-.logo{
-    width:200;
-    padding: 0;
-    margin-top: 0;
+  body{
+    background: linear-gradient(to bottom,#2BBFD0,#9C89E7)
+
   }
-  .logo h1 {
-    margin-top: 10px;
-    margin-left: 10px;
-    font-family: PoppinsRegular;
-    color: white;
-  }
-  
-  .container{
+  .container-log-reg{
+    box-sizing: border-box;
     margin: 0;
     width: 100%;
-    padding: 0;
+    min-width: 360px;
+    padding: 30px 50px;
     height: 100%;
     display: flex;
-    background-image: url("../Assets/Images/Background.png");
-    background-repeat: repeat;
-    flex-direction: column;
+    flex-direction: row;
+    background: linear-gradient(to bottom,#2BBFD0,#9C89E7)
+    
+    
    
   }
   
   .d-flex{
     display:flex;
   }
+
+  .left-section{
+    display: none;
+  }
   
   /* Login Form */
   .login-form{
     width: 100%;
     height: 100%;
-    align-items: center;
-    justify-content:center;
+  }
+  .login-form .button-mobile, .register-form .button-mobile{
+    width: 20px;
+    border: none;
+    border-radius: none;
+    background-color: unset;
+    color: white;
+    font-size: 2rem;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  .login-form .logreg-header, .register-form .logreg-header{
+    font-family: monospace;
+    font-family: Bold;
+    font-size: 35px;
+    color: white;
   }
   .login-form form {
-    min-width: 200px;
-    min-height: 300px;
-    max-height: max-content;
       display: flex;
       flex-direction: column;
-      height: 50%;
-      width:20%;
-      justify-content: center;
-      background-color: white;
-      padding: 1.4rem;
-      border-radius: 0 20px;
-      border: 1px solid #999;
-     
+      width:100%;
+      height: 100%;
+      /* justify-content: center;      */
   }
   
   .login-form .label,.login-form input{
@@ -56,89 +62,83 @@
     display: block;
   }
   .login-form .label{
-    margin-top: 30px;
+    margin-top: 60px;
     font-family: PoppinsLight;
-    color: #6880FE;
+    color: white;
+    font-size: 1.4rem;
+    margin-left: 0;
   }
   
   
   .login-form input{
     border: none;
     outline: none;
-    border-bottom: 1px solid #6880FE;
-    width: 90%;
+    border-bottom: 1px solid white;
+    background: none;
     /* height:50%; */
+    width: 80%;
     padding: 0;
+    margin-left: 0;
     font-size: 1.2rem;
     margin-bottom: 15px;
+    color: white;
+    font-family: PoppinsLight;
   }
   .forgot-pass{
     margin-top: 5%;
     margin-right: 5%;
-    float: left;
     margin-bottom: 5%;
-    align-self: flex-end;
     color: #6880FE;
   }
   .forgot-pass-link{
     text-decoration: none;
-    color: #6880FE;
+    font-size: 1.2rem;
     font-family: PoppinsLight;
-    font-size: 0.8rem;
+    color: white;
   }
   #login{
-    width: 40%;
-    margin-top: 0;
+    width: 60%;
+    margin-top: 40px;
     margin-bottom:0;
-    background-color: #6880FE;
-    color: white;
-    border-radius: 10px;
+    background-color: white;
+    color: #818f91;
+    border-radius: 20px;
     text-align: center;
     text-decoration: none;
     font-size: 1.2rem;
-    padding:0.5em ;
-    align-self: center;
+    padding:10px 40px ;
+    /* align-self: center; */
     cursor: pointer;
     font-family: PoppinsRegular;
   }
   
   .sign-up-link{
-    /* background-color: #6880FE; */
-    align-self: center;
-    color:#6880fe;
+    color:white;
     margin: 0;
-    margin-top: 5px;
+    margin-top: 20px;
+    margin-bottom: 2rem;
     text-decoration: none;
-    font-family: PoppinsRegular;
+    font-family: PoppinsLight;
+    font-size: 1.2rem;
     
   }
   
   /* Registration Form */
   .register{
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
   }
   .register-form{
-    background: white;
-    min-width: 250px;
-    min-height: 450px;
-    max-height: 500px;
-    max-width: 300px;
-    height:70%;
-    width: 25%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     border-radius: 0 20px;
-    border: #6880FE;
     padding: 20px;
   }
   
   .register-form label,.register-form input{
-    margin-left: 30px;
+    margin-left: 0;
     margin-top: 20px;
     margin-bottom: 0px;
     display: block;
@@ -147,49 +147,118 @@
   .register-form input{
     border: none;
     outline: none;
-    border-bottom: 1px solid #6880FE;
-    width: 80%;
-    /* height:50%; */
+    border-bottom: 1px solid white;
+    background-color: unset;
+    width: 100%;
     padding: 0;
     font-size: 1.2rem;
+    color: white;
+    font-family: PoppinsLight;
   }
   
   .register-form label{
-    margin-top: 20px;
+    margin-top: 70px;
     font-family: PoppinsLight;
-    color: #6880FE;
+    color: white;
+    font-size: 1.4rem;
   }
   
   #sign-up{
-    min-width: 80px;
-    min-height: 40px;
-    height: 40px;
-    width: 80px;
+    width: 60%;
     padding: 0.5rem;
     margin: 0;
-    margin-top: 2rem;
-    background-color: #6880FE;
-    color: white;
-    border-radius: 10px;
+    margin-top: 4rem;
+    background-color: white;
+    color: #818f91;
+    border-radius: 15px;
     text-align: center;
     text-decoration: none;
     font-size: 1.1rem;
-    align-self: center;
     border: none;
     cursor: pointer;
-    align-self: center;
     font-family: PoppinsRegular;
     
   }
   
   
   .log-in{
-    align-self: center;
     color: #6880FE;
-    margin-bottom: 5%;
-    margin-top: 2%;
+    margin-bottom: 30px;
+    margin-top: 20px;
     text-decoration: none;
-    color:#6880FE;
+    color:white;
     font-family: PoppinsLight;
+    font-size: 1.2rem;
   }
-  
+  .log-reg-btns{
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width:700px){
+    .button-mobile{
+      display:none;
+    }
+    
+    .register,.login{
+      width: 50%;
+    }
+    .login-form{
+      width: 40%;
+    }
+    .register-form .label,.login-form.label{
+      margin-top: 40px;
+    }
+    .left-section{
+      width:80%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .left-section-image{
+      width: 80%;
+      height: 80%;
+      background-color: white;
+      border-radius: 30px;
+      align-self: center;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .logreg-header{
+      align-self: center;
+    }
+    .log-reg-btns{
+      flex-direction: row;
+    }
+    #sign-up,#login{
+      width: 30%;
+      height: 50px;
+      border-radius: 22px;
+    }
+    .log-in{
+      margin-top: 4rem;
+      padding: 0.5em;
+      align-self: flex-end;
+      margin-left: auto;
+      
+    }
+    .sign-up-link{
+      margin-top: 40px;
+      padding: 0.5em;
+    }
+    .login-form{
+      padding: 0 1.4rem;
+    }
+    .login-form .button-desktop, .register-form .button-desktop{
+      width: 20px;
+      border: none;
+      border-radius: none;
+      background-color: unset;
+      color: white;
+      font-size: 2rem;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
