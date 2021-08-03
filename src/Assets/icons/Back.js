@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function SvgBoxThin(props) {
+function SvgBack(props) {
   return (
     <svg
       width={24}
@@ -10,9 +10,9 @@ function SvgBoxThin(props) {
       clipRule="evenodd"
       {...props}
     >
-      <path d="M24 7h-1v16H1V7H0V1h24v6zm-2 0H2v15h20V7zm-6 8H8v-4h8v4zm-1-3H9v2h6v-2zm8-10H1v4h22V2z" />
+      <path d="M2.117 12l7.527 6.235L9 19l-9-7.521L9 4l.645.764L2.116 11H24v1H2.117z" />
     </svg>
   );
 }
 
-export default SvgBoxThin;
+export default SvgBack;
