@@ -7,9 +7,9 @@ from sima_web_api.api.stock.models import Stock, StockList
 from sima_web_api.api.tests.test_utils import (
     create_business_products,
     create_new_business,
-    create_product_salelist,
-    create_product_stocklist,
-    login_user
+    create_business_salelist,
+    create_business_stocklist,
+    login_user,
 )
 
 
@@ -34,6 +34,7 @@ def test_business_create_new(app, client):
 
 
 def test_business_get_all(app, client):
+    # Login user
     login = login_user(app, client)
 
     create_new_business(client, login["token"])
@@ -173,7 +174,7 @@ def test_business_get_all_sale_list(app, client):
     product_id = new_product.id
 
     # Create a new salelist
-    create_product_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     response = client.get(
         f"business/{business_id}/sale_list",
@@ -199,8 +200,7 @@ def test_business_delete_all_sale_list(app, client):
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
 
-
-    create_product_salelist(client,login["token"],product_id)
+    create_business_salelist(client, login["token"], product_id)
 
     response = client.delete(
         f"business/{business_id}/sale_list",
@@ -208,7 +208,10 @@ def test_business_delete_all_sale_list(app, client):
     )
 
     assert response.status_code == 200
-    assert response.json == {"message":f"All salelist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}
+    assert response.json == {
+        "message": f"All salelist from {Business.query.filter_by(id=business_id).first().name} have been deleted"
+    }
+
 
 # Stock and StockList
 def test_business_get_all_stock_list(app, client):
@@ -224,10 +227,9 @@ def test_business_get_all_stock_list(app, client):
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
-    
-    # Create a new stocklist
-    create_product_stocklist(client,login["token"],product_id)
 
+    # Create a new stocklist
+    create_business_stocklist(client, login["token"], product_id)
 
     response = client.get(
         f"business/{business_id}/stock_list",
@@ -238,6 +240,9 @@ def test_business_get_all_stock_list(app, client):
     assert "business" in response.json
     assert "business_stock_lists" in response.json
     assert len(response.json["business_stock_lists"]) == 1
+    assert "total_quantity" in response.json["business_stock_lists"][0]
+    assert "total_buying_price" in response.json["business_stock_lists"][0]
+
 
 
 def test_business_delete_all_stock_list(app, client):
@@ -253,9 +258,9 @@ def test_business_delete_all_stock_list(app, client):
     # Retrive created product
     new_product = Product.query.filter_by(name="Product 1").first()
     product_id = new_product.id
-    
+
     # Create a new stocklist
-    create_product_stocklist(client,login["token"],product_id)
+    create_business_stocklist(client, login["token"], product_id)
 
     response = client.delete(
         f"business/{business_id}/stock_list",
@@ -263,5 +268,6 @@ def test_business_delete_all_stock_list(app, client):
     )
 
     assert response.status_code == 200
-    assert response.json == {"message":f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}
-
+    assert response.json == {
+        "message": f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"
+    }

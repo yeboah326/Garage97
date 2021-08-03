@@ -6,7 +6,6 @@ from sima_web_api.api.product.models import Product
 from sima_web_api.api.tests.test_utils import drop_all_table_data
 
 
-
 def test_user_hello(app, client):
     """
     Test: GET request to check if user blueprint is working
