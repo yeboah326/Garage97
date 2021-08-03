@@ -228,7 +228,11 @@ def business_get_all_stock_list(current_user, business_id):
         return jsonify(business_sale_lists_json), 200
 
 
+<<<<<<< HEAD
 @business.route("/<business_id>/stock_list",methods=["DELETE"])
+=======
+@business.route("/list/<stock_list_id>", methods=["GET"])
+>>>>>>> salestock
 @token_required
 def business_delete_all_stock_list(current_user, business_id):
     StockList.query.filter_by(business_id=business_id).delete()

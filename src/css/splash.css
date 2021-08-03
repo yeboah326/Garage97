@@ -3,7 +3,24 @@
   background-color: #92a4ff;
   display: flex;
   flex-direction: column;
+}
+.home__image {
+    width: 100%;
+    z-index: -1;
+    margin-bottom: -150px;
+    mask-image: linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0));
+}
 
+.container-splash{
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    background-color: black;
+    background-repeat: repeat;
+    flex-direction: column;
+  
 }
 
 .first-row{
@@ -86,8 +103,23 @@
     width: 100%;
     z-index: 0;
   }
- 
-  .message h1{
+  .welcomeVibe{
+      position: unset;
+      margin-left: 15%;
+     border-radius: 20px;
+      background-color: aliceblue;
+      height: 100%;
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      margin: unset;
+      margin-bottom: auto;
+  
+      
+
+  }
+  .welcomeVibe h1{
       
     width: 100%;
    padding: 10px 10px;
@@ -98,7 +130,9 @@
   }
 .message p, .message h3{
     width: 60%;
-    padding: 10px 10px;
+   display: block;
+    margin: auto;
+    padding: inherit;
     font-family: PoppinsRegular;
     margin-left: 15%;
 }

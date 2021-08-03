@@ -139,7 +139,11 @@ def stock_update_by_id(current_user, stock_id):
 
 
 # ----- Stock List -----
+<<<<<<< HEAD
 @stock.route("/list", methods=["POST"])
+=======
+@stock.route("/stock", methods=["POST"])
+>>>>>>> salestock
 @token_required
 def stock_list_create_new(current_user):
     """
