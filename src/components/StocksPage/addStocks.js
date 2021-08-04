@@ -54,9 +54,9 @@ class AddStocks extends Component{
         <form onSubmit={this.handleSubmit} className="form-container"  > 
             <h1>add new stock</h1>
             <Input type="text" name='stock_id' required="true" onChange={this.handleChange} label="stock_id"/>
-            <Input type="text" name='stock' required="true" onChange={this.handleChange} label="stock"/>
-            <Input type="text" name='qty' required="true" onChange={this.handleChange} label="qty"/>
-            <Input type="text" name='date' required="true" onChange={this.handleChange} label="date"/>
+            <Input type="text" name='stock'    required="true" onChange={this.handleChange} label="stock"/>
+            <Input type="text" name='qty'      required="true" onChange={this.handleChange} label="qty"/>
+            <Input type="text" name='date'     required="true" onChange={this.handleChange} label="date"/>
 
            <button className='btn ' >add</button>
            <button className='btn cancel'  onClick={this.close}>close</button>
