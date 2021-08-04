@@ -14,6 +14,8 @@ pyjwt = "*"
 uuid = "*"
 datetime = "*"
 flask-cors = "*"
+flask-weasyprint = "==0.6"
+weasyprint = "==53.0"
 
 [dev-packages]
 pytest = "*"
