@@ -30,7 +30,7 @@ def product_get_by_id(current_user, product_id):
     """
     product = Product.query.filter_by(id=product_id).first()
     if product:
-        product_json = {"name": product.name}
+        product_json = {"name": product.name,"description": product.description}
         return jsonify(product_json), 200
     return jsonify({"message":"Could not process request"}), 400
 
@@ -71,6 +71,11 @@ def product_update_by_id(current_user, product_id):
         try:
             if data["name"]:
                 product.name = data["name"]
+        except KeyError:
+            pass
+        try:
+            if data["description"]:
+                product.name = data["description"]
         except KeyError:
             pass
 
