@@ -24,7 +24,7 @@ from sima_web_api.api.business.controllers import business
 from sima_web_api.api.product.controllers import product
 from sima_web_api.api.sale.controllers import sale
 from sima_web_api.api.stock.controllers import stock
-from sima_web_api.api.reports.controllers import report_business
+from sima_web_api.api.reports.controllers import report
 
 # Blueprints
 app.register_blueprint(main)
@@ -33,7 +33,7 @@ app.register_blueprint(business)
 app.register_blueprint(product)
 app.register_blueprint(sale)
 app.register_blueprint(stock)
-app.register_blueprint(report_business)
+app.register_blueprint(report)
 
 
 # Error Handling Pages
