@@ -5,10 +5,10 @@ import SideNavBar from './SideNavBar'
 
 const BusinessesDashboard = () => {
     return (
-        <div className="business-dashboard">
-             <SideNavBar/>
-             
+        <div className='container-businesses'>
+            <SideNavBar/>
         </div>
+        
     )
 }
 

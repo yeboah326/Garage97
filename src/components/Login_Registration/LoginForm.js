@@ -6,9 +6,13 @@ import {useState} from 'react'
 import {login,useAuth} from '../../auth/index'
 
 
+
+export let user;
 const LoginForm = () => {
     const [details,setDetails] = useState({'email':'','password':''})
     const [logged] = useAuth()
+    
+    
 
     const onSubmitClick = async (e) => {
         e.preventDefault()
@@ -16,7 +20,6 @@ const LoginForm = () => {
             "email":details['email'],
             "password":details['password']
         }
-        console.log(data)
         const response = await fetch('http://localhost:9000/users/login',{
             method: 'POST',
             headers: {
@@ -26,8 +29,8 @@ const LoginForm = () => {
         })
         const res = await response.json()
         if(res.token){
+            user = res.public_id
             login(res.token)
-            console.log(res.token)
         }
         // if(response.status === 200){
         //     alert('User successfully Logged in')
@@ -59,7 +62,7 @@ const LoginForm = () => {
 
         </div>
         </div>
-        : <Redirect to='/dashboard-home'/>
+        : <Redirect to='/home'/>
     )
 }
 

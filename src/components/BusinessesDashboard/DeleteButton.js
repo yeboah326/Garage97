@@ -1,9 +1,9 @@
 import React from 'react'
 import SvgTrashCan from '../../Assets/icons/TrashCan'
 
-const DeleteButton = () => {
+const DeleteButton = ({onClick}) => {
     return (
-            <span className='delete-button'><SvgTrashCan /></span>
+            <span className='delete-button' onClick={onClick}><SvgTrashCan /></span>
         
     )
 }

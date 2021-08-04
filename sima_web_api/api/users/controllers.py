@@ -16,11 +16,25 @@ users = Blueprint(
 
 @users.route("hello")
 def hello():
+    """
+    hello()
+
+    HTTP Methods - GET
+
+    To get the blueprint endpoint
+    """
     return jsonify({"message": "Users Blueprint Created successfully"}), 200
 
 
 @users.route("/login", methods=["POST"])
 def user_login():
+    """
+    user_login()
+
+    HTTP Methods - POST
+
+    to send user data
+    """
     auth = request.get_json()
     if not auth or not auth["email"] or not auth["password"]:
         return jsonify({"message": "User not found or data is invalid"}), 400
@@ -42,8 +56,15 @@ def user_login():
     return jsonify({"message": "Authorization failed"}), 401
 
 
-@users.route("/", methods=["GET"])
+@users.route("", methods=["GET"])
 def get_all_users():
+    """
+    get_all_users()
+
+    HTTP Methods - GET
+
+    To get all users details
+    """
     users = User.query.all()
 
     users_json = [
@@ -63,6 +84,14 @@ def get_all_users():
 
 @users.route("/<public_id>", methods=["GET"])
 def get_user_by_id(public_id):
+    """
+    get_user_by_id(public_id)
+
+    HTTP Methods - GET
+
+    To get user info by the id
+    """
+
     user = User.query.filter_by(public_id=public_id).first()
     if user:
         user_json = {
@@ -78,8 +107,15 @@ def get_user_by_id(public_id):
     return jsonify({"message": "User not found"}), 200
 
 
-@users.route("/", methods=["POST"])
+@users.route("", methods=["POST"])
 def create_new_user():
+    """
+    creat_new_user()
+
+    HTTP Methods - POST
+
+    To create a new user
+    """
     data = request.get_json()
 
     hashed_password = generate_password_hash(data["password"], method="sha256")
@@ -102,6 +138,13 @@ def create_new_user():
 
 @users.route("/<public_id>", methods=["PUT"])
 def update_user_info(public_id):
+    """
+    update_user_info(public_id)
+
+    HTTP Methods - PUT
+
+    Update user details
+    """
     # EMAIL,DISPLAY_NAME, CONTACT ONE, CONTACT TWO
     user = User.query.filter_by(public_id=public_id).first()
 
@@ -133,13 +176,29 @@ def update_user_info(public_id):
 
 
 # TODO: Define delete_all_users route
-@users.route("/", methods=["DELETE"])
+@users.route("", methods=["DELETE"])
 def delete_all_users():
-    pass
+    """
+    delete_all_users()
+
+    HTTP Methods - DELETE
+
+    Delete user details
+    """
+    User.query.delete()
+
+    return jsonify({"message": "All users deleted successfully"})
 
 
 @users.route("/<public_id>", methods=["DELETE"])
 def delete_user_by_id(public_id):
+    """
+    delete_user_by_id(public_id)
+
+    HTTP Methods - DELETE
+
+    Delete user details by id
+    """
     user = User.query.filter_by(public_id=public_id).first()
     db.session.delete(user)
     db.session.commit()

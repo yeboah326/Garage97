@@ -47,7 +47,8 @@
       background-color: white;
       padding: 1.4rem;
       border-radius: 0 20px;
-    border: #383a46;
+      border: 1px solid #999;
+     
   }
   
   .login-form .label,.login-form input{
@@ -82,6 +83,8 @@
   .forgot-pass-link{
     text-decoration: none;
     color: #6880FE;
+    font-family: PoppinsLight;
+    font-size: 0.8rem;
   }
   #login{
     width: 40%;
@@ -96,6 +99,7 @@
     padding:0.5em ;
     align-self: center;
     cursor: pointer;
+    font-family: PoppinsRegular;
   }
   
   .sign-up-link{
@@ -105,6 +109,7 @@
     margin: 0;
     margin-top: 5px;
     text-decoration: none;
+    font-family: PoppinsRegular;
     
   }
   

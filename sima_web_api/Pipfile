@@ -21,6 +21,7 @@ weasyprint = "==53.0"
 pytest = "*"
 black = "==21.5b2"
 colorama = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.8"

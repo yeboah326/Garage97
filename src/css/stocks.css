@@ -1,0 +1,106 @@
+.stocks-body{
+    display: grid;
+    align-items: flex-start;
+    background-color:#f0f3f5 ;
+}
+
+ h1 {
+     text-align: start ;
+     margin-left: 5%;
+     font-family: PoppinsBold;
+     color: #273475;
+
+ }
+.sidebar{
+    grid-column: 1/2;
+}
+.table-div{
+grid-column: 2/9;
+background-color: #fff;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+overflow: hidden;
+margin: 25px 5%;
+border-radius: 20px ;
+height: fit-content;
+
+}
+.table{    
+
+    width: 90%;
+    background-color: #fff;
+    border-collapse: collapse;
+    margin:  5%;
+   
+
+}
+
+
+.adder{
+    grid-column: 9/10;
+    justify-self: center;
+
+}
+table th ,
+.tableHead ,
+.tableRow
+{
+padding: 20px 30px;
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 2fr;
+text-align: left;
+font-family: PoppinsBold;
+color: #273475;
+align-items: flex-start;
+justify-items: stretch;
+margin-bottom: 20px;
+}
+.tableRow{
+    padding: 10px 30px;
+    color: #000;
+    font-family: PoppinsRegular;
+      }
+
+table th, table td {
+    padding: 20px 30px;
+
+    
+}
+
+
+.table .tableRow {
+    background-color: #e2e7f9;
+    border-radius:17px;
+}
+
+
+.Tfooter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    cursor: grabbing;
+}
+.greater ,
+.lesser {
+    color:#6880fe;
+    padding: 2px;
+    margin: 2px;
+}
+
+.page_id{
+   width: 34px;
+   background-color: #6880fe;
+   text-align: center;
+   border-radius: 7px;
+}
+ .table-div:last-child{
+     position: absolute;
+     bottom: 5px;
+ }
+
+
+
+    
+
+
+
