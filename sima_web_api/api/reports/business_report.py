@@ -15,3 +15,8 @@ def report_all_businesses():
     pdf = render_pdf(url_for('/business'), download_filename='report_all_businesses.pdf')
     return pdf
 
+
+#Implement later
+@report_business.route("/<business_id>", methods=["GET"])
+def report_business_by_id(businesss_id):
+    pass
