@@ -4,10 +4,10 @@ from flask_weasyprint import HTML, render_pdf
 from sima_web_api.api.users.utils import token_required
 from sima_web_api.api.business.controllers import business_get_all
 
-report_business = Blueprint(
-    "report_business",
+report = Blueprint(
+    "report",
     __name__, 
-    url_prefix="/report_business"
+    url_prefix="/report"
 )
 
 @report_business.route("", methods=["GET"])
