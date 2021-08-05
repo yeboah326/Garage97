@@ -1,0 +1,267 @@
+.add-sale-container{
+    height:100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+.add-sale{
+    height: 100vh;
+    width: 100%;
+    background-color: #f0f3f5;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+}
+
+.add-sale header{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    padding: 40px 20px;
+    align-items: center;
+    position:sticky;
+    top: 0;
+    background-color: #f0f3f5;
+}
+.add-sale .desktop-side-nav-bar{
+    display: none;
+}
+.add-sale .done{
+    margin-left: auto;
+    padding: 10px 10px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 5px #888;
+}
+.add-sale .desktop-done{
+    display: none;
+}
+
+.add-sale main{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-left: 20px;
+    border-radius: 20px 0 0 0;
+    padding: 10px 20px;
+    height: 120%;
+}
+
+.add-sale main .head{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.add-sale main .head span{
+    font-family: PoppinsBold;
+    color: #9c89e7;
+    font-size: 1.2rem;
+}
+
+.add-sale main .head .addbutton{
+    margin-left: auto;
+    margin-right: 20px;
+}
+.add-sale main .addbutton:hover{
+    cursor: pointer;
+}
+.stock-input-form{
+    display: flex;
+    flex-direction: column;
+}
+.stock-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.stock-form .addbutton{
+    display: none;
+}
+.stock-form label,.customer-input-form label{
+    display: block;
+    font-family: PoppinsRegular;
+    color: #273475;
+    margin-bottom: 10px;
+}
+
+.stock-form input, .customer-input-form input{
+    width: 80%;
+    padding: 10px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background-color: #f0f3f5;
+    margin-bottom: 10px;
+    color:#273475;
+    font-family: PoppinsLight;
+}
+
+.customer-input-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.stock-product-list{
+    width: 100%;
+    height: fit-content;
+    margin-top: 40px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scroll-margin-right: 0;
+}
+.stock-product-list .table-head{
+    font-family: PoppinsLight;
+    color:#273475;
+    font-size: 1rem;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+.stock-product-list .table-head span,.stock-product-list .table-body span{
+    display: inline-block;
+    height: 30px;
+}
+.stock-product-list .table-head span.product,.stock-product-list .table-body span.product{
+    width: 35%;
+}
+.stock-product-list .table-head span.quantity,.stock-product-list .table-body span.quantity{
+    width: 25%;
+}
+.stock-product-list .table-head span.price,.stock-product-list .table-body span.price{
+    width: 25%;
+}
+
+.table-body{
+    color:#273475;
+    font-family: PoppinsLight;
+    font-size: 1rem;
+}
+
+.table-body span.price,.table-body span.quantity{
+    text-align: center;
+}
+
+.table-body .sale-list-item{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    padding: 0;
+    margin: 0;
+}
+.table-body .sale-list-item .close{
+    margin-left: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    height:24px;
+    width: 24px;
+}
+.table-body .sale{
+    background-color: #E2DEF3;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 95%;
+    /* height: 40px; */
+    
+
+}
+
+@media  screen and (min-width:700px){
+    .add-sale{
+        display: flex;
+        flex-direction: row;
+    }
+    .add-sale header{
+        display: none;
+    }
+    .add-sale .desktop-side-nav-bar{
+        display: block;
+    }
+    .add-sale main{
+        width: 80%;
+        height: 90%;
+        border-radius: 20px;
+        margin: 20px;
+        padding: 20px 50px 0 50px;
+        box-sizing: border-box;
+        box-shadow: 0px 00px 5px #888;
+    }
+
+    .add-sale main .table-head span{
+        text-align: center;
+    }
+    .add-sale main .table-head span.product{
+        text-align: left;
+    }
+    .add-sale main .head .addbutton{
+        display: none;
+    }
+    .add-sale main .stock-form{
+        display: flex;
+        flex-direction: row;
+    }
+    .add-sale main .stock-form label{
+        display: block;
+    }
+
+    .add-sale main .stock-form .addbutton{
+        align-self: center;
+        margin-top: 25px;
+        margin-left: auto;
+    }
+    .add-sale .desktop-done{
+        display: block;
+        height: 20px;
+        padding: 15px 15px 18px 15px;
+        border-radius: 15x;
+        margin-right: 5%;
+        margin-top: 20px;
+    }
+    .stock-form .addbutton{
+        display: block;
+    }
+    .stock-product-list .table-head{
+        position: sticky;
+        top: 0;
+        background-color: white;
+    }
+    .stock-product-list{
+        width: 100%;
+        height: fit-content;
+        margin-top: 40px;
+        padding-right: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+    }
+    .customer-input-form{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .customer-input-form input{
+        width: 80%;
+    }
+    .stock-input-form{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+
+

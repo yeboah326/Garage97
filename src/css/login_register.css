@@ -1,9 +1,5 @@
 @import url('./fonts.css');
 
-  body{
-    background: linear-gradient(to bottom,#2BBFD0,#9C89E7)
-
-  }
   .container-log-reg{
     box-sizing: border-box;
     margin: 0;
@@ -60,6 +56,7 @@
   .login-form .label,.login-form input{
     margin: 10px;
     display: block;
+    color: white;
   }
   .login-form .label{
     margin-top: 60px;
@@ -142,6 +139,7 @@
     margin-top: 20px;
     margin-bottom: 0px;
     display: block;
+    color: white;
   }
   
   .register-form input{
