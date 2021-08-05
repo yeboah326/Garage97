@@ -44,7 +44,13 @@ const AddSales = () => {
         }
     }
     const onAdd = () => {
-        setSaleList([...salelist,sale])
+        if(sale.customer_contact === '' || sale.customer_name === '' || sale.quantity === '' || sale.product === '' || sale.selling_price === ''){
+            alert("Sale could not be added.Input is empty")
+        }
+        else{
+            setSaleList([...salelist,sale])
+        }
+        
     }
     const onClickMenu = () => {
         setShowSideNavBar(!showsidenavbar)
@@ -55,11 +61,8 @@ const AddSales = () => {
     }
     const onDelete = (event) => {
         let id = event.target.id
-        for(let x = 0;x<salelist.length;x++){
-            if(salelist[x].product_id === id){
-                salelist.splice(x,1)
-            }
-        }
+        salelist.splice(id,1)
+        setSaleList([...salelist])
     }
     const fetchProducts = async () => {
         const response = await fetch(`http://localhost:9000/business/5/product`,{
@@ -76,7 +79,6 @@ const AddSales = () => {
         }
         else if(response.status === 200){
             setProducts(res)
-            console.log(res)
         }
         else{
             alert(res.message)
@@ -141,13 +143,13 @@ const AddSales = () => {
                                 })}
                             </datalist>
                         </div>
-                        <Input label='Quantity' required='required' type='text' name='quantity'onChange={handleChange}/>
-                        <Input label='Unit Price' required='required' type='text' name='selling_price'onChange={handleChange}/>
+                        <Input label='Quantity' required='required' type='number' step='1' min='0' name='quantity'onChange={handleChange}/>
+                        <Input label='Unit Price' required='required' type='number' min='0.00' step='0.1' name='selling_price'onChange={handleChange}/>
                         <div className='addbutton' onClick={onAdd}><SvgAdd fill='#9c89e7'/></div>
                     </div>
                     <div className='customer-input-form'>
-                        <Input label='Customer Name' type='text' name='customer_name'onChange={handleChange}/>
-                        <Input label='Customer Contact' type='text' name='customer_contact'onChange={handleChange}/>
+                        <Input label='Customer Name' required='required' type='text' name='customer_name' onChange={handleChange}/>
+                        <Input label='Customer Contact' required='required' type='tel' name='customer_contact' onChange={handleChange}/>
                     </div>
                 </div>
                 <div className='stock-product-list'>
@@ -166,7 +168,7 @@ const AddSales = () => {
                                             <span className='quantity'>{sale.quantity}</span>
                                             <span className='price'>{sale.selling_price}</span>
                                         </div>
-                                        <div className='close' onClick={onDelete} id={sale.product_id}><SvgClose fill='#E6B0B0'/></div>
+                                        <div className='close' onClick={onDelete} id={salelist.indexOf(sale)}><SvgClose fill='#E6B0B0'id={salelist.indexOf(sale)}/></div>
                                     </div>
                                 
                                 )
