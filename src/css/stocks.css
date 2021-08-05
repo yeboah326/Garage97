@@ -15,7 +15,7 @@ h1 {
 
 }
  .actual_data {
-    background-color: #6842ff;
+    background-color: ;
     border-radius:30px;
 }
 
@@ -28,7 +28,6 @@ h1 {
 }
 
 .close{
-    z-index: 4;
     justify-self: center;
     align-self: center;
 
@@ -36,13 +35,20 @@ h1 {
 
 
 /* mobile */
+.header_grid{
+    display: flex;
+    align-items: flex-start;
+    padding-left: 10px;
+    padding-top: 20px;
+}
 .edit_stockList {
     position: sticky;
     width: fit-content;
     left:300px;
 
 }
-.edit_stockList button{
+.edit_stockList button,
+.adderForMobStocks .add-button button {
     padding: 20px;
     background-color: #fff;
     border: none;
@@ -50,12 +56,13 @@ h1 {
     box-shadow: 0px 0px 5px #888;
 
 }
-.adderForMobStocks button {
+.adderForMobStocks {
+    position: sticky;
+    left:370px;
     width: fit-content;
-    position: relative;
-    left: 400px;
-    top: -69px;
-    
+    height: fit-content;
+    padding-left: 20px;
+  
     
 }
 
@@ -95,23 +102,34 @@ table th ,
         color: #000;
         font-family: PoppinsRegular;
           }
-
+          .table-div{
+              display: none;
+          }
+        
 
 
 /* desktop styles */
 
 @media  screen and (min-width:700 px) {
-    .stockListPage{
+    .mobile_stockList,.left-stuck, .adderForMobStocks{display: none;}
+    
+    .table-div{
         display: grid;
         align-items: flex-start;
         background-color:#f0f3f5 ;
     }
+.edit_stockList{
+    position: relative;
+    grid-column: 9/11;
+}
+  
     
    
     .sidebar{
+        display: block;
         grid-column: 1/2;
     }
-    .table-div{
+    .mobile_stockList{
     grid-column: 2/9;
     background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

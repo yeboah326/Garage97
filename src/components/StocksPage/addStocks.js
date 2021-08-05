@@ -132,7 +132,7 @@ const AddStocks = (props) => {
         <div className="button-div" onClick={()=>props.setAddStock(false)}><Button name="Done" color="#273475" toggle={onDone}  /></div>
 
 
-   </div>):console.log(props.trigger);
+   </div>):null;
     
     
     
