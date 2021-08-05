@@ -8,7 +8,7 @@ import {logout} from '../../auth/index'
 
 
 
-const SideNavBar2 = ({onHover}) => {
+const SideNavBar2 = ({onHover,navwidth}) => {
     const [user,setUser] = useState({})
     const user_id = localStorage.getItem('User')
     const fetchUser = async ()=> {
@@ -27,7 +27,7 @@ const SideNavBar2 = ({onHover}) => {
     },[])
 
     return (
-        <div className="side-nav-bar2" onMouseOver={onHover} onMouseOut={onHover}>
+        <div className="side-nav-bar2" onMouseOver={onHover} style={{width:{navwidth}}}>
             <Avatar name="" image=""/>
             <div className='logout'><NavLink to='' onClick={()=>logout()} className='logout-link'><SvgLogOut stroke='#c0c0c0' fill='#c0c0c0'/></NavLink></div>
         </div>
