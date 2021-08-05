@@ -93,10 +93,9 @@ const BusinessPage = () => {
             <header>
                 <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
                 <div className='mobile-add'><AddButton toggle={onClickAdd}/></div>
-               
             </header>
             <div className='desktop-side-nav-bar'>
-             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar/>}
+             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
             </div>
             <div className='businesses-grid'>
             <Businesses onAdd={onClickAdd} onDelete={onDelete} setBusinessSelect={()=>{setBusinessSelect(true)}}

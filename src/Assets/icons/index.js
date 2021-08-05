@@ -1,3 +1,4 @@
+export { default as Add } from './Add'
 export { default as Back } from './Back'
 export { default as BoxThin } from './BoxThin'
 export { default as Briefcase } from './Briefcase'

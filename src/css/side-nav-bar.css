@@ -20,12 +20,12 @@
     align-items: center;
   }
   .side-nav-bar2 > .avatar > img{ 
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
   }
   .avatar{
     width: 100%;
-    height: 30%;
+    height: 30vh;
     min-height: 200px ;
     display: flex;
     flex-direction: column;
@@ -65,7 +65,7 @@
   }
   
   .option{
-    height: 50px;
+    height: 40px;
     width: 100%;
     margin-top: 15px;
     align-items: center;
@@ -76,7 +76,7 @@
   }
   
   .main{
-    margin-top: 15px;
+    margin-top: 10px;
   }
   
   .options{
@@ -111,9 +111,15 @@
   }
   
   .logout{
-    align-self: center;
+    align-items: center;
     margin-top: auto;
     margin-bottom: 10px;
-    
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .logout svg{
+    margin-right: 10px;
   }
   

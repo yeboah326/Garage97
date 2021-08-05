@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import SvgMenu from '../../Assets/icons/Menu'
 import SvgDone from '../../Assets/icons/Done'
 import SvgAdd from '../../Assets/icons/Add'
@@ -7,64 +7,63 @@ import '../../css/addsales.css'
 import SvgClose from '../../Assets/icons/Close'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
-import { logout } from '../../auth'
 import { business_id } from '../BusinessesDashboard/Businesses'
+import { logout } from '../../auth'
 
 
-const AddStocks = () => {
+const AddSales = () => {
     const [showsidenavbar,setShowSideNavBar] = useState(false)
     const [showfullsidenavbar,setShowFullSideNavBar] = useState(false)
     const [navwidth,setWidth] = useState(false)
-    const [products,setProducts] = useState([])
-    const [stocklist,setStockList] = useState([])
-    const [stock,setStock] = useState({product_id:'',quantity:'',buying_price:'',product:''})
-    const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-
     let width = navwidth ? '220px' : '100px'
+    const [salelist,setSaleList] = useState([])
+    const [sale,setSale] = useState({customer_name:'',customer_contact:'',product_id:'',quantity:'',selling_price:'',product:''})
+    const [products,setProducts] = useState([])
+    const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
     const onHover = () => {
         setShowFullSideNavBar(!showfullsidenavbar)
         setWidth(!navwidth)
     }
 
-    const onClickMenu = () => {
-        setShowSideNavBar(!showsidenavbar)
-        console.log(stocklist)
-    }
-    const onClickClose = () => {
-        setShowSideNavBar(!showsidenavbar)
-    }
-
     const handleChange = (event) => {
         const {name,value} = event.target
-        setStock(prevDetails => ({
+        setSale(prevDetails => ({
             ...prevDetails,[name]:value
         }))
     }
+
     const getProductId = () => {
         let val = document.getElementById('product_id').value
         for(let x=0 ; x<products.length;x++){
             if(val === products[x].name){
-                setStock(prevDetails => ({
+                setSale(prevDetails => ({
                     ...prevDetails,'product_id':products[x].product_id,'product':val
                 }))
             }
         }
     }
     const onAdd = () => {
-        if(stock.quantity === '' || stock.product === '' || stock.buying_price === ''){
-            alert("Stock could not be added.Input is empty")
+        if(sale.customer_contact === '' || sale.customer_name === '' || sale.quantity === '' || sale.product === '' || sale.selling_price === ''){
+            alert("Sale could not be added.Input is empty")
         }
         else{
-            setStockList([...stocklist,stock])
+            setSaleList([...salelist,sale])
         }
+        
+    }
+    const onClickMenu = () => {
+        setShowSideNavBar(!showsidenavbar)
+        console.log(salelist)
+    }
+    const onClickClose = () => {
+        setShowSideNavBar(!showsidenavbar)
     }
     const onDelete = (event) => {
         let id = event.target.id
-        stocklist.splice(id,1)
-        setStockList([...stocklist])
-}
-
+        salelist.splice(id,1)
+        setSaleList([...salelist])
+    }
     const fetchProducts = async () => {
         const response = await fetch(`http://localhost:9000/business/5/product`,{
         method: 'GET',    
@@ -86,9 +85,9 @@ const AddStocks = () => {
         }
     }
 
-    const postStockList = async () =>{
-        const data = {'stock_list':stocklist,'business_id':'5'}
-        const response = await fetch('http://localhost:9000/stock/list',{
+    const postSaleList = async () =>{
+        const data = {'sale_list':salelist,'customer_details':{'customer_name':salelist[0].customer_name,'customer_contact':salelist[0].customer_contact},'business_id':'5'}
+        const response = await fetch('http://localhost:9000/sale/list',{
             method: 'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -120,32 +119,38 @@ const AddStocks = () => {
         <div className='add-sale'>
             <header>
                 <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
-                <div className='done' onClick={postStockList}><SvgDone fill='#6842ff' stroke='#6842ff'/></div>
+                <div className='done' onClick={postSaleList}><SvgDone fill='#6842ff' stroke='#6842ff'/></div>
             </header>
-            <div className='desktop-side-nav-bar'style={{width:width}}>
-             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
+            <div className='desktop-side-nav-bar' style={{width:width}}>
+             {!showfullsidenavbar? <SideNavBar2 onHover={onHover} navwidth='100px'/> : <SideNavBar onHover={onHover} navwidth='220px'/>}
             </div>
             <main>
                 <div className='head'>
-                    <span>Add new stock</span>
+                    <span>Add new sale</span>
                     <div className='addbutton' onClick={onAdd}><SvgAdd fill='#9c89e7'/></div>
                     
                 </div>
-                <div className='stock-form'>
-                <div>
-                    <label for='product'>Product</label>
-                    <input type='list' id='product_id' name='product_id' list='product' onChange={()=>{getProductId()}}></input>
-                    <datalist id='product'>
-                        {products.map(product=>{
-                            return(
-                                <option value={product.name}>{product.name}</option>
-                            )
-                        })}
-                    </datalist>
-                </div>
-                    <Input label='Quantity' required='required' type='number' step='1' min='0' onChange={handleChange} name='quantity'/>
-                    <Input label='Unit Price' required='required' type='number' min='0.00' step='0.1'onChange={handleChange} name='buying_price'/>
-                    <div className='addbutton' onClick={onAdd}><SvgAdd fill='#9c89e7'/></div>
+                <div className='stock-input-form'>
+                    <div className='stock-form'>
+                        <div>
+                            <label for='product'>Product</label>
+                            <input type='list' id='product_id' name='product_id' list='product' onChange={()=>{getProductId()}}></input>
+                            <datalist id='product'>
+                                {products.map(product=>{
+                                    return(
+                                        <option value={product.name}>{product.name}</option>
+                                    )
+                                })}
+                            </datalist>
+                        </div>
+                        <Input label='Quantity' required='required' type='number' step='1' min='0' name='quantity'onChange={handleChange}/>
+                        <Input label='Unit Price' required='required' type='number' min='0.00' step='0.1' name='selling_price'onChange={handleChange}/>
+                        <div className='addbutton' onClick={onAdd}><SvgAdd fill='#9c89e7'/></div>
+                    </div>
+                    <div className='customer-input-form'>
+                        <Input label='Customer Name' required='required' type='text' name='customer_name' onChange={handleChange}/>
+                        <Input label='Customer Contact' required='required' type='tel' name='customer_contact' onChange={handleChange}/>
+                    </div>
                 </div>
                 <div className='stock-product-list'>
                     <div className='table-head'>
@@ -155,15 +160,15 @@ const AddStocks = () => {
                     </div>
                     <div className='table-body'>
                         {
-                            stocklist.map(stock=>{
+                            salelist.map(sale=>{
                                 return(
                                     <div className='sale-list-item'>
                                         <div className='sale'>
-                                            <span className='product'>{stock.product}</span>
-                                            <span className='quantity'>{stock.quantity}</span>
-                                            <span className='price'>{stock.buying_price}</span>
+                                            <span className='product'>{sale.product}</span>
+                                            <span className='quantity'>{sale.quantity}</span>
+                                            <span className='price'>{sale.selling_price}</span>
                                         </div>
-                                        <div className='close' onClick={onDelete} id={stocklist.indexOf(stock)}><SvgClose fill='#E6B0B0' id={stocklist.indexOf(stock)}/></div>
+                                        <div className='close' onClick={onDelete} id={salelist.indexOf(sale)}><SvgClose fill='#E6B0B0'id={salelist.indexOf(sale)}/></div>
                                     </div>
                                 
                                 )
@@ -173,10 +178,10 @@ const AddStocks = () => {
 
                 </div>
             </main>
-            <div className='done desktop-done' onClick={postStockList}><SvgDone fill='#6842ff' stroke='#6842ff'/></div>
+            <div className='done desktop-done' onClick={postSaleList}><SvgDone fill='#6842ff' stroke='#6842ff'/></div>
         </div>
     </div>
     )
 }
 
-export default AddStocks
+export default AddSales 

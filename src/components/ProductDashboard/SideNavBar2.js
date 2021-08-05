@@ -11,10 +11,10 @@ import SvgBriefcase from '../../Assets/icons/Briefcase'
 import SvgReport from '../../Assets/icons/Report'
 
 
-const SideNavBar2 = ({onHover}) => {
+const SideNavBar2 = ({onHover,navwidth}) => {
     return (
-        <div className="side-nav-bar2" onMouseOver={onHover} onMouseOut={onHover}>
-            <Avatar name="" image="" business='Kako Inc'/>
+        <div className="side-nav-bar2" onMouseOver={onHover} style={{width:navwidth}}>
+            <Avatar name="" image="" business=''/>
             <div className='option main'><NavLink exact to='/overview' className='options-link-1' activeClassName='active'><SvgHome fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink exact to='/businesses' className='options-link-1' activeClassName='active'><SvgBriefcase fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink exact to='/products' className='options-link-1' activeClassName='active'><SvgBoxThin fill='#c0c0c0'/></NavLink></div>
@@ -22,7 +22,7 @@ const SideNavBar2 = ({onHover}) => {
             <div className='option main'><NavLink exact to='/Sales' className='options-link-1' activeClassName='active'><SvgTag fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink exact to='/businesses' className='options-link-1' activeClassName='active'><SvgUser fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink exact to='/businesses' className='options-link-1' activeClassName='active'><SvgReport fill='#c0c0c0'/></NavLink></div>
-            <div className='logout'><NavLink to=''><SvgLogOut stroke='#c0c0c0' fill='#c0c0c0'/></NavLink></div>
+            <div className='logout main'><NavLink to=''  className='options-link-1'><SvgLogOut stroke='#c0c0c0' fill='#c0c0c0'/></NavLink></div>
         </div>
     )
 }

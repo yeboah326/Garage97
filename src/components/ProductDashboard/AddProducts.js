@@ -43,9 +43,9 @@ const AddProducts = ({fetchData,toggle}) => {
     return (
         <div className="add">
              <p>Add new product</p>
-            <Input label="Name" type="text" onChange={onHandleChange} required='true' name='name'/>
+            <Input label="Name" type="text" onChange={onHandleChange} required='required' name='name'/>
              <label>Description</label>
-             <textarea onChange={onHandleChange} name='description'></textarea>
+             <textarea onChange={onHandleChange} name='description' required></textarea>
              <div className="button-div"><Button name="Add" color="#273475" toggle={Submit}/><Button name="Cancel" color="red" toggle={toggle}/></div>
 
         </div>
