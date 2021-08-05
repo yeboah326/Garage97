@@ -1,78 +1,142 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import Input from '../Input'
+import Button from '../Button'
+import { useState } from 'react'
+import { logout } from '../../auth'
 
+const AddStocks = (props) => {
+    const [products,setProducts] = useState([])
+    const [stockList,setStockList] = useState([])
+    const [stock,setStock] = useState({quantity:null,buying_price:null,product_id:null})
+    const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
+    const business_id = JSON.parse(localStorage.getItem('business_id'))
 
-class AddStocks extends Component{
-    constructor (props){
-        super(props)
+    const onHandleChange = (event) => {
+        const {name,value} = event.target
+        setStock(prevStock=>({
+            ...prevStock,[name]:value
+        }))
+        
+        
+    }
+
+    
+    
+
+    const onAdd = () => {
+        const Stock = stock 
+        setStockList([...stockList,Stock])
+
+        setStock({product_name:null, qty:null,buying_price:null})
+        alert("Stock added")
        
-    this.state = {
-        stock_id:null,
-        stock:null,
-        qty:null,
-        date:null
-     }
+    }
 
-   
-} 
-     
- 
- 
-  
-     handleChange=(e)=>{
-         this.setState({
-             [e.target.name]:e.target.value
-         })
-
-     }
-     handleSubmit= (e)=>{
-         e.preventDefault();
-       let Jheight = this.props.getHeight(this.state);
-       if (Jheight <823.483) {
-        this.props.addRow(this.state);
-        this.props.submitTrigger();}
-        else {return(
-            <div className="table-div"    > 
-           
-              { this.props.submitTrigger()}
-            </div>
-           
-        )
-        }
-
-
+    const fetchData = async () => {
+        console.log(business_id)
+        const response = await fetch(`http://localhost:9000/business/${business_id}/product`,{
+        method: 'GET',    
+        headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
             
-     }
-     close=(e)=>{this.props.submitTrigger()}
-     
-  render(){
+            }
+        })
+        const res = await response.json()
+        if (response.status === 401){
+            logout()
+            alert('Session has expired')
+        }
+        else{
+            setProducts(res)
+        }
+    }
 
-    return (this.props.trigger) ?
+    const postStockList = async () => {
+        const response = await fetch('http://localhost:9000/stock/list',{
+            method: 'POST',
+            headers:{
+                'Authorization':`Bearer ${token}`,
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({"business_id":business_id,"stock_list":stockList})
+        })
+
+        const res = await response.json
+        if(response.status === 201){
+            alert(res.message)
+        }
+        else{
+            alert("Stocks could not be created.Try again")
+        }
+    }
+
+
+    const onDone = () => {
+        console.log(stockList)
+        alert("Done")
+
+
+
+        // const time = Date.now()
+        // const Rows = {stock_id:randomNumber,qty:totalQty,total_price:totalPrice,date:time}
+            //  console.log(Rows)
+     // //  toggle()
+ 
+        postStockList()
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
+    // const Submit = async () => {
+    //     const newProduct = product
+    //     const response = await fetch(`http://localhost:9000/business/${business_id}/product`,{
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type':'application/json',
+    //             'Authorization':`Bearer ${token}`
+    //         },
+    //         body: JSON.stringify(newProduct)
+    //     })
+    //     if(response.status === 401){
+    //         logout()
+    //         alert('Session has expired')
+    //     }
+    //     else if(response.status === 201){
+    //             products.push(newProduct)
+    //             onClick()
+    //     }
+    //     else{
+    //         alert('Could not create product. Try again')
+    //     }
+        
+    //     toggle()
+    // }
+
+
+    return (props.trigger) ?
+        (
+        <div className=" pop form">
+        <p>Add new Stock</p>
+        <label for='product'>Product</label>
+        <select id='product' name='product_id' onChange={onHandleChange} >
+            <option selected></option>
+            {products.map(product => {
+               return (<option value={product.product_id} >{product.name}</option>)
+            })}
+        </select>
+        <Input label='Unit Cost Price (GHC)' required='true' name='buying_price' type='number' onChange={onHandleChange}/>
+        <Input label='Quantity' type='number' required='true' name='quantity' onChange={onHandleChange}/>
+        <div className="button-div" > <Button name="Add" color="red" toggle={onAdd}/> </div>   
+        <div className="button-div" onClick={()=>props.setAddStock(false)}><Button name="Done" color="#273475" toggle={onDone}  /></div>
+
+
+   </div>):console.log(props.trigger);
     
-        ( 
-             <div className=" form-pop" id="myForm" >
-        <form onSubmit={this.handleSubmit} className="form-container"  > 
-            <h1>add new stock</h1>
-            <Input type="text" name='stock_id' required="true" onChange={this.handleChange} label="stock_id"/>
-            <Input type="text" name='stock'    required="true" onChange={this.handleChange} label="stock"/>
-            <Input type="text" name='qty'      required="true" onChange={this.handleChange} label="qty"/>
-            <Input type="text" name='date'     required="true" onChange={this.handleChange} label="date"/>
-
-           <button className='btn ' >add</button>
-           <button className='btn cancel'  onClick={this.close}>close</button>
-
-
-
-
-           
-           
-
-
-       </form>
-   </div>
-):"";}
     
-      
+    
 }
 
-export default AddStocks;
+export default AddStocks
+

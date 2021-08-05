@@ -1,11 +1,9 @@
-.pop form{
+.pop {
 background-color: #fff;
 box-shadow: 0 0 20px rgba(131, 128, 128, 0.9);
-overflow: hidden;
-margin: 25px 5%;
 border-radius: 10px ;
 height: 40%;
-width: 25%;
+width: fit-content;
 display: flex;
 
 
