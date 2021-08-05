@@ -53,17 +53,18 @@ const AddStocks = () => {
         }
     }
     const onAdd = () => {
-        setStockList([...stocklist,stock])
+        if(stock.quantity === '' || stock.product === '' || stock.buying_price === ''){
+            alert("Stock could not be added.Input is empty")
+        }
+        else{
+            setStockList([...stocklist,stock])
+        }
     }
     const onDelete = (event) => {
         let id = event.target.id
-        for(let x = 0;x<stocklist.length;x++){
-            if(Number.parseInt(id) === stocklist[x].products_id){
-                stocklist.splice(x,1)
-                console.log(stocklist + ' done')
-            }
-        }
-    }
+        stocklist.splice(id,1)
+        setStockList([...stocklist])
+}
 
     const fetchProducts = async () => {
         const response = await fetch(`http://localhost:9000/business/5/product`,{
@@ -80,7 +81,6 @@ const AddStocks = () => {
         }
         else if(response.status === 200){
             setProducts(res)
-            console.log(res)
         }
         else{
             alert(res.message)
@@ -144,8 +144,8 @@ const AddStocks = () => {
                         })}
                     </datalist>
                 </div>
-                    <Input label='Quantity' required='required' type='text' onChange={handleChange} name='quantity'/>
-                    <Input label='Unit Price' required='required' type='text' onChange={handleChange} name='buying_price'/>
+                    <Input label='Quantity' required='required' type='number' step='1' min='0' onChange={handleChange} name='quantity'/>
+                    <Input label='Unit Price' required='required' type='number' min='0.00' step='0.1'onChange={handleChange} name='buying_price'/>
                     <div className='addbutton' onClick={onAdd}><SvgAdd fill='#9c89e7'/></div>
                 </div>
                 <div className='stock-product-list'>
@@ -164,7 +164,7 @@ const AddStocks = () => {
                                             <span className='quantity'>{stock.quantity}</span>
                                             <span className='price'>{stock.buying_price}</span>
                                         </div>
-                                        <div className='close' onClick={onDelete} id={stock.product_id}><SvgClose fill='#E6B0B0' id={stock.product_id}/></div>
+                                        <div className='close' onClick={onDelete} id={stocklist.indexOf(stock)}><SvgClose fill='#E6B0B0' id={stocklist.indexOf(stock)}/></div>
                                     </div>
                                 
                                 )
