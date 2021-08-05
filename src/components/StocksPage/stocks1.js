@@ -8,9 +8,10 @@ import TableHead from './tableHead'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import TableRow from './tableRow'
 import AddButton from '../ProductDashboard/AddButton'
-import AddStocks from './addStocks'
+import AddStocks from './AddStocks'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import SvgDone from '../../Assets/icons/Done'
+import { Link } from 'react-router-dom'
 
 
 
@@ -65,26 +66,25 @@ const StockListPage = () => {
                    <SvgDone fill="#6842ff"/>:
                    <SVGpencil fill="#6842ff"/>}
                
-               </button></div>  
-          
+               </button></div> 
                {showEdit ? 
-               <div className='adderForMobStocks' onClick={onClickAdd}  >
-                   <AddButton /> 
-                   {addstockList ?
-                      <AddStocks trigger={addstockList} setAddStockList={()=>{setAddStockList(!addstockList)}}/>   : null
-                   }
-                   </div>
-                 : null}
-                {!showfullsidenavbar?  <div className='sidebar'> <SideNavBar2 onHover={onHover}/></div> : <SideNavBar/>}
+               <div className='adderForMobStocks adder' onClick={onClickAdd}  >
+                  <Link to="/addstocks" className="adderbutt"><AddButton/></Link>
 
                  
-                 </div>
-           
-           <div className="mobile_stockList "> 
+                   </div>
+                 : null}  </div>
+          
+              
+                     <div className="mobile_stockList table-div  "> 
              <TableHead/>
              <TableRow rowData={[{stock_id:23342,qty:24,total_price:43,date:'21-09-2020'},
              {stock_id:2332,qty:24,total_price:43,date:'21-09-2020'}]}  showEdit={showEdit}/>
            </div>
+           <div className='desktop-side-nav-bar' id="sidebar">
+             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
+            </div>
+             
 
 
           

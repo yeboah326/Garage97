@@ -5,6 +5,7 @@
    min-height: 100vh;
    width: 650px; ;
    background-color: #e2e7f9;
+   display: grid;
   
 }
 h1 {
@@ -15,11 +16,12 @@ h1 {
 
 }
  .actual_data {
-    background-color: ;
+    background-color:#e2e7f9 ;
     border-radius:30px;
 }
 
 .left-stuck{
+    position: sticky;
     width: fit-content;
     margin-left: 20px;
     padding: auto;
@@ -47,8 +49,7 @@ h1 {
     left:300px;
 
 }
-.edit_stockList button,
-.adderForMobStocks .add-button button {
+.edit_stockList button  {
     padding: 20px;
     background-color: #fff;
     border: none;
@@ -102,7 +103,10 @@ table th ,
         color: #000;
         font-family: PoppinsRegular;
           }
-          .table-div{
+          #table-div, 
+          .sidebar,
+          #table,
+          #sidebar{
               display: none;
           }
         
@@ -110,45 +114,47 @@ table th ,
 
 /* desktop styles */
 
-@media  screen and (min-width:700 px) {
-    .mobile_stockList,.left-stuck, .adderForMobStocks{display: none;}
+@media  screen and (min-width:700px) {
+    .header_grid, .mobile_stockList,.left-stuck, .adderForMobStocks,.edit_stockList{display: none;}
     
     .table-div{
         display: grid;
+        grid-column: 2/9;
         align-items: flex-start;
         background-color:#f0f3f5 ;
-    }
-.edit_stockList{
-    position: relative;
-    grid-column: 9/11;
-}
-  
-    
-   
-    .sidebar{
-        display: block;
-        grid-column: 1/2;
-    }
-    .mobile_stockList{
-    grid-column: 2/9;
-    background-color: #fff;
+
+
+
+        height: fit-content;
+        background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     margin: 25px 5%;
     border-radius: 20px ;
-    height: fit-content;
-    
-    }
-    .table{    
-    
-        width: 90%;
+     width: 90%;
         background-color: #fff;
         border-collapse: collapse;
         margin:  5%;
+   
+    }
+
+  
+    
+   
+    #sidebar
+    {
+        grid-row: 1;
+        grid-column: 1/2;
+       
+    }
+   
+    /* .table{    
+    
+       
        
     
     }
-    
+     */
     
     .adder{
         grid-column: 9/10;
