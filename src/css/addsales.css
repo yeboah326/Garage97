@@ -214,6 +214,7 @@
     .add-sale main .stock-form{
         display: flex;
         flex-direction: row;
+        width:95%;
     }
     .add-sale main .stock-form label{
         display: block;
