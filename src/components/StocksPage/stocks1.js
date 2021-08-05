@@ -1,94 +1,76 @@
-import React, { Component } from 'react'
-import AddButton from '../ProductDashboard/AddButton'
-import SideNavBar from '../ProductDashboard/SideNavBar'
+import React, { useState,useEffect } from 'react'
+import SvgMenu from '../../Assets/icons/Menu'
+import '../../css/business.css'
+import {logout} from '../../auth/index'
+import { business_id } from '../BusinessesDashboard/Businesses'
+import SVGpencil from '../../Assets/icons/pencil'
 import TableHead from './tableHead'
+import SideNavBar from '../ProductDashboard/SideNavBar'
 import TableRow from './tableRow'
+import AddButton from '../ProductDashboard/AddButton'
 import AddStocks from './addStocks'
-import Tfooter from "./tfooter"
-// import  {useRef } from 'react'
 
 
 
-class Stocks1 extends Component {
-  constructor(props){
-      super(props);
-      this.state = {
-          rows:[
-              
-
-        ],
-      addRow : (eachRow)=>{
-            let tempRows = [eachRow,...this.state.rows,];
-            this.setState({
-                rows:tempRows
-            })
-          },
-      trigger:false,
-      setTrigger: (trigger) =>{
-         this.setState(
-            {trigger:!trigger})}
-            ,
-        submitTrigger : (trigger) =>{
-          this.setState(
-             {trigger:trigger})},
-
-             getHeight:()=> {
-              const height = this.divElement.clientHeight;
-              this.setState({ height });
-              return height
-            }
-         }
-        }
-       
-       
-      
-      handleClick =(e)=>{
-        this.state.setTrigger();
-
-      }
-      // openForm=(e) =>{
-      //   document.getElementById("myForm").style.display = "block";
-      // }
-      
-    
-
+const StockListPage = () => {
+    const [showsidenavbar,setShowSideNavBar] = useState(false)
+    const [showEdit,setShowEdit] = useState(false)
+    const [addstockList,setAddStockList] = useState(false)
+    const [stocklist,setStockList] = useState([])
    
 
-  
 
-render(){
-  // const [buttonPop,setButtonPop] = useState(false);
+   
+   
+ 
+
+    
+   
+    const onClickMenu = () => {
+        setShowSideNavBar(!showsidenavbar)
+    }
+    const onClickClose = () => {
+        setShowSideNavBar(!showsidenavbar)
+    }
+    const onClickEdit = () => {
+        setShowEdit(!showEdit)
+    }
+    const onClickAdd = ()=>{
+        setAddStockList(!addstockList)
+    }
+   
 
     return (
-        <div className="stocks-body">
-                        <div className="sidebar"> <SideNavBar/> </div>
+        <div className='stockListPage'>
+         {showsidenavbar ?
+            <div className='side-nav-page'>
+                <SideNavBar onClick={onClickClose}/>
+            </div> :
+            null
+            }
+           <div className='left-stuck' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>  
+           <div className='edit_stockList' onClick={onClickEdit}><button ><SVGpencil fill="#6842ff"/></button></div>  
+               {showEdit ? 
+               <div className='adderForMobStocks' onClick={onClickAdd}  >
+                   <AddButton /> 
+                   {addstockList ?
+                      <AddStocks trigger={addstockList} setAddStockList={()=>{setAddStockList(!addstockList)}}/>   : null
+                }
+                   </div>
+                 : null}
+           <div className="mobile_stockList"> 
+             <TableHead/>
+             <TableRow rowData={[{stock_id:23342,qty:24,total_price:43,date:'21-09-2020'},
+             {stock_id:2332,qty:24,total_price:43,date:'21-09-2020'}]}  showEdit={showEdit}/>
+           </div>
 
-                        <div className="table-div"  ref={ (divElement) => { this.divElement = divElement } }  > 
-                        <h1>Stocks</h1>
-                        < TableHead />
-                        <TableRow rowData={this.state.rows}/>
-                        <Tfooter/>
-                        </div>
-                        <div  className='adder' onClick={this.handleClick} > 
-                        <AddButton />
-                         
-                        </div>
-                        
-                        <AddStocks trigger = {this.state.trigger} addRow = {this.state.addRow} submitTrigger={this.state.submitTrigger} getHeight={this.state.getHeight} openForm={this.openForm}/>
 
-                        
-
+          
+            
+        
         </div>
         
-        
-        
-        )
+    )
 }
-    
-    
-    
-    
-    
-    
-    }
-    export  default Stocks1;
+
+export default StockListPage

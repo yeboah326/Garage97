@@ -1,6 +1,6 @@
 import SplashPage from './components/Login_Registration/splashPage'
 // import Stocks from './components/Stocks'
-// import Stocks1 from './components/stocks1'
+import Stocks1 from './components/StocksPage/stocks1'
 // import AddStocks from './components/addStocks'
 import LoginForm from './components/Login_Registration/LoginForm'
 import RegistrationForm from './components/Login_Registration/RegistrationForm'
@@ -38,6 +38,9 @@ function App() {
             {/* <Route exact path = '/stocks1'component={Stocks1}/> */}
             <Route exact path = '/addstocks'component={AddStocks}/>
             <Route exact path = '/addsales'component={AddSales}/>
+            <Route exact path = '/stocks1'component={Stocks1}/>
+            {/* <Route exact path = '/stocks'component={Stocks}/> */}
+            {/* <Route exact path = '/addstocks'component={AddStocks}/> */}
 
 
 

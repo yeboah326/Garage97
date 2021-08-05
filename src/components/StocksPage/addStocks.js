@@ -11,7 +11,6 @@ import { logout } from '../../auth'
 import { business_id } from '../BusinessesDashboard/Businesses'
 
 
-
 const AddStocks = () => {
     const [showsidenavbar,setShowSideNavBar] = useState(false)
     const [showfullsidenavbar,setShowFullSideNavBar] = useState(false)
@@ -180,4 +179,4 @@ const AddStocks = () => {
     )
 }
 
-export default AddStocks 
+export default AddStocks
