@@ -29,7 +29,7 @@ const DeleteStockList = ({onClick,id,fetchData}) => {
     }
 
     return (
-        <div className="pop">
+        <div >
             <p>Delete product</p>
             <span>Are you sure you want to delete?</span>
             <div><Button name="Cancel" color="#243475" toggle={onClick}/><Button name="Delete"color="red" toggle={deleteproduct}/></div>

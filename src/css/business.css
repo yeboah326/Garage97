@@ -47,6 +47,7 @@
 }
 .menu{
   width: 20px;
+  cursor: pointer;
 }
 .side-nav-bar{
   height:100vh;

@@ -24,7 +24,7 @@ function TableRow (props){
         { props.showEdit ?
          <div className='close' onClick={onDelete} ><SVGclose fill='red'/> 
          {deleteStockList ? 
-            <div className='popup'>
+            <div className='pop'>
                 <DeleteStockList onClick={onDelete}  id={eachRow.stocks_id}/>
             </div> :
             null

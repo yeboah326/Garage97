@@ -1,25 +1,28 @@
 /* base styles */
 
-.stockListPage  {
-   min-width: 100vw;
-   min-height: 100vh;
-   width: 650px; ;
-   background-color: #e2e7f9;
-  
+.stockListPage {
+    min-width: 100%;
+    min-height: 100vh;
+    background-color: #f0f3f5;
+    font-family: PoppinsRegular;
+
 }
+
 h1 {
-    text-align: start ;
+    text-align: start;
     margin-left: 5%;
-    font-family: PoppinsBold;
     color: #273475;
+    font-family: PoppinsRegular;
 
 }
- .actual_data {
-    background-color: #6842ff;
-    border-radius:30px;
+
+.actual_data {
+    background-color: #e2e7f9;
+    border-radius: 30px;
 }
 
-.left-stuck{
+.left-stuck {
+    position: sticky;
     width: fit-content;
     margin-left: 20px;
     padding: auto;
@@ -27,8 +30,13 @@ h1 {
 
 }
 
-.close{
-    z-index: 4;
+.divRight {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.close {
     justify-self: center;
     align-self: center;
 
@@ -36,143 +44,217 @@ h1 {
 
 
 /* mobile */
-.edit_stockList {
+.header_grid {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    padding-top: 20px;
+    align-items: center;
+
+}
+
+/* .edit_stockList {
     position: sticky;
     width: fit-content;
     left:300px;
 
-}
-.edit_stockList button{
+} */
+.edit_stockList button {
     padding: 20px;
     background-color: #fff;
     border: none;
     border-radius: 10px;
     box-shadow: 0px 0px 5px #888;
-
+    margin: 10px;
+    position: sticky;
 }
-.adderForMobStocks button {
+
+/* .adderForMobStocks {
+    position: sticky;
+    left:370px;
     width: fit-content;
-    position: relative;
-    left: 400px;
-    top: -69px;
+    height: fit-content;
+    padding-left: 20px;
+  
     
-    
-}
+} */
 
 
 
-.mobile_stockList{
+.mobile_stockList {
     display: block;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     margin: 25px 5%;
-    border-radius: 20px ;
+    border-radius: 20px;
     height: fit-content;
     width: 600px;
     background-color: #fff;
 
 }
-table th ,
-    .tableHead ,
-    .actual_data
-    {
+
+.ad .add-button button {
+    font-size: 3rem;
+    color: #6842ff;
+    border: none;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #888;
+    padding: 5px 18px;
+    margin: 10px;
+    position: sticky;
+
+}
+
+table th,
+.tableHead,
+.actual_data {
     padding: 20px 30px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 2fr;
-    text-align: left;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    /* text-align: left; */
     font-family: PoppinsBold;
     color: #273475;
-    align-items: flex-start;
-    justify-items: stretch;
+    /* align-items: flex-start; */
     margin-bottom: 20px;
-    }
-    
-    .tableRow{
-        display: grid;
-        grid-template-columns: 6fr 1fr;
+}
 
-        padding: 10px 30px;
-        color: #000;
-        font-family: PoppinsRegular;
-          }
+.tableRow {
+    display: grid;
+    grid-template-columns: 33fr 1fr;
+   align-items: center;
+    padding: 10px 30px;
+    color: #000;
+    font-family: PoppinsRegular;
+}
+
+.tableRow .actual_data {
+    align-self: flex-end;
+}
+
+#table-div,
+.sidebar,
+#table,
+#sidebar,
+.desktop-side-nav-bar,
+.edit {
+    display: none;
+}
 
 
 
 /* desktop styles */
 
-@media  screen and (min-width:700 px) {
-    .stockListPage{
+@media screen and (min-width:700px) {
+
+    .header_grid,
+    .mobile_stockList,
+    .left-stuck,
+    .adderForMobStocks,
+    .edit_stockList {
+        display: none;
+    }
+
+    .stock-body {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .desktop-side-nav-bar {
+        display: block;
+    }
+
+    .table-div {
         display: grid;
-        align-items: flex-start;
-        background-color:#f0f3f5 ;
-    }
-    
-   
-    .sidebar{
-        grid-column: 1/2;
-    }
-    .table-div{
-    grid-column: 2/9;
-    background-color: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    margin: 25px 5%;
-    border-radius: 20px ;
-    height: fit-content;
-    
-    }
-    .table{    
-    
-        width: 90%;
+        width: 70%;
+        background-color: #f0f3f5;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        border-radius: 20px;
         background-color: #fff;
         border-collapse: collapse;
-        margin:  5%;
+
+    }
+
+    .divdown {
+       position: sticky;
+        display: flex;
+        flex-direction: column;
+        width: 15%;
+        height: fit-content;
+        top: 40px;
+    }
+
+
+
+
+
+
+    /* .table{    
+    
+       
        
     
     }
-    
-    
-    .adder{
-        grid-column: 9/10;
-        justify-self: center;
-    
+     */
+
+    .edit {
+        position: sticky;
+
+        display: block;
+        width: 15%;
+        height: fit-content;
+        top: 40px;
     }
-    
-    
-    
-  
-    
-    
-    .Tfooter{
+
+
+
+    .edit button {
+        padding: 20px;
+        background-color: #fff;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px #888;
+        margin: 10px;
+        position: sticky;
+        top: 40px;
+
+    }
+
+
+    .Tfooter {
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 15px;
         cursor: grabbing;
     }
-    .greater ,
+
+    .greater,
     .lesser {
-        color:#6880fe;
+        color: #6880fe;
         padding: 2px;
         margin: 2px;
     }
-    
-    .page_id{
-       width: 34px;
-       background-color: #6880fe;
-       text-align: center;
-       border-radius: 7px;
+
+    .page_id {
+        width: 34px;
+        background-color: #6880fe;
+        text-align: center;
+        border-radius: 7px;
     }
-     .table-div:last-child{
-         position: absolute;
-         bottom: 5px;
-     }
-    
-    
-    
-        
-    
-    
-    
-    
+
+    .table-div:last-child {
+        position: absolute;
+        bottom: 5px;
+    }
+
+
+
+
+
+
+
+
 }
