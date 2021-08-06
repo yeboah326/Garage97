@@ -8,7 +8,7 @@ import TableHead from './tableHead'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import TableRow from './tableRow'
 import AddButton from '../ProductDashboard/AddButton'
-import AddStocks from './addStocks'
+import AddStocks from './AddStocks'
 
 
 

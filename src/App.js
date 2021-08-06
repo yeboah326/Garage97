@@ -33,7 +33,8 @@ function App() {
       <Switch>
      
           <div className='container'>
-            <Route exact path = '/' component={SplashPage}/>
+            <Route exact path = '/home' component={SplashPage}/>
+            <Redirect from = '/' to='/home'/> 
             <Route exact path = '/login'component={LoginForm}/>
             {/* <Route exact path = '/stocks1'component={Stocks1}/> */}
             <Route exact path = '/addstocks'component={AddStocks}/>
@@ -45,10 +46,10 @@ function App() {
 
 
             <Route exact path = '/register' component={RegistrationForm}/>
-            <PrivateRoute exact path = '/home' component={BusinessesDashboard}/> 
+            {/* <PrivateRoute exact path = '/home' component={BusinessesDashboard}/>  */}
             <PrivateRoute exact  path = '/businesses' component={BusinessPage}/>
-            <PrivateRoute exact path='/products' component={ProductsPage}/>
-            <PrivateRoute exact path='/overview' component={Overview}/>
+            <PrivateRoute path='/business/products' component={ProductsPage}/>
+            <PrivateRoute path='/business/overview' component={Overview}/>
           </div>
             
         

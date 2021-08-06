@@ -50,7 +50,7 @@ const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDe
             </div>
             }
         </div> :
-        <Redirect to='/overview'/>
+        <Redirect to='/business/overview'/>
         
         
     )
