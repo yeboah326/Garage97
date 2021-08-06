@@ -5,7 +5,6 @@ import Products from './Products'
 import SvgMenu from '../../Assets/icons/Menu'
 import AddButton from './AddButton'
 import AddProducts from './AddProducts'
-import DeleteProduct from './DeleteProduct'
 import '../../css/business.css'
 import {logout} from '../../auth/index'
 import { business_id } from '../BusinessesDashboard/Businesses'
@@ -18,7 +17,7 @@ const ProductsPage = () => {
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
     const [deletebusiness,setDeleteBusiness] = useState(false)
     const [showfullsidenavbar,setShowFullSideNavBar] = useState(false)
-    const [id,setId ] = useState(null)
+    // const [id,setId ] = useState()
 
     const fetchData = async () => {
         const response = await fetch(`http://localhost:9000/business/${business_id}/product`,{
@@ -40,6 +39,8 @@ const ProductsPage = () => {
         }
     }
 
+    
+
     useEffect(()=>{
     fetchData()
     },[])
@@ -56,13 +57,10 @@ const ProductsPage = () => {
         setShowAdd(!showAdd)
     }
 
-    const onDelete = () => {
-        setDeleteBusiness(!deletebusiness)
-    }
 
-    const getId = (id)=>{
-        return setId(id)
-    }
+    // const getId = (id)=>{
+    //     return setId(id)
+    // }
 
     const onHover = () => {
         setShowFullSideNavBar(!showfullsidenavbar)
@@ -84,12 +82,6 @@ const ProductsPage = () => {
                 :
                 null
             }
-            {deletebusiness ? 
-            <div className='popup'>
-                <DeleteProduct onClick={onDelete} fetchData={fetchData} id={id}/>
-            </div> :
-            null
-            }
             <div className='container-businesses'>
             <header>
                 <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
@@ -100,12 +92,7 @@ const ProductsPage = () => {
              {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
             </div>
             <div className='businesses-grid'>
-            <Products onAdd={onClickAdd} onDelete={onDelete} 
-            setDeleteBusiness={()=>{setDeleteBusiness(!deletebusiness)}}
-            products={products}
-            fetchData={fetchData}
-            getId={getId}
-            />
+            <Products onAdd={onClickAdd} products={products} fetchData={fetchData}/>
             <div className='desktop-add'><AddButton toggle={onClickAdd}/></div>
             </div>
             

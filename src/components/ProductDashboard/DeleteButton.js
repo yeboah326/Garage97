@@ -1,9 +1,9 @@
 import React from 'react'
 import SvgClose from '../../Assets/icons/Close'
 
-const DeleteButton = ({onClick}) => {
+const DeleteButton = ({onClick,id}) => {
     return (
-            <span className='delete-button' onClick={onClick}><SvgClose /></span>
+            <span className='delete-button' onClick={onClick} id={id}><SvgClose id={id}/></span>
         
     )
 }
