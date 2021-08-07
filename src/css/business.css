@@ -47,6 +47,7 @@
 }
 .menu{
   width: 20px;
+  cursor: pointer;
 }
 .side-nav-bar{
   height:100vh;
@@ -63,7 +64,7 @@
   text-align: end;
   width: 100%;
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
 }
 .close-side-nav-bar{
   align-self:flex-end;
@@ -376,7 +377,4 @@
       background-color: #fff;
       font-family: Arial, Helvetica, sans-serif;
     }
-
-
-
-  }
+}

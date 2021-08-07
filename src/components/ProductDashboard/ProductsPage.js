@@ -97,7 +97,7 @@ const ProductsPage = () => {
                
             </header>
             <div className='desktop-side-nav-bar'>
-             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar/>}
+             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
             </div>
             <div className='businesses-grid'>
             <Products onAdd={onClickAdd} onDelete={onDelete} 

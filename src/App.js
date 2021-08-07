@@ -1,6 +1,6 @@
 import SplashPage from './components/Login_Registration/splashPage'
 // import Stocks from './components/Stocks'
-// import Stocks1 from './components/stocks1'
+import Stocks1 from './components/StocksPage/stocks1'
 // import AddStocks from './components/addStocks'
 import LoginForm from './components/Login_Registration/LoginForm'
 import RegistrationForm from './components/Login_Registration/RegistrationForm'
@@ -10,6 +10,8 @@ import BusinessPage from './components/BusinessesDashboard/BusinessPage'
 import ProductsPage from './components/ProductDashboard/ProductsPage'
 import {useAuth} from './auth/index'
 import Overview from './components/Overview/Overview'
+import AddSales from './components/salesPage/AddSales'
+import AddStocks from './components/StocksPage/AddStocks'
 
 
 
@@ -34,6 +36,9 @@ function App() {
             <Route exact path = '/' component={SplashPage}/>
             <Route exact path = '/login'component={LoginForm}/>
             {/* <Route exact path = '/stocks1'component={Stocks1}/> */}
+            <Route exact path = '/addstocks'component={AddStocks}/>
+            <Route exact path = '/addsales'component={AddSales}/>
+            <Route exact path = '/stocks1'component={Stocks1}/>
             {/* <Route exact path = '/stocks'component={Stocks}/> */}
             {/* <Route exact path = '/addstocks'component={AddStocks}/> */}
 
