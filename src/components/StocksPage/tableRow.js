@@ -2,6 +2,7 @@ import React from 'react'
 import SVGclose from '../../Assets/icons/cancel';
 import {useState} from 'react'
 import DeleteStockList from './deleteStockList';
+import {NavLink} from 'react-router-dom'
 
 function TableRow (props){
   const [deleteStockList,setDeleteStockList] = useState(false)
@@ -13,14 +14,14 @@ function TableRow (props){
    const {rowData} =props;
    const displayRow = rowData.map(eachRow=>{
     return (
-      <div  className="tableRow" key={eachRow.stocks_id}> 
-        <div  className="actual_data" key={eachRow.stocks_id}> 
+     <div  className="tableRow"  key={eachRow.stocks_id}> 
+       <NavLink to="/stockList"  style={{textDecoration:"none"}}>  <div  className="actual_data" key={eachRow.stocks_id}> 
 
         <div className='stock_id'>{eachRow.stock_id}</div>
         <div className='qty'>{eachRow.qty}</div>
         <div className='stock'>{eachRow.total_price}</div>
          <div className='date'>{eachRow.date}</div>
-         </div>
+         </div></NavLink>
         { props.showEdit ?
          <div className='close' onClick={onDelete} ><SVGclose fill='red'/> 
          {deleteStockList ? 
