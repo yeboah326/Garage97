@@ -53,7 +53,7 @@ def create_business_products(client, token, busisness_id):
     for num in range(2):
         response = client.post(
             f"/business/{busisness_id}/product",
-            json={"name": f"Product {num}", "business_id": busisness_id},
+            json={"name": f"Product {num}", "business_id": busisness_id, "description": f"Product description {num}"},
             headers={"Authorization": f"Bearer {token}"},
         )
 
