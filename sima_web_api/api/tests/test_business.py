@@ -132,7 +132,7 @@ def test_business_create_new_product(app, client):
 
     response = client.post(
         f"/business/{id}/product",
-        json={"name": "Product 1", "business_id": id},
+        json={"name": "Product 1", "business_id": id,"description":"Latest model of the business"},
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
@@ -156,6 +156,9 @@ def test_business_get_all_product(app, client):
 
     assert response.status_code == 200
     assert len(response.json) == 2
+    assert "description" in response.json[0]
+    assert "name" in response.json[0]
+    assert "product_id" in response.json[0]
 
 
 # Sale and SaleList
