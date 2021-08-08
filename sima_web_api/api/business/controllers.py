@@ -43,7 +43,7 @@ def business_create_new(current_user):
     try:
         data = request.get_json()
 
-    new_business = Business(name=data["name"],description=data["description"], user_id=current_user.id)
+        new_business = Business(name=data["name"],description=data["description"], user_id=current_user.id)
 
         db.session.add(new_business)
         db.session.commit()
