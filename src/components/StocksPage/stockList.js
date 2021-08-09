@@ -3,7 +3,7 @@ import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
 import { business_id } from "../BusinessesDashboard/Businesses";
-import SVGpencil from "../../Assets/icons/pencil";
+import SVGpencil from "../../Assets/icons/Pencil";
 import TableHead from "./tableHead";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableRow from "./tableRow";
@@ -20,6 +20,8 @@ const StockListPage = () => {
   const [addstockList, setAddStockList] = useState(false);
   const [stocklist, setStockList] = useState([]);
   const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
+  const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
+  const stock_list_id = localStorage.getItem('Stock_List_ID')
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -36,6 +38,31 @@ const StockListPage = () => {
   const onHover = () => {
     setShowFullSideNavBar(!showfullsidenavbar);
   };
+    const fetchStockList = async () => {
+    const response = await fetch(`http://localhost:9000/stock/stock_list/${stock_list_id}`,{
+        method: 'GET',
+        headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Bearer ${token}`
+        }
+    })
+    const res = await response.json()
+    if (response.status === 401){
+        logout()
+        alert('Session has expired')
+    }
+    else if(response.status === 200){
+      console.log(res)
+      setStockList(res)
+    }
+    else{
+        alert(res.message)
+    }
+}
+
+useEffect(()=>{
+  fetchStockList()
+},[])
 
   return (
     <div className="stockListPage stock-body">
@@ -85,10 +112,7 @@ const StockListPage = () => {
       <div className="mobile_stockList table-div  ">
         <TableHead />
         <TableRow
-          rowData={[
-            { stock_id: 23342, qty: 24, total_price: 43, date: "21-09-2020" },
-            { stock_id: 2332, qty: 24, total_price: 43, date: "21-09-2020" },
-          ]}
+          rowData={stocklist}
           showEdit={showEdit}
         />
         <Tfooter/>

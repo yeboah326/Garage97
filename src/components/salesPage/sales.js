@@ -3,7 +3,7 @@ import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
 import { business_id } from "../BusinessesDashboard/Businesses";
-import SVGpencil from "../../Assets/icons/pencil";
+import SVGpencil from "../../Assets/icons/Pencil";
 import SalesHead from "./SalesHead";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableSales from "./tableSales";

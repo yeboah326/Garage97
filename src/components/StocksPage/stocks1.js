@@ -14,8 +14,38 @@ import Tfooter from '../StocksPage/tfooter'
 const StockPage = () => {
   const [showsidenavbar, setShowSideNavBar] = useState(false);
   const [addstockList, setAddStockList] = useState(false);
-  const [stocklist, setStockList] = useState([]);
+  const [stocklists, setStockLists] = useState([]);
   const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
+  const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
+  const business_id = localStorage.getItem('Business')
+
+  const fetchStockLists = async () => {
+        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list`,{
+            method: 'GET',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
+            }
+        })
+        const res = await response.json()
+        if (response.status === 401){
+            logout()
+            alert('Session has expired')
+        }
+        else if(response.status === 200){
+          console.log(res.business_stock_lists)
+            setStockLists(res.business_stock_lists)
+
+        }
+        else{
+            alert(res.message)
+        }
+  }
+
+
+  useEffect(()=>{
+      fetchStockLists()
+},[])
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -44,12 +74,21 @@ const StockPage = () => {
           <SvgMenu fill="#6842ff" />
         </div>
         <div className="divRight">
-          <div className="ad" onClick={onClickAdd}>
-              <Link to="/addstocks">
+          {/* <div className="edit_stockList " onClick={onClickEdit}>
+            <button>
+              {showEdit ? (
+                <SvgDone fill="#6842ff" />
+              ) : (
+                <SVGpencil fill="#6842ff" />
+              )}
+            </button>
+          </div>
+          {/* {showEdit ? ( */}
+            <div className="ad" onClick={onClickAdd}>
+              <Link to="/business/stocks/addstocks">
                 <AddButton />
               </Link>
             </div>
-          
         </div>
       </div>
 
@@ -57,7 +96,7 @@ const StockPage = () => {
      
         
           <div className="ad" onClick={onClickAdd}>
-            <Link to="/addstocks">
+            <Link to="/business/stocks/addstocks">
               <AddButton />
             </Link>
           </div>
@@ -66,10 +105,7 @@ const StockPage = () => {
       <div className="mobile_stockList table-div  ">
         <TableHead />
         <TableRow
-          rowData={[
-            { stock_id: 23342, qty: 24, total_price: 43, date: "21-09-2020" },
-            { stock_id: 2332, qty: 24, total_price: 43, date: "21-09-2020" },
-          ]}
+          rowData={stocklists}
           
         />
         <Tfooter/>

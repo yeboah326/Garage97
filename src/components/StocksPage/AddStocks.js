@@ -8,7 +8,7 @@ import SvgClose from '../../Assets/icons/Close'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import { logout } from '../../auth'
-import { business_id } from '../BusinessesDashboard/Businesses'
+
 
 
 const AddStocks = () => {
@@ -19,6 +19,7 @@ const AddStocks = () => {
     const [stocklist,setStockList] = useState([])
     const [stock,setStock] = useState({product_id:'',quantity:'',buying_price:'',product:''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
+    const business_id = localStorage.getItem('Business')
 
     let width = navwidth ? '220px' : '100px'
 
@@ -66,7 +67,7 @@ const AddStocks = () => {
 }
 
     const fetchProducts = async () => {
-        const response = await fetch(`http://localhost:9000/business/5/product`,{
+        const response = await fetch(`http://localhost:9000/business/${business_id}/product`,{
         method: 'GET',    
         headers:{
                 'Content-Type':'application/json',
@@ -87,7 +88,7 @@ const AddStocks = () => {
     }
 
     const postStockList = async () =>{
-        const data = {'stock_list':stocklist,'business_id':'5'}
+        const data = {'stock_list':stocklist,'business_id':`${business_id}`}
         const response = await fetch('http://localhost:9000/stock/list',{
             method: 'POST',
             headers:{
@@ -97,11 +98,17 @@ const AddStocks = () => {
             body:JSON.stringify(data)
         })
         const res = await response.json()
-        if(response.status === 201){
+        if(stocklist.length === 0){
+            alert('Could not add empty stock')
+        }
+        else if(response.status === 201){
+            alert(res.message)
+        }
+        else if (response.status === 400){
             alert(res.message)
         }
         else{
-            alert('Could not add new sale')
+            alert('Could not add new stock')
         }
     }
 
