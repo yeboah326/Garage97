@@ -35,14 +35,14 @@ function App() {
       <Switch>
      
           <div className='container'>
-            <Route exact path = '/home' component={SplashPage}/>
-            <Redirect from = '/' to='/home'/> 
+            <Route exact path = '/' component={SplashPage}/>
+            {/* <Redirect from = '/' to='/home'/>  */}
             <Route exact path = '/login'component={LoginForm}/>
-            <Route exact path = '/sales'component={SalesListPage}/>
-            <Route exact path = '/addstocks'component={AddStocks}/>
+            {/* <Route exact path = '/stocks1'component={Stocks1}/> */}
+            
             <Route exact path = '/addsales'component={AddSales}/>
-            <Route exact path = '/stocks1'component={StockPage}/>
-            <Route exact path = '/stockList'component={StockListPage}/>
+            
+            {/* <Route exact path = '/stocks'component={Stocks}/> */}
             {/* <Route exact path = '/addstocks'component={AddStocks}/> */}
 
 
@@ -50,8 +50,12 @@ function App() {
             <Route exact path = '/register' component={RegistrationForm}/>
             {/* <PrivateRoute exact path = '/home' component={BusinessesDashboard}/>  */}
             <PrivateRoute exact  path = '/businesses' component={BusinessPage}/>
-            <PrivateRoute path='/business/products' component={ProductsPage}/>
-            <PrivateRoute path='/business/overview' component={Overview}/>
+            <PrivateRoute exact path='/business/products' component={ProductsPage}/>
+            <PrivateRoute exact path='/business/overview' component={Overview}/>
+            <PrivateRoute exact path = '/business/stocks'component={StockPage}/>
+            <PrivateRoute exact path = '/business/stocks/addstocks'component={AddStocks}/>
+            <PrivateRoute exact path = '/business/stocks/stocklist'component={StockListPage}/>
+
           </div>
             
         
