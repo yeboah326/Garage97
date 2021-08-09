@@ -18,6 +18,17 @@ const RegistrationForm = () => {
         }))
     }
 
+    const fetchUser = async (user_id)=> {
+        const response = await fetch(`http://localhost:9000/users/${user_id}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        const res = await response.json()
+        localStorage.setItem('User',JSON.stringify(res))
+    }
+
     const Login = async () => {
         const details = {
             'email': user['email'],
@@ -32,6 +43,7 @@ const RegistrationForm = () => {
         })
         const res = await response.json()
         if (res.token){
+            fetchUser(res.public_id)
             login(res.token)
         }
         setUser({'name':'','email':'','password':'',"confirm-password":''})

@@ -10,10 +10,21 @@ import SvgBack from '../../Assets/icons/Back'
 
 const LoginForm = () => {
     const [details,setDetails] = useState({'email':'','password':''})
-    const [logged] = useAuth()
+    const [logged] = useAuth() 
     
     
-
+    const fetchUser = async (user_id)=> {
+        const response = await fetch(`http://localhost:9000/users/${user_id}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        const res = await response.json()
+        console.log(res)
+        localStorage.setItem('User',JSON.stringify(res))
+        console.log(localStorage.getItem('User'))
+    }
     const onSubmitClick = async (e) => {
         e.preventDefault()
         const data = {
@@ -29,14 +40,14 @@ const LoginForm = () => {
         })
         const res = await response.json()
         if(res.token){
-           localStorage.setItem('User',res.public_id)
-            login(res.token)
+           fetchUser(res.public_id)
+           login(res.token)
         }
         // if(response.status === 200){
         //     alert('User successfully Logged in')
         // }
         else{
-            throw new Error(`Request failed:${response.status}`)
+            alert(res.message)
         }
         
     }
