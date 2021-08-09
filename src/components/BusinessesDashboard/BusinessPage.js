@@ -34,6 +34,9 @@ const BusinessPage = () => {
             logout()
             alert('Session has expired')
         }
+        else if(response.status === 400){
+            alert(res.message)
+        }
         else{
             setBusinesses(res)
         }

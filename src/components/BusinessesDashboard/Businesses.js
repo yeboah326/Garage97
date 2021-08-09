@@ -4,10 +4,7 @@ import {Redirect} from 'react-router-dom'
 
 
 
-
-
-export let business_id;
-const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDelete,deletebusiness,onAdd,getId}) => {
+const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDelete,onAdd,getId}) => {
 
 
 
@@ -23,10 +20,10 @@ const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDe
     //     return ;
     // },[businesses])
 
-    const selectBusiness = (id) => {
+    const selectBusiness = (id,name) => {
         setBusinessSelect(true)
-        getId(id)
-        business_id = id
+        localStorage.setItem('Business',id)
+        localStorage.setItem('business_name',name)
     }
 
 
@@ -43,7 +40,7 @@ const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDe
                 <div className="businesses">
                     {businesses.map(business => {
                         return(
-                        <Business name={business.name} description={business.description} showDelete={()=>{showDelete(business.id)}} id={business.id} onClick={()=>{selectBusiness(business.id)}}/>
+                        <Business name={business.name} description={business.description} showDelete={()=>{showDelete(business.id)}} id={business.id} onClick={()=>{selectBusiness(business.id,business.name)}}/>
                         )
                         })
             }
