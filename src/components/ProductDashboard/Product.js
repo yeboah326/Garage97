@@ -1,6 +1,6 @@
 import React from 'react'
 import DeleteButton from './DeleteButton'
-import { logout } from '../../auth'
+
 
 const Product = ({name,description,showDelete,id}) => {
 

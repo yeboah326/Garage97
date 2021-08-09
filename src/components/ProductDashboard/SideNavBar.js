@@ -14,27 +14,13 @@ import { logout } from '../../auth'
 
 
 const SideNavBar = ({onClick,onHover,navwidth}) => {
-    const [user,setUser] = useState({})
-    const user_id = localStorage.getItem('User')
-    const fetchUser = async ()=> {
-        const response = await fetch(`http://localhost:9000/users/${user_id}`,{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json'
-            }
-        })
-
-        const res = await response.json()
-        setUser(res)
-    }
-    useEffect(()=>{
-        fetchUser()
-    },[])
+    const user = JSON.parse(localStorage.getItem('User'))
+    const business_name = localStorage.getItem('business_name')
     return (
         <div className="side-nav-bar" onMouseOut={onHover} style={{width:{navwidth}}}>
             <div className='close-side-nav-bar' onClick={onClick}><button>x</button></div>
-            <Avatar name={user.name} image="" business='Kako Inc'/>
-            <div className='option main'><NavLink  to='/business/overview' className='options-link-1' activeClassName='active'><SvgHome fill='#c0c0c0'/><Options optionName="Home"/></NavLink></div>
+            <Avatar name={user.name} image="" business={business_name}/>
+            <div className='option main'><NavLink  to='/business/overview' className='options-link-1' activeClassName='active'><SvgHome fill='#c0c0c0'/><Options optionName="Dashboard"/></NavLink></div>
             <div className='option main'><NavLink  to='/businesses' className='options-link-1' activeClassName='active'><SvgBriefcase fill='#c0c0c0'/><Options optionName="Businesses"/></NavLink></div>
             <div className='option main'><NavLink  to='/business/products' className='options-link-1' activeClassName='active'><SvgBoxThin fill='#c0c0c0'/><Options optionName="Products"/></NavLink></div>
             <div className='option main'><NavLink  to='/business/stocks' className='options-link-1' activeClassName='active'><SvgDelivery fill='#c0c0c0'/><Options optionName="Stock"/></NavLink></div>
