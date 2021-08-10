@@ -4,9 +4,9 @@ import "../../css/business.css";
 import { logout } from "../../auth/index";
 import { business_id } from "../BusinessesDashboard/Businesses";
 import SVGpencil from "../../Assets/icons/Pencil";
-import TableHead from "./tableHead";
+import TableHead from "./tableHead2";
 import SideNavBar from "../ProductDashboard/SideNavBar";
-import TableRow from "./tableRow";
+import TableRow from "./tableRow2";
 import AddButton from "../ProductDashboard/AddButton";
 import AddStocks from "./AddStocks";
 import SideNavBar2 from "../ProductDashboard/SideNavBar2";
@@ -102,7 +102,7 @@ useEffect(()=>{
         </button>
         {showEdit ? (
           <div className="ad" onClick={onClickAdd}>
-            <Link to="/addstocks">
+            <Link to="/business/stocks/addstocks">
               <AddButton />
             </Link>
           </div>

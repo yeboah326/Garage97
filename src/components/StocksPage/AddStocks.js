@@ -8,6 +8,8 @@ import SvgClose from '../../Assets/icons/Close'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import { logout } from '../../auth'
+import { business_id } from '../BusinessesDashboard/Businesses'
+
 
 
 
