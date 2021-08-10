@@ -1,10 +1,11 @@
 /* base styles */
 
 .stockListPage {
-    min-width: 100%;
+    min-width: 150vw;
     min-height: 100vh;
     background-color: #f0f3f5;
     font-family: PoppinsRegular;
+    justify-content: flex-end;
 
 }
 
@@ -16,10 +17,16 @@ h1 {
 
 }
 
-.actual_data {
+
+
+     
+.actual_data,
+.actual_data_2 {
     background-color: #e2e7f9;
     border-radius: 30px;
+    text-decoration: none;
 }
+
 
 .left-stuck {
     position: sticky;
@@ -34,6 +41,8 @@ h1 {
     margin-left: auto;
     display: flex;
     align-items: center;
+    position: fixed;
+     left: 350px;
 }
 
 .close {
@@ -41,6 +50,9 @@ h1 {
     align-self: center;
 
 }
+.menu{
+    position: fixed;
+    }
 
 
 /* mobile */
@@ -50,8 +62,9 @@ h1 {
     padding-left: 10px;
     padding-top: 20px;
     align-items: center;
+    height: 50px;
 
-}
+    }
 
 /* .edit_stockList {
     position: sticky;
@@ -90,7 +103,7 @@ h1 {
     height: fit-content;
     width: 600px;
     background-color: #fff;
-
+    overflow-x: auto;
 }
 
 .ad .add-button button {
@@ -118,6 +131,26 @@ table th,
     /* align-items: flex-start; */
     margin-bottom: 20px;
 }
+.table_2 th,
+.actual_data_2,
+.tableHead_2{
+    padding: 20px 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    font-family: PoppinsBold;
+    color: #273475;
+    margin-bottom: 20px; 
+}
+/* .tableRow_2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+     align-items: center;
+    padding: 10px 30px;
+    color: #000;
+    font-family: PoppinsRegular;
+} */
+
+
 
 .tableRow {
     display: grid;
@@ -128,8 +161,31 @@ table th,
     font-family: PoppinsRegular;
 }
 
-.tableRow .actual_data {
+.tableRow .actual_data ,
+  .tableRow_2 .actual_data_2{
     align-self: flex-end;
+}
+
+.Tfooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    cursor: grabbing;
+}
+
+.greater,
+.lesser {
+    color: #6880fe;
+    padding: 2px;
+    margin: 2px;
+}
+
+.page_id {
+    width: 34px;
+    background-color: #6880fe;
+    text-align: center;
+    border-radius: 7px;
 }
 
 #table-div,
@@ -137,7 +193,8 @@ table th,
 #table,
 #sidebar,
 .desktop-side-nav-bar,
-.edit {
+.edit ,
+.divdown{
     display: none;
 }
 
@@ -151,10 +208,13 @@ table th,
     .mobile_stockList,
     .left-stuck,
     .adderForMobStocks,
-    .edit_stockList {
+    .edit_stockList ,
+    .stockListPage{
         display: none;
     }
-
+    .stockListPage{
+        min-width: 100vw;
+    }
     .stock-body {
         display: flex;
         flex-direction: row-reverse;
@@ -223,27 +283,7 @@ table th,
     }
 
 
-    .Tfooter {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 15px;
-        cursor: grabbing;
-    }
-
-    .greater,
-    .lesser {
-        color: #6880fe;
-        padding: 2px;
-        margin: 2px;
-    }
-
-    .page_id {
-        width: 34px;
-        background-color: #6880fe;
-        text-align: center;
-        border-radius: 7px;
-    }
+   
 
     .table-div:last-child {
         position: absolute;

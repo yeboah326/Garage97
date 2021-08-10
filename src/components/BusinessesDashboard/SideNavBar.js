@@ -7,22 +7,8 @@ import {logout} from '../../auth/index'
 
 
 const SideNavBar = ({onClick,navwidth,onHover}) => {
-    const [user,setUser] = useState({})
-    const user_id = localStorage.getItem('User')
-    const fetchUser = async ()=> {
-        const response = await fetch(`http://localhost:9000/users/${user_id}`,{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json'
-            }
-        })
+    const user = JSON.parse(localStorage.getItem('User'))
 
-        const res = await response.json()
-        setUser(res)
-    }
-    useEffect(()=>{
-        fetchUser()
-    },[])
 
     return (
         <div className="side-nav-bar" style={{width:{navwidth}}} onMouseOut={onHover}>

@@ -15,7 +15,10 @@ product = Blueprint(
 
 @product.route("/hello")
 def product_hello():
-    return jsonify({"message": "Hello"}), 200
+    try:
+        return jsonify({"message": "Product blueprint working"}), 200
+    except:
+        return jsonify({"message":"Could not process request"}), 400
 
 
 @product.route("/<product_id>", methods=["GET"])
@@ -28,10 +31,12 @@ def product_get_by_id(current_user, product_id):
 
     for getting a product by the id
     """
-    product = Product.query.filter_by(id=product_id).first()
-    product_json = {"name": product.name}
-    return jsonify(product_json), 200
-
+    try:
+        product = Product.query.filter_by(id=product_id).first()
+        product_json = {"name": product.name,"description": product.description}
+        return jsonify(product_json), 200
+    except:
+        return jsonify({"message":"Could not process request"}), 400
 
 @product.route("/<product_id>", methods=["DELETE"])
 @token_required
@@ -43,13 +48,13 @@ def product_delete_by_id(current_user, product_id):
 
     for deleting a product by the id
     """
-    product = Product.query.filter_by(id=product_id).first()
-
-    if product:
+    try:
+        product = Product.query.filter_by(id=product_id).first()
         db.session.delete(product)
         db.session.commit()
         return jsonify({"message": "Product deleted successfully"}), 200
-    return jsonify({"messsage": "Error product not deleted"}), 400
+    except:
+        return jsonify({"messsage": "Could not process request"}), 400
 
 
 @product.route("/<product_id>", methods=["PUT"])
@@ -62,9 +67,9 @@ def product_update_by_id(current_user, product_id):
 
     For updating a product by the id
     """
-    product = Product.query.filter_by(id=product_id).first()
+    try:
+        product = Product.query.filter_by(id=product_id).first()
 
-    if product:
         data = request.get_json()
 
         try:
@@ -72,10 +77,16 @@ def product_update_by_id(current_user, product_id):
                 product.name = data["name"]
         except KeyError:
             pass
+        try:
+            if data["description"]:
+                product.name = data["description"]
+        except KeyError:
+            pass
 
         db.session.commit()
         return jsonify({"message": "Product info updated successfully"}), 200
-    return jsonify({"message": "Product not found"}), 400
+    except:
+        return jsonify({"message":"Could not process request"}), 400
 
 
 # ----- Sale -----
@@ -91,22 +102,25 @@ def product_get_all_sale(current_user, product_id):
 
     For getting all product sales
     """
-    product_sales = Sale.query.filter_by(product_id=product_id)
-    product_sales_json = [
-        {
-            "id": sale.id,
-            "quantity": sale.quantity,
-            "selling_price": str(sale.selling_price),
-            "created_on": sale.created_on,
-        }
-        for sale in product_sales
-    ]
+    try:
+        product_sales = Sale.query.filter_by(product_id=product_id)
+        product_sales_json = [
+            {
+                "id": sale.id,
+                "quantity": sale.quantity,
+                "selling_price": str(sale.selling_price),
+                "created_on": sale.created_on,
+            }
+            for sale in product_sales
+        ]
 
-    product_sales_json = {
-        "product": Product.query.filter_by(id=product_id).first().name,
-        "product_sales": product_sales_json,
-    }
-    return jsonify(product_sales_json), 200
+        product_sales_json = {
+            "product": Product.query.filter_by(id=product_id).first().name,
+            "product_sales": product_sales_json,
+        }
+        return jsonify(product_sales_json), 200
+    except:
+        return jsonify({"message":"Could not process request"}),400
 
 
 @product.route("/<product_id>/stock")
@@ -119,22 +133,25 @@ def product_get_all_stock(current_user, product_id):
 
     For getting all product stocks
     """
-    product_stocks = Stock.query.filter_by(product_id=product_id)
-    product_stocks_json = [
-        {
-            "id": stock.id,
-            "quantity": stock.quantity,
-            "buying_price": str(stock.buying_price),
-            "created_on": stock.created_on,
-        }
-        for stock in product_stocks
-    ]
+    try:
+        product_stocks = Stock.query.filter_by(product_id=product_id)
+        product_stocks_json = [
+            {
+                "id": stock.id,
+                "quantity": stock.quantity,
+                "buying_price": str(stock.buying_price),
+                "created_on": stock.created_on,
+            }
+            for stock in product_stocks
+        ]
 
-    product_stocks_json = {
-        "product": Product.query.filter_by(id=product_id).first().name,
-        "product_stocks": product_stocks_json,
-    }
-    return jsonify(product_stocks_json), 200
+        product_stocks_json = {
+            "product": Product.query.filter_by(id=product_id).first().name,
+            "product_stocks": product_stocks_json,
+        }
+        return jsonify(product_stocks_json), 200
+    except:
+        return jsonify({"message":"Could not processs request"}), 400
 
 
 @product.route("/<product_id>/sale", methods=["DELETE"])
@@ -147,8 +164,9 @@ def product_delete_all_sale(current_user, product_id):
 
     deletes all product sales
     """
-    product_sales = Sale.query.filter_by(product_id=product_id).delete()
-    if product_sales:
+    try:
+        product_sales = Sale.query.filter_by(product_id=product_id).delete()
         db.session.commit()
         return jsonify({"message": "Sales deleted successfully"}), 200
-    return jsonify({"message": "Error sales not deleted"}), 400
+    except:
+        return jsonify({"message":"Could not processs request"}), 400

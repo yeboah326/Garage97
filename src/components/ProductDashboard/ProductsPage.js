@@ -5,10 +5,10 @@ import Products from './Products'
 import SvgMenu from '../../Assets/icons/Menu'
 import AddButton from './AddButton'
 import AddProducts from './AddProducts'
-import DeleteProduct from './DeleteProduct'
 import '../../css/business.css'
 import {logout} from '../../auth/index'
-import { business_id } from '../BusinessesDashboard/Businesses'
+import DeleteProduct from './DeleteProduct'
+
 
 
 const ProductsPage = () => {
@@ -16,12 +16,13 @@ const ProductsPage = () => {
     const [showAdd,setShowAdd] = useState(false)
     const [products,setProducts] = useState([])
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-    const [deletebusiness,setDeleteBusiness] = useState(false)
+    const [deleteproduct,setDeleteProduct] = useState(false)
     const [showfullsidenavbar,setShowFullSideNavBar] = useState(false)
-    const [id,setId ] = useState(null)
+    const [id,setId ] = useState('')
+    const business = localStorage.getItem('Business')
 
     const fetchData = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/product`,{
+        const response = await fetch(`http://localhost:9000/business/${business}/product`,{
         method: 'GET',    
         headers:{
                 'Content-Type':'application/json',
@@ -36,9 +37,10 @@ const ProductsPage = () => {
         }
         else{
             setProducts(res)
-            console.log(res)
         }
     }
+
+    
 
     useEffect(()=>{
     fetchData()
@@ -57,11 +59,12 @@ const ProductsPage = () => {
     }
 
     const onDelete = () => {
-        setDeleteBusiness(!deletebusiness)
-    }
+        setDeleteProduct(!deleteproduct)
+    } 
 
     const getId = (id)=>{
-        return setId(id)
+        setId(id)
+        console.log(id)
     }
 
     const onHover = () => {
@@ -76,6 +79,12 @@ const ProductsPage = () => {
             </div> :
             null
             }
+            {deleteproduct ? 
+            <div className='popup'>
+                <DeleteProduct onClick={onDelete} fetchData={fetchData} id={id}/>
+            </div> :
+            null
+            }
             {
                 showAdd ? 
                 <div className='popup'>
@@ -83,12 +92,6 @@ const ProductsPage = () => {
                 </div>
                 :
                 null
-            }
-            {deletebusiness ? 
-            <div className='popup'>
-                <DeleteProduct onClick={onDelete} fetchData={fetchData} id={id}/>
-            </div> :
-            null
             }
             <div className='container-businesses'>
             <header>
@@ -100,12 +103,8 @@ const ProductsPage = () => {
              {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
             </div>
             <div className='businesses-grid'>
-            <Products onAdd={onClickAdd} onDelete={onDelete} 
-            setDeleteBusiness={()=>{setDeleteBusiness(!deletebusiness)}}
-            products={products}
-            fetchData={fetchData}
-            getId={getId}
-            />
+            <Products onAdd={onClickAdd} products={products} fetchData={fetchData} 
+            getId={getId} onDelete={onDelete}/>
             <div className='desktop-add'><AddButton toggle={onClickAdd}/></div>
             </div>
             

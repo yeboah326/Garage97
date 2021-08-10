@@ -4,11 +4,9 @@ import Product from './Product'
 
 
 
-const Products = ({products,fetchData,onDelete,onAdd,getId}) => {
 
-
-
-
+const Products = ({products,fetchData,onAdd,onClick,getId,onDelete}) => {
+    
     const showDelete = (id) =>{
         onDelete()
         getId(id)
@@ -26,7 +24,6 @@ const Products = ({products,fetchData,onDelete,onAdd,getId}) => {
     // const description = "Production and distribution of genetically modified Kako across the 16 regions of Ghana."
     return (
         <div className="business-section">
-            
             {products.length === 0 ? 
                 <div className="no-business" onClick={onAdd}>
                     <p>No products added yet? Click to add product</p>
@@ -34,11 +31,12 @@ const Products = ({products,fetchData,onDelete,onAdd,getId}) => {
                 <div className="businesses">
                     {products.map(product => {
                         return(
-                        <Product name={product.name} description={product.description} showDelete={()=>{showDelete(product.id)}} id={product.id}/>
+                        <Product name={product.name} description={product.description}  id={product.product_id} 
+                        onClick={onClick} fetchData={fetchData} showDelete={()=>{showDelete(product.product_id)}}/>
                         )
                         })
-            }
-            </div>
+                }
+                </div>
             }
         </div> 
         

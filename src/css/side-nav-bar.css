@@ -104,7 +104,7 @@
   }
   .option .active svg{
     fill:#6880fe;
-    stroke: #6880fe;
+    /* stroke: #6880fe; */
   }
   .options .active{
     align-self: center;

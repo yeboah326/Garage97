@@ -2,7 +2,6 @@ import React from 'react'
 import SVGclose from '../../Assets/icons/cancel';
 import {useState} from 'react'
 import DeleteStockList from './deleteStockList';
-import {NavLink} from 'react-router-dom'
 
 function TableRow (props){
   const [deleteStockList,setDeleteStockList] = useState(false)
@@ -14,19 +13,18 @@ function TableRow (props){
    const {rowData} =props;
    const displayRow = rowData.map(eachRow=>{
     return (
-     <div  className="tableRow"  key={eachRow.stocks_id} > 
-       <NavLink to="/business/stocks/stocklist"  style={{textDecoration:"none"}}>  <div  className="actual_data" key={eachRow.id} onClick={()=>{localStorage.setItem('Stock_List_ID',eachRow.id)}}> 
+      <div  className="tableRow_2" key={eachRow.product_id}> 
+        <div  className="actual_data_2" key={eachRow.product_id}> 
 
-        <div className='stock_id'>{eachRow.id}</div>
-        <div className='qty'>{eachRow.total_quantity}</div>
-        <div className='stock'>{eachRow.total_buying_price}</div>
-         <div className='date'>{eachRow.created_on}</div>
-         </div></NavLink>
+        <div className='sale_id'>{eachRow.product}</div>
+        <div className='qty'>{eachRow.quantity}</div>
+        <div className='total_pice'>{eachRow.buying_price}</div>
+         </div>
         { props.showEdit ?
          <div className='close' onClick={onDelete} ><SVGclose fill='red'/> 
          {deleteStockList ? 
             <div className='pop'>
-                <DeleteStockList onClick={onDelete}  id={eachRow.stocks_id}/>
+                <DeleteStockList onClick={onDelete}  id={eachRow.product_id}/>
             </div> :
             null
             } 
@@ -40,7 +38,7 @@ function TableRow (props){
    })
 
    return (
-     <div className="table">{displayRow}</div>
+     <div className="table_2">{displayRow}</div>
    )
 
    

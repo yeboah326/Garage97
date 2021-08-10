@@ -3,23 +3,49 @@ import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
 import { business_id } from "../BusinessesDashboard/Businesses";
-import SVGpencil from "../../Assets/icons/pencil";
 import TableHead from "./tableHead";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableRow from "./tableRow";
 import AddButton from "../ProductDashboard/AddButton";
-import AddStocks from "./AddStocks";
 import SideNavBar2 from "../ProductDashboard/SideNavBar2";
-import SvgDone from "../../Assets/icons/Done";
 import { Link } from "react-router-dom";
 import Tfooter from '../StocksPage/tfooter'
 
-const StockListPage = () => {
+const StockPage = () => {
   const [showsidenavbar, setShowSideNavBar] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
   const [addstockList, setAddStockList] = useState(false);
-  const [stocklist, setStockList] = useState([]);
+  const [stocklists, setStockLists] = useState([]);
   const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
+  const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
+  const business_id = localStorage.getItem('Business')
+
+  const fetchStockLists = async () => {
+        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list`,{
+            method: 'GET',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
+            }
+        })
+        const res = await response.json()
+        if (response.status === 401){
+            logout()
+            alert('Session has expired')
+        }
+        else if(response.status === 200){
+          console.log(res.business_stock_lists)
+            setStockLists(res.business_stock_lists)
+
+        }
+        else{
+            alert(res.message)
+        }
+  }
+
+
+  useEffect(()=>{
+      fetchStockLists()
+},[])
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -27,9 +53,8 @@ const StockListPage = () => {
   const onClickClose = () => {
     setShowSideNavBar(!showsidenavbar);
   };
-  const onClickEdit = () => {
-    setShowEdit(!showEdit);
-  };
+
+  
   const onClickAdd = () => {
     setAddStockList(!addstockList);
   };
@@ -49,7 +74,7 @@ const StockListPage = () => {
           <SvgMenu fill="#6842ff" />
         </div>
         <div className="divRight">
-          <div className="edit_stockList " onClick={onClickEdit}>
+          {/* <div className="edit_stockList " onClick={onClickEdit}>
             <button>
               {showEdit ? (
                 <SvgDone fill="#6842ff" />
@@ -58,38 +83,30 @@ const StockListPage = () => {
               )}
             </button>
           </div>
-          {showEdit ? (
+          {/* {showEdit ? ( */}
             <div className="ad" onClick={onClickAdd}>
-              <Link to="/addstocks">
+              <Link to="/business/stocks/addstocks">
                 <AddButton />
               </Link>
             </div>
-          ) : null}
-        </div>{" "}
+        </div>
       </div>
 
-      {/* <div className="divdown"> */}
-      <div className="edit" onClick={onClickEdit}>
-        <button>
-          {showEdit ? <SvgDone fill="#6842ff" /> : <SVGpencil fill="#6842ff" />}
-        </button>
-        {showEdit ? (
+      <div className="divdown">
+     
+        
           <div className="ad" onClick={onClickAdd}>
-            <Link to="/addstocks">
+            <Link to="/business/stocks/addstocks">
               <AddButton />
             </Link>
           </div>
-        ) : null}
-      </div>
-      {/* </div> */}
+       </div>
+      
       <div className="mobile_stockList table-div  ">
         <TableHead />
         <TableRow
-          rowData={[
-            { stock_id: 23342, qty: 24, total_price: 43, date: "21-09-2020" },
-            { stock_id: 2332, qty: 24, total_price: 43, date: "21-09-2020" },
-          ]}
-          showEdit={showEdit}
+          rowData={stocklists}
+          
         />
         <Tfooter/>
       </div>
@@ -104,4 +121,4 @@ const StockListPage = () => {
   );
 };
 
-export default StockListPage;
+export default StockPage;

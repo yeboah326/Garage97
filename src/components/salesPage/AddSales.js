@@ -9,6 +9,8 @@ import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import { business_id } from '../BusinessesDashboard/Businesses'
 import { logout } from '../../auth'
+import SalesHead from './SalesHead2'
+import TableSales from './tableSales2'
 
 
 const AddSales = () => {
@@ -150,33 +152,11 @@ const AddSales = () => {
                     <div className='customer-input-form'>
                         <Input label='Customer Name' required='required' type='text' name='customer_name' onChange={handleChange}/>
                         <Input label='Customer Contact' required='required' type='tel' name='customer_contact' onChange={handleChange}/>
+                        
                     </div>
                 </div>
-                <div className='stock-product-list'>
-                    <div className='table-head'>
-                        <span className='product'>Product</span>
-                        <span className='quantity'>Quantity</span>
-                        <span className='price'>Unit Price</span>
-                    </div>
-                    <div className='table-body'>
-                        {
-                            salelist.map(sale=>{
-                                return(
-                                    <div className='sale-list-item'>
-                                        <div className='sale'>
-                                            <span className='product'>{sale.product}</span>
-                                            <span className='quantity'>{sale.quantity}</span>
-                                            <span className='price'>{sale.selling_price}</span>
-                                        </div>
-                                        <div className='close' onClick={onDelete} id={salelist.indexOf(sale)}><SvgClose fill='#E6B0B0'id={salelist.indexOf(sale)}/></div>
-                                    </div>
-                                
-                                )
-                            })
-                        }
-                    </div>
-
-                </div>
+              <SalesHead />
+              <TableSales rowData={salelist}/>
             </main>
             <div className='done desktop-done' onClick={postSaleList}><SvgDone fill='#6842ff' stroke='#6842ff'/></div>
         </div>

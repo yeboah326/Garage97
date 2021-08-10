@@ -25,8 +25,10 @@ def hello(current_user):
 
     To test if the module is working
     """
-    return jsonify({"message": "Business Blueprint Created successfully"}), 200
-
+    try:
+        return jsonify({"message": "Business Blueprint Created successfully"}), 200
+    except:
+        return jsonify({"message": "Could not process request"}), 400
 
 @business.route("", methods=["POST"])
 @token_required
@@ -38,13 +40,16 @@ def business_create_new(current_user):
 
     To send data
     """
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    new_business = Business(name=data["name"],description=data["description"], user_id=current_user.id)
+        new_business = Business(name=data["name"],description=data["description"], user_id=current_user.id)
 
-    db.session.add(new_business)
-    db.session.commit()
-    return jsonify({"message": "New business successfully created"}), 201
+        db.session.add(new_business)
+        db.session.commit()
+        return jsonify({"message": "New business successfully created"}), 201
+    except:
+        return jsonify({"message": "Could not process request"}), 400
 
 
 @business.route("", methods=["GET"])
@@ -57,11 +62,14 @@ def business_get_all(current_user):
 
     To test if the module is working
     """
-    businesses = Business.query.filter_by(user_id=current_user.id)
-    businesses_json = [
-        {"id": business.id, "name": business.name,"description":business.description} for business in businesses
-    ]
-    return jsonify(businesses_json), 200
+    try:
+        businesses = Business.query.filter_by(user_id=current_user.id)
+        businesses_json = [
+            {"id": business.id, "name": business.name,"description":business.description} for business in businesses
+        ]
+        return jsonify(businesses_json), 200
+    except:
+        return jsonify({"message": "Could not process thee request"}), 400
 
 
 @business.route("/<business_id>", methods=["GET"])
@@ -74,11 +82,12 @@ def business_get_by_id(current_user, business_id):
 
     To test if the module is working
     """
-    business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
-    if business:
+    try:
+        business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
         business_json = {"name": business.name,"description":business.description}
         return jsonify(business_json), 200
-    return jsonify({"message": "Business not found"}), 404
+    except:
+        return jsonify({"message": "Could not process request"}), 400
 
 
 @business.route("/<business_id>", methods=["PUT"])
@@ -91,19 +100,22 @@ def business_update_info(current_user, business_id):
 
     Updates existing resources
     """
-    business = Business.query.filter_by(id=business_id, user_id=current_user.id).first()
-
-    data = request.get_json()
-
     try:
-        if data["name"]:
-            business.name = data["name"]
-    except KeyError:
-        pass
+        business = Business.query.filter_by(id=business_id, user_id=current_user.id).first()
 
-    db.session.commit()
+        data = request.get_json()
 
-    return jsonify({"message": "User info updated successfully"}), 200
+        try:
+            if data["name"]:
+                business.name = data["name"]
+        except KeyError:
+            pass
+
+        db.session.commit()
+
+        return jsonify({"message": "User info updated successfully"}), 200
+    except:
+        return jsonify({"message": "Could not process request"}), 400
 
 
 # TODO: Implement later
@@ -117,9 +129,12 @@ def business_delete_all(current_user):
 
     Deletes resource
     """
-    businesses = Business.query.filter_by(user_id=current_user.id).delete()
-    db.session.commit()
-    return jsonify({"message": "Businesses deleted successfully"}), 200
+    try:
+        businesses = Business.query.filter_by(user_id=current_user.id).delete()
+        db.session.commit()
+        return jsonify({"message": "Businesses deleted successfully"}), 200
+    except:
+        return jsonify({"message": "Could not process request"}), 400
 
 
 @business.route("/<business_id>", methods=["DELETE"])
@@ -132,12 +147,13 @@ def business_delete_by_id(current_user, business_id):
 
     Deletes resource
     """
-    business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
-    if business:
+    try:
+        business = Business.query.filter_by(user_id=current_user.id, id=business_id).first()
         db.session.delete(business)
         db.session.commit()
         return jsonify({"message": "Business deleted"}), 200
-    return jsonify({"message": "Business not found"}), 404
+    except:
+        return jsonify({"message": "Could not process request"}), 400
 
 
 # Product related views
@@ -151,9 +167,12 @@ def business_get_all_product(current_user, business_id):
 
     To test if the module is working
     """
-    business_products = Product.query.filter_by(business_id=business_id)
-    business_products_json = [{"product_id":product.id,"name": product.name} for product in business_products]
-    return jsonify(business_products_json), 200
+    try:
+        business_products = Product.query.filter_by(business_id=business_id)
+        business_products_json = [{"product_id":product.id,"name": product.name, "description":product.description} for product in business_products]
+        return jsonify(business_products_json), 200
+    except:
+        return jsonify({"message":"Could not process request"}), 400
 
 
 @business.route("/<business_id>/product", methods=["POST"])
@@ -166,22 +185,25 @@ def busines_create_new_product(current_user, business_id):
 
     To send data
     """
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    new_product = Product(name=data["name"], business_id=business_id)
+        new_product = Product(name=data["name"],description=data["description"], business_id=business_id)
 
-    db.session.add(new_product)
-    db.session.commit()
+        db.session.add(new_product)
+        db.session.commit()
 
-    return jsonify({"message": "Product created successfully"}), 201
+        return jsonify({"message": "Product created successfully"}), 201
+    except:
+        return jsonify({"message":"Could not process request"}), 400
+
 
 # Sale and SaleList
 @business.route("/<business_id>/sale_list",methods=["GET"])
 @token_required
 def business_get_all_sale_list(current_user, business_id):
-    business_sale_lists = SaleList.query.filter_by(business_id=business_id)
-
-    if business_sale_lists:
+    try:
+        business_sale_lists = SaleList.query.filter_by(business_id=business_id)
         business_sale_lists_json = [
             {
                 "id": sale_list.id,
@@ -197,22 +219,26 @@ def business_get_all_sale_list(current_user, business_id):
             "business_sale_lists": business_sale_lists_json,
         }
 
-        return jsonify(business_sale_lists_json)
+        return jsonify(business_sale_lists_json), 200
+    except:
+        return jsonify({"message":"Could not process request"}), 400
 
 @business.route("/<business_id>/sale_list",methods=["DELETE"])
 @token_required
 def business_delete_all_sale_list(current_User,business_id):
-    SaleList.query.filter_by(business_id=business_id).delete()
-    return jsonify({"message":f"All salelist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}), 200
-
+    try:
+        SaleList.query.filter_by(business_id=business_id).delete()
+        return jsonify({"message":f"All salelist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}), 200
+    except:
+        return jsonify({"message":"Could not process request"}), 400
 
 # Stock and StockList
 @business.route("/<business_id>/stock_list",methods=["GET"])
 @token_required
 def business_get_all_stock_list(current_user, business_id):
-    business_stock_lists = StockList.query.filter_by(business_id=business_id)
+    try:
+        business_stock_lists = StockList.query.filter_by(business_id=business_id)
 
-    if business_stock_lists:
         business_stock_lists_json = [
             {
                 "id": stock_list.id,
@@ -229,10 +255,14 @@ def business_get_all_stock_list(current_user, business_id):
         }
 
         return jsonify(business_sale_lists_json), 200
-
+    except:
+        return jsonify({"message":"Could not process request"}), 400
 
 @business.route("/<business_id>/stock_list",methods=["DELETE"])
 @token_required
 def business_delete_all_stock_list(current_user, business_id):
-    StockList.query.filter_by(business_id=business_id).delete()
-    return jsonify({"message":f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}), 200
+    try:
+        StockList.query.filter_by(business_id=business_id).delete()
+        return jsonify({"message":f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}), 200
+    except:
+        return jsonify({"message":"Could not process request"}), 400

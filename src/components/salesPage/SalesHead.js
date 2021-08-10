@@ -5,8 +5,9 @@ const SalesHead = () => {
       <div className='table'>
        <div  className="tableHead">
         <div className='sale_id'>sale_id</div>
-        <div className='sale'>sale</div>
         <div className='qty'>qty</div>
+        <div className='total_price'>total price</div>
+
         <div className='date'>date</div>
 
       </div>

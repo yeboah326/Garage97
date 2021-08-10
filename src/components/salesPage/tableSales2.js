@@ -13,19 +13,18 @@ function TableSales (props){
    const {rowData} =props;
    const displayRow = rowData.map(eachRow=>{
     return (
-      <div  className="tableRow" key={eachRow.sale_id}> 
-        <div  className="actual_data" key={eachRow.sale_id}> 
+      <div  className="tableRow_2" key={eachRow.product_id}> 
+        <div  className="actual_data_2" key={eachRow.product_id}> 
 
-        <div className='sale_id'>{eachRow.sale_id}</div>
-        <div className='qty'>{eachRow.qty}</div>
-        <div className='total_pice'>{eachRow.total_price}</div>
-         <div className='date'>{eachRow.date}</div>
+        <div className='sale_id'>{eachRow.product}</div>
+        <div className='qty'>{eachRow.quantity}</div>
+        <div className='total_pice'>{eachRow.selling_price}</div>
          </div>
         { props.showEdit ?
          <div className='close' onClick={onDelete} ><SVGclose fill='red'/> 
          {deleteSaleList ? 
             <div className='pop'>
-                <DeleteSaleList onClick={onDelete}  id={eachRow.sale_id}/>
+                <DeleteSaleList onClick={onDelete}  id={eachRow.product_id}/>
             </div> :
             null
             } 
@@ -39,7 +38,7 @@ function TableSales (props){
    })
 
    return (
-     <div className="table">{displayRow}</div>
+     <div className="table_2">{displayRow}</div>
    )
 
    
