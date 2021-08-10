@@ -20,7 +20,8 @@ h1 {
 
 
      
-.actual_data {
+.actual_data,
+.actual_data_2 {
     background-color: #e2e7f9;
     border-radius: 30px;
     text-decoration: none;
@@ -40,6 +41,8 @@ h1 {
     margin-left: auto;
     display: flex;
     align-items: center;
+    position: fixed;
+     left: 350px;
 }
 
 .close {
@@ -47,6 +50,9 @@ h1 {
     align-self: center;
 
 }
+.menu{
+    position: fixed;
+    }
 
 
 /* mobile */
@@ -56,8 +62,9 @@ h1 {
     padding-left: 10px;
     padding-top: 20px;
     align-items: center;
+    height: 50px;
 
-}
+    }
 
 /* .edit_stockList {
     position: sticky;
@@ -124,6 +131,26 @@ table th,
     /* align-items: flex-start; */
     margin-bottom: 20px;
 }
+.table_2 th,
+.actual_data_2,
+.tableHead_2{
+    padding: 20px 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    font-family: PoppinsBold;
+    color: #273475;
+    margin-bottom: 20px; 
+}
+/* .tableRow_2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+     align-items: center;
+    padding: 10px 30px;
+    color: #000;
+    font-family: PoppinsRegular;
+} */
+
+
 
 .tableRow {
     display: grid;
@@ -134,7 +161,8 @@ table th,
     font-family: PoppinsRegular;
 }
 
-.tableRow .actual_data {
+.tableRow .actual_data ,
+  .tableRow_2 .actual_data_2{
     align-self: flex-end;
 }
 

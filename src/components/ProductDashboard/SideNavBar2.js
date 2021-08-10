@@ -19,7 +19,7 @@ const SideNavBar2 = ({onHover,navwidth}) => {
             <div className='option main'><NavLink to='/businesses' className='options-link-1' activeClassName='active'><SvgBriefcase fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink to='/business/products' className='options-link-1' activeClassName='active'><SvgBoxThin fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink to='/business/stocks' className='options-link-1' activeClassName='active'><SvgDelivery fill='#c0c0c0'/></NavLink></div>
-            <div className='option main'><NavLink to='business/sales' className='options-link-1' activeClassName='active'><SvgTag fill='#c0c0c0'/></NavLink></div>
+            <div className='option main'><NavLink to='/business/sales' className='options-link-1' activeClassName='active'><SvgTag fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink to='/businesses' className='options-link-1' activeClassName='active'><SvgUser fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink to='/businesses' className='options-link-1' activeClassName='active'><SvgReport fill='#c0c0c0'/></NavLink></div>
             <div className='logout main'><NavLink to=''  className='options-link-1'><SvgLogOut stroke='#c0c0c0' fill='#c0c0c0'/></NavLink></div>
