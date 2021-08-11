@@ -25,7 +25,7 @@ const SplashPage =()=> {
               <div className="splash-logo"></div>
               {/* <div></div> */}
               <div className="buttonspace">
-                  <Link to="/stocks1" className="log-in button">About</Link>
+                  <Link to="/about" className="log-in button">About</Link>
                   <Link to="/login" className="log-in button">Login</Link>
                   <Link to="/register" className="log-in button">SignUp</Link>
               </div>
