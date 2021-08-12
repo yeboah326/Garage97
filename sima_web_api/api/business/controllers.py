@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from sima_web_api.api.users.utils import token_required
 from sima_web_api.api.business.models import Business
-from sima_web_api.api.business.utils import compute_total_buying_price
+from sima_web_api.api.business.utils import compute_total_buying_price, compute_total_quantity_salelist, compute_total_selling_price
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
 from sima_web_api.api.sale.models import SaleList
@@ -118,7 +118,6 @@ def business_update_info(current_user, business_id):
         return jsonify({"message": "Could not process request"}), 400
 
 
-# TODO: Implement later
 @business.route("", methods=["DELETE"])
 @token_required
 def business_delete_all(current_user):
@@ -209,6 +208,8 @@ def business_get_all_sale_list(current_user, business_id):
                 "id": sale_list.id,
                 "customer_name": sale_list.customer_name,
                 "customer_contact": sale_list.customer_contact,
+                "total_quantity": str(compute_total_quantity_salelist(sale_list)["total_quantity"]),
+                "total_price": str(compute_total_selling_price(sale_list)["total_selling_price"]),
                 "created_on": sale_list.created_on,
             }
             for sale_list in business_sale_lists
@@ -218,7 +219,6 @@ def business_get_all_sale_list(current_user, business_id):
             "business": Business.query.filter_by(id=business_id).first().name,
             "business_sale_lists": business_sale_lists_json,
         }
-
         return jsonify(business_sale_lists_json), 200
     except:
         return jsonify({"message":"Could not process request"}), 400
@@ -244,7 +244,7 @@ def business_get_all_stock_list(current_user, business_id):
                 "id": stock_list.id,
                 "created_on": stock_list.created_on,
                 "total_quantity": len(stock_list.stocks),
-                "total_buying_price": str(compute_total_buying_price(stock_list.stocks)["total_buying_price"])
+                "total_buying_price": str(compute_total_buying_price(stock_list)["total_buying_price"])
             }
             for stock_list in business_stock_lists
         ]
