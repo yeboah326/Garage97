@@ -266,3 +266,25 @@ def business_delete_all_stock_list(current_user, business_id):
         return jsonify({"message":f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"}), 200
     except:
         return jsonify({"message":"Could not process request"}), 400
+
+@business.route("/<business_id>/customers",methods=["GET"])
+@token_required
+def business_get_all_customers(current_user, business_id):
+    try:
+        business_salelists = SaleList.query.filter_by(business_id=business_id)
+        business_customer_json = list()
+        for salelist in business_salelists:
+            if salelist.customer_name == "None" or salelist.customer_contact == "None":
+                pass
+            else:
+                business_customer_json.append(
+                    {
+                        "salelist_id": salelist.id,
+                        "customer_name": salelist.customer_name,
+                        "customer_contact": salelist.customer_contact
+                    }
+                )
+
+        return jsonify(business_customer_json), 200
+    except:
+        return jsonify({"message":"Could not proceess request"}), 400
