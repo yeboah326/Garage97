@@ -15,7 +15,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # SetUp
 CORS(app)
-db = SQLAlchemy(app)
+db = SQLAlchemy(app,session_options={'expire_on_commit': False})
 migrate = Migrate(app, db)
 
 from sima_web_api.api.main.controllers import main
