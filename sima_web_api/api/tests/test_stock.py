@@ -223,8 +223,8 @@ def test_stock_list_get_by_id(app, client):
     )
 
     assert response.status_code == 200
-    assert "name" in response.json
-    assert len(response.json) == 3
+    assert "total_buying_price" in response.json
+    assert len(response.json) == 4
 
 
 def test_stock_list_delete_by_id(app, client):

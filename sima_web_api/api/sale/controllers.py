@@ -4,6 +4,7 @@ from sima_web_api.api.sale.models import Sale, SaleList
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
 import datetime
+from sima_web_api.api.business.utils import compute_total_quantity_salelist, compute_total_selling_price
 
 sale = Blueprint(
     "sale",
@@ -177,10 +178,11 @@ def sale_list_get_by_id(current_user, sale_list_id):
     
         sale_list_json = {
             "id": sale_list.id,
-            "name": sale_list.name,
-            "created_on": sale_list.created_on,
             "customer_name": sale_list.customer_name,
             "customer_contact": sale_list.customer_contact,
+            "total_quantity": str(compute_total_quantity_salelist(sale_list)["total_quantity"]),
+            "total_price": str(compute_total_selling_price(sale_list)["total_selling_price"]),
+            "created_on": sale_list.created_on,
         }
         return jsonify(sale_list_json), 200
     except:
