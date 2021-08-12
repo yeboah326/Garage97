@@ -4,7 +4,7 @@ from sima_web_api.api.stock.models import Stock, StockList
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
 import datetime
-from sima_web_api.api.business.utils import compute_total_buying_price
+from sima_web_api.api.business.utils import compute_total_buying_price, compute_total_quantity_stocklist
 
 stock = Blueprint(
     "stock",
@@ -176,7 +176,7 @@ def stock_list_get_by_id(current_user, stocklist_id):
         stock_list_json = {
                 "id": stock_list.id,
                 "created_on": stock_list.created_on,
-                "total_quantity": len(stock_list.stocks),
+                "total_quantity": str(compute_total_quantity_stocklist(stock_list)["total_quantity"]),
                 "total_buying_price": str(compute_total_buying_price(stock_list)["total_buying_price"])
         }
         return jsonify(stock_list_json), 200
