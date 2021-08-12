@@ -67,7 +67,7 @@ def create_business_salelist(client, token, product_id):
     # Data to create the sale and sale_list
     data = {
         "business_id": Product.query.filter_by(id=product_id).first().business_id,
-        "customer_details": {"customer_name": "None", "customer_contact": "0543217725"},
+        "customer_details": {"customer_name": "Kojo Boateng", "customer_contact": "0543217725"},
         "sale_list": [
             {"quantity": 5, "selling_price": 15.0, "product_id": product_id},
             {"quantity": 6, "selling_price": 16.0, "product_id": product_id},
