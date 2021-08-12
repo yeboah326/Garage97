@@ -193,8 +193,7 @@ def test_stock_add_new_stock_to_stocklist(app, client):
     response = client.post(
         f"stock/add/{stocklist.id}",
         json=data,
-        headers={"Authorization": f"Bearer {login['token']}"},
-        content_type="application/json"
+        headers={"Authorization": f"Bearer {login['token']}"}
     )
 
     # Retrieve salelist id for created salelist after updating
