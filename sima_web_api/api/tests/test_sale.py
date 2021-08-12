@@ -155,6 +155,54 @@ def test_sale_update_by_id(app, client):
     assert response.json == {"message": "Sale of product updated successfully"}
 
 
+def test_sale_add_new_sale_to_salelist(app,client):
+    # Login the user
+    login = login_user(app, client)
+
+    # Create a new buiness
+    create_new_business(client, login["token"])
+
+    # Retrieve the new business created
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    # Create products for business
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+    # Create business sale_list
+    create_business_salelist(client, login["token"], product_id)
+
+    # Retrieve salelist id for created salelist
+    salelist = SaleList.query.filter_by(business_id=business_id).first()
+
+    assert len(salelist.sales) == 3
+
+    data = {
+        "sales": [
+            {"quantity": 5, "selling_price": 15.0, "product_id": product_id},
+            {"quantity": 6, "selling_price": 16.0, "product_id": product_id},
+            {"quantity": 7, "selling_price": 17.0, "product_id": product_id}
+        ]
+    }
+
+    response = client.post(
+        f"sale/add/{salelist.id}",
+        json=data,
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    # Retrieve salelist id for created salelist after adding new sale
+    salelist = SaleList.query.filter_by(business_id=business_id).first()
+
+    print(response.json)
+    assert response.status_code == 201
+    assert response.json == {"message":"New sale added successfully"}
+    assert len(salelist.sales) == 6
+
 def test_sale_list_create_new(app, client):
     # Login the user
     login = login_user(app, client)
