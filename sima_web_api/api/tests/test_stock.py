@@ -186,21 +186,21 @@ def test_stock_add_new_stock_to_stocklist(app, client):
             {"quantity": 5, "buying_price": 15.0, "product_id": product_id},
             {"quantity": 5, "buying_price": 15.0, "product_id": product_id},
             {"quantity": 5, "buying_price": 15.0, "product_id": product_id},
-            {"quantity": 5, "buying_price": 15.0, "product_id": product_id}
+            {"quantity": 5, "buying_price": 15.0, "product_id": product_id},
         ]
     }
 
     response = client.post(
         f"stock/add/{stocklist.id}",
         json=data,
-        headers={"Authorization": f"Bearer {login['token']}"}
+        headers={"Authorization": f"Bearer {login['token']}"},
     )
 
     # Retrieve salelist id for created salelist after updating
     stocklist = StockList.query.filter_by(business_id=business_id).first()
 
     assert response.status_code == 201
-    assert response.json == {"message":"New stock added successfully"}
+    assert response.json == {"message": "New stock added successfully"}
     assert len(stocklist.stocks) == 8
 
 

@@ -155,7 +155,7 @@ def test_sale_update_by_id(app, client):
     assert response.json == {"message": "Sale of product updated successfully"}
 
 
-def test_sale_add_new_sale_to_salelist(app,client):
+def test_sale_add_new_sale_to_salelist(app, client):
     # Login the user
     login = login_user(app, client)
 
@@ -185,7 +185,7 @@ def test_sale_add_new_sale_to_salelist(app,client):
         "sales": [
             {"quantity": 5, "selling_price": 15.0, "product_id": product_id},
             {"quantity": 6, "selling_price": 16.0, "product_id": product_id},
-            {"quantity": 7, "selling_price": 17.0, "product_id": product_id}
+            {"quantity": 7, "selling_price": 17.0, "product_id": product_id},
         ]
     }
 
@@ -200,8 +200,9 @@ def test_sale_add_new_sale_to_salelist(app,client):
 
     print(response.json)
     assert response.status_code == 201
-    assert response.json == {"message":"New sale added successfully"}
+    assert response.json == {"message": "New sale added successfully"}
     assert len(salelist.sales) == 6
+
 
 def test_sale_list_create_new(app, client):
     # Login the user

@@ -4,7 +4,10 @@ from sima_web_api.api.stock.models import Stock, StockList
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
 import datetime
-from sima_web_api.api.business.utils import compute_total_buying_price, compute_total_quantity_stocklist
+from sima_web_api.api.business.utils import (
+    compute_total_buying_price,
+    compute_total_quantity_stocklist,
+)
 
 stock = Blueprint(
     "stock",
@@ -46,7 +49,8 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id):
         ]
         return jsonify(stocks_by_stock_list_id_json), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
+
 
 @stock.route("/<stock_id>", methods=["GET"])
 @token_required
@@ -69,7 +73,7 @@ def stock_get_by_id(current_user, stock_id):
         }
         return jsonify(stock_json), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @stock.route("/<stock_id>", methods=["DELETE"])
@@ -120,7 +124,7 @@ def stock_update_by_id(current_user, stock_id):
         db.session.commit()
         return jsonify({"message": "Stock updated successfully"}), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400
 
 
 @stock.route("/add/<stock_list_id>", methods=["POST"])
@@ -149,12 +153,12 @@ def stock_add_new_stock_to_stocklist(current_user, stock_list_id):
                 )
                 db.session.add(new_stock)
                 db.session.commit()
-            
-            return jsonify({"message":"New stock added successfully"}), 201
+
+            return jsonify({"message": "New stock added successfully"}), 201
         else:
-            return jsonify({"message":"No data passed"}), 400
+            return jsonify({"message": "No data passed"}), 400
     except:
-        return jsonify({"message":"Could not process request"}), 400        
+        return jsonify({"message": "Could not process request"}), 400
 
 
 # ----- Stock List -----
@@ -172,9 +176,8 @@ def stock_list_create_new(current_user):
         data = request.get_json()
 
         new_stock_list = StockList(
-            created_on=str(datetime.date.today()),
-            business_id=data["business_id"]  
-            )
+            created_on=str(datetime.date.today()), business_id=data["business_id"]
+        )
         db.session.add(new_stock_list)
         db.session.commit()
 
@@ -206,16 +209,21 @@ def stock_list_get_by_id(current_user, stocklist_id):
     """
     try:
         stock_list = StockList.query.filter_by(id=stocklist_id).first()
-    
+
         stock_list_json = {
-                "id": stock_list.id,
-                "created_on": stock_list.created_on,
-                "total_quantity": str(compute_total_quantity_stocklist(stock_list)["total_quantity"]),
-                "total_buying_price": str(compute_total_buying_price(stock_list)["total_buying_price"])
+            "id": stock_list.id,
+            "created_on": stock_list.created_on,
+            "total_quantity": str(
+                compute_total_quantity_stocklist(stock_list)["total_quantity"]
+            ),
+            "total_buying_price": str(
+                compute_total_buying_price(stock_list)["total_buying_price"]
+            ),
         }
         return jsonify(stock_list_json), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400
+
 
 @stock.route("/list/<stock_list_id>", methods=["DELETE"])
 @token_required
@@ -236,6 +244,7 @@ def stock_list_delete_by_id(current_user, stock_list_id):
     except:
         return jsonify({"message": "Could not delete stock list"}), 400
 
+
 @stock.route("/list/<stocklist_id>", methods=["PUT"])
 @token_required
 def stock_list_update_by_id(current_user, stocklist_id):
@@ -247,9 +256,9 @@ def stock_list_update_by_id(current_user, stocklist_id):
     For updating the sale list
     """
     try:
-    
+
         stock_list = StockList.query.filter_by(id=stocklist_id).first()
-    
+
         data = request.get_json()
 
         try:
@@ -260,4 +269,4 @@ def stock_list_update_by_id(current_user, stocklist_id):
         db.session.commit()
         return jsonify({"message": "Sale list updated sucessfully"}), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400

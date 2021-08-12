@@ -132,7 +132,11 @@ def test_business_create_new_product(app, client):
 
     response = client.post(
         f"/business/{id}/product",
-        json={"name": "Product 1", "business_id": id,"description":"Latest model of the business"},
+        json={
+            "name": "Product 1",
+            "business_id": id,
+            "description": "Latest model of the business",
+        },
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
@@ -247,7 +251,6 @@ def test_business_get_all_stock_list(app, client):
     assert "total_buying_price" in response.json["business_stock_lists"][0]
 
 
-
 def test_business_delete_all_stock_list(app, client):
     login = login_user(app, client)
 
@@ -275,8 +278,9 @@ def test_business_delete_all_stock_list(app, client):
         "message": f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"
     }
 
+
 # Customer
-def test_business_get_all_customers(app,client):
+def test_business_get_all_customers(app, client):
     login = login_user(app, client)
 
     create_new_business(client, login["token"])

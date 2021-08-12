@@ -4,7 +4,10 @@ from sima_web_api.api.sale.models import Sale, SaleList
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
 import datetime
-from sima_web_api.api.business.utils import compute_total_quantity_salelist, compute_total_selling_price
+from sima_web_api.api.business.utils import (
+    compute_total_quantity_salelist,
+    compute_total_selling_price,
+)
 
 sale = Blueprint(
     "sale",
@@ -18,10 +21,11 @@ def hello():
     try:
         return jsonify({"message": "Sale blueprint working"}), 200
     except:
-        return jsonify({"message":"Could not process requesst"}), 400
+        return jsonify({"message": "Could not process requesst"}), 400
 
 
 # ----- Sale -----
+
 
 @sale.route("/sale_list/<sale_list_id>", methods=["GET"])
 @token_required
@@ -49,7 +53,8 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id):
 
         return jsonify(sales_by_sale_list_id_json), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
+
 
 @sale.route("/<sale_id>", methods=["GET"])
 @token_required
@@ -63,7 +68,7 @@ def sale_get_by_id(current_user, sale_id):
     """
     try:
         sale = Sale.query.filter_by(id=sale_id).first()
-    
+
         sale_json = {
             "id": sale.id,
             "product": Product.query.filter_by(id=sale.product_id).first().name,
@@ -73,7 +78,7 @@ def sale_get_by_id(current_user, sale_id):
         }
         return jsonify(sale_json), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @sale.route("/<sale_id>", methods=["DELETE"])
@@ -92,7 +97,7 @@ def sale_delete_by_id(current_user, sale_id):
         db.session.commit()
         return jsonify({"message": "Sale deleted successfully"}), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @sale.route("/<sale_id>", methods=["PUT"])
@@ -122,7 +127,8 @@ def sale_update_by_id(current_user, sale_id):
         db.session.commit()
         return jsonify({"message": "Sale of product updated successfully"}), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400
+
 
 @sale.route("/add/<sale_list_id>", methods=["POST"])
 @token_required
@@ -150,11 +156,11 @@ def sale_add_new_sale_to_salelist(current_user, sale_list_id):
             )
             db.session.add(new_sale)
             db.session.commit()
-        return jsonify({"message":"New sale added successfully"}), 201
+        return jsonify({"message": "New sale added successfully"}), 201
     else:
-        return jsonify({"message":"No data passed"}), 400
-# except:
-    return jsonify({"message":"Could not process request"}), 400        
+        return jsonify({"message": "No data passed"}), 400
+    # except:
+    return jsonify({"message": "Could not process request"}), 400
 
 
 # ----- SaleList -----
@@ -192,7 +198,7 @@ def sale_list_create_new(current_user):
             db.session.commit()
         return jsonify({"message": "Sale created successfully"}), 201
     except:
-        return jsonify({"message":"Could not proceeess request"}), 400
+        return jsonify({"message": "Could not proceeess request"}), 400
 
 
 @sale.route("/list/<sale_list_id>", methods=["GET"])
@@ -208,18 +214,22 @@ def sale_list_get_by_id(current_user, sale_list_id):
 
     try:
         sale_list = SaleList.query.filter_by(id=sale_list_id).first()
-    
+
         sale_list_json = {
             "id": sale_list.id,
             "customer_name": sale_list.customer_name,
             "customer_contact": sale_list.customer_contact,
-            "total_quantity": str(compute_total_quantity_salelist(sale_list)["total_quantity"]),
-            "total_price": str(compute_total_selling_price(sale_list)["total_selling_price"]),
+            "total_quantity": str(
+                compute_total_quantity_salelist(sale_list)["total_quantity"]
+            ),
+            "total_price": str(
+                compute_total_selling_price(sale_list)["total_selling_price"]
+            ),
             "created_on": sale_list.created_on,
         }
         return jsonify(sale_list_json), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400
 
 
 @sale.route("/list/<sale_list_id>", methods=["DELETE"])
@@ -239,8 +249,6 @@ def sale_list_delete_by_id(current_user, sale_list_id):
         return jsonify({"message": "Sale list deleted successfully"}), 200
     except:
         return jsonify({"message": "Could not process request"}), 400
-
-
 
 
 @sale.route("/list/<sale_list_id>", methods=["PUT"])
@@ -276,4 +284,4 @@ def sale_list_update_by_id(current_user, sale_list_id):
         db.session.commit()
         return jsonify({"message": "Sale list updated sucessfully"}), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400
