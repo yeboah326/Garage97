@@ -3,7 +3,7 @@ import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
 import { business_id } from "../BusinessesDashboard/Businesses";
-import SVGpencil from "../../Assets/icons/Pencil";
+import SVGPencil from "../../Assets/icons/Pencil";
 import TableHead from "./tableHead2";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableRow from "./tableRow2";
@@ -79,10 +79,8 @@ useEffect(()=>{
           <div className="edit_stockList " onClick={onClickEdit}>
             <button>
               {showEdit ? (
-                <SvgDone fill="#6842ff" />
-              ) : (
-                <SVGpencil fill="#6842ff" />
-              )}
+              <Link to='/business/stocks/editstocklist'><SVGPencil fill="#6842ff" /></Link>
+              ):null}
             </button>
           </div>
           {showEdit ? (
@@ -96,17 +94,10 @@ useEffect(()=>{
       </div>
 
       {/* <div className="divdown"> */}
-      <div className="edit" onClick={onClickEdit}>
+      <div className="edit">
         <button>
-          {showEdit ? <SvgDone fill="#6842ff" /> : <SVGpencil fill="#6842ff" />}
+          <Link to='/business/stocks/editstocklist'><SVGPencil fill="#6842ff" /></Link>
         </button>
-        {showEdit ? (
-          <div className="ad" onClick={onClickAdd}>
-            <Link to="/business/stocks/addstocks">
-              <AddButton />
-            </Link>
-          </div>
-        ) : null}
       </div>
       {/* </div> */}
       <div className="mobile_stockList table-div  ">
