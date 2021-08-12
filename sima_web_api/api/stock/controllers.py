@@ -123,6 +123,40 @@ def stock_update_by_id(current_user, stock_id):
         return jsonify({"message":"Could not process request"}), 400
 
 
+@stock.route("/add/<stock_list_id>", methods=["POST"])
+@token_required
+def stock_add_new_stock_to_stocklist(current_user, stock_list_id):
+    """
+    stock_add_new_stock_to_stocklist(current_user,stock_list_id)
+
+    HTTP Methods - POST
+
+    Adds new stocks to an already existing stock_list
+    """
+# try:
+    data = request.get_json()
+
+    stock_list = StockList.query.filter_by(id=stock_list_id)
+
+    if data["stocks"]:
+        for stock in data["stocks"]:
+            new_stock = Stock(
+                quantity=stock["quantity"],
+                buying_price=stock["buying_price"],
+                created_on=str(datetime.date.today()),
+                product_id=stock["product_id"],
+                stock_list_id=stock_list_id,
+            )
+            db.session.add(new_stock)
+            db.session.commit()
+        
+        return jsonify({"message":"New stock added successfully"}), 201
+    else:
+        return jsonify({"message":"No data passed"}), 400
+# except:
+    return jsonify({"message":"Could not process request"}), 400        
+
+
 # ----- Stock List -----
 @stock.route("/list", methods=["POST"])
 @token_required
