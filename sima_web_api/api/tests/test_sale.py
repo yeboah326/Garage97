@@ -220,10 +220,12 @@ def test_sale_list_get_by_id(app, client):
         f"sale/list/{salelist_id}",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
-
+    print(response.json)
     assert response.status_code == 200
-    assert "name" in response.json
-    assert len(response.json) == 5
+    assert len(response.json) == 6
+    assert "id" in response.json
+    assert "customer_name" in response.json
+    assert "customer_contact" in response.json
 
 
 def test_sale_list_delete_by_id(app, client):
