@@ -124,6 +124,39 @@ def sale_update_by_id(current_user, sale_id):
     except:
         return jsonify({"message":"Could not process request"}), 400
 
+@sale.route("/add/<sale_list_id>", methods=["POST"])
+@token_required
+def sale_add_new_sale_to_salelist(current_user, sale_list_id):
+    """
+    stock_add_new_stock_to_stocklist(current_user,stock_list_id)
+
+    HTTP Methods - POST
+
+    Adds new stocks to an already existing stock_list
+    """
+    # try:
+    data = request.get_json()
+
+    sale_list = SaleList.query.filter_by(id=sale_list_id)
+
+    if data["sales"]:
+        for sale in data["sales"]:
+            new_sale = Sale(
+                quantity=sale["quantity"],
+                selling_price=sale["selling_price"],
+                created_on=str(datetime.date.today()),
+                product_id=sale["product_id"],
+                sale_list_id=sale_list_id,
+            )
+            db.session.add(new_sale)
+            db.session.commit()
+        return jsonify({"message":"New sale added successfully"}), 201
+    else:
+        return jsonify({"message":"No data passed"}), 400
+# except:
+    return jsonify({"message":"Could not process request"}), 400        
+
+
 # ----- SaleList -----
 @sale.route("/list", methods=["POST"])
 @token_required
