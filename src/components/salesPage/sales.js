@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
-import { business_id } from "../BusinessesDashboard/Businesses";
 import SalesHead from "./SalesHead";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableSales from "./tableSales";
@@ -33,7 +32,6 @@ const SalesPage = () => {
             alert('Session has expired')
         }
         else if(response.status === 200){
-          console.log(res.business_sale_lists)
             setSaleLists(res.business_sale_lists)
 
         }

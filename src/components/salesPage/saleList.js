@@ -4,9 +4,9 @@ import "../../css/business.css";
 import { logout } from "../../auth/index";
 import { business_id } from "../BusinessesDashboard/Businesses";
 import SVGpencil from "../../Assets/icons/Pencil";
-import SalesHead from "./SalesHead";
+import SalesHead from "./SalesHead2";
 import SideNavBar from "../ProductDashboard/SideNavBar";
-import TableSales from "./tableSales";
+import TableSales from "./tableSales2";
 import AddButton from "../ProductDashboard/AddButton";
 import AddSales from "./AddSales";
 import SideNavBar2 from "../ProductDashboard/SideNavBar2";
@@ -21,7 +21,7 @@ const SalesListPage = () => {
   const [salelist, setSaleList] = useState([]);
   const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-  const sale_list_id = localStorage.getItem('Stock_List_ID')
+  const sale_list_id = localStorage.getItem('Sale_List_ID')
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -33,13 +33,13 @@ const SalesListPage = () => {
     setShowEdit(!showEdit);
   };
   const onClickAdd = () => {
-    setAddSaleList(!addsaleList);
+    setAddSaleList(!addsaleList)
   };
   const onHover = () => {
     setShowFullSideNavBar(!showfullsidenavbar);
   };
     const fetchSaleList = async () => {
-    const response = await fetch(`http://localhost:9000/stock/stock_list/${sale_list_id}`,{
+    const response = await fetch(`http://localhost:9000/sale/sale_list/${sale_list_id}`,{
         method: 'GET',
         headers:{
             'Content-Type':'application/json',
@@ -52,7 +52,6 @@ const SalesListPage = () => {
         alert('Session has expired')
     }
     else if(response.status === 200){
-      console.log(res)
       setSaleList(res)
     }
     else{
@@ -62,6 +61,7 @@ const SalesListPage = () => {
 
 useEffect(()=>{
   fetchSaleList()
+  console.log(salelist)
 },[])
 
   return (
