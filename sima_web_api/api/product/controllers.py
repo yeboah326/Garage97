@@ -18,7 +18,7 @@ def product_hello():
     try:
         return jsonify({"message": "Product blueprint working"}), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400
 
 
 @product.route("/<product_id>", methods=["GET"])
@@ -33,10 +33,11 @@ def product_get_by_id(current_user, product_id):
     """
     try:
         product = Product.query.filter_by(id=product_id).first()
-        product_json = {"name": product.name,"description": product.description}
+        product_json = {"name": product.name, "description": product.description}
         return jsonify(product_json), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400
+
 
 @product.route("/<product_id>", methods=["DELETE"])
 @token_required
@@ -86,7 +87,7 @@ def product_update_by_id(current_user, product_id):
         db.session.commit()
         return jsonify({"message": "Product info updated successfully"}), 200
     except:
-        return jsonify({"message":"Could not process request"}), 400
+        return jsonify({"message": "Could not process request"}), 400
 
 
 # ----- Sale -----
@@ -120,7 +121,7 @@ def product_get_all_sale(current_user, product_id):
         }
         return jsonify(product_sales_json), 200
     except:
-        return jsonify({"message":"Could not process request"}),400
+        return jsonify({"message": "Could not process request"}), 400
 
 
 @product.route("/<product_id>/stock")
@@ -151,7 +152,7 @@ def product_get_all_stock(current_user, product_id):
         }
         return jsonify(product_stocks_json), 200
     except:
-        return jsonify({"message":"Could not processs request"}), 400
+        return jsonify({"message": "Could not processs request"}), 400
 
 
 @product.route("/<product_id>/sale", methods=["DELETE"])
@@ -169,4 +170,4 @@ def product_delete_all_sale(current_user, product_id):
         db.session.commit()
         return jsonify({"message": "Sales deleted successfully"}), 200
     except:
-        return jsonify({"message":"Could not processs request"}), 400
+        return jsonify({"message": "Could not processs request"}), 400

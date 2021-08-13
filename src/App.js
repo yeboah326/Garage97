@@ -15,6 +15,7 @@ import AddStocks from './components/StocksPage/AddStocks'
 import SalesListPage from './components/salesPage/saleList'
 import StockListPage from './components/StocksPage/stockList'
 import EditStockList from './components/StocksPage/EditStockList'
+import About from './components/Login_Registration/about'
 
 
 
@@ -47,6 +48,7 @@ function App() {
             <Route exact path = '/addstocks'component={AddStocks}/>
 
 
+            <Route exact path = '/about' component={About}/>
 
             <Route exact path = '/register' component={RegistrationForm}/>
             <PrivateRoute exact path = '/home' component={BusinessesDashboard}/> 
