@@ -77,19 +77,14 @@ useEffect(()=>{
         </div>
         <div className="divRight">
           <div className="edit_stockList " onClick={onClickEdit}>
+          <Link to='/business/stocks/editstocklist'>
             <button>
               {showEdit ? (
-              <Link to='/business/stocks/editstocklist'><SVGPencil fill="#6842ff" /></Link>
+              <SVGPencil fill="#6842ff" />
               ):null}
             </button>
+            </Link>
           </div>
-          {showEdit ? (
-            <div className="ad" onClick={onClickAdd}>
-              <Link to="/addstocks">
-                <AddButton />
-              </Link>
-            </div>
-          ) : null}
         </div>{" "}
       </div>
 

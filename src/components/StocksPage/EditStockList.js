@@ -55,7 +55,7 @@ const EditStockList = () => {
     const handleUpdateChange = (event) => {
         const {name,value} = event.target
         setUpdatedStock(prevDetails => ({
-            ...prevDetails,[name]:value
+            ...prevDetails,[name]:value.length !== 0 ? value : event.target.defaultValue
         }))
     }
     const getProductId = () => {
@@ -93,14 +93,7 @@ const EditStockList = () => {
             
         }
         else{
-            const response = deleteStock(stocklist[id].id)
-            if (response === 1){
-                stocklist.splice(id,1)
-                setStockList([...stocklist])
-            }
-            else{
-                alert('Could not delete stock')
-            }
+            deleteStock(stocklist[id].id)
         }
         
 
@@ -161,8 +154,11 @@ const EditStockList = () => {
             logout()
             alert('Session has expired')
         }
-        else {
-            return 1
+        else if(response.status === 400) {
+            alert('Could not process request')
+        }
+        else{
+            fetchStocks()
         }
     }
 
@@ -210,24 +206,26 @@ const EditStockList = () => {
     }
 
     const UpdateStockList = async () =>{
-        const data = {'stock_list':newstocklist,'business_id':`${business_id}`}
-        const response = await fetch('http://localhost:9000/stock/new',{
-            method: 'POST',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization':`Bearer ${token}`
-            },
-            body:JSON.stringify(data)
-        })
-        const res = await response.json()
-        if(response.status === 201){
-            alert(res.message)
-        }
-        else if (response.status === 400){
-            alert(res.message)
-        }
-        else{
-            alert('Could not add new stock')
+        if(newstocklist.length !== 0){
+            const data = {'stocks':newstocklist}
+            const response = await fetch(`http://localhost:9000/stock/add/${stock_list_id}`,{
+                method: 'POST',
+                headers:{
+                    'Content-Type':'application/json',
+                    'Authorization':`Bearer ${token}`
+                },
+                body:JSON.stringify(data)
+            })
+            const res = await response.json()
+            if(response.status === 201){
+                alert(res.message)
+            }
+            else if (response.status === 400){
+                alert(res.message)
+            }
+            else{
+                alert('Could not add new stock')
+            }
         }
         setToggle(!toggle)
     }
