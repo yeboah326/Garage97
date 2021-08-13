@@ -132,7 +132,11 @@ def test_business_create_new_product(app, client):
 
     response = client.post(
         f"/business/{id}/product",
-        json={"name": "Product 1", "business_id": id,"description":"Latest model of the business"},
+        json={
+            "name": "Product 1",
+            "business_id": id,
+            "description": "Latest model of the business",
+        },
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
@@ -247,7 +251,6 @@ def test_business_get_all_stock_list(app, client):
     assert "total_buying_price" in response.json["business_stock_lists"][0]
 
 
-
 def test_business_delete_all_stock_list(app, client):
     login = login_user(app, client)
 
@@ -274,3 +277,31 @@ def test_business_delete_all_stock_list(app, client):
     assert response.json == {
         "message": f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"
     }
+
+
+# Customer
+def test_business_get_all_customers(app, client):
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+    # Create a new salelist
+    create_business_salelist(client, login["token"], product_id)
+
+    response = client.get(
+        f"business/{business_id}/customers",
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    assert response.status_code == 200
+    assert response.json[0]["customer_name"] == "Kojo Boateng"
+    assert response.json[0]["customer_contact"] == "0543217725"

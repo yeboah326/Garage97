@@ -45,7 +45,10 @@ def test_product_get_by_id(app, client):
 
     # Assertions
     assert response.status_code == 200
-    assert response.json == {"description": "Product description 1","name": "Product 1"}
+    assert response.json == {
+        "description": "Product description 1",
+        "name": "Product 1",
+    }
 
 
 def test_product_delete_by_id(app, client):

@@ -94,3 +94,29 @@ ERROR: **404 BAD REQUEST**
 }
 </pre>
 #
+### Get all business customers
+`GET /business/{business_id}/customers`
+
+SUCCESS: **200 OK**
+<pre>
+[
+    {
+        'customer_contact': '0543217725', 
+        'customer_name': 'Kojo Boateng', 
+        'salelist_id': 352
+    },
+    {
+        'customer_contact': '0543217725', 
+        'customer_name': 'Kojo Boateng', 
+        'salelist_id': 352
+    }
+]
+</pre>
+
+ERROR: **400 BAD REQUEST**
+
+<pre>
+{
+    "message":"Could not process request"
+}
+</pre>
