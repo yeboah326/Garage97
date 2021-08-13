@@ -8,7 +8,9 @@ class Stock(db.Model):
     buying_price = db.Column(db.Numeric(5, 2))
     created_on = db.Column(db.DateTime)
     product_id = db.Column(db.Integer, db.ForeignKey("Product.id"), nullable=False)
-    stock_list_id = db.Column(db.Integer, db.ForeignKey("StockList.id",ondelete="CASCADE"), nullable=False)
+    stock_list_id = db.Column(
+        db.Integer, db.ForeignKey("StockList.id", ondelete="CASCADE"), nullable=False
+    )
 
 
 class StockList(db.Model):
@@ -17,4 +19,6 @@ class StockList(db.Model):
     name = db.Column(db.String(100))
     created_on = db.Column(db.DateTime)
     business_id = db.Column(db.Integer, db.ForeignKey("Business.id"), nullable=False)
-    stocks = db.relationship("Stock", backref="StockList", lazy=True,passive_deletes=True)
+    stocks = db.relationship(
+        "Stock", backref="StockList", lazy=True, passive_deletes=True
+    )

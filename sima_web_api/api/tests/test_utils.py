@@ -53,7 +53,11 @@ def create_business_products(client, token, busisness_id):
     for num in range(2):
         response = client.post(
             f"/business/{busisness_id}/product",
-            json={"name": f"Product {num}", "business_id": busisness_id, "description": f"Product description {num}"},
+            json={
+                "name": f"Product {num}",
+                "business_id": busisness_id,
+                "description": f"Product description {num}",
+            },
             headers={"Authorization": f"Bearer {token}"},
         )
 
@@ -67,7 +71,10 @@ def create_business_salelist(client, token, product_id):
     # Data to create the sale and sale_list
     data = {
         "business_id": Product.query.filter_by(id=product_id).first().business_id,
-        "customer_details": {"customer_name": "None", "customer_contact": "0543217725"},
+        "customer_details": {
+            "customer_name": "Kojo Boateng",
+            "customer_contact": "0543217725",
+        },
         "sale_list": [
             {"quantity": 5, "selling_price": 15.0, "product_id": product_id},
             {"quantity": 6, "selling_price": 16.0, "product_id": product_id},

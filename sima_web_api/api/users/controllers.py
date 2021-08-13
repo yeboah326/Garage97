@@ -26,7 +26,7 @@ def hello():
     try:
         return jsonify({"message": "Users Blueprint Created successfully"}), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @users.route("/login", methods=["POST"])
@@ -59,7 +59,7 @@ def user_login():
 
         return jsonify({"message": "Authorization failed"}), 401
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @users.route("", methods=["GET"])
@@ -88,7 +88,7 @@ def get_all_users():
         ]
         return jsonify(users_json), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @users.route("/<public_id>", methods=["GET"])
@@ -114,7 +114,7 @@ def get_user_by_id(public_id):
             }
             return jsonify(user_json), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @users.route("", methods=["POST"])
@@ -146,7 +146,7 @@ def create_new_user():
         db.session.commit()
         return jsonify({"message": "New user created"}), 201
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @users.route("/<public_id>", methods=["PUT"])
@@ -187,7 +187,7 @@ def update_user_info(public_id):
         db.session.commit()
         return jsonify({"message": "User info updated successfully"}), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 # TODO: Define delete_all_users route
@@ -204,7 +204,7 @@ def delete_all_users():
         User.query.delete()
         return jsonify({"message": "All users deleted successfully"})
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
 
 
 @users.route("/<public_id>", methods=["DELETE"])
@@ -222,4 +222,4 @@ def delete_user_by_id(public_id):
         db.session.commit()
         return jsonify({"message": "User deleted successfully"}), 200
     except:
-        return jsonify({"mesage":"Could not process request"}), 400
+        return jsonify({"mesage": "Could not process request"}), 400
