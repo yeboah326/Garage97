@@ -22,12 +22,14 @@ const EditSaleList = () => {
     const [newsalelist,setNewSaleList] = useState([])
     const [displayInput,setDisplayInput] = useState(false)
     const sale_list_id = localStorage.getItem('Sale_List_ID')
-    const [updatedSale,setUpdatedSale] = useState({quantity:'',buying_price:''})
-    const [sale,setSale] = useState({customer_name:'',customer_contact:'',product_id:'',quantity:'',selling_price:'',product:''})
+    const [updatedSale,setUpdatedSale] = useState({quantity:'',selling_price:''})
+    const [sale,setSale] = useState({product_id:'',quantity:'',selling_price:'',product:''})
+    const [customer,setCustomer] = useState({customer_name:'',customer_contact:''})
     const [products,setProducts] = useState([])
     const [toggle,setToggle] = useState(false)
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
     const business_id = localStorage.getItem('Business')
+    const [salelistinfo,setSaleListInfo] = useState({})
 
 
     const onHover = () => {
@@ -45,7 +47,14 @@ const EditSaleList = () => {
     const handleUpdateChange = (event) => {
         const {name,value} = event.target
         setUpdatedSale(prevDetails => ({
-            ...prevDetails,[name]:value
+            ...prevDetails,[name]:value.length !== 0 ? value : event.target.defaultValue
+        }))
+    }
+
+    const handleCustomerChange = (event) => {
+        const {name,value} = event.target
+        setCustomer(prevDetails => ({
+            ...prevDetails,[name]:value.length !== 0 ? value : event.target.defaultValue
         }))
     }
 
@@ -91,15 +100,7 @@ const EditSaleList = () => {
             
         }
         else{
-            const response = deleteSale(salelist[id].id)
-            if (response === 1){
-                salelist.splice(id,1)
-                setSaleList([...salelist])
-            }
-            else{
-                alert('Could not delete sale')
-            }
-        
+            deleteSale(salelist[id].id)
     }
     }
     const deleteSaleList = async () => {
@@ -123,8 +124,8 @@ const EditSaleList = () => {
         }
         
     }
-    const updateStock = async (id,index) => {
-        const response = await fetch(`http://localhost:9000/stock/${id}`,{
+    const updateSale = async (id,index) => {
+        const response = await fetch(`http://localhost:9000/sale/${id}`,{
             method:'PUT',
             headers:{
                 'Content-Type':'application/json',
@@ -137,13 +138,14 @@ const EditSaleList = () => {
             alert('Session has expired')
         }
         else if(response.status === 200){
-            salelist[index] = {...salelist[index],quantity:updatedSale.quantity,buying_price:updatedSale.buying_price} 
+            salelist[index] = {...salelist[index],quantity:updatedSale.quantity,selling_price:updatedSale.selling_price} 
         }
         else{
             alert("Could not updated sale")
         }
         setDisplayInput(false)
     }
+
     const deleteSale = async (id) => {
         const response = await fetch(`http://localhost:9000/sale/${id}`,{
             method:'DELETE',
@@ -157,7 +159,7 @@ const EditSaleList = () => {
             alert('Session has expired')
         }
         else {
-            return 1
+            fetchSales()
         }
     }
 
@@ -204,9 +206,33 @@ const EditSaleList = () => {
         }
     }
 
+    const fetchSaleList = async () =>{
+        const response = await fetch(`http://localhost:9000/sale/list/${sale_list_id}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
+            }
+        })
+
+        const res = await response.json()
+        if (response.status === 401){
+            logout()
+            alert('Session has expired')
+        }
+        else if(response.status === 200){
+            setSaleListInfo(res)
+        }
+        else{
+            alert(res.message)
+        }
+
+
+    }
+
     const UpdateSaleList = async () =>{
-        const data = {'sale_list':newsalelist,'business_id':`${business_id}`}
-        const response = await fetch('http://localhost:9000/sale/new',{
+        const data = {'sales':newsalelist}
+        const response = await fetch(`http://localhost:9000/sale/add/${sale_list_id}`,{
             method: 'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -215,8 +241,12 @@ const EditSaleList = () => {
             body:JSON.stringify(data)
         })
         const res = await response.json()
-        if(response.status === 201){
-            alert(res.message)
+        if(response.status === 401){
+            logout()
+            alert('Session expired')
+        }
+        else if(response.status === 201){
+            updateCustomer()
         }
         else if (response.status === 400){
             alert(res.message)
@@ -226,10 +256,25 @@ const EditSaleList = () => {
         }
         setToggle(!toggle)
     }
+
+    const updateCustomer = async () => {
+        const response = await fetch(`http://localhost:9000/sale/list/${sale_list_id}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
+            },
+            body:JSON.stringify(customer)
+        })
+        if(response.status === 200){
+            alert('Update Successful')
+        }
+    }
     
     useEffect(()=>{
         fetchSales()
         fetchProducts()
+        fetchSaleList()
     },[])
     
 
@@ -275,8 +320,8 @@ const EditSaleList = () => {
                         <div className='addbutton' onClick={onAdd}><SvgAdd fill='#9c89e7'/></div>
                     </div>
                     <div className='customer-input-form'>
-                        <Input label='Customer Name' required='required' type='text' name='customer_name' onChange={handleChange}/>
-                        <Input label='Customer Contact' required='required' type='tel' name='customer_contact' onChange={handleChange}/>
+                        <Input label='Customer Name' required='required' type='text' name='customer_name' onChange={handleCustomerChange} defaultValue={salelistinfo.customer_name}/>
+                        <Input label='Customer Contact' required='required' type='tel' name='customer_contact' onChange={handleCustomerChange} defaultValue={salelistinfo.customer_contact}/>
                         
                     </div>
                 </div>
@@ -296,9 +341,9 @@ const EditSaleList = () => {
                                             <span className='quantity'style={{display: !displayInput ? 'inline-block':'none'}}>{sale.quantity}</span>
                                             <input className='quantity' style={{display:displayInput ? 'inline-block' : 'none'}} defaultValue={sale.quantity} name='quantity' onChange={handleUpdateChange}/>
                                             <span className='price' style={{display: !displayInput ? 'inline-block':'none'}}>{sale.selling_price}</span>
-                                            <input className='price' style={{display:displayInput ? 'inline-block' : 'none'}} defaultValue={sale.selling_price} name='buying_price' onChange={handleUpdateChange}/>
+                                            <input className='price' style={{display:displayInput ? 'inline-block' : 'none'}} defaultValue={sale.selling_price} name='selling_price' onChange={handleUpdateChange}/>
                                         </div>
-                                        <div className='close' onClick={!displayInput ? onDelete : ()=>{updateStock(sale.id,salelist.indexOf(sale))}} id={salelist.indexOf(sale)}>{!displayInput ? <SvgClose fill='#E6B0B0' id={salelist.indexOf(sale)}/> : <SvgDone fill='#6842ff' stroke='#6842ff'/>}</div>
+                                        <div className='close' onClick={!displayInput ? onDelete : ()=>{updateSale(sale.id,salelist.indexOf(sale))}} id={salelist.indexOf(sale)}>{!displayInput ? <SvgClose fill='#E6B0B0' id={salelist.indexOf(sale)}/> : <SvgDone fill='#6842ff' stroke='#6842ff'/>}</div>
                                     </div>
                                 
                                 )
@@ -316,6 +361,5 @@ const EditSaleList = () => {
     }
     </>
     )
-}
 }
 export default EditSaleList 
