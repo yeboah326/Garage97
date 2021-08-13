@@ -171,8 +171,9 @@ table th,
     align-items: center;
     justify-content: center;
     margin: 15px;
-    cursor: grabbing;
+    cursor: pointer;
 }
+
 
 .greater,
 .lesser {
