@@ -77,13 +77,11 @@ useEffect(()=>{
           <div className="edit_stockList " onClick={onClickEdit}>
             <Link to='/business/sales/editsalelist'>
             <button>
-              {showEdit ? (
                 <SVGPencil fill="#6842ff" />
-              ):null}
             </button>
             </Link>
           </div>
-        </div>{" "}
+        </div>
       </div>
 
       {/* <div className="divdown"> */}
@@ -95,6 +93,7 @@ useEffect(()=>{
         </Link>
       </div>
       {/* </div> */}
+      <div className='list'>
       <div className="mobile_stockList table-div  ">
          <SalesHead />
         <TableSales
@@ -102,6 +101,7 @@ useEffect(()=>{
           showEdit={showEdit}
         />
         <Tfooter/>
+      </div>
       </div>
       <div className="desktop-side-nav-bar">
         {!showfullsidenavbar ? (
