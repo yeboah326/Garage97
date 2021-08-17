@@ -101,7 +101,7 @@ const StockPage = () => {
             </Link>
           </div>
        </div>
-      
+      <div className='list'>
       <div className="mobile_stockList table-div  ">
         <TableHead />
         <TableRow
@@ -109,6 +109,7 @@ const StockPage = () => {
           
         />
         <Tfooter/>
+      </div>
       </div>
       <div className="desktop-side-nav-bar">
         {!showfullsidenavbar ? (

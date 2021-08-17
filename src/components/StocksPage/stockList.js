@@ -95,6 +95,7 @@ useEffect(()=>{
         </button>
       </div>
       {/* </div> */}
+      <div className='list'>
       <div className="mobile_stockList table-div  ">
         <TableHead />
         <TableRow
@@ -102,6 +103,7 @@ useEffect(()=>{
           showEdit={showEdit}
         />
         <Tfooter/>
+      </div>
       </div>
       <div className="desktop-side-nav-bar">
         {!showfullsidenavbar ? (
