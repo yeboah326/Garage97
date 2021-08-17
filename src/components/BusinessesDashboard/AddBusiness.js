@@ -3,7 +3,7 @@ import Input from '../Input'
 import Button from '../Button'
 import { logout} from '../../auth'
 
-const AddBusiness = ({toggle,businesses,onClick}) => {
+const AddBusiness = ({toggle,onClick}) => {
     const [business,setBusiness] = useState({'name':'','description':''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
 
@@ -28,7 +28,6 @@ const AddBusiness = ({toggle,businesses,onClick}) => {
             alert('Session has expired')
         }
         else if(response.status === 201){
-                businesses.push(newBusiness)
                 onClick()
         }
         else{
@@ -40,9 +39,9 @@ const AddBusiness = ({toggle,businesses,onClick}) => {
     return (
         <div className="add">
             <p>Add Business</p>
-            <Input label="Name" name='name' required='true' type="text" onChange={onHandleChange}/>
+            <Input label="Name" name='name' required='required' type="text" onChange={onHandleChange}/>
              <label>Description</label>
-             <textarea name='description' onChange={onHandleChange}></textarea>
+             <textarea name='description' onChange={onHandleChange} required></textarea>
              <div className="button-div"><Button name="Add" color="#273475" toggle={Submit}/><Button name="Cancel" color="red" toggle={toggle}/></div>
         </div>
     )

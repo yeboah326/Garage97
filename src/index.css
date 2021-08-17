@@ -2,7 +2,7 @@
 @import url('./css/fonts.css');
 @import url('./css/login_register.css');
 @import url('./css/side-nav-bar.css');
-@import url('./css/main.css');
+/* @import url('./css/business.css'); */
 @import url('./css/splash.css');
 @import url('./css/addstocks.css');
 @import url('./css/overview.css');
@@ -14,20 +14,27 @@
 
 
 
-
+html{
+  min-height: 100vh;
+}
 body {
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  display: flex;
 }
 
 
 
 #root {
-  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.container{
+  height:100%;
   width: 100%;
 }
-
 .container-main{
   margin: 0;
   width: 100%;

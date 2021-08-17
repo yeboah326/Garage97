@@ -3,11 +3,12 @@ import Input from '../Input'
 import Button from '../Button'
 import { logout } from '../../auth/index'
 import { useState } from 'react'
-import { business_id } from '../BusinessesDashboard/Businesses'
 
-const AddProducts = ({products,toggle,onClick}) => {
+
+const AddProducts = ({fetchData,toggle}) => {
     const [product,setProduct] = useState({'name':'','description':''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
+    const business_id = localStorage.getItem('Business')
 
     const onHandleChange = (event) => {
         const {name,value} = event.target
@@ -30,8 +31,7 @@ const AddProducts = ({products,toggle,onClick}) => {
             alert('Session has expired')
         }
         else if(response.status === 201){
-                products.push(newProduct)
-                onClick()
+                fetchData()
         }
         else{
             alert('Could not create product. Try again')
@@ -43,9 +43,9 @@ const AddProducts = ({products,toggle,onClick}) => {
     return (
         <div className="add">
              <p>Add new product</p>
-            <Input label="Name" type="text" onChange={onHandleChange} required='true' name='name'/>
+            <Input label="Name" type="text" onChange={onHandleChange} required='required' name='name'/>
              <label>Description</label>
-             <textarea onChange={onHandleChange}></textarea>
+             <textarea onChange={onHandleChange} name='description' required></textarea>
              <div className="button-div"><Button name="Add" color="#273475" toggle={Submit}/><Button name="Cancel" color="red" toggle={toggle}/></div>
 
         </div>
