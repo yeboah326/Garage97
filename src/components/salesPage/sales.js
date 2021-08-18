@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
-import { business_id } from "../BusinessesDashboard/Businesses";
 import SalesHead from "./SalesHead";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableSales from "./tableSales";
@@ -20,32 +19,31 @@ const SalesPage = () => {
   const business_id = localStorage.getItem('Business')
 
   const fetchSaleLists = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/sale_list`,{
-            method: 'GET',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization':`Bearer ${token}`
-            }
-        })
-        const res = await response.json()
-        if (response.status === 401){
-            logout()
-            alert('Session has expired')
-        }
-        else if(response.status === 200){
-          console.log(res.business_sale_lists)
-            setSaleLists(res.business_sale_lists)
+    const response = await fetch(`http://localhost:9000/business/${business_id}/sale_list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    const res = await response.json()
+    if (response.status === 401) {
+      logout()
+      alert('Session has expired')
+    }
+    else if (response.status === 200) {
+      setSaleLists(res.business_sale_lists)
 
-        }
-        else{
-            alert(res.message)
-        }
+    }
+    else {
+      alert(res.message)
+    }
   }
 
 
-  useEffect(()=>{
-      fetchSaleLists()
-},[])
+  useEffect(() => {
+    fetchSaleLists()
+  }, [])
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -54,7 +52,7 @@ const SalesPage = () => {
     setShowSideNavBar(!showsidenavbar);
   };
 
-  
+
   const onClickAdd = () => {
     setAddSaleList(!addsaleList);
   };
@@ -84,30 +82,31 @@ const SalesPage = () => {
             </button>
           </div>
           {/* {showEdit ? ( */}
-            <div className="ad" onClick={onClickAdd}>
-              <Link to="/business/sales/addsales">
-                <AddButton />
-              </Link>
-            </div>
-        </div>
-      </div>
-
-      <div className="divdown">
-     
-        
           <div className="ad" onClick={onClickAdd}>
             <Link to="/business/sales/addsales">
               <AddButton />
             </Link>
           </div>
-       </div>
-      
-      <div className="mobile_stockList table-div  ">
-        <SalesHead />
-        <    TableSales      rowData={salelists}
-          
-        />
-        <Tfooter/>
+        </div>
+      </div>
+
+      <div className="divdown">
+
+
+        <div className="ad" onClick={onClickAdd}>
+          <Link to="/business/sales/addsales">
+            <AddButton />
+          </Link>
+        </div>
+      </div>
+      <div className='list'>
+        <div className="mobile_stockList table-div  ">
+          <SalesHead />
+          <    TableSales rowData={salelists}
+
+          />
+          <Tfooter />
+        </div>
       </div>
       <div className="desktop-side-nav-bar">
         {!showfullsidenavbar ? (

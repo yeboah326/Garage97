@@ -14,6 +14,9 @@ import AddSales from './components/salesPage/AddSales'
 import AddStocks from './components/StocksPage/AddStocks'
 import SalesListPage from './components/salesPage/saleList'
 import StockListPage from './components/StocksPage/stockList'
+import EditStockList from './components/StocksPage/EditStockList'
+import EditSaleList from './components/salesPage/EditSaleList'
+import About from './components/Login_Registration/about'
 
 
 
@@ -46,6 +49,7 @@ function App() {
             <Route exact path = '/addstocks'component={AddStocks}/>
 
 
+            <Route exact path = '/about' component={About}/>
 
             <Route exact path = '/register' component={RegistrationForm}/>
             <PrivateRoute exact path = '/home' component={BusinessesDashboard}/> 
@@ -58,6 +62,8 @@ function App() {
             <PrivateRoute exact path = '/business/stocks/addstocks'component={AddStocks}/>
             <PrivateRoute exact path = '/business/stocks/stocklist'component={StockListPage}/>
             <PrivateRoute exact path = '/business/sales/salelist'component={SalesListPage}/>
+            <PrivateRoute exact path = '/business/stocks/editstocklist'component={EditStockList}/>
+            <PrivateRoute exact path = '/business/sales/editsalelist'component={EditSaleList}/>
 
 
           </div>

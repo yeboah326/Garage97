@@ -155,6 +155,55 @@ def test_stock_update_by_id(app, client):
     assert response.json == {"message": "Stock updated successfully"}
 
 
+def test_stock_add_new_stock_to_stocklist(app, client):
+    # Login the user
+    login = login_user(app, client)
+
+    # Create a new buiness
+    create_new_business(client, login["token"])
+
+    # Retrieve the new business created
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    # Create products for business
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+    # Create business sale_list
+    create_business_stocklist(client, login["token"], product_id)
+
+    # Retrieve salelist id for created salelist
+    stocklist = StockList.query.filter_by(business_id=business_id).first()
+
+    assert len(stocklist.stocks) == 4
+
+    data = {
+        "stocks": [
+            {"quantity": 5, "buying_price": 15.0, "product_id": product_id},
+            {"quantity": 5, "buying_price": 15.0, "product_id": product_id},
+            {"quantity": 5, "buying_price": 15.0, "product_id": product_id},
+            {"quantity": 5, "buying_price": 15.0, "product_id": product_id},
+        ]
+    }
+
+    response = client.post(
+        f"stock/add/{stocklist.id}",
+        json=data,
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    # Retrieve salelist id for created salelist after updating
+    stocklist = StockList.query.filter_by(business_id=business_id).first()
+
+    assert response.status_code == 201
+    assert response.json == {"message": "New stock added successfully"}
+    assert len(stocklist.stocks) == 8
+
+
 def test_stock_list_create_new(app, client):
     # Login the user
     login = login_user(app, client)
@@ -223,8 +272,8 @@ def test_stock_list_get_by_id(app, client):
     )
 
     assert response.status_code == 200
-    assert "name" in response.json
-    assert len(response.json) == 3
+    assert "total_buying_price" in response.json
+    assert len(response.json) == 4
 
 
 def test_stock_list_delete_by_id(app, client):

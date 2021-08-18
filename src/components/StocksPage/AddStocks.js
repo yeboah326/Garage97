@@ -8,7 +8,8 @@ import SvgClose from '../../Assets/icons/Close'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import { logout } from '../../auth'
-import { business_id } from '../BusinessesDashboard/Businesses'
+import { Redirect } from 'react-router-dom'
+
 
 
 
@@ -19,6 +20,7 @@ const AddStocks = () => {
     const [navwidth,setWidth] = useState(false)
     const [products,setProducts] = useState([])
     const [stocklist,setStockList] = useState([])
+    const [toggle,setToggle] = useState(false)
     const [stock,setStock] = useState({product_id:'',quantity:'',buying_price:'',product:''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
     const business_id = localStorage.getItem('Business')
@@ -112,6 +114,7 @@ const AddStocks = () => {
         else{
             alert('Could not add new stock')
         }
+        setToggle(!toggle)
     }
 
     useEffect(()=>{
@@ -119,6 +122,7 @@ const AddStocks = () => {
     },[])
 
     return (
+        <>{ !toggle ?
     <div className='add-sale-container'>
         {showsidenavbar ?
             <div className='side-nav-page'>
@@ -184,7 +188,10 @@ const AddStocks = () => {
             </main>
             <div className='done desktop-done' onClick={postStockList}><SvgDone fill='#6842ff' stroke='#6842ff'/></div>
         </div>
-    </div>
+    </div>:
+    <Redirect to='/business/stocks'/>
+    }
+    </>
     )
 }
 

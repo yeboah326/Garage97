@@ -8,7 +8,9 @@ class Sale(db.Model):
     selling_price = db.Column(db.Numeric(5, 2))
     created_on = db.Column(db.DateTime)
     product_id = db.Column(db.Integer, db.ForeignKey("Product.id"), nullable=False)
-    sale_list_id = db.Column(db.Integer, db.ForeignKey("SaleList.id",ondelete="CASCADE"), nullable=False)
+    sale_list_id = db.Column(
+        db.Integer, db.ForeignKey("SaleList.id", ondelete="CASCADE"), nullable=False
+    )
 
 
 class SaleList(db.Model):
@@ -19,4 +21,4 @@ class SaleList(db.Model):
     customer_contact = db.Column(db.String(10))
     created_on = db.Column(db.DateTime)
     business_id = db.Column(db.Integer, db.ForeignKey("Business.id"), nullable=False)
-    sales = db.relationship("Sale", backref="SaleList", lazy=True,passive_deletes=True)
+    sales = db.relationship("Sale", backref="SaleList", lazy=True, passive_deletes=True)

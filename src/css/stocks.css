@@ -1,12 +1,11 @@
 /* base styles */
 
 .stockListPage {
-    min-width: 150vw;
+    min-width: 100vw;
     min-height: 100vh;
     background-color: #f0f3f5;
     font-family: PoppinsRegular;
     justify-content: flex-end;
-
 }
 
 h1 {
@@ -92,7 +91,11 @@ h1 {
     
 } */
 
-
+.list{
+    display: block;
+    width: 90vw;
+    overflow-x: auto;
+}
 
 .mobile_stockList {
     display: block;
@@ -171,8 +174,9 @@ table th,
     align-items: center;
     justify-content: center;
     margin: 15px;
-    cursor: grabbing;
+    cursor: pointer;
 }
+
 
 .greater,
 .lesser {
