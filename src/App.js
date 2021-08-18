@@ -34,7 +34,7 @@ function App() {
     <Router>
       <Switch>
      
-          <div className='container'>
+          <div className='container splashcontainer'>
             <Route exact path = '/' component={SplashPage}/>
             {/* <Redirect from = '/' to='/home'/>  */}
             <Route exact path = '/login'component={LoginForm}/>
