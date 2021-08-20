@@ -99,8 +99,9 @@ const SalesPage = () => {
           </Link>
         </div>
       </div>
-      <div className='list'>
+      
         <div className="mobile_stockList table-div  ">
+        <div className='list'>
           <SalesHead />
           <    TableSales rowData={salelists}
 
