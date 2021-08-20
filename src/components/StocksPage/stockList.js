@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
-import { business_id } from "../BusinessesDashboard/Businesses";
 import SVGPencil from "../../Assets/icons/Pencil";
 import TableHead from "./tableHead2";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableRow from "./tableRow2";
-import AddButton from "../ProductDashboard/AddButton";
-import AddStocks from "./AddStocks";
 import SideNavBar2 from "../ProductDashboard/SideNavBar2";
-import SvgDone from "../../Assets/icons/Done";
 import { Link } from "react-router-dom";
 import Tfooter from '../StocksPage/tfooter'
 
@@ -95,8 +91,9 @@ useEffect(()=>{
         </button>
       </div>
       {/* </div> */}
-      <div className='list'>
+      
       <div className="mobile_stockList table-div  ">
+      <div className='list'>
         <TableHead />
         <TableRow
           rowData={stocklist}

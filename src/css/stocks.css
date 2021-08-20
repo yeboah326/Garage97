@@ -91,12 +91,6 @@ h1 {
     
 } */
 
-.list{
-    display: block;
-    width: 90vw;
-    overflow-x: auto;
-}
-
 .mobile_stockList {
     display: block;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -104,10 +98,17 @@ h1 {
     margin: 25px 5%;
     border-radius: 20px;
     height: fit-content;
-    width: 600px;
+    width: 100%;
     background-color: #fff;
     overflow-x: auto;
 }
+
+/* .list{
+    display: block;
+    width: 90vw;
+    height: 90vh;
+    overflow-x: auto;
+} */
 
 .ad .add-button button {
     font-size: 3rem;
@@ -250,7 +251,9 @@ table th,
         top: 40px;
     }
 
-
+    .list{
+        width: 100%;
+    }
 
 
 

@@ -101,8 +101,9 @@ const StockPage = () => {
             </Link>
           </div>
        </div>
-      <div className='list'>
+      
       <div className="mobile_stockList table-div  ">
+      <div className='list'>
         <TableHead />
         <TableRow
           rowData={stocklists}
