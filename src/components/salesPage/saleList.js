@@ -17,6 +17,8 @@ const SalesListPage = () => {
   const [addsaleList, setAddSaleList] = useState(false);
   const [salelist, setSaleList] = useState([]);
   const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
+  const [navwidth,setWidth] = useState(false)
+  let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const sale_list_id = localStorage.getItem('Sale_List_ID')
 
@@ -34,6 +36,7 @@ const SalesListPage = () => {
   };
   const onHover = () => {
     setShowFullSideNavBar(!showfullsidenavbar);
+    setWidth(!navwidth)
   };
     const fetchSaleList = async () => {
     const response = await fetch(`http://localhost:9000/sale/sale_list/${sale_list_id}`,{
@@ -63,12 +66,13 @@ useEffect(()=>{
 },[])
 
   return (
-    <div className="salesListPage stock-body">
+    <div className="stockListPage">
       {showsidenavbar ? (
         <div className="side-nav-page">
           <SideNavBar onClick={onClickClose} />
         </div>
       ) : null}
+      <div className='stock-body'>
       <div className="header_grid">
         <div className="menu " onClick={onClickMenu}>
           <SvgMenu fill="#6842ff" />
@@ -84,32 +88,33 @@ useEffect(()=>{
         </div>
       </div>
 
-      {/* <div className="divdown"> */}
-      <div className="edit" onClick={onClickEdit}>
-        <Link to='/business/sales/editsalelist'>
-        <button>
-          <SVGPencil fill="#6842ff" />
-        </button>
-        </Link>
-      </div>
-      {/* </div> */}
       
-      <div className="mobile_stockList table-div  ">
-      <div className='list'>
-         <SalesHead />
-        <TableSales
-          rowData={salelist}
-          showEdit={showEdit}
-        />
-        <Tfooter/>
-      </div>
-      </div>
       <div className="desktop-side-nav-bar">
         {!showfullsidenavbar ? (
           <SideNavBar2 onHover={onHover} />
         ) : (
           <SideNavBar onHover={onHover} />
         )}
+      </div>
+      <div className='list'>
+      <div className="mobile_stockList">
+          <div className='stock-head'>Sale {sale_list_id}</div>
+         <SalesHead />
+        <TableSales
+          rowData={salelist}
+        />
+        <Tfooter/>
+      </div>
+      </div>
+    <div className="divdown"> 
+      <div className="edit" onClick={onClickEdit}>
+        <button>
+        <Link to='/business/sales/editsalelist'>
+          <SVGPencil fill="#6842ff" />
+        </Link>
+        </button>
+      </div>
+      </div> 
       </div>
     </div>
   );

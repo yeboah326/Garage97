@@ -15,6 +15,8 @@ const SalesPage = () => {
   const [addsaleList, setAddSaleList] = useState(false);
   const [salelists, setSaleLists] = useState([]);
   const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
+  const [navwidth,setWidth] = useState(false)
+  let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const business_id = localStorage.getItem('Business')
 
@@ -58,63 +60,57 @@ const SalesPage = () => {
   };
   const onHover = () => {
     setShowFullSideNavBar(!showfullsidenavbar);
+    setWidth(!navwidth)
   };
 
   return (
-    <div className="stockListPage stock-body">
+    <div className="stockListPage">
       {showsidenavbar ? (
         <div className="side-nav-page">
           <SideNavBar onClick={onClickClose} />
         </div>
       ) : null}
-      <div className="header_grid">
-        <div className="menu " onClick={onClickMenu}>
-          <SvgMenu fill="#6842ff" />
-        </div>
-        <div className="divRight">
-          {/* <div className="edit_stockList " onClick={onClickEdit}>
-            <button>
-              {showEdit ? (
-                <SvgDone fill="#6842ff" />
-              ) : (
-                <SVGpencil fill="#6842ff" />
-              )}
-            </button>
+      <div className='stock-body'>
+        <div className="header_grid">
+          <div className="menu " onClick={onClickMenu}>
+            <SvgMenu fill="#6842ff" />
           </div>
-          {/* {showEdit ? ( */}
-          <div className="ad" onClick={onClickAdd}>
-            <Link to="/business/sales/addsales">
-              <AddButton />
-            </Link>
+          <div className="divRight">
+            <div className="ad" onClick={onClickAdd}>
+              <Link to="/business/sales/addsales">
+                <AddButton />
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="divdown">
-
-
-        <div className="ad" onClick={onClickAdd}>
-          <Link to="/business/sales/addsales">
-            <AddButton />
-          </Link>
+        <div className="desktop-side-nav-bar" style={{width:width}}>
+          {!showfullsidenavbar ? (
+            <SideNavBar2 onHover={onHover}  navwidth='100px'/>
+          ) : (
+            <SideNavBar onHover={onHover}  navwidth='220px'/>
+          )}
         </div>
-      </div>
-      
-        <div className="mobile_stockList table-div  ">
-        <div className='list'>
-          <SalesHead />
-          <    TableSales rowData={salelists}
 
-          />
-          <Tfooter />
+       
+          <div className='list'>
+          <div className="mobile_stockList">
+          <div className='stock-head'>Sales</div>
+            <SalesHead />
+            <    TableSales rowData={salelists}
+
+            />
+            <Tfooter />
+          </div>
         </div>
-      </div>
-      <div className="desktop-side-nav-bar">
-        {!showfullsidenavbar ? (
-          <SideNavBar2 onHover={onHover} />
-        ) : (
-          <SideNavBar onHover={onHover} />
-        )}
+        <div className="divdown">
+
+
+<div className="ad" onClick={onClickAdd}>
+  <Link to="/business/sales/addsales">
+    <AddButton />
+  </Link>
+</div>
+</div>
       </div>
     </div>
   );
