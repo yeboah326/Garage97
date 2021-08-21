@@ -6,7 +6,7 @@ const BusinessReport = () => {
     const user = JSON.parse(localStorage.getItem('User'))
     const date = '29/08/2021'
     return (
-        <div className='business-report'>
+        <div className='report-business'>
             <div className='business-report-header'>
                 <div className='business-report-head'>
                     <div className='business-name'>{business_name}</div>
