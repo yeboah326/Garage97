@@ -15,7 +15,7 @@ const SideNavBar2 = ({onHover,navwidth}) => {
     return (
         <div className="side-nav-bar2" onMouseOver={onHover} style={{width:navwidth}}>
             <Avatar name="" image="" business=''/>
-            <div className='option main'><NavLink to='business/overview' className='options-link-1' activeClassName='active'><SvgHome fill='#c0c0c0'/></NavLink></div>
+            <div className='option main'><NavLink to='/business/overview' className='options-link-1' activeClassName='active'><SvgHome fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink to='/businesses' className='options-link-1' activeClassName='active'><SvgBriefcase fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink to='/business/products' className='options-link-1' activeClassName='active'><SvgBoxThin fill='#c0c0c0'/></NavLink></div>
             <div className='option main'><NavLink to='/business/stocks' className='options-link-1' activeClassName='active'><SvgDelivery fill='#c0c0c0'/></NavLink></div>
