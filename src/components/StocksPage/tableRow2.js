@@ -16,22 +16,10 @@ function TableRow (props){
       <div  className="tableRow_2" key={eachRow.product_id}> 
         <div  className="actual_data_2" key={eachRow.product_id}> 
 
-        <div className='sale_id'>{eachRow.product}</div>
+        <div className='stock_id'>{eachRow.product}</div>
         <div className='qty'>{eachRow.quantity}</div>
-        <div className='total_pice'>{eachRow.buying_price}</div>
+        <div className='price'>{eachRow.buying_price}</div>
          </div>
-        { props.showEdit ?
-         <div className='close' onClick={onDelete} ><SVGclose fill='red'/> 
-         {deleteStockList ? 
-            <div className='pop'>
-                <DeleteStockList onClick={onDelete}  id={eachRow.product_id}/>
-            </div> :
-            null
-            } 
-            </div> : null
-        }
-
-
       </div>
       
     )
