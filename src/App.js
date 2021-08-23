@@ -40,7 +40,7 @@ function App() {
     <Router>
       <Switch>
      
-          <div className='container'>
+          <div className='container splashcontainer'>
             <Route exact path = '/' component={SplashPage}/>
             <Route exact path = '/login'component={LoginForm}/>
             <Route exact path = '/about' component={About}/>
