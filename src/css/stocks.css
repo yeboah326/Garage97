@@ -168,7 +168,7 @@ h1 {
     font-family: PoppinsRegular;
     color: #6842ff;
     box-sizing:border-box;
-    background-color: #bab2f5;
+    background-color: #bab2f5 !important;
     margin-bottom: 10px;
     padding: 10px 0;
     padding-left: 10px;
