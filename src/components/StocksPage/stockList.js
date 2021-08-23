@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
-import { business_id } from "../BusinessesDashboard/Businesses";
 import SVGPencil from "../../Assets/icons/Pencil";
 import TableHead from "./tableHead2";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableRow from "./tableRow2";
-import AddButton from "../ProductDashboard/AddButton";
-import AddStocks from "./AddStocks";
 import SideNavBar2 from "../ProductDashboard/SideNavBar2";
-import SvgDone from "../../Assets/icons/Done";
 import { Link } from "react-router-dom";
 import Tfooter from '../StocksPage/tfooter'
 
@@ -20,6 +16,8 @@ const StockListPage = () => {
   const [addstockList, setAddStockList] = useState(false);
   const [stocklist, setStockList] = useState([]);
   const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
+  const [navwidth,setWidth] = useState(false)
+  let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const stock_list_id = localStorage.getItem('Stock_List_ID')
 
@@ -37,6 +35,7 @@ const StockListPage = () => {
   };
   const onHover = () => {
     setShowFullSideNavBar(!showfullsidenavbar);
+    setWidth(!navwidth)
   };
     const fetchStockList = async () => {
     const response = await fetch(`http://localhost:9000/stock/stock_list/${stock_list_id}`,{
@@ -65,12 +64,13 @@ useEffect(()=>{
 },[])
 
   return (
-    <div className="stockListPage stock-body">
+    <div className="stockListPage">
       {showsidenavbar ? (
         <div className="side-nav-page">
           <SideNavBar onClick={onClickClose} />
         </div>
       ) : null}
+      <div className='stock-body'>
       <div className="header_grid">
         <div className="menu " onClick={onClickMenu}>
           <SvgMenu fill="#6842ff" />
@@ -79,38 +79,38 @@ useEffect(()=>{
           <div className="edit_stockList " onClick={onClickEdit}>
           <Link to='/business/stocks/editstocklist'>
             <button>
-              {showEdit ? (
               <SVGPencil fill="#6842ff" />
-              ):null}
             </button>
             </Link>
           </div>
-        </div>{" "}
+        </div>
+      </div>
+      <div className="desktop-side-nav-bar" style={{width:width}}>
+        {!showfullsidenavbar ? (
+          <SideNavBar2 onHover={onHover} navwidth='100px'/>
+        ) : (
+          <SideNavBar onHover={onHover} navwidth='220px'/>
+        )}
       </div>
 
-      {/* <div className="divdown"> */}
+      
+      <div className='list'>
+      <div className="mobile_stockList">
+        <div className='stock-head'>Stock {stock_list_id}</div>
+        <TableHead />
+        <TableRow
+          rowData={stocklist}
+        />
+        <Tfooter/>
+      </div>
+      </div>
+      <div className="divdown">
       <div className="edit">
         <button>
           <Link to='/business/stocks/editstocklist'><SVGPencil fill="#6842ff" /></Link>
         </button>
       </div>
-      {/* </div> */}
-      <div className='list'>
-      <div className="mobile_stockList table-div  ">
-        <TableHead />
-        <TableRow
-          rowData={stocklist}
-          showEdit={showEdit}
-        />
-        <Tfooter/>
       </div>
-      </div>
-      <div className="desktop-side-nav-bar">
-        {!showfullsidenavbar ? (
-          <SideNavBar2 onHover={onHover} />
-        ) : (
-          <SideNavBar onHover={onHover} />
-        )}
       </div>
     </div>
   );

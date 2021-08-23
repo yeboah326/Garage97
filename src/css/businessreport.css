@@ -1,0 +1,110 @@
+.report-business{
+    background-color: #f0f3f5;
+    box-sizing: border-box;
+    padding: 50px 20px 0 20px;
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+}
+.business-report-header{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    width: 100%;
+}
+.business-report-header .date-generated{
+    margin-left: auto;
+    font-family: PoppinsRegular;
+    font-size: 1rem;
+    color: #85888a;
+}
+
+.business-report-header .business-report-head{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+.business-report-head .business-name{
+    font-family: PoppinsRegular;
+    font-size: 2rem;
+    color:#968ce6;
+    margin: 0;
+    padding: 0;
+}
+.business-report-head .business-user{
+    font-family: PoppinsRegular;
+    font-size: 1.1rem;
+    color: #85888a;
+    margin: 0;
+    padding: 0;
+}
+
+.report-business .business-report-summary .business-report-summary-header
+,.report-business .business-product-report-summary .product-report-summary-header{
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: #5847d3;
+    color: white;
+    font-family: PoppinsLight;
+    font-size: 1rem;
+    margin: 0;
+    text-align: start;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-business .business-product-report-summary .product-name{
+    width: 30%;
+    height: fit-content;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: #5847d3;
+    color: white;
+    font-family: PoppinsLight;
+    font-size: 1rem;
+    margin-top: 20px;
+    text-align: start;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-business .business-report-summary .business-summary,
+.report-business .business-product-report-summary .product-summary{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.summary-card{
+    width: 30%;
+    margin-bottom: 40px;
+}
+
+.summary-card .summary-card-title{
+    background-color:#cdc8f0;
+    box-sizing: border-box;
+    padding: 5px 0px 5px 10px;
+    border-radius: 10px;
+    color: #7060eb;
+    font-family: PoppinsLight;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.summary-card .summary-card-value{
+    color: #7060eb;
+    font-family: PoppinsRegular;
+    padding-left: 10px;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+
+

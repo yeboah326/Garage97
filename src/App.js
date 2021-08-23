@@ -17,7 +17,10 @@ import StockListPage from './components/StocksPage/stockList'
 import EditStockList from './components/StocksPage/EditStockList'
 import EditSaleList from './components/salesPage/EditSaleList'
 import About from './components/Login_Registration/about'
-
+import Customers from './components/Customers/Customers'
+import Reports from './components/Report/Reports'
+import BusinessReport from './components/Report/BusinessReport'
+import ProductReport from './components/Report/ProductReport'
 
 
 
@@ -37,21 +40,14 @@ function App() {
     <Router>
       <Switch>
      
-          <div className='container'>
+          <div className='container splashcontainer'>
             <Route exact path = '/' component={SplashPage}/>
-            {/* <Redirect from = '/' to='/home'/>  */}
             <Route exact path = '/login'component={LoginForm}/>
-            {/* <Route exact path = '/stocks1'component={Stocks1}/> */}
-            
-            <Route exact path = '/addsales'component={AddSales}/>
-            
-            {/* <Route exact path = '/stocks'component={Stocks}/> */}
-            <Route exact path = '/addstocks'component={AddStocks}/>
-
-
             <Route exact path = '/about' component={About}/>
-
             <Route exact path = '/register' component={RegistrationForm}/>
+            <Route exact path = '/businessreport' component={BusinessReport}/>
+            <Route exact path = '/productreport' component={ProductReport}/>
+
             <PrivateRoute exact path = '/home' component={BusinessesDashboard}/> 
             <PrivateRoute exact  path = '/businesses' component={BusinessPage}/>
             <PrivateRoute exact path='/business/products' component={ProductsPage}/>
@@ -64,6 +60,10 @@ function App() {
             <PrivateRoute exact path = '/business/sales/salelist'component={SalesListPage}/>
             <PrivateRoute exact path = '/business/stocks/editstocklist'component={EditStockList}/>
             <PrivateRoute exact path = '/business/sales/editsalelist'component={EditSaleList}/>
+            <PrivateRoute exact path = '/business/customers'component={Customers}/>
+            <PrivateRoute exact path = '/business/report'component={Reports}/>
+            
+
 
 
           </div>
