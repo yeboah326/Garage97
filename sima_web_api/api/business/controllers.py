@@ -48,7 +48,9 @@ def business_create_new(current_user):
     try:
         data = request.get_json()
 
-        new_business = Business(name=data["name"],description=data["description"], user_id=current_user.id)
+        new_business = Business(
+            name=data["name"], description=data["description"], user_id=current_user.id
+        )
 
         db.session.add(new_business)
         db.session.commit()
@@ -223,9 +225,14 @@ def busines_create_new_product(current_user, business_id):
 
 
 # Sale and SaleList
-@business.route("/<business_id>/sale_list", methods=["GET"])
+@business.route(
+    "/<business_id>/sale_list",
+    methods=["GET"],
+    defaults={"page": 1, "items_per_page": 10},
+)
+@business.route("/<business_id>/sale_list/<item_per_page>/<page>")
 @token_required
-def business_get_all_sale_list(current_user, business_id):
+def business_get_all_sale_list(current_user, business_id, page, items_per_page):
     try:
         business_sale_lists = SaleList.query.filter_by(business_id=business_id)
         business_sale_lists_json = [
@@ -244,9 +251,26 @@ def business_get_all_sale_list(current_user, business_id):
             for sale_list in business_sale_lists
         ]
 
+        # Computing number of pages
+        total_sales = len(business_sale_lists_json)
+        num_pages = (
+            (total_sales // items_per_page)
+            if total_sales % items_per_page == 0
+            else (total_sales // items_per_page) + 1
+        )
+
+        # Filtering for the page sales_lists
+        if (total_sales - (page * items_per_page)) > 0:
+            business_sale_lists_json[
+                page * items_per_page : ((page * items_per_page) + items_per_page)
+            ]
+        else:
+            business_sale_lists_json[page * items_per_page :]
+
         business_sale_lists_json = {
             "business": Business.query.filter_by(id=business_id).first().name,
             "business_sale_lists": business_sale_lists_json,
+            "business_sale_lists_pages": num_pages,
         }
         return jsonify(business_sale_lists_json), 200
     except:
