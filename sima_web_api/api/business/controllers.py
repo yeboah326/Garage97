@@ -295,12 +295,16 @@ def business_delete_all_sale_list(current_User, business_id):
 
 
 # Stock and StockList
-@business.route("/<business_id>/stock_list", methods=["GET"])
+@business.route(
+    "/<business_id>/stock_list",
+    methods=["GET"],
+    defaults={"page": 1, "items_per_page": 10},
+)
+@business.route("/<business_id>/stock_list/<item_per_page>/<page>", methods=["GET"])
 @token_required
-def business_get_all_stock_list(current_user, business_id):
+def business_get_all_stock_list(current_user, business_id, page, items_per_page):
     try:
         business_stock_lists = StockList.query.filter_by(business_id=business_id)
-
         business_stock_lists_json = [
             {
                 "id": stock_list.id,
@@ -313,12 +317,30 @@ def business_get_all_stock_list(current_user, business_id):
             for stock_list in business_stock_lists
         ]
 
-        business_sale_lists_json = {
+        # Computing number of pages
+        total_sales = len(business_stock_lists_json)
+        num_pages = (
+            (total_sales // items_per_page)
+            if total_sales % items_per_page == 0
+            else (total_sales // items_per_page) + 1
+        )
+
+        # Filtering for the page sales_lists
+        if (total_sales - (page * items_per_page)) > 0:
+            business_stock_lists_json[
+                page * items_per_page : ((page * items_per_page) + items_per_page)
+            ]
+        else:
+            business_stock_lists_json[page * items_per_page :]
+
+
+        business_stock_lists_json = {
             "business": Business.query.filter_by(id=business_id).first().name,
             "business_stock_lists": business_stock_lists_json,
+            "business_sale_lists_pages": num_pages,
         }
 
-        return jsonify(business_sale_lists_json), 200
+        return jsonify(business_stock_lists_json), 200
     except:
         return jsonify({"message": "Could not process request"}), 400
 
