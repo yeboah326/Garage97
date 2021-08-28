@@ -46,7 +46,7 @@ const DeleteProduct = ({onClick,id,fetchData}) => {
             
         }
         else{
-            alert(res.message)
+            alert("Could not process request")
         }
         onClick()
     }
