@@ -41,7 +41,9 @@
   .customer-list .no-customers{
     width: 100%;
     align-self: center;
-    vertical-align: center;
+    /* vertical-align: center; */
+    margin-top: 50%;
+    margin-bottom: 50%;
     color: #968ce6;
     font-family: PoppinsRegular;
     font-size: 2rem;
@@ -89,6 +91,7 @@
       border-radius: 15px;
       background-color: #bab2f5;
       align-items: center;
+      margin-bottom: 10px;
   }
   .customer-body .customer .customer-name{
       width: 50%;
