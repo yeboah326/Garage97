@@ -90,7 +90,7 @@ def product_update_by_id(current_user, product_id):
         return jsonify({"message": "Could not process request"}), 400
 
 
-# ----- Sale -----
+# ----- Sale ------
 
 
 @product.route(
