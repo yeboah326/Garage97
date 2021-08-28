@@ -1,5 +1,6 @@
 import React from 'react'
 import SummaryCard from './SummaryCard'
+import { Link } from 'react-router-dom'
 
 const BusinessReport = () => {
     const business_name = localStorage.getItem('business_name')
@@ -9,14 +10,15 @@ const BusinessReport = () => {
         <div className='report-business'>
             <div className='business-report-header'>
                 <div className='business-report-head'>
-                    <div className='business-name'>{business_name}</div>
+                 <Link className="business-name" to='/businesses'> {business_name}</Link>
+
                     <div className='business-user'>{user.name}</div>
                 </div>
                 <div className='date-generated'>Date Generated:{date}</div>
             </div>
             <div className='business-report-summary'>
                 <div className='business-report-summary-header'>Business Summary</div>
-                <div className='business-summary'>
+                <div className='business-summaries business-summary '>
                     <SummaryCard title='Total Sales Made' value='GHC 7900.21'/>
                     <SummaryCard title='Total Stock Purchased' value='GHC 5021.49'/>
                     <SummaryCard title='Profit/Loss' value='GHC 2878.72'/>
@@ -28,7 +30,7 @@ const BusinessReport = () => {
             <div className='business-product-report-summary'>
                 <div className='product-report-summary-header'>Product Summary</div>
                 <div className='product-name'>Kako Cube</div>
-                <div className='product-summary'>
+                <div className='product-summaries product-summary'>
                     <SummaryCard title='Total Sales Made' value='GHC 879.21'/>
                     <SummaryCard title='Total Stock Purchased' value='GHC 234.49'/>
                     <SummaryCard title='Profit/Loss' value='GHC 644.72'/>
