@@ -93,9 +93,11 @@ def product_update_by_id(current_user, product_id):
 # ----- Sale -----
 
 
-@product.route("/<product_id>/sale", methods=["GET"])
+@product.route(
+    "/<product_id>/sale", methods=["GET"], defaults={"page": 1, "items_per_page": 10}
+)
 @token_required
-def product_get_all_sale(current_user, product_id):
+def product_get_all_sale(current_user, product_id, page, items_per_page):
     """
     product_get_all_sale(current_user, product_id)
 
@@ -124,9 +126,11 @@ def product_get_all_sale(current_user, product_id):
         return jsonify({"message": "Could not process request"}), 400
 
 
-@product.route("/<product_id>/stock")
+@product.route(
+    "/<product_id>/stock", methods=["GET"], defaults={"page": 1, "items_per_page": 10}
+)
 @token_required
-def product_get_all_stock(current_user, product_id):
+def product_get_all_stock(current_user, product_id, page, items_per_page):
     """
     product_get_all_stock(current_user, product_id)
 
