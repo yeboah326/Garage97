@@ -25,9 +25,9 @@ def hello():
 
 
 # ----- Stock -----
-@stock.route("/stock_list/<stock_list_id>", methods=["GET"])
+@stock.route("/stock_list/<stock_list_id>", methods=["GET"],defaults={"page": 1, "items_per_page": 10})
 @token_required
-def stock_get_all_by_stock_list_id(current_user, stock_list_id):
+def stock_get_all_by_stock_list_id(current_user, stock_list_id, page, items_per_page):
     """
     stock_get_all_by_stock_list_id(current_user, stock_list_id)
 
@@ -35,6 +35,12 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id):
 
     get all stocks by stock list id
     """
+    page = int(request.args["page"] if request.args["page"] else page)
+    items_per_page = int(
+        request.args["items_per_page"]
+        if request.args["items_per_page"]
+        else items_per_page
+    )
     try:
         stocks_by_stock_list_id = Stock.query.filter_by(stock_list_id=stock_list_id)
         stocks_by_stock_list_id_json = [
@@ -47,6 +53,23 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id):
             }
             for stock in stocks_by_stock_list_id
         ]
+
+        # Computing number of pages
+        total_sales = len(stocks_by_stock_list_id_json)
+        num_pages = (
+            (total_sales // items_per_page)
+            if total_sales % items_per_page == 0
+            else (total_sales // items_per_page) + 1
+        )
+
+        # Filtering for the page sales_lists
+        if (total_sales - (page * items_per_page)) > 0:
+            stocks_by_stock_list_id_json = stocks_by_stock_list_id_json[
+                page * items_per_page : ((page * items_per_page) + items_per_page)
+            ]
+        else:
+            stocks_by_stock_list_id_json = stocks_by_stock_list_id_json[page * items_per_page :]
+
         return jsonify(stocks_by_stock_list_id_json), 200
     except:
         return jsonify({"mesage": "Could not process request"}), 400
