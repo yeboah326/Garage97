@@ -90,29 +90,56 @@ const RegistrationForm = () => {
       
     return (
         userCreated && logged ? <Redirect to='/businesses'/>:
-        <div className='container-log-reg'>
-            <div className='left-section'>
-                <div className='button-desktop'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
-                <div className='left-section-image'></div>
+       
+        <section id="main" >
+    <div className="container " >
+      <div className="row">
+        <div className="col-lg-7 details">
+          <h1>Sign Up</h1>
+          <p>Sign into your account</p>
+          <form className="" action="index.html" method="post">
+            <div className="form row filling">
+              <div className="col-lg-7">
+                <input type="email" placeholder="Email" className="form-control"/>
+              </div>
             </div>
-            <div className="register">
-            <form className="d-flex register-form" onSubmit={handleSubmit}>
-                <div className='button-mobile'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
-                <span className='logreg-header'>Sign Up</span>
-                <Input label="Name" type="text" name="name" onChange={handleChange} required="true"/>
-                <Input label="Email" type="email" name="email" onChange={handleChange} required="true"/>
-                <Input label="Password" type="password" name="password" onChange={handleChange} required="true"/>
-                <Input label="Confirm Password" type="password" name="confirm-password" onChange={handleChange} required="true"/>
-                <div className='log-reg-btns'>
-                    <input type="submit" id="sign-up" value="Register" />
-                    <Link to="/login" className="log-in">Already have an account?</Link>
-                </div>
-                
-            </form>
+            <div className="form row filling">
+              <div className="col-lg-7">
+                <input type="password" placeholder="********" className="form-control"/>
+              </div>
+            </div>
+            <div className="form row filling">
+              <div className="col-lg-7">
+                <button type="button" className="btn btn-dark btn-lg loginbutton">sign up</button>
+              </div>
+            </div>
+             <a className="forgot" href="#">Forgot password</a> 
+            <p className="end">Already have an account? <a href="#">Login</a></p>
+          </form>
 
         </div>
+        <div className="col-lg-5 image">
+          <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel" data-interval="1000">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <h2 className="car-header">Control Your Business from anywhere </h2>
+                <img className="car-images" src="../images/phone.png" alt=""/>
+              </div>
+              <div className="carousel-item">
+                <h2 className="car-header">Manage Your Stock And Products Easily</h2>
+                <img className="car-images" src="../images/stock.png" alt=""/>
+              </div>
+              <div className="carousel-item">
+                <h2 className="car-header">Free to Use. No Payments Required!!!</h2>
+                <img className="car-images" src="../images/free.png" alt=""/>
+              </div>
+            </div>
+          </div>
+          <p className="car-header">SIMA is here for you</p>
         </div>
-        
+      </div>
+    </div>
+  </section>
     )
 
 }
