@@ -1,12 +1,17 @@
+@import url('./css/newlogin.css');
+@import url('./css/newSignup.css');
 @import url("./css/stocks.css");
 @import url('./css/fonts.css');
-@import url('./css/login_register.css');
+/* @import url('./css/login_register.css'); */
 @import url('./css/side-nav-bar.css');
 /* @import url('./css/business.css'); */
 @import url('./css/splash.css');
 @import url('./css/addstocks.css');
 @import url('./css/overview.css');
 @import url('./css/about.css');
+
+
+
 
 
 
