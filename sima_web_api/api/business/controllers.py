@@ -269,11 +269,11 @@ def business_get_all_sale_list(current_user, business_id, page, items_per_page):
 
         # Filtering for the page sales_lists
         if (total_sales - (page * items_per_page)) > 0:
-            business_sale_lists_json[
+            business_sale_lists_json = business_sale_lists_json[
                 page * items_per_page : ((page * items_per_page) + items_per_page)
             ]
         else:
-            business_sale_lists_json[page * items_per_page :]
+            business_sale_lists_json = business_sale_lists_json[page * items_per_page :]
 
         business_sale_lists_json = {
             "business": Business.query.filter_by(id=business_id).first().name,
@@ -341,11 +341,11 @@ def business_get_all_stock_list(current_user, business_id, page, items_per_page)
 
         # Filtering for the page sales_lists
         if (total_sales - (page * items_per_page)) > 0:
-            business_stock_lists_json[
-                page * items_per_page : ((page * items_per_page) + items_per_page)
+            business_stock_lists_json = business_stock_lists_json[
+                page * items_per_page : page * items_per_page + items_per_page
             ]
         else:
-            business_stock_lists_json[page * items_per_page :]
+            business_stock_lists_json = business_stock_lists_json[page * items_per_page :]
 
         business_stock_lists_json = {
             "business": Business.query.filter_by(id=business_id).first().name,

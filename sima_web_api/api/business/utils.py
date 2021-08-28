@@ -42,7 +42,7 @@ def report_compute_sales_for_product(product_id):
 
 
 def report_compute_stocks_for_product(product_id):
-    product_stock = Stock.query.filter(product_id=product_id)
+    product_stock = Stock.query.filter_by(product_id=product_id)
     total_stock = 0
     total_quantity = 0
     for stock in product_stock:
