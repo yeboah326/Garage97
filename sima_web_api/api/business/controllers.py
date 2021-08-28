@@ -230,7 +230,7 @@ def busines_create_new_product(current_user, business_id):
     methods=["GET"],
     defaults={"page": 1, "items_per_page": 10},
 )
-@business.route("/<business_id>/sale_list/<item_per_page>/<page>")
+@business.route("/<business_id>/sale_list/<items_per_page>/<page>")
 @token_required
 def business_get_all_sale_list(current_user, business_id, page, items_per_page):
     try:
@@ -300,7 +300,7 @@ def business_delete_all_sale_list(current_User, business_id):
     methods=["GET"],
     defaults={"page": 1, "items_per_page": 10},
 )
-@business.route("/<business_id>/stock_list/<item_per_page>/<page>", methods=["GET"])
+@business.route("/<business_id>/stock_list/<items_per_page>/<page>", methods=["GET"])
 @token_required
 def business_get_all_stock_list(current_user, business_id, page, items_per_page):
     try:
