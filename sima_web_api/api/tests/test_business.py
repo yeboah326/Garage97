@@ -184,7 +184,7 @@ def test_business_get_all_sale_list(app, client):
     create_business_salelist(client, login["token"], product_id)
 
     response = client.get(
-        f"business/{business_id}/sale_list",
+        f"business/{business_id}/sale_list?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
@@ -239,7 +239,7 @@ def test_business_get_all_stock_list(app, client):
     create_business_stocklist(client, login["token"], product_id)
 
     response = client.get(
-        f"business/{business_id}/stock_list",
+        f"business/{business_id}/stock_list?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 

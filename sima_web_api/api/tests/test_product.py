@@ -136,7 +136,7 @@ def test_product_get_all_sale(app, client):
 
     # Send request to get all sales related to a business
     response = client.get(
-        f"product/{product_id}/sale",
+        f"product/{product_id}/sale?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
@@ -170,7 +170,7 @@ def test_product_get_all_stock(app, client):
 
     # Send request to get all sales related to a business
     response = client.get(
-        f"product/{product_id}/stock",
+        f"product/{product_id}/stock?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 

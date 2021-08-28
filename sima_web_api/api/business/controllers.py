@@ -5,6 +5,8 @@ from sima_web_api.api.business.utils import (
     compute_total_buying_price,
     compute_total_quantity_salelist,
     compute_total_selling_price,
+    report_compute_sales_for_product,
+    report_compute_stocks_for_product,
 )
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
@@ -230,9 +232,15 @@ def busines_create_new_product(current_user, business_id):
     methods=["GET"],
     defaults={"page": 1, "items_per_page": 10},
 )
-@business.route("/<business_id>/sale_list/<items_per_page>/<page>")
 @token_required
 def business_get_all_sale_list(current_user, business_id, page, items_per_page):
+    page = int(request.args["page"] if request.args["page"] else page)
+    items_per_page = int(
+        request.args["items_per_page"]
+        if request.args["items_per_page"]
+        else items_per_page
+    )
+
     try:
         business_sale_lists = SaleList.query.filter_by(business_id=business_id)
         business_sale_lists_json = [
@@ -300,9 +308,15 @@ def business_delete_all_sale_list(current_User, business_id):
     methods=["GET"],
     defaults={"page": 1, "items_per_page": 10},
 )
-@business.route("/<business_id>/stock_list/<items_per_page>/<page>", methods=["GET"])
 @token_required
 def business_get_all_stock_list(current_user, business_id, page, items_per_page):
+    page = int(request.args["page"] if request.args["page"] else page)
+    items_per_page = int(
+        request.args["items_per_page"]
+        if request.args["items_per_page"]
+        else items_per_page
+    )
+
     try:
         business_stock_lists = StockList.query.filter_by(business_id=business_id)
         business_stock_lists_json = [
@@ -332,7 +346,6 @@ def business_get_all_stock_list(current_user, business_id, page, items_per_page)
             ]
         else:
             business_stock_lists_json[page * items_per_page :]
-
 
         business_stock_lists_json = {
             "business": Business.query.filter_by(id=business_id).first().name,
@@ -383,3 +396,48 @@ def business_get_all_customers(current_user, business_id):
         return jsonify(business_customer_json), 200
     except:
         return jsonify({"message": "Could not proceess request"}), 400
+
+
+@business.route("<business_id>/report")
+@token_required
+def business_get_report(current_user, business_id):
+    business_summary = {}
+    business_products = Product.query.filter_by(business_id=business_id)
+    business_products_details = []
+    for product in business_products:
+        sales = report_compute_sales_for_product(product_id=product.id)
+        stock = report_compute_stocks_for_product(product_id=product.id)
+        business_products_details.append(
+            {
+                "product_name": f"{product.name}",
+                "product_sales": str(sales["total_sales"]),
+                "product_stock": str(stock["total_stock"]),
+                "product_profit_loss": str(sales["total_sales"] - stock["total_stock"]),
+                "products_total_sold": str(sales["total_quantity"]),
+                "products_total_bought": str(stock["total_quantity"]),
+                "products_total_remaining": str(
+                    stock["total_quantity"] - sales["total_quantity"]
+                ),
+            }
+        )
+
+    business_overview = {
+        "total_sales_made": 0,
+        "total_stock_purchased": 0,
+        "total_profit_or_loss": 0,
+        "total_products_sold": 0,
+        "total_products_bought": 0,
+        "total_products_remaining": 0,
+    }
+
+    for product in business_products_details:
+        business_overview["total_sales_made"] += float(product["product_sales"])
+        business_overview["total_stock_purchased"] += float(product["product_stock"])
+        business_overview["total_profit_or_loss"] += float(product["product_profit_loss"])
+        business_overview["total_products_sold"] += int(product["products_total_sold"])
+        business_overview["total_products_bought"] += int(product["products_total_bought"])
+        business_overview["total_products_remaining"] += int(product["products_total_remaining"])
+
+    business_overview["products_overview"] = business_products_details
+
+    return business_overview, 200
