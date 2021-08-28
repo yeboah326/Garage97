@@ -1,5 +1,6 @@
 import React from 'react'
 import SummaryCard from './SummaryCard'
+import { Link } from 'react-router-dom'
 
 const ProductReport = () => {
     const business_name = localStorage.getItem('business_name')
@@ -9,7 +10,8 @@ const ProductReport = () => {
         <div className='report-business'>
             <div className='business-report-header'>
                 <div className='business-report-head'>
-                    <div className='business-name'>{business_name}</div>
+                <Link className="business-name" to='/businesses'> {business_name}</Link>
+
                     <div className='business-user'>{user.name}</div>
                 </div>
                 <div className='date-generated'>Date Generated:{date}</div>
