@@ -41,7 +41,7 @@ def create_new_business(client, token):
     # Create new business
     client.post(
         "/business",
-        json={"name": "Kako Inc"},
+        json={"name": "Kako Inc", "description":"Very cool business"},
         headers={"Authorization": f"Bearer {token}"},
     )
 
