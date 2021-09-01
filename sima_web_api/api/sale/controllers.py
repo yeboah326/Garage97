@@ -66,7 +66,11 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id, page, items_per_pa
 
         results = next_page_items(sales_by_sale_list_id_json,items_per_page,page)
 
-        return jsonify(sales_by_sale_list_id_json), 200
+        return jsonify({
+            "sales_by_sale_list_id_pages":results["total_page_count"],
+            "sales_by_sale_list_id":results["page_items"]
+            
+            }), 200
     except:
         return jsonify({"mesage": "Could not process request"}), 400
 
