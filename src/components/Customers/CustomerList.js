@@ -12,9 +12,11 @@ const CustomerList = () => {
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
     const lesser = '<'
     const greater = '>'
+    let max_color = (page === customer_pages ? true : false)
+    let min_color = (page === 1 ? true : false)
 
     const fetchCustomers = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/customers?items_per_page=9&page=${page}`,{
+        const response = await fetch(`http://localhost:9000/business/${business_id}/customers?items_per_page=10&page=${page}`,{
             method:'GET',
             headers:{
                 'Authorization':`Bearer ${token}`
@@ -49,6 +51,7 @@ const CustomerList = () => {
 
     useEffect(()=>{
         fetchCustomers()
+        console.log(window.innerHeight)
     },[page])
 
     return (
@@ -70,9 +73,9 @@ const CustomerList = () => {
                 })}
             </div>
             <div className='customer-footer'>
-                <span onClick={Decrement} className='lesser'>{lesser}</span>
+                <span onClick={Decrement} className='lesser' style={{color:min_color?'#c0c0c0':'#968ce6'}}>{lesser}</span>
                 <span>{page}</span>
-                <span onClick={Increment} className='greater'>{greater}</span>
+                <span onClick={Increment} className='greater' style={{color:max_color?'#c0c0c0':'#968ce6'}}>{greater}</span>
             </div>
             </> : <div className='no-customers'>No customers exist</div>}
         </div>
