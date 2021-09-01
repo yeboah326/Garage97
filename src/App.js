@@ -45,7 +45,6 @@ function App() {
             <Route exact path = '/login'component={LoginForm}/>
             <Route exact path = '/about' component={About}/>
             <Route exact path = '/register' component={RegistrationForm}/>
-            <Route exact path = '/businessreport' component={BusinessReport}/>
             <Route exact path = '/productreport' component={ProductReport}/>
 
             <PrivateRoute exact path = '/home' component={BusinessesDashboard}/> 
@@ -62,7 +61,8 @@ function App() {
             <PrivateRoute exact path = '/business/sales/editsalelist'component={EditSaleList}/>
             <PrivateRoute exact path = '/business/customers'component={Customers}/>
             <PrivateRoute exact path = '/business/report'component={Reports}/>
-            
+            <PrivateRoute exact path = '/business/businessreport' component={BusinessReport}/>
+
 
 
 
