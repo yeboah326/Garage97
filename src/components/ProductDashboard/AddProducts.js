@@ -46,7 +46,7 @@ const AddProducts = ({fetchData,toggle}) => {
             <Input label="Name" type="text" onChange={onHandleChange} required='required' name='name'/>
              <label>Description</label>
              <textarea onChange={onHandleChange} name='description' required></textarea>
-             <div className="button-div"><Button name="Add" color="#273475" toggle={Submit}/><Button name="Cancel" color="red" toggle={toggle}/></div>
+             <div className="button-div"><Button name="Add" color="#6842ff" toggle={Submit}/><Button name="Cancel" color="red" toggle={toggle}/></div>
 
         </div>
     )

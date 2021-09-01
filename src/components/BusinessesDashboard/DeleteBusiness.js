@@ -59,7 +59,7 @@ const DeleteBusiness = ({onClick,id,fetchData}) => {
         <div className="delete-product">
             <p>Delete business</p>
             <span>Are you sure you want to delete {business_name}?</span>
-            <div><Button name="Cancel" color="#243475" toggle={onClick}/><Button name="Delete"color="red" toggle={deletebusiness}/></div>
+            <div><Button name="Cancel" color="#6842ff" toggle={onClick}/><Button name="Delete"color="red" toggle={deletebusiness}/></div>
         </div>
     )
 }
