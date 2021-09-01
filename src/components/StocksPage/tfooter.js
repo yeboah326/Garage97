@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 
-export class Tfooter extends Component {
-    render() {
-        const greater = "<" ;
-        const lesser = ">" ;
+function Tfooter({page,max_page,setPage}){
+    const greater = "<" ;
+    const lesser = ">" ;
+    
+    const Increment = () => {
+        if(page < max_page){
+            setPage(++page)
+        }
+    }
+
+    const Decrement = () => {
+        if (page !== 1){
+            setPage(--page)
+        }
+    }
         return (
             <div className="Tfooter">
-                <span className="greater"> {greater} </span>
-                <span className="page_id"> 1 </span>
-                <span className="lesser"> {lesser} </span>
-
+                <span className="greater" onClick={Decrement}> {greater} </span>
+                <span className="page_id"> {page} </span>
+                <span className="lesser" onClick={Increment}> {lesser} </span>
             </div>
         )
-    }
+    
 }
 
 export default Tfooter

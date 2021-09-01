@@ -21,6 +21,8 @@ const SalesListPage = () => {
   let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const sale_list_id = localStorage.getItem('Sale_List_ID')
+  const [page,setPage] = useState(1)
+  const [salelist_pages,setSaleListPages] = useState()
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -39,7 +41,7 @@ const SalesListPage = () => {
     setWidth(!navwidth)
   };
     const fetchSaleList = async () => {
-    const response = await fetch(`http://localhost:9000/sale/sale_list/${sale_list_id}`,{
+    const response = await fetch(`http://localhost:9000/sale/sale_list/${sale_list_id}?items_per_page=9&page=${page}`,{
         method: 'GET',
         headers:{
             'Content-Type':'application/json',
@@ -52,7 +54,8 @@ const SalesListPage = () => {
         alert('Session has expired')
     }
     else if(response.status === 200){
-      setSaleList(res)
+      setSaleList(res.sales_by_sale_list_id)
+      setSaleListPages(res.sales_by_sale_list_id_pages)
       localStorage.setItem('Customer',JSON.stringify({'customer_name':res.customer_name,'customer_contact':res.customer_contact}))
       console.log(JSON.parse(localStorage.getItem('Customer')))
     }
@@ -63,7 +66,7 @@ const SalesListPage = () => {
 
 useEffect(()=>{
   fetchSaleList()
-},[])
+},[page])
 
   return (
     <div className="stockListPage">
@@ -103,7 +106,7 @@ useEffect(()=>{
         <TableSales
           rowData={salelist}
         />
-        <Tfooter/>
+        <Tfooter page={page} setPage={setPage} max_page={salelist_pages}/>
       </div>
       </div>
     <div className="divdown"> 
