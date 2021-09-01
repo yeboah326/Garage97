@@ -7,6 +7,7 @@ from sima_web_api.api.business.utils import (
     compute_total_selling_price,
     report_compute_sales_for_product,
     report_compute_stocks_for_product,
+    next_page_items
 )
 from sima_web_api.api.product.models import Product
 from sima_web_api.api import db
@@ -259,26 +260,11 @@ def business_get_all_sale_list(current_user, business_id, page, items_per_page):
             for sale_list in business_sale_lists
         ]
 
-        # Computing number of pages
-        total_sales = len(business_sale_lists_json)
-        num_pages = (
-            (total_sales // items_per_page)
-            if total_sales % items_per_page == 0
-            else (total_sales // items_per_page) + 1
-        )
-
-        # Filtering for the page sales_lists
-        if (total_sales - (page * items_per_page)) > 0:
-            business_sale_lists_json = business_sale_lists_json[
-                page * items_per_page : ((page * items_per_page) + items_per_page)
-            ]
-        else:
-            business_sale_lists_json = business_sale_lists_json[page * items_per_page :]
-
+        results = next_page_items(business_sale_lists_json,items_per_page,page)
         business_sale_lists_json = {
             "business": Business.query.filter_by(id=business_id).first().name,
-            "business_sale_lists": business_sale_lists_json,
-            "business_sale_lists_pages": num_pages,
+            "business_sale_lists": results["page_items"],
+            "business_sale_lists_pages": results["total_page_count"],
         }
         return jsonify(business_sale_lists_json), 200
     except:
@@ -310,6 +296,17 @@ def business_delete_all_sale_list(current_User, business_id):
 )
 @token_required
 def business_get_all_stock_list(current_user, business_id, page, items_per_page):
+    """business_get_all_stock_list - endpoint to return all business stocklists
+
+    Args:
+        current_user (db.Model): [current user logged in]
+        business_id ([int]): the current business id
+        page (int): the page to whose items are being returned
+        items_per_page (int): the items to be returned page
+
+    Returns:
+        [type]: [description]
+    """
     page = int(request.args["page"] if request.args["page"] else page)
     items_per_page = int(
         request.args["items_per_page"]
@@ -331,26 +328,11 @@ def business_get_all_stock_list(current_user, business_id, page, items_per_page)
             for stock_list in business_stock_lists
         ]
 
-        # Computing number of pages
-        total_sales = len(business_stock_lists_json)
-        num_pages = (
-            (total_sales // items_per_page)
-            if total_sales % items_per_page == 0
-            else (total_sales // items_per_page) + 1
-        )
-
-        # Filtering for the page sales_lists
-        if (total_sales - (page * items_per_page)) > 0:
-            business_stock_lists_json = business_stock_lists_json[
-                page * items_per_page : page * items_per_page + items_per_page
-            ]
-        else:
-            business_stock_lists_json = business_stock_lists_json[page * items_per_page :]
-
+        results = next_page_items(business_stock_lists_json, items_per_page, page)
         business_stock_lists_json = {
             "business": Business.query.filter_by(id=business_id).first().name,
-            "business_stock_lists": business_stock_lists_json,
-            "business_sale_lists_pages": num_pages,
+            "business_stock_lists": results["page_items"],
+            "business_sale_lists_pages": results["total_page_count"],
         }
 
         return jsonify(business_stock_lists_json), 200
@@ -375,9 +357,20 @@ def business_delete_all_stock_list(current_user, business_id):
         return jsonify({"message": "Could not process request"}), 400
 
 
-@business.route("/<business_id>/customers", methods=["GET"])
+@business.route("/<business_id>/customers", methods=["GET"],defaults={"page": 1, "items_per_page": 10})
 @token_required
-def business_get_all_customers(current_user, business_id):
+def business_get_all_customers(current_user, business_id, page, items_per_page):
+    try:
+        page = int(request.args["page"] if request.args["page"] else page)
+        items_per_page = int(
+            request.args["items_per_page"]
+            if request.args["items_per_page"]
+            else items_per_page
+        )
+    
+    except:
+        pass
+
     try:
         business_salelists = SaleList.query.filter_by(business_id=business_id)
         business_customer_json = list()
@@ -392,6 +385,13 @@ def business_get_all_customers(current_user, business_id):
                         "customer_contact": salelist.customer_contact,
                     }
                 )
+
+        results = next_page_items(business_customer_json, items_per_page, page)
+        business_customer_json = {
+            "business": Business.query.filter_by(id=business_id).first().name,
+            "business_customers": results["page_items"],
+            "business_customer_total_pages": results["total_page_count"]
+        }
 
         return jsonify(business_customer_json), 200
     except:
