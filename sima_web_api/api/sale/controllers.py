@@ -8,6 +8,9 @@ from sima_web_api.api.business.utils import (
     compute_total_quantity_salelist,
     compute_total_selling_price,
 )
+from sima_web_api.api.business.utils import(
+    next_page_items
+)
 
 sale = Blueprint(
     "sale",
@@ -37,12 +40,16 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id, page, items_per_pa
 
     For getting all the sales from the sales list id
     """
-    page = int(request.args["page"] if request.args["page"] else page)
-    items_per_page = int(
-        request.args["items_per_page"]
-        if request.args["items_per_page"]
-        else items_per_page
-    )
+    try:
+        page = int(request.args["page"] if request.args["page"] else page)
+        items_per_page = int(
+            request.args["items_per_page"]
+            if request.args["items_per_page"]
+            else items_per_page
+        )
+    except:
+        pass
+
     try:
         sales_by_sale_list_id = Sale.query.filter_by(sale_list_id=sale_list_id)
 
@@ -57,21 +64,7 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id, page, items_per_pa
             for sale in sales_by_sale_list_id
         ]
 
-        # Computing number of pages
-        total_sales = len(sales_by_sale_list_id_json)
-        num_pages = (
-            (total_sales // items_per_page)
-            if total_sales % items_per_page == 0
-            else (total_sales // items_per_page) + 1
-        )
-
-        # Filtering for the page sales_lists
-        if (total_sales - (page * items_per_page)) > 0:
-            sales_by_sale_list_id_json = sales_by_sale_list_id_json[
-                page * items_per_page - 1 : ((page * items_per_page) + items_per_page)
-            ]
-        else:
-            sales_by_sale_list_id_json = sales_by_sale_list_id_json[page * items_per_page :]
+        results = next_page_items(sales_by_sale_list_id_json,items_per_page,page)
 
         return jsonify(sales_by_sale_list_id_json), 200
     except:
