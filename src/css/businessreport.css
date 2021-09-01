@@ -50,7 +50,7 @@
     height: fit-content;
     box-sizing: border-box;
     border-radius:8px;
-    background-color: #7fa2eb;
+    background-color: #5847d3;
     color: white;
     font-family: PoppinsLight;
     font-size: 1rem;
@@ -66,7 +66,7 @@
     height: fit-content;
     box-sizing: border-box;
     border-radius: 12px;
-    background-color: #7fa2eb;
+    background-color: #5847d3;
     color: white;
     font-family: PoppinsLight;
     font-size: 1rem;
@@ -87,16 +87,17 @@
     margin-top: 20px;
     padding-left: 10px;
 }
-.business-summaries ,.product-summaries{
+/* .business-summaries ,.product-summaries{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
     justify-content: stretch;
     margin-top: 10px;
 
-}
+} */
 .summary-card{
     margin-bottom: 10%;
-    margin-left: 3px;
+    /* margin-left: 3px; */
+    width: 30%;
 }
 
 .summary-card .summary-card-title{
