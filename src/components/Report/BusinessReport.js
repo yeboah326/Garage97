@@ -10,7 +10,7 @@ const BusinessReport = () => {
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
     const [business_report_summary,setBusinessReportSummary] = useState({'total_sales_made':0,'total_stock_purchased':0,
     'total_products_bought':0,'total_products_sold':0,'total_products_remaining':0,'total_profit_or_loss':0,'products_overview':[]})
-    const date = '29/08/2021'
+    const date = (new Date(Date.now())).toDateString()
 
 
     const fetchBusinessReport = async() => {
@@ -47,7 +47,7 @@ const BusinessReport = () => {
 
                     <div className='business-user'>{user.name}</div>
                 </div>
-                <div className='date-generated'>Date Generated:{date}</div>
+                <div className='date-generated'>Date Generated: {date}</div>
             </div>
             <div className='business-report-summary'>
                 <div className='business-report-summary-header'>Business Summary</div>

@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom'
 const ProductReport = () => {
     const business_name = localStorage.getItem('business_name')
     const user = JSON.parse(localStorage.getItem('User'))
-    const date = '29/08/2021'
+    const date = (new Date(Date.now())).toDateString()
     return (
         <div className='report-business'>
             <div className='business-report-header'>
                 <div className='business-report-head'>
-                <Link className="business-name" to='/businesses'> {business_name}</Link>
+                <Link className="business-name" to='/business/overview'> {business_name}</Link>
 
                     <div className='business-user'>{user.name}</div>
                 </div>
-                <div className='date-generated'>Date Generated:{date}</div>
+                <div className='date-generated'>Date Generated: {date}</div>
             </div>
             <div className='business-report-summary'>
                 <div className='business-report-summary-header'>Product Overview (Kako Cube)</div>
