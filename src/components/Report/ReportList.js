@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { logout } from '../../auth'
 
 const ReportList = () => {
@@ -34,7 +35,9 @@ const ReportList = () => {
             <div className='header'>Reports</div>
             <div className='business-report'>
                 <div className='business-report-head'>Business</div>
+                <NavLink to='/business/businessreport'> 
                 <div className='business-report-name'>{business_name}</div>
+                </NavLink>
             </div>
             <div className='product-reports'>
                 <div className='product-reports-head'>Products</div>
