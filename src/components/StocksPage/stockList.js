@@ -20,7 +20,7 @@ const StockListPage = () => {
   let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const stock_list_id = localStorage.getItem('Stock_List_ID')
-  const [page,setPage] = useState(0)
+  const [page,setPage] = useState(1)
   const [stocklist_pages,setStockListPages] = useState()
 
   const onClickMenu = () => {

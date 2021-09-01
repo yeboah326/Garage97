@@ -23,7 +23,7 @@ const StockPage = () => {
   const [stocklist_pages,setStockListPages] = useState()
 
   const fetchStockLists = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=9&page=${page}`,{
+        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=7&page=${page}`,{
             method: 'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -101,7 +101,6 @@ const StockPage = () => {
             <TableHead />
             <TableRow
               rowData={stocklists}
-              
             />
             <Tfooter page={page} setPage={setPage} max_page={stocklist_pages}/>
           </div>
