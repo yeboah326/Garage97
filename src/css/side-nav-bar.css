@@ -1,14 +1,6 @@
 @import url('./fonts.css');
 
-/* .container-businesses{
-    margin: 0;
-    width: 100%;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    background-color: #f0f3f5;
-    flex-direction: row;
-  } */
+
   .side-nav-bar{
     min-height:100vh;
     /* width: 220px; */
@@ -101,12 +93,10 @@
   }
   .option .active{
     border-right: 4px solid #6880fe;
-    /* height: 50px; */
     align-items: center;
   }
   .option .active svg{
     fill:#6880fe;
-    /* stroke: #6880fe; */
   }
   .options .active{
     align-self: center;

@@ -53,9 +53,7 @@ h1 {
     align-self: center;
 
 }
-/* .menu{
-    position: fixed;
-    } */
+
 
 
 /* mobile */
@@ -72,15 +70,8 @@ h1 {
     box-sizing: border-box;
     }
 
-/* .edit_stockList {
-    position: sticky;
-    width: fit-content;
-    left:300px;
-
-} */
 .edit_stockList button {
-    /* font-size: 2rem;
-    color: #6842ff; */
+   
     border: none;
     background-color: #fff;
     border-radius: 10px;
@@ -90,12 +81,11 @@ h1 {
 }
 
 .list{
-    height: 80vh;
+    height: 85vh;
     width: 95vw;
-    margin-top: 30px;
+    margin-top: 0px;
     margin-left: 20px;
     scrollbar-width: thin;
-    /* overflow-x: scroll; */
     border-radius: 20px 0 0 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
@@ -115,12 +105,6 @@ h1 {
     color:#9c89e7;
 }
 
-/* .list{
-    display: block;
-    width: 90vw;
-    height: 90vh;
-    overflow-x: auto;
-} */
 
 .ad .add-button button {
     font-size: 2rem;
@@ -173,35 +157,7 @@ h1 {
     padding: 10px 0;
     padding-left: 10px;
 }
-/* .table_2 th,
-.actual_data_2,
-.tableHead_2{
-    padding: 20px 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
-    font-family: PoppinsBold;
-    color: #273475;
-    margin-bottom: 20px; 
-} */
-/* .tableRow_2{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-     align-items: center;
-    padding: 10px 30px;
-    color: #000;
-    font-family: PoppinsRegular;
-} */
 
-
-
-/* .tableRow {
-    display: grid;
-    grid-template-columns: 33fr 1fr;
-   align-items: center;
-    padding: 10px 30px;
-    color: #000;
-    font-family: PoppinsRegular;
-} */
 
 .tableRow .actual_data ,
   .tableRow_2 .actual_data_2{
@@ -221,19 +177,7 @@ h1 {
     margin-right: 5px;
 }
 
-/* .greater,
-.lesser {
-    color: #6880fe;
-    padding: 2px;
-    margin: 2px;
-}
 
-.page_id {
-    width: 34px;
-    background-color: #6880fe;
-    text-align: center;
-    border-radius: 7px;
-} */
 
 #table-div,
 .sidebar,
@@ -273,18 +217,7 @@ h1 {
     .mobile_stockList{
         border-radius: 20px;
     }
-    /* .table-div {
-        display: grid;
-        width: 70%;
-        background-color: #f0f3f5;
-        height: 100%;
-        background-color: #fff;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        border-radius: 20px;
-        background-color: #fff;
-        border-collapse: collapse;
-
-    } */
+   
 
     .divdown{
         display: block;
@@ -307,18 +240,19 @@ h1 {
         width: 70%;
         border-radius: 20px;
         height:90vh;
+        margin-top: 30px;
     }
 
 
     .edit {
-        /* position: sticky; */
+        
 
         display: block;
         width: 15%;
         height: fit-content;
         margin-top:20px;
         margin-right: 40px;
-        /* top: 40px; */
+        
     }
 
 
@@ -331,8 +265,7 @@ h1 {
         border-radius: 10px;
         box-shadow: 0px 0px 5px #888;
         margin: 10px;
-        /* position: sticky;
-        top: 40px; */
+       
 
     }
 
