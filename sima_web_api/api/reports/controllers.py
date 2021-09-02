@@ -25,11 +25,12 @@ def report_all_businesses():
 # business/businessreport
 # business/product/productreport
 
-#Implement later
-@report.route("/<business_id>", methods=["GET"])
-def report_business_by_id(businesss_id):
-    pass
-
+#To Do: Implement later
+# retrieve js files for all products to this endpoint
+@report.route("/get_all_products", methods=["GET"])
+def get_all_products_template():
+    print("========== Retrieved template for all products ======")
+    return  "Products template retrieved!"
 
 @report.route("/all_products", methods=["GET"])
 def report_all_products():
