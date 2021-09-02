@@ -13,7 +13,7 @@ report = Blueprint(
 
 @report.route("/all_businesses", methods=["GET"])
 def report_all_businesses():
-    pdf = render_pdf(url_for('business.business_get_all'), download_filename='report_all_businesses.pdf')
+    pdf = render_pdf(url_for('report.get_all_businesses_template'), download_filename='report_all_businesses.pdf')
     return pdf, 200
 # report = business.business_get_all
 # business/businessreport
