@@ -1,9 +1,9 @@
 import React from 'react'
 
-const AddButton = () => {
+const AddButton = ({toggle}) => {
     return (
-        <div>
-            <button className="add-button">+</button>
+        <div className="add-button" onClick={toggle}>
+            <button>+</button>
         </div>
     )
 }

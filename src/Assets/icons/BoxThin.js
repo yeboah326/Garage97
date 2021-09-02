@@ -10,7 +10,7 @@ function SvgBoxThin(props) {
       clipRule="evenodd"
       {...props}
     >
-      <path stroke='current' fill='current' d="M24 7h-1v16H1V7H0V1h24v6zm-2 0H2v15h20V7zm-6 8H8v-4h8v4zm-1-3H9v2h6v-2zm8-10H1v4h22V2z" />
+      <path d="M24 7h-1v16H1V7H0V1h24v6zm-2 0H2v15h20V7zm-6 8H8v-4h8v4zm-1-3H9v2h6v-2zm8-10H1v4h22V2z" />
     </svg>
   );
 }

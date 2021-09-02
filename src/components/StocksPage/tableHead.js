@@ -4,11 +4,10 @@ const TableHead = () => {
     return (
       <div className='table'>
        <div  className="tableHead">
-        <div className='stock_id'>stock_id</div>
-        <div className='stock'>stock</div>
-        <div className='qty'>qty</div>
-        <div className='date'>date</div>
-
+        <div className='stock_id'>Stock_id</div>
+        <div className='qty'>Qty</div>
+        <div className='stock'>Total Price</div>
+        <div className='date'>Date</div>
       </div>
       
      

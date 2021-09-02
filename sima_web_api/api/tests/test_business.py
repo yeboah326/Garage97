@@ -132,7 +132,11 @@ def test_business_create_new_product(app, client):
 
     response = client.post(
         f"/business/{id}/product",
-        json={"name": "Product 1", "business_id": id},
+        json={
+            "name": "Product 1",
+            "business_id": id,
+            "description": "Latest model of the business",
+        },
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
@@ -156,6 +160,9 @@ def test_business_get_all_product(app, client):
 
     assert response.status_code == 200
     assert len(response.json) == 2
+    assert "description" in response.json[0]
+    assert "name" in response.json[0]
+    assert "product_id" in response.json[0]
 
 
 # Sale and SaleList
@@ -177,7 +184,7 @@ def test_business_get_all_sale_list(app, client):
     create_business_salelist(client, login["token"], product_id)
 
     response = client.get(
-        f"business/{business_id}/sale_list",
+        f"business/{business_id}/sale_list?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
@@ -229,20 +236,20 @@ def test_business_get_all_stock_list(app, client):
     product_id = new_product.id
 
     # Create a new stocklist
-    create_business_stocklist(client, login["token"], product_id)
+    for _ in range(10):
+        create_business_stocklist(client, login["token"], product_id)
 
     response = client.get(
-        f"business/{business_id}/stock_list",
+        f"business/{business_id}/stock_list?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
     assert response.status_code == 200
     assert "business" in response.json
     assert "business_stock_lists" in response.json
-    assert len(response.json["business_stock_lists"]) == 1
+    assert len(response.json["business_stock_lists"]) == 2
     assert "total_quantity" in response.json["business_stock_lists"][0]
     assert "total_buying_price" in response.json["business_stock_lists"][0]
-
 
 
 def test_business_delete_all_stock_list(app, client):
@@ -271,3 +278,62 @@ def test_business_delete_all_stock_list(app, client):
     assert response.json == {
         "message": f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"
     }
+
+
+# Customer
+def test_business_get_all_customers(app, client):
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+    # Create a new salelist
+    create_business_salelist(client, login["token"], product_id)
+
+    response = client.get(
+        f"business/{business_id}/customers",
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    assert response.status_code == 200
+    assert response.json[0]["customer_name"] == "Kojo Boateng"
+    assert response.json[0]["customer_contact"] == "0543217725"
+
+def test_business_get_report(app, client):
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+    # Create a new stocklist
+    for _ in range(10):
+        create_business_stocklist(client, login["token"], product_id)
+        create_business_salelist(client, login["token"], product_id)
+
+    response = client.get(
+        f"business/{business_id}/report",
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+
+    assert response.status_code == 200
+    assert response.json["total_sales_made"] == 480.0
+    assert response.json["total_stock_purchased"] == 600.0
+    assert response.json["total_products_sold"] == 180
+    assert response.json["total_products_bought"] == 200
+    assert response.json["total_products_remaining"] == 20

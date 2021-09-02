@@ -45,7 +45,10 @@ def test_product_get_by_id(app, client):
 
     # Assertions
     assert response.status_code == 200
-    assert response.json == {"name": "Product 1"}
+    assert response.json == {
+        "description": "Product description 1",
+        "name": "Product 1",
+    }
 
 
 def test_product_delete_by_id(app, client):
@@ -133,7 +136,7 @@ def test_product_get_all_sale(app, client):
 
     # Send request to get all sales related to a business
     response = client.get(
-        f"product/{product_id}/sale",
+        f"product/{product_id}/sale?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
@@ -167,7 +170,7 @@ def test_product_get_all_stock(app, client):
 
     # Send request to get all sales related to a business
     response = client.get(
-        f"product/{product_id}/stock",
+        f"product/{product_id}/stock?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 

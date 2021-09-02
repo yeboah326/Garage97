@@ -1,94 +1,123 @@
-import React, { Component } from 'react'
-import AddButton from '../ProductDashboard/AddButton'
-import SideNavBar from '../ProductDashboard/SideNavBar'
-import TableHead from './tableHead'
-import TableRow from './tableRow'
-import AddStocks from './addStocks'
-import Tfooter from "./tfooter"
-// import  {useRef } from 'react'
+import React, { useState, useEffect } from "react";
+import SvgMenu from "../../Assets/icons/Menu";
+import "../../css/business.css";
+import { logout } from "../../auth/index";   
+import TableHead from "./tableHead";
+import SideNavBar from "../ProductDashboard/SideNavBar";
+import TableRow from "./tableRow";
+import AddButton from "../ProductDashboard/AddButton";
+import SideNavBar2 from "../ProductDashboard/SideNavBar2";
+import { Link } from "react-router-dom";
+import Tfooter from '../StocksPage/tfooter'
 
+const StockPage = () => {
+  const [showsidenavbar, setShowSideNavBar] = useState(false);
+  const [addstockList, setAddStockList] = useState(false);
+  const [stocklists, setStockLists] = useState([]);
+  const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
+  const [navwidth,setWidth] = useState(false)
+  let width = navwidth ? '220px' : '100px'
+  const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
+  const business_id = localStorage.getItem('Business')
+  const [page,setPage] = useState(1)
+  const [stocklist_pages,setStockListPages] = useState()
 
-
-class Stocks1 extends Component {
-  constructor(props){
-      super(props);
-      this.state = {
-          rows:[
-              
-
-        ],
-      addRow : (eachRow)=>{
-            let tempRows = [eachRow,...this.state.rows,];
-            this.setState({
-                rows:tempRows
-            })
-          },
-      trigger:false,
-      setTrigger: (trigger) =>{
-         this.setState(
-            {trigger:!trigger})}
-            ,
-        submitTrigger : (trigger) =>{
-          this.setState(
-             {trigger:trigger})},
-
-             getHeight:()=> {
-              const height = this.divElement.clientHeight;
-              this.setState({ height });
-              return height
+  const fetchStockLists = async () => {
+        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=7&page=${page}`,{
+            method: 'GET',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
             }
-         }
+        })
+        const res = await response.json()
+        if (response.status === 401){
+            logout()
+            alert('Session has expired')
         }
-       
-       
-      
-      handleClick =(e)=>{
-        this.state.setTrigger();
+        else if(response.status === 200){          
+            setStockLists(res.business_stock_lists)
+            setStockListPages(res.business_sale_lists_pages)
 
-      }
-      // openForm=(e) =>{
-      //   document.getElementById("myForm").style.display = "block";
-      // }
-      
-    
+        }
+        else{
+            alert(res.message)
+        }
+  }
 
-   
+
+  useEffect(()=>{
+      fetchStockLists()
+},[page])
+
+  const onClickMenu = () => {
+    setShowSideNavBar(!showsidenavbar);
+  };
+  const onClickClose = () => {
+    setShowSideNavBar(!showsidenavbar);
+  };
 
   
+  const onClickAdd = () => {
+    setAddStockList(!addstockList);
+  };
+  const onHover = () => {
+    setShowFullSideNavBar(!showfullsidenavbar);
+    setWidth(!navwidth)
+  };
 
-render(){
-  // const [buttonPop,setButtonPop] = useState(false);
+  return (
+    <div className="stockListPage">
+      {showsidenavbar ? (
+        <div className="side-nav-page">
+          <SideNavBar onClick={onClickClose} />
+        </div>
+      ) : null}
+      <div className='stock-body'>
+        <div className="header_grid">
+            <div className="menu " onClick={onClickMenu}>
+              <SvgMenu fill="#6842ff" />
+            </div>
+            <div className="divRight">
+                <div className="ad" onClick={onClickAdd}>
+                  <Link to="/business/stocks/addstocks">
+                    <AddButton />
+                  </Link>
+                </div>
+            </div>
+        </div>
+        <div className="desktop-side-nav-bar" style={{width:width}}>
+          {!showfullsidenavbar ? (
+            <SideNavBar2 onHover={onHover}  navwidth='100px'/>
+          ) : (
+            <SideNavBar onHover={onHover} navwidth='220px'/>
+          )}
+        </div>
 
-    return (
-        <div className="stocks-body">
-                        <div className="sidebar"> <SideNavBar/> </div>
-
-                        <div className="table-div"  ref={ (divElement) => { this.divElement = divElement } }  > 
-                        <h1>Stocks</h1>
-                        < TableHead />
-                        <TableRow rowData={this.state.rows}/>
-                        <Tfooter/>
-                        </div>
-                        <div  className='adder' onClick={this.handleClick} > 
-                        <AddButton />
-                         
-                        </div>
-                        
-                        <AddStocks trigger = {this.state.trigger} addRow = {this.state.addRow} submitTrigger={this.state.submitTrigger} getHeight={this.state.getHeight} openForm={this.openForm}/>
-
-                        
-
+        
+        <div className='list'>
+          <div className="mobile_stockList">
+            <div className='stock-head'>Stocks</div>
+            <TableHead />
+            <TableRow
+              rowData={stocklists}
+            />
+            <Tfooter page={page} setPage={setPage} max_page={stocklist_pages}/>
+          </div>
+        </div>
+        <div className="divdown">
+      
+          
+            <div className="ad" onClick={onClickAdd}>
+              <Link to="/business/stocks/addstocks">
+                <AddButton />
+              </Link>
+            </div>
         </div>
         
-        
-        
-        )
-}
-    
-    
-    
-    
-    
-    
-    }
-    export  default Stocks1;
+      </div>
+    </div>
+  );
+};
+
+export default StockPage;

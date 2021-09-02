@@ -1,9 +1,9 @@
 import React from 'react'
-import SvgTrashCan from '../../Assets/icons/TrashCan'
+import SvgClose from '../../Assets/icons/Close'
 
-const DeleteButton = ({onClick}) => {
+const DeleteButton = ({id,onClick}) => {
     return (
-            <span className='delete-button' onClick={onClick}><SvgTrashCan /></span>
+            <span className='delete-button' id={id} onClick={onClick}><SvgClose id={id} /></span>
         
     )
 }

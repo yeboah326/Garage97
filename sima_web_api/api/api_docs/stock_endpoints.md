@@ -117,7 +117,45 @@ ERROR: **400 BAD REQUEST**
 </pre>
 
 #
+### Add stock to existing stocklist
+`POST stock/add/{stock_list_id}`
 
+**Request Body**
+<pre>
+{
+    "stocks": [
+        {"quantity": {qty}, "buying_price": {buying_price}, "product_id": product_id},
+        {"quantity": {qty}, "buying_price": {buying_price}, "product_id": product_id},
+        {"quantity": {qty}, "buying_price": {buying_price}, "product_id": product_id},
+        {"quantity": {qty}, "buying_price": {buying_price}, "product_id": product_id},
+    ]
+}
+</pre>
+
+**Response**
+
+SUCCESS: **201 CREATED**
+<pre>
+{
+    "message": "New stock added successfully"
+}
+</pre>
+
+ERROR (*When no data has been passed*): **400 BAD REQUEST**
+<pre>
+{
+    "message":"No data passed"
+}
+</pre>
+
+ERROR (*When there was an error while processing the request*): **400 BAD REQUEST**
+<pre>
+{
+    "message":"Could not process request"
+}
+</pre>
+
+#
 ### Create new stocklist
 
 `POST stock/list`
@@ -131,7 +169,7 @@ ERROR: **400 BAD REQUEST**
         {"quantity": {qty}, "buying_price": {buying_price}, "product_id": product_id},
         {"quantity": {qty}, "buying_price": {buying_price}, "product_id": product_id},
         {"quantity": {qty}, "buying_price": {buying_price}, "product_id": product_id},
-    ],
+    ]
 }
 </pre>
 

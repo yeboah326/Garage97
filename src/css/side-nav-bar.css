@@ -1,40 +1,36 @@
 @import url('./fonts.css');
 
-.container-businesses{
-    margin: 0;
-    width: 100%;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    background-color: #f0f3f5;
-    flex-direction: row;
-  }
+
   .side-nav-bar{
-    height:100vh;
+    min-height:100vh;
     /* width: 220px; */
-    min-width: 220px;
+    width: 220px;
     background-color: #fefffe;
     border-radius: 0 30px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+  .side-nav-bar2 > .avatar > img{ 
+    width: 60px;
+    height: 60px;
+  }
   
   .avatar{
     width: 100%;
-    height: 30%;
+    height: 30vh;
     min-height: 200px ;
     display: flex;
     flex-direction: column;
-    margin-top: 20%;
+    margin-top: 5%;
     margin-left: 0%;
     align-items: center;
     justify-content: center;
   }
   
   .avatar img{
-    width: 130px;
-    height: 125px;
+    width: 120px;
+    height: 120px;
     background-color: #f0f3f5;
     border-radius: 50%;
     align-self: center;
@@ -43,15 +39,16 @@
     margin-left: 0%;
     border: 1px solid  #fff;
   }
-  
-  
+
   .avatar span{
     justify-self: end;
-    align-self: center;
-    margin-top: 20px;
+    align-self: flex-start;
+    margin-top: 10px;
     font-size: 1.4rem;
     font-family: PoppinsBold;
+    margin-left: 30px;
   }
+  
   .avatar .business-name{
     font-family: PoppinsRegular;
     color: #c0c0c0;
@@ -62,7 +59,7 @@
   }
   
   .option{
-    height: 50px;
+    height: 40px;
     width: 100%;
     margin-top: 15px;
     align-items: center;
@@ -73,7 +70,7 @@
   }
   
   .main{
-    margin-top: 15px;
+    margin-top: 10px;
   }
   
   .options{
@@ -96,21 +93,33 @@
   }
   .option .active{
     border-right: 4px solid #6880fe;
-    /* height: 50px; */
     align-items: center;
   }
   .option .active svg{
     fill:#6880fe;
-    stroke: #6880fe;
   }
   .options .active{
     align-self: center;
   }
   
-  .logout{
-    align-self: center;
+  .logout,.logout-link{
+    align-items: center;
     margin-top: auto;
     margin-bottom: 10px;
-    
+    width: 100%;
+    display: flex;
+    flex-direction: row;
   }
+
+  .business-logout-link{
+    justify-content: center;
+  }
+  .logout svg{
+    margin-right: 10px;
+  }
+
   
+  .business-side-nav-bar2 svg{
+    margin-right: auto;
+    margin-left: auto;
+  }
