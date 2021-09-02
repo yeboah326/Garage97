@@ -7,9 +7,8 @@ import '../../css/addsales.css'
 import SvgClose from '../../Assets/icons/Close'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
+import DeleteSaleList from './deleteSaleList'
 import { logout } from '../../auth'
-import SalesHead from './SalesHead2'
-import TableSales from './tableSales2'
 import {Redirect} from 'react-router-dom'
 
 
@@ -21,6 +20,8 @@ const EditSaleList = () => {
     const [salelist,setSaleList] = useState([])
     const [newsalelist,setNewSaleList] = useState([])
     const [displayInput,setDisplayInput] = useState(false)
+    const [deletesalelist,setDeleteSaleList] = useState(false)
+    const [showsales,setShowSales] = useState(false)
     const sale_list_id = localStorage.getItem('Sale_List_ID')
     const [updatedSale,setUpdatedSale] = useState({quantity:'',selling_price:''})
     const [sale,setSale] = useState({product_id:'',quantity:'',selling_price:'',product:''})
@@ -103,6 +104,9 @@ const EditSaleList = () => {
             deleteSale(salelist[id].id)
     }
     }
+    const onDeleteSaleList = () => {
+        setDeleteSaleList(!deletesalelist)
+    } 
     const deleteSaleList = async () => {
         const response = await fetch(`http://localhost:9000/sale/list/${sale_list_id}`,{
             method:'DELETE',
@@ -117,7 +121,7 @@ const EditSaleList = () => {
         }
         else if(response.status === 200){
             alert('SaleList deleted successfully')
-            setToggle(!toggle)
+            setShowSales(!showsales)
         }
         else{
             alert('Could not delete stocklist')
@@ -279,6 +283,7 @@ const EditSaleList = () => {
     
 
     return (
+        <>{ !showsales ?
         <>{ !toggle ?
     <div className='add-sale-container'>
         {showsidenavbar ?
@@ -287,6 +292,12 @@ const EditSaleList = () => {
             </div> :
             null
         }
+        {deletesalelist ? 
+            <div className='popup'>
+                <DeleteSaleList onClick={onDeleteSaleList} deletesalelist={deleteSaleList} id={sale_list_id}/>
+            </div> :
+            null
+            }
         <div className='add-sale'>
             <header>
                 <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
@@ -354,12 +365,14 @@ const EditSaleList = () => {
 
             </main>
             <div className='done desktop-done' onClick={UpdateSaleList}><SvgDone fill='#6842ff' stroke='#6842ff'/></div>
-            <div className='done desktop-done' onClick={deleteSaleList}><SvgClose fill='#E6B0B0' /></div>
+            <div className='done desktop-done' onClick={onDeleteSaleList}><SvgClose fill='#E6B0B0' /></div>
         </div>
     </div>:
     <Redirect to='/business/sales/salelist'/>
     }
-    </>
+    </>:
+    <Redirect to='/business/sales'/>
+    }</>
     )
 }
 export default EditSaleList 

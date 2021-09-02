@@ -19,9 +19,12 @@ const SalesPage = () => {
   let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const business_id = localStorage.getItem('Business')
+  const [page,setPage] = useState(1)
+  const [salelist_pages,setSaleListPages] = useState()
+
 
   const fetchSaleLists = async () => {
-    const response = await fetch(`http://localhost:9000/business/${business_id}/sale_list`, {
+    const response = await fetch(`http://localhost:9000/business/${business_id}/sale_list?items_per_page=9&page=${page}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +38,7 @@ const SalesPage = () => {
     }
     else if (response.status === 200) {
       setSaleLists(res.business_sale_lists)
-
+      setSaleListPages(res.business_sale_lists_pages)
     }
     else {
       alert(res.message)
@@ -45,7 +48,7 @@ const SalesPage = () => {
 
   useEffect(() => {
     fetchSaleLists()
-  }, [])
+  }, [page])
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -99,7 +102,7 @@ const SalesPage = () => {
             <    TableSales rowData={salelists}
 
             />
-            <Tfooter />
+            <Tfooter page={page} setPage={setPage} max_page={salelist_pages}/>
           </div>
         </div>
         <div className="divdown">

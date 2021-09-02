@@ -1,22 +1,27 @@
 .report-business{
     background-color: #f0f3f5;
     box-sizing: border-box;
-    padding: 50px 20px 0 20px;
+    padding: 2px;
     width: 100vw;
     min-height: 100vh;
     height: 100%;
+    margin: 0;
 }
+
 .business-report-header{
     display: flex;
     flex-direction: row;
+    align-items: center;
     height: 100px;
     width: 100%;
 }
 .business-report-header .date-generated{
     margin-left: auto;
     font-family: PoppinsRegular;
-    font-size: 1rem;
+    font-size: 0.61rem;
     color: #85888a;
+    height: 48px;
+    
 }
 
 .business-report-header .business-report-head{
@@ -27,13 +32,13 @@
 .business-report-head .business-name{
     font-family: PoppinsRegular;
     font-size: 2rem;
-    color:#968ce6;
+    color:#6842ff;
     margin: 0;
     padding: 0;
 }
 .business-report-head .business-user{
     font-family: PoppinsRegular;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #85888a;
     margin: 0;
     padding: 0;
@@ -44,7 +49,7 @@
     width: 100%;
     height: fit-content;
     box-sizing: border-box;
-    border-radius: 15px;
+    border-radius:8px;
     background-color: #5847d3;
     color: white;
     font-family: PoppinsLight;
@@ -52,15 +57,15 @@
     margin: 0;
     text-align: start;
     padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .report-business .business-product-report-summary .product-name{
-    width: 30%;
+    width: fit-content;
     height: fit-content;
     box-sizing: border-box;
-    border-radius: 15px;
+    border-radius: 12px;
     background-color: #5847d3;
     color: white;
     font-family: PoppinsLight;
@@ -68,8 +73,9 @@
     margin-top: 20px;
     text-align: start;
     padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10%;
 }
 
 .report-business .business-report-summary .business-summary,
@@ -83,28 +89,82 @@
 }
 
 .summary-card{
+    margin-bottom: 10%;
     width: 30%;
-    margin-bottom: 40px;
 }
 
 .summary-card .summary-card-title{
-    background-color:#cdc8f0;
+    background-color:#fff;
     box-sizing: border-box;
-    padding: 5px 0px 5px 10px;
-    border-radius: 10px;
-    color: #7060eb;
+    padding: 5px ;
+    letter-spacing: 0.2px ;
+    border-radius: 6px;
+    color: #6842ff;
     font-family: PoppinsLight;
-    font-size: 1rem;
+    font-size: 0.65rem;
     font-weight: 500;
+    text-align: start;
+    
 }
 
 .summary-card .summary-card-value{
     color: #7060eb;
     font-family: PoppinsRegular;
     padding-left: 10px;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     margin-top: 10px;
 }
+.business-summary{
 
+    display: none;
+}
 
+@media screen and (min-width:700px){
+    .business-summaries{display: none;}
+    .report-business{
+      
+        padding: 50px 20px 0 20px;
+        width: 100vw;
+        
+    }
+    
+    .business-report-header .date-generated{
+        
+        font-size: 1rem;
+    }
+  .report-business .business-report-summary .business-report-summary-header
+,.report-business .business-product-report-summary .product-report-summary-header{
+    border-radius: 15px;
+    background-color: #5847d3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.report-business .business-product-report-summary .product-name{
+    width: 30%;
+    border-radius: 15px;
+    background-color: #5847d3;
+    padding:10px;
+    
+}
+.summary-card{
+    width: 30%;
+    margin-bottom: 40px;
+}
+.summary-card .summary-card-title{
+   
+    padding: 5px 0px 5px 10px;
+    border-radius: 10px;
+    
+    font-size: 1rem;
+}
+.summary-card .summary-card-value{
+   
+    font-size: 1.2rem;
+}
+.report-business{
+    width: 80vw;
+    margin: auto;
+}
+
+}
 

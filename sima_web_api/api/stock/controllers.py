@@ -61,7 +61,10 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id, page, items_per_
         ]
 
         results = next_page_items(stocks_by_stock_list_id_json, items_per_page, page) 
-        return jsonify(stocks_by_stock_list_id_json["page_items"]), 200
+        return jsonify({
+            "stocks_by_stock_list_id_pages":results["total_page_count"],
+            "stocks_by_stock_list_id":results["page_items"]
+        }), 200
     except:
         return jsonify({"mesage": "Could not process request"}), 400
 

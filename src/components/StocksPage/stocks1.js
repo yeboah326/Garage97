@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
-import { logout } from "../../auth/index";
-import { business_id } from "../BusinessesDashboard/Businesses";
+import { logout } from "../../auth/index";   
 import TableHead from "./tableHead";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableRow from "./tableRow";
@@ -20,9 +19,11 @@ const StockPage = () => {
   let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const business_id = localStorage.getItem('Business')
+  const [page,setPage] = useState(1)
+  const [stocklist_pages,setStockListPages] = useState()
 
   const fetchStockLists = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list`,{
+        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=7&page=${page}`,{
             method: 'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -34,9 +35,9 @@ const StockPage = () => {
             logout()
             alert('Session has expired')
         }
-        else if(response.status === 200){
-          console.log(res.business_stock_lists)
+        else if(response.status === 200){          
             setStockLists(res.business_stock_lists)
+            setStockListPages(res.business_sale_lists_pages)
 
         }
         else{
@@ -47,7 +48,7 @@ const StockPage = () => {
 
   useEffect(()=>{
       fetchStockLists()
-},[])
+},[page])
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -100,9 +101,8 @@ const StockPage = () => {
             <TableHead />
             <TableRow
               rowData={stocklists}
-              
             />
-            <Tfooter/>
+            <Tfooter page={page} setPage={setPage} max_page={stocklist_pages}/>
           </div>
         </div>
         <div className="divdown">
