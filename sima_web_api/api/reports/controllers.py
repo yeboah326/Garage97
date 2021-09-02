@@ -10,6 +10,12 @@ report = Blueprint(
     __name__, 
     url_prefix="/report"
 )
+#To Do: Implement later
+# retrieve js files for all businesses to this endpoint
+@report.route("/get_all_businesses", methods=["GET"])
+def get_all_businesses_template():
+    print("========== Retrieved template for all businesses ======")
+    return  "Template retrieved!"
 
 @report.route("/all_businesses", methods=["GET"])
 def report_all_businesses():
