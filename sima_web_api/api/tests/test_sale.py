@@ -44,12 +44,12 @@ def test_sale_get_all_by_sale_list_id(app, client):
     salelist_id = SaleList.query.filter_by(business_id=business_id).first().id
 
     response = client.get(
-        f"sale/sale_list/{salelist_id}",
+        f"sale/sale_list/{salelist_id}?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
     assert response.status_code == 200
-    assert len(response.json) == 3
+    assert len(response.json) == 2
 
 
 def test_sale_get_by_id(app, client):

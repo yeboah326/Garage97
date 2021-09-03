@@ -1,13 +1,18 @@
 /* base styles */
 
 .stockListPage {
-    min-width: 100vw;
-    min-height: 100vh;
-    background-color: #f0f3f5;
-    font-family: PoppinsRegular;
-    justify-content: flex-end;
+    height:100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
-
+.stock-body{
+    height: 100vh;
+    width: 100%;
+    background-color: #f0f3f5;
+    display: flex;
+    flex-direction: column;
+}
 h1 {
     text-align: start;
     margin-left: 5%;
@@ -21,8 +26,7 @@ h1 {
      
 .actual_data,
 .actual_data_2 {
-    background-color: #e2e7f9;
-    border-radius: 30px;
+    border-radius: 15px;
     text-decoration: none;
 }
 
@@ -40,8 +44,8 @@ h1 {
     margin-left: auto;
     display: flex;
     align-items: center;
-    position: fixed;
-     left: 350px;
+    /* position: fixed;
+     left: 350px; */
 }
 
 .close {
@@ -49,148 +53,131 @@ h1 {
     align-self: center;
 
 }
-.menu{
-    position: fixed;
-    }
+
 
 
 /* mobile */
 .header_grid {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    padding-left: 10px;
-    padding-top: 20px;
+    padding: 40px 20px;
     align-items: center;
     height: 50px;
-
+    position: sticky;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
     }
 
-/* .edit_stockList {
-    position: sticky;
-    width: fit-content;
-    left:300px;
-
-} */
 .edit_stockList button {
-    padding: 20px;
-    background-color: #fff;
+   
     border: none;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 0px 5px #888;
-    margin: 10px;
-    position: sticky;
+    padding:  10px 10px;
+    background-color: #fff;
 }
-
-/* .adderForMobStocks {
-    position: sticky;
-    left:370px;
-    width: fit-content;
-    height: fit-content;
-    padding-left: 20px;
-  
-    
-} */
 
 .list{
-    display: block;
-    width: 90vw;
-    overflow-x: auto;
+    height: 85vh;
+    width: 95vw;
+    margin-top: 0px;
+    margin-left: 20px;
+    scrollbar-width: thin;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.mobile_stockList {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px 0 0 20px;
+    background-color: #fff;
+    padding: 20px 10px 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+.mobile_stockList .stock-head{
+    font-family: PoppinsBold;
+    font-size: 1.2rem;
+    color:#9c89e7;
 }
 
-.mobile_stockList {
-    display: block;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    margin: 25px 5%;
-    border-radius: 20px;
-    height: fit-content;
-    width: 600px;
-    background-color: #fff;
-    overflow-x: auto;
-}
 
 .ad .add-button button {
-    font-size: 3rem;
+    font-size: 2rem;
     color: #6842ff;
     border: none;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 0px 5px #888;
-    padding: 5px 18px;
-    margin: 10px;
-    position: sticky;
-
+    padding:  0px 10px;
+    background-color: #fff;
 }
 
-table th,
-.tableHead,
-.actual_data {
-    padding: 20px 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
-    /* text-align: left; */
-    font-family: PoppinsBold;
-    color: #273475;
-    /* align-items: flex-start; */
-    margin-bottom: 20px;
+.table,.table_2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
-.table_2 th,
-.actual_data_2,
-.tableHead_2{
-    padding: 20px 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
-    font-family: PoppinsBold;
-    color: #273475;
-    margin-bottom: 20px; 
+.tableRow,.tableRow_2{
+    width: 100%;
 }
-/* .tableRow_2{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-     align-items: center;
-    padding: 10px 30px;
-    color: #000;
+.tableHead,.actual_data,.tableHead_2,.actual_data_2{
+    width: 100%;
+    display: flex;
     font-family: PoppinsRegular;
-} */
-
-
-
-.tableRow {
-    display: grid;
-    grid-template-columns: 33fr 1fr;
-   align-items: center;
-    padding: 10px 30px;
-    color: #000;
-    font-family: PoppinsRegular;
+    color: #6842ff;
+    font-size: 0.9rem;
+    padding-left: 10px;
 }
+.tableHead .qty,.actual_data .qty{
+    text-align: center;
+}
+.tableHead_2 .product,.tableHead_2 .qty,.tableHead_2 .price,.actual_data_2 .stock_id,
+.actual_data_2 .qty,.actual_data_2 .price
+{
+    width:33%
+}
+.tableHead .stock_id,.tableHead .qty,.actual_data .stock_id,.actual_data .qty{
+    width: 20%;
+}
+.tableHead .date,.tableHead .stock,.actual_data .date,.actual_data .stock{
+    width: 30%;
+}
+.actual_data,.actual_data_2{
+    font-family: PoppinsRegular;
+    color: #6842ff;
+    box-sizing:border-box;
+    background-color: #bab2f5;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    padding-left: 10px;
+}
+
 
 .tableRow .actual_data ,
   .tableRow_2 .actual_data_2{
     align-self: flex-end;
 }
 
-.Tfooter {
+.Tfooter{
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 15px;
-    cursor: pointer;
+    font-size: 1.5rem;
+    color: #968ce6;
+    font-family: PoppinsRegular;
+    margin-top: auto;
+}
+.Tfooter span{
+    margin-right: 5px;
 }
 
 
-.greater,
-.lesser {
-    color: #6880fe;
-    padding: 2px;
-    margin: 2px;
-}
-
-.page_id {
-    width: 34px;
-    background-color: #6880fe;
-    text-align: center;
-    border-radius: 7px;
-}
 
 #table-div,
 .sidebar,
@@ -209,68 +196,65 @@ table th,
 @media screen and (min-width:700px) {
 
     .header_grid,
-    .mobile_stockList,
     .left-stuck,
     .adderForMobStocks,
-    .edit_stockList ,
-    .stockListPage{
+    .edit_stockList {
         display: none;
     }
     .stockListPage{
-        min-width: 100vw;
+        width: 100vw;
     }
     .stock-body {
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: row;
+        justify-content:space-between;
     }
 
     .desktop-side-nav-bar {
         display: block;
     }
 
-    .table-div {
-        display: grid;
-        width: 70%;
-        background-color: #f0f3f5;
-        height: 100%;
-        background-color: #fff;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    .mobile_stockList{
         border-radius: 20px;
+    }
+   
+
+    .divdown{
+        display: block;
+    }
+    .divdown .ad .add-button button{
+        font-size: 4rem;
+        color: #6842ff;
+        border: none;
         background-color: #fff;
-        border-collapse: collapse;
+        border-radius: 15px;
+        box-shadow: 0px 0px 5px #888;
+        padding:  0px 15px;
+        background-color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 30px;
+        margin-right: 3rem;
+          }
 
+    .list{
+        width: 70%;
+        border-radius: 20px;
+        height:90vh;
+        margin-top: 30px;
     }
 
-    .divdown {
-       position: sticky;
-        display: flex;
-        flex-direction: column;
-        width: 15%;
-        height: fit-content;
-        top: 40px;
-    }
-
-
-
-
-
-
-    /* .table{    
-    
-       
-       
-    
-    }
-     */
 
     .edit {
-        position: sticky;
+        
 
         display: block;
         width: 15%;
         height: fit-content;
-        top: 40px;
+        margin-top:20px;
+        margin-right: 40px;
+        
     }
+
 
 
 
@@ -281,24 +265,8 @@ table th,
         border-radius: 10px;
         box-shadow: 0px 0px 5px #888;
         margin: 10px;
-        position: sticky;
-        top: 40px;
+       
 
     }
-
-
-   
-
-    .table-div:last-child {
-        position: absolute;
-        bottom: 5px;
-    }
-
-
-
-
-
-
-
 
 }

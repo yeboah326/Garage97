@@ -9,6 +9,7 @@ import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import { logout } from '../../auth'
 import { Redirect } from 'react-router-dom'
+import DeleteStockList from './deleteStockList'
 
 
 
@@ -23,6 +24,8 @@ const EditStockList = () => {
     const [newstocklist,setNewStockList] = useState([])
     const [toggle,setToggle] = useState(false)
     const [displayInput,setDisplayInput] = useState(false)
+    const [deletestocklist,setDeleteStockList] = useState(false)
+    const [showstocks,setShowStocks] = useState(false)
     const stock_list_id = localStorage.getItem('Stock_List_ID')
     const [stock,setStock] = useState({product_id:'',quantity:'',buying_price:'',product:'',stock_list_id:`${stock_list_id}`})
     const [updatedStock,setUpdatedStock] = useState({quantity:'',buying_price:''})
@@ -98,7 +101,9 @@ const EditStockList = () => {
         
 
     }
-
+    const onDeleteStockList = () => {
+        setDeleteStockList(!deletestocklist)
+    } 
     const deleteStockList = async () => {
         const response = await fetch(`http://localhost:9000/stock/list/${stock_list_id}`,{
             method:'DELETE',
@@ -113,7 +118,7 @@ const EditStockList = () => {
         }
         else if(response.status === 200){
             alert('StockList deleted successfully')
-            setToggle(!toggle)
+            setShowStocks(!showstocks)
         }
         else{
             alert('Could not delete stocklist')
@@ -236,6 +241,7 @@ const EditStockList = () => {
     },[])
 
     return (
+        <>{ !showstocks ?
         <>{ !toggle ?
     <div className='add-sale-container'>
         {showsidenavbar ?
@@ -244,6 +250,12 @@ const EditStockList = () => {
             </div> :
             null
         }
+        {deletestocklist ? 
+            <div className='popup'>
+                <DeleteStockList onClick={onDeleteStockList} deletestocklist={deleteStockList} id={stock_list_id}/>
+            </div> :
+            null
+            }
         <div className='add-sale'>
             <header>
                 <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
@@ -305,12 +317,14 @@ const EditStockList = () => {
                 </div>
             </main>
             <div className='done desktop-done' onClick={UpdateStockList}><SvgDone fill='#6842ff' stroke='#6842ff'/></div>
-            <div className='done desktop-done' onClick={deleteStockList}><SvgClose fill='#E6B0B0' /></div>
+            <div className='done desktop-done' onClick={onDeleteStockList}><SvgClose fill='#E6B0B0' /></div>
         </div>
     </div>:
     <Redirect to='/business/stocks/stocklist'/>
     }
-    </>
+    </> : 
+    <Redirect to='/business/stocks'/>
+    }</>
     )
 }
 

@@ -4,12 +4,10 @@ const TableHead = () => {
     return (
       <div className='table_2'>
        <div  className="tableHead_2">
-       <div className='date'>product</div>
+       <div className='product'>Product</div>
 
-        <div className='qty'>quantity</div>
-        <div className='total_price'>selling price</div>
-
-
+        <div className='qty'>Qty</div>
+        <div className='price'>Buying Price</div>
       </div>
       
      

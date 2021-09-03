@@ -1,14 +1,16 @@
 import React from 'react'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
-import OverviewPage from './OverviewPage'
+import {useState} from 'react'
 import SvgMenu from '../../Assets/icons/Menu'
-import { useState } from 'react'
+import CustomerList from './CustomerList'
 
-
-const Overview = () => {
+const Customers = () => {
     const [showsidenavbar,setShowSideNavBar] = useState(false)
+    const [navwidth,setWidth] = useState(false)
+    let width = navwidth ? '220px' : '100px'
     const [showfullsidenavbar,setShowFullSideNavBar] = useState(false)
+
     const onClickMenu = () => {
         setShowSideNavBar(!showsidenavbar)
     }
@@ -17,26 +19,30 @@ const Overview = () => {
     }
     const onHover = () => {
         setShowFullSideNavBar(!showfullsidenavbar)
+        setWidth(!navwidth)
     }
 
     return (
-        <div className="business-dashboard">
+        <div className='customers'>
             {showsidenavbar ?
             <div className='side-nav-page'>
                 <SideNavBar onClick={onClickClose}/>
             </div> :
             null
             }
-            <header>
+            <div className='customer-container'>
+                <header>
                     <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
                 </header>
-        <div className='desktop-side-nav-bar'>
-             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
+                <div className='desktop-side-nav-bar'style={{width:width}}>
+                {!showfullsidenavbar? <SideNavBar2 onHover={onHover} navwidth='100px'/> : <SideNavBar onHover={onHover} navwidth='220px'/>}
+                </div>
+                <CustomerList/>
             </div>
-        
+            
 
-   </div>
+        </div>
     )
 }
 
-export default Overview
+export default Customers

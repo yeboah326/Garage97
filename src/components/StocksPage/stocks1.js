@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
-import { logout } from "../../auth/index";
-import { business_id } from "../BusinessesDashboard/Businesses";
+import { logout } from "../../auth/index";   
 import TableHead from "./tableHead";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableRow from "./tableRow";
@@ -16,11 +15,15 @@ const StockPage = () => {
   const [addstockList, setAddStockList] = useState(false);
   const [stocklists, setStockLists] = useState([]);
   const [showfullsidenavbar, setShowFullSideNavBar] = useState(false);
+  const [navwidth,setWidth] = useState(false)
+  let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const business_id = localStorage.getItem('Business')
+  const [page,setPage] = useState(1)
+  const [stocklist_pages,setStockListPages] = useState()
 
   const fetchStockLists = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list`,{
+        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=7&page=${page}`,{
             method: 'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -32,9 +35,9 @@ const StockPage = () => {
             logout()
             alert('Session has expired')
         }
-        else if(response.status === 200){
-          console.log(res.business_stock_lists)
+        else if(response.status === 200){          
             setStockLists(res.business_stock_lists)
+            setStockListPages(res.business_sale_lists_pages)
 
         }
         else{
@@ -45,7 +48,7 @@ const StockPage = () => {
 
   useEffect(()=>{
       fetchStockLists()
-},[])
+},[page])
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -60,63 +63,58 @@ const StockPage = () => {
   };
   const onHover = () => {
     setShowFullSideNavBar(!showfullsidenavbar);
+    setWidth(!navwidth)
   };
 
   return (
-    <div className="stockListPage stock-body">
+    <div className="stockListPage">
       {showsidenavbar ? (
         <div className="side-nav-page">
           <SideNavBar onClick={onClickClose} />
         </div>
       ) : null}
-      <div className="header_grid">
-        <div className="menu " onClick={onClickMenu}>
-          <SvgMenu fill="#6842ff" />
+      <div className='stock-body'>
+        <div className="header_grid">
+            <div className="menu " onClick={onClickMenu}>
+              <SvgMenu fill="#6842ff" />
+            </div>
+            <div className="divRight">
+                <div className="ad" onClick={onClickAdd}>
+                  <Link to="/business/stocks/addstocks">
+                    <AddButton />
+                  </Link>
+                </div>
+            </div>
         </div>
-        <div className="divRight">
-          {/* <div className="edit_stockList " onClick={onClickEdit}>
-            <button>
-              {showEdit ? (
-                <SvgDone fill="#6842ff" />
-              ) : (
-                <SVGpencil fill="#6842ff" />
-              )}
-            </button>
+        <div className="desktop-side-nav-bar" style={{width:width}}>
+          {!showfullsidenavbar ? (
+            <SideNavBar2 onHover={onHover}  navwidth='100px'/>
+          ) : (
+            <SideNavBar onHover={onHover} navwidth='220px'/>
+          )}
+        </div>
+
+        
+        <div className='list'>
+          <div className="mobile_stockList">
+            <div className='stock-head'>Stocks</div>
+            <TableHead />
+            <TableRow
+              rowData={stocklists}
+            />
+            <Tfooter page={page} setPage={setPage} max_page={stocklist_pages}/>
           </div>
-          {/* {showEdit ? ( */}
+        </div>
+        <div className="divdown">
+      
+          
             <div className="ad" onClick={onClickAdd}>
               <Link to="/business/stocks/addstocks">
                 <AddButton />
               </Link>
             </div>
         </div>
-      </div>
-
-      <div className="divdown">
-     
         
-          <div className="ad" onClick={onClickAdd}>
-            <Link to="/business/stocks/addstocks">
-              <AddButton />
-            </Link>
-          </div>
-       </div>
-      <div className='list'>
-      <div className="mobile_stockList table-div  ">
-        <TableHead />
-        <TableRow
-          rowData={stocklists}
-          
-        />
-        <Tfooter/>
-      </div>
-      </div>
-      <div className="desktop-side-nav-bar">
-        {!showfullsidenavbar ? (
-          <SideNavBar2 onHover={onHover} />
-        ) : (
-          <SideNavBar onHover={onHover} />
-        )}
       </div>
     </div>
   );

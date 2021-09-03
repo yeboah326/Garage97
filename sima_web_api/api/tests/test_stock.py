@@ -44,12 +44,12 @@ def test_stock_get_all_by_stock_list_id(app, client):
     stocklist_id = StockList.query.filter_by(business_id=business_id).first().id
 
     response = client.get(
-        f"stock/stock_list/{stocklist_id}",
+        f"stock/stock_list/{stocklist_id}?items_per_page=2&page=1",
         headers={"Authorization": f"Bearer {login['token']}"},
     )
 
     assert response.status_code == 200
-    assert len(response.json) == 4
+    assert len(response.json) == 2
 
 
 def test_stock_get_by_id(app, client):

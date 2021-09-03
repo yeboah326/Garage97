@@ -3,14 +3,8 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-    overflow: auto;
+  overflow: auto;
 	position: fixed;
-	/* margin-top: -250px;
-	background: rgba(0,0,0,.8);
-    transition: all 3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-webkit-transition: all .3s ease-in-out;
-  z-index: 900; */
   width: 350px;
   height: fit-content;
   border-radius: 20px;

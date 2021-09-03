@@ -8,6 +8,9 @@ from sima_web_api.api.business.utils import (
     compute_total_buying_price,
     compute_total_quantity_stocklist,
 )
+from sima_web_api.api.business.utils import (
+    next_page_items
+)
 
 stock = Blueprint(
     "stock",
@@ -25,9 +28,9 @@ def hello():
 
 
 # ----- Stock -----
-@stock.route("/stock_list/<stock_list_id>", methods=["GET"])
+@stock.route("/stock_list/<stock_list_id>", methods=["GET"],defaults={"page": 1, "items_per_page": 10})
 @token_required
-def stock_get_all_by_stock_list_id(current_user, stock_list_id):
+def stock_get_all_by_stock_list_id(current_user, stock_list_id, page, items_per_page):
     """
     stock_get_all_by_stock_list_id(current_user, stock_list_id)
 
@@ -35,6 +38,15 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id):
 
     get all stocks by stock list id
     """
+    try:
+        page = int(request.args["page"] if request.args["page"] else page)
+        items_per_page = int(
+            request.args["items_per_page"]
+            if request.args["items_per_page"]
+            else items_per_page
+        )
+    except:
+        pass
     try:
         stocks_by_stock_list_id = Stock.query.filter_by(stock_list_id=stock_list_id)
         stocks_by_stock_list_id_json = [
@@ -47,7 +59,12 @@ def stock_get_all_by_stock_list_id(current_user, stock_list_id):
             }
             for stock in stocks_by_stock_list_id
         ]
-        return jsonify(stocks_by_stock_list_id_json), 200
+
+        results = next_page_items(stocks_by_stock_list_id_json, items_per_page, page) 
+        return jsonify({
+            "stocks_by_stock_list_id_pages":results["total_page_count"],
+            "stocks_by_stock_list_id":results["page_items"]
+        }), 200
     except:
         return jsonify({"mesage": "Could not process request"}), 400
 

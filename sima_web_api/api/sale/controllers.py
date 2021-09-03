@@ -8,6 +8,9 @@ from sima_web_api.api.business.utils import (
     compute_total_quantity_salelist,
     compute_total_selling_price,
 )
+from sima_web_api.api.business.utils import(
+    next_page_items
+)
 
 sale = Blueprint(
     "sale",
@@ -27,9 +30,9 @@ def hello():
 # ----- Sale -----
 
 
-@sale.route("/sale_list/<sale_list_id>", methods=["GET"])
+@sale.route("/sale_list/<sale_list_id>", methods=["GET"], defaults={"page": 1, "items_per_page": 10})
 @token_required
-def sales_get_all_by_sale_list_id(current_user, sale_list_id):
+def sales_get_all_by_sale_list_id(current_user, sale_list_id, page, items_per_page):
     """
     sales_get_all_by_sale_list_id(current_user, sale_list_id)
 
@@ -37,6 +40,16 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id):
 
     For getting all the sales from the sales list id
     """
+    try:
+        page = int(request.args["page"] if request.args["page"] else page)
+        items_per_page = int(
+            request.args["items_per_page"]
+            if request.args["items_per_page"]
+            else items_per_page
+        )
+    except:
+        pass
+
     try:
         sales_by_sale_list_id = Sale.query.filter_by(sale_list_id=sale_list_id)
 
@@ -51,7 +64,13 @@ def sales_get_all_by_sale_list_id(current_user, sale_list_id):
             for sale in sales_by_sale_list_id
         ]
 
-        return jsonify(sales_by_sale_list_id_json), 200
+        results = next_page_items(sales_by_sale_list_id_json,items_per_page,page)
+
+        return jsonify({
+            "sales_by_sale_list_id_pages":results["total_page_count"],
+            "sales_by_sale_list_id":results["page_items"]
+            
+            }), 200
     except:
         return jsonify({"mesage": "Could not process request"}), 400
 

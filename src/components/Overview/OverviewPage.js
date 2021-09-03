@@ -7,7 +7,7 @@ import TopSelling from './TopSelling'
 const OverviewPage = () => {
     return (
         <div className='overview'>
-            <div className='top-section'>
+            {/* <div className='top-section'>
                 <TotalRevenue/>
                 <LowStock/>
             </div>
@@ -16,7 +16,7 @@ const OverviewPage = () => {
             </div>
             <div className='bottom-section'>
                 <TopSelling/>
-            </div>
+            </div> */}
             
         </div>
     )
