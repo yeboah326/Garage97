@@ -91,55 +91,46 @@ const RegistrationForm = () => {
     return (
         userCreated && logged ? <Redirect to='/businesses'/>:
        
-        <section id="main" >
-    <div className="container " >
-      <div className="row">
-        <div className="col-lg-7 details">
-          <h1>Sign Up</h1>
-          <p>Sign into your account</p>
-          <form className="" action="index.html" method="post">
-            <div className="form row filling">
-              <div className="col-lg-7">
-                <input type="email" placeholder="Email" className="form-control"/>
-              </div>
-            </div>
-            <div className="form row filling">
-              <div className="col-lg-7">
-                <input type="password" placeholder="********" className="form-control"/>
-              </div>
-            </div>
-            <div className="form row filling">
-              <div className="col-lg-7">
-                <button type="button" className="btn btn-dark btn-lg loginbutton">sign up</button>
-              </div>
-            </div>
-             <a className="forgot" href="#">Forgot password</a> 
-            <p className="end">Already have an account? <a href="#">Login</a></p>
-          </form>
-
-        </div>
-        <div className="col-lg-5 image">
-          <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel" data-interval="1000">
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <h2 className="car-header">Control Your Business from anywhere </h2>
-                <img className="car-images" src="../images/phone.png" alt=""/>
-              </div>
-              <div className="carousel-item">
-                <h2 className="car-header">Manage Your Stock And Products Easily</h2>
-                <img className="car-images" src="../images/stock.png" alt=""/>
-              </div>
-              <div className="carousel-item">
-                <h2 className="car-header">Free to Use. No Payments Required!!!</h2>
-                <img className="car-images" src="../images/free.png" alt=""/>
-              </div>
-            </div>
-          </div>
-          <p className="car-header">SIMA is here for you</p>
-        </div>
+<div id='main'>
+  <div className="splitscreen">
+    <div className="left">
+      <div className="right_info">
+        <h1>Have Control Over Your business from anywhere with <em>SIMA</em></h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
     </div>
-  </section>
+    <div className="right">
+      <form>
+        <div className="info">
+          <h1>Create An Account</h1>
+          <p>Make it easier to manage your business. Ready? Sign Up</p>
+        </div>
+        <section id="inputs">
+          <div className="input">
+            <label className="label">Name</label><br/>
+            <input type="text" name="name"/>
+          </div>
+          <div className="input">
+            <label className="label">Email</label><br/>
+            <input type="email" name="email" value="" placeholder="example@gmail.com"/>
+          </div>
+          <div className="input">
+            <label className="label">Password</label><br/>
+            <input type="password" name="password" value="" placeholder="********"/>
+          </div>
+          <div className="input">
+            <label className="label">Confrim Password</label><br/>
+            <input type="password" name="" value="" placeholder="********"/>
+          </div>
+          <div className="buttonAndLink">
+            <button className="btn btn-dark btn-lg" type="button" name="button">Sign Up</button><br/>
+            <a href="#">Already Have an Account?</a>
+          </div>
+        </section>
+      </form>
+    </div>
+  </div>
+  </div>
     )
 
 }
