@@ -1,0 +1,74 @@
+
+
+
+
+/* .Form{
+  margin: 40px 50px;
+} */
+
+.Form{
+    margin: 20px;
+  }
+  body{
+    /* background-color: rgb(219,255,255); */
+    /* background-image: url("../img4.jpg"); */
+    /* background-image: linear-gradient(#5e90d6,#752c8c); */
+  }
+  
+  .row{
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px grey;
+  }
+  
+  img{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .slider{
+    color: white;
+    padding-top: 10%;
+    text-align: center;
+    /* background-color: #55B4B0; */
+    background-image: linear-gradient(#5e90d6,#752c8c);
+  }
+  
+  
+  /* Entry Section */
+  
+  
+  .fillings{
+    /* margin: 20px; */
+    padding: 7%;
+  }
+  
+  .form-row{
+    margin: 20px;
+  }
+  
+  .link{
+    text-decoration: none;
+    color: black;
+  }
+  
+  .link:hover{
+    font-weight: bold;
+    color: #55B4B0;
+  }
+  
+  /* Image Manipulation */
+  .car-images{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 20%;
+    height: 20%;
+    border-radius: 100%;
+  
+  }
+  
+  .car-header{
+    /* color: ; */
+    margin-top: 20px;
+  }
+  
