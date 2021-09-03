@@ -203,7 +203,7 @@ const EditSaleList = () => {
             alert('Session has expired')
         }
         else if(response.status === 200){
-            setSaleList(res)
+            setSaleList(res.sales_by_sale_list_id)
         }
         else{
             alert(res.message)

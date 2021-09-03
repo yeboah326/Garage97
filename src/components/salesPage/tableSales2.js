@@ -1,7 +1,7 @@
 import React from 'react'
-import SVGclose from '../../Assets/icons/cancel';
+import SVGclose from '../../Assets/icons/cancel'; // eslint-disable-next-line
 import {useState} from 'react'
-import DeleteSaleList from './deleteSaleList';
+import DeleteSaleList from './deleteSaleList'; // eslint-disable-next-line
 
 function TableSales (props){
   const [deleteSaleList,setDeleteSaleList] = useState(false)
@@ -9,7 +9,7 @@ function TableSales (props){
  
   const onDelete = () => {
     setDeleteSaleList(!deleteSaleList)
-}
+}// eslint-disable-next-line
    const {rowData} =props;
    const displayRow = rowData.map(eachRow=>{
     return (
