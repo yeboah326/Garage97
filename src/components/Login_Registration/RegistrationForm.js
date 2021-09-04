@@ -93,17 +93,17 @@ const RegistrationForm = () => {
        
 <div id='main'>
   <div className="splitscreen">
-    <div className="left">
+    <div className="leftdiv">
       <div className="right_info">
         <h1>Have Control Over Your business from anywhere with <em>SIMA</em></h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
     </div>
-    <div className="right">
+    <div className="rightdiv">
       <form>
-        <div className="info">
+        <div className="information">
           <h1>Create An Account</h1>
-          <p>Make it easier to manage your business. Ready? Sign Up</p>
+          <p className="textinfo2">Make it easier to manage your business. Ready? Sign Up</p>
         </div>
         <section id="inputs">
           <div className="input">
@@ -123,8 +123,8 @@ const RegistrationForm = () => {
             <input type="password" name="" value="" placeholder="********"/>
           </div>
           <div className="buttonAndLink">
-            <button className="btn btn-dark btn-lg" type="button" name="button">Sign Up</button><br/>
-            <a href="#">Already Have an Account?</a>
+          <a href="#" class="myButton">Sign Up</a><br/>
+           <a className="link"href="#">Already Have an Account?</a>
           </div>
         </section>
       </form>
