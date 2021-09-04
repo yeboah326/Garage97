@@ -1,74 +1,150 @@
 
+:root{
+  font-size: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+
+}
+
+body{
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  font-family: 'Montserat' sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+  color: white;
+  font-weight: bold;
+}
+
+h1{
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2{
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.split{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+
+#Slider{
+  margin-top:  100px;
+}
+.headingtext{
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.car-images{
+  border-radius: 100%;
+  width: 60%;
+  height: 70%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.rightdivv{
+  color: rgb(219,266,266);
+  display: flex;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 7% 15%;
+  background-image: linear-gradient(#5e90d6,#752c8c);
+  height: 100vh;
+  align-items: center;
+
+}
+
+.input{
+  text-align: left;
+  margin: 20px;
+}
+
+.rightdivv #inputs{
+  width: 100%;
+}
+
+.buttonAndLink{
+  margin-top: 10px;
+}
+
+form input[type="text"], form input[type="email"], form input[type="password"]{
+  /* display: block; */
+  width: 100%;
+  border-radius: 5px;
+}
+
+label{
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+
+
+.leftdivv{
+  /* background-image: url('../images/rightpic.jpg'); */
+  color: rgb(219,266,266);
+  /* padding: 5% 15%; */
+  text-align: center;
+  display: none;
+  /* background-image: url('../images/1.jpg'); */
+}
+
+@media screen and (min-width:900px){
+  .split{
+    flex-direction: row;
+    height: 100vh;
+  }
 
 
 
-/* .Form{
-  margin: 40px 50px;
-} */
 
-.Form{
-    margin: 20px;
+  .leftdivv, .rightdivv{
+    display: flex;
+    width: 50%;
+    height: auto;
   }
-  body{
-    /* background-color: rgb(219,255,255); */
-    /* background-image: url("../img4.jpg"); */
-    /* background-image: linear-gradient(#5e90d6,#752c8c); */
-  }
-  
-  .row{
-    background: white;
-    border-radius: 10px;
-    box-shadow: 10px 10px 15px grey;
-  }
-  
-  img{
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-  
-  .slider{
-    color: white;
-    padding-top: 10%;
-    text-align: center;
-    /* background-color: #55B4B0; */
-    background-image: linear-gradient(#5e90d6,#752c8c);
-  }
-  
-  
-  /* Entry Section */
-  
-  
-  .fillings{
-    /* margin: 20px; */
-    padding: 7%;
-  }
-  
-  .form-row{
-    margin: 20px;
-  }
-  
-  .link{
-    text-decoration: none;
-    color: black;
-  }
-  
-  .link:hover{
-    font-weight: bold;
-    color: #55B4B0;
-  }
-  
-  /* Image Manipulation */
-  .car-images{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 20%;
-    height: 20%;
-    border-radius: 100%;
-  
-  }
-  
-  .car-header{
-    /* color: ; */
-    margin-top: 20px;
-  }
-  
+
+}
+
+
+.myButton {
+	background-color:black;
+	border-radius:6px;
+	border:2px solid #42371c;
+	display:inline-block;
+	cursor:pointer;
+	color:white;
+	font-family:Arial;
+	font-size:20px;
+	padding:3px 76px;
+	text-decoration:none;
+	text-shadow:0px 1px 36px #ffffff;
+}
+.myButton:hover {
+	background-color:white;
+  color: black;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.leftfooter{
+  margin: 40px;
+  padding: 40px 20px;
+  color: white;
+}

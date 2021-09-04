@@ -63,7 +63,7 @@ a:hover{
 
 .info{
   width: 100%;
-  margin: 100px auto 100px auto;
+  /* margin: 100px auto 100px auto; */
   text-align: left;
   padding: 5% 2%;
   color: white;

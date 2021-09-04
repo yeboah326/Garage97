@@ -47,6 +47,7 @@ a:hover{
   text-align: center;
   padding: 7% 15%;
   background-image: linear-gradient(#5e90d6,#752c8c);
+  width: 30%;
 
 }
 
@@ -103,8 +104,13 @@ form input[type="text"], form input[type="email"], form input[type="password"]{
   /* background-image: url('../images/rightpic.jpg'); */
   padding: 7% 15%;
   text-align: center;
+  width: 30%;
+  display: flex;
 }
-
+.rowflex{
+  display: flex;
+  flex-direction: row;
+}
 @media screen and (min-width:900px){
   .splitscreen{
     flex-direction: row;
@@ -113,8 +119,8 @@ form input[type="text"], form input[type="email"], form input[type="password"]{
 
   .leftdiv, .rightdiv{
     display: flex;
-    width: 50%;
     height: auto;
+    flex-direction: column;
   }
 
 }
