@@ -60,31 +60,31 @@ const LoginForm = () => {
 
   return (
     !logged ?
-      <div class="split">
-        <div class="leftdivv">
+      <div className="split">
+        <div className="leftdivv">
           <img src="../images/2.jpg" alt="" />
         </div>
-        <div class="rightdivv">
+        <div className="rightdivv">
           <form>
-            <div class="info">
+            <div className="headinginfo">
               <h1>Login</h1>
-              <p>Make it easier to manage your business. Ready? Sign Up</p>
+              <p>Make it easier to manage your business. Login and Get Started</p>
             </div>
             <section id="inputs">
-            <div class="input">
-              <label class="label">Name</label><br />
+            <div className="input">
+              <label className="label">Name</label><br />
               <input type="text" name="sign_up_name" />
             </div>
-            <div class="input">
-              <label class="label">Email</label><br />
+            <div className="input">
+              <label className="label">Email</label><br />
               <input type="email" name="sign_up_email" value="" placeholder="example@gmail.com" />
             </div>
-            <div class="input">
-              <label class="label">Password</label><br />
+            <div className="input">
+              <label className="label">Password</label><br />
               <input type="password" name="" value="" placeholder="********" />
             </div>
-            <div class="buttonAndLink">
-              <a href="#" class="myButton">Login</a><br />
+            <div className="buttonAndLink">
+              <a href="#" className="myButton1">Login</a><br />
               <a href="#">Don't Have An Account? Sign Up with Us</a>
             </div>
             </section>
