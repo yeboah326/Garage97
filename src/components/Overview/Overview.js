@@ -23,16 +23,19 @@ const Overview = () => {
     return (
         <div className="overview-page">
             {showsidenavbar ?
-            <div className='side-nav-page'>
-                <SideNavBar onClick={onClickClose}/>
-            </div> :
-            null
-            }
-
-            <header>
+           <div>  
+               <div className='side-nav-page'>
+           <SideNavBar onClick={onClickClose}/>
+           </div>
+           <header>
                     <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
                 </header>
             <OverviewPage/>
+           </div> :
+            null
+            }
+
+            
 
             
          <div className='overview-page'>
