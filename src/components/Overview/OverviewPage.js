@@ -1,22 +1,22 @@
 import React from 'react'
 import TotalRevenue from './TotalRevenue'
 import LowStock from './LowStock'
-import WeeklyRevenue from './WeeklyRevenue'
 import TopSelling from './TopSelling'
+import CustomerTable from './customerTable'
 
 const OverviewPage = () => {
     return (
         <div className='overview'>
-            {/* <div className='top-section'>
-                <TotalRevenue/>
+               <div className="black_white">
+               <TotalRevenue/>
                 <LowStock/>
-            </div>
-            <div className='middle-section'>
-                <WeeklyRevenue/>
-            </div>
-            <div className='bottom-section'>
+               </div>
+               <div className="black_white">
                 <TopSelling/>
-            </div> */}
+                <CustomerTable/>
+               </div>
+
+                
             
         </div>
     )
