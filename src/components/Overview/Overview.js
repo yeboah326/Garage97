@@ -28,17 +28,21 @@ const Overview = () => {
             </div> :
             null
             }
-           <div className='desktop-side-nav-bar'>
+
             <header>
                     <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
                 </header>
-         <div className='desktop-side-nav-bar'>
-             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
-            </div>
-          <OverviewPage/>
+            <OverviewPage/>
 
-          </div>
-          </div>
+            
+         <div className='overview-page'>
+             {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
+             <OverviewPage/>
+            </div>
+           
+
+
+        </div>
     )
 }
 
