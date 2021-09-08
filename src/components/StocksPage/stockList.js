@@ -20,6 +20,8 @@ const StockListPage = () => {
   let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
   const stock_list_id = localStorage.getItem('Stock_List_ID')
+  const [page,setPage] = useState(1)
+  const [stocklist_pages,setStockListPages] = useState()
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -38,7 +40,7 @@ const StockListPage = () => {
     setWidth(!navwidth)
   };
     const fetchStockList = async () => {
-    const response = await fetch(`http://localhost:9000/stock/stock_list/${stock_list_id}`,{
+    const response = await fetch(`http://localhost:9000/stock/stock_list/${stock_list_id}?items_per_page=9&page=${page}`,{
         method: 'GET',
         headers:{
             'Content-Type':'application/json',
@@ -52,7 +54,9 @@ const StockListPage = () => {
     }
     else if(response.status === 200){
       console.log(res)
-      setStockList(res)
+      setStockList(res.stocks_by_stock_list_id)
+      setStockListPages(res.stocks_by_stock_list_id_pages)
+
     }
     else{
         alert(res.message)
@@ -61,7 +65,7 @@ const StockListPage = () => {
 
 useEffect(()=>{
   fetchStockList()
-},[])
+},[page])
 
   return (
     <div className="stockListPage">
@@ -101,7 +105,7 @@ useEffect(()=>{
         <TableRow
           rowData={stocklist}
         />
-        <Tfooter/>
+        <Tfooter page={page} setPage={setPage} max_page={stocklist_pages}/>
       </div>
       </div>
       <div className="divdown">

@@ -46,7 +46,7 @@ const DeleteProduct = ({onClick,id,fetchData}) => {
             
         }
         else{
-            alert(res.message)
+            alert("Could not process request")
         }
         onClick()
     }
@@ -58,7 +58,7 @@ const DeleteProduct = ({onClick,id,fetchData}) => {
         <div className="delete-product">
             <p>Delete product</p>
             <span>Are you sure you want to delete {product_name}?</span>
-            <div><Button name="Cancel" color="#243475" toggle={onClick}/><Button name="Delete"color="red" toggle={deleteproduct}/></div>
+            <div><Button name="Cancel" color="#6842ff" toggle={onClick}/><Button name="Delete"color="red" toggle={deleteproduct}/></div>
         </div>
     )
 }

@@ -2,8 +2,8 @@ import React from 'react'
 import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import OverviewPage from './OverviewPage'
-import { useState } from 'react'
 import SvgMenu from '../../Assets/icons/Menu'
+import { useState } from 'react'
 
 
 
@@ -29,11 +29,16 @@ const Overview = () => {
             null
             }
            <div className='desktop-side-nav-bar'>
+            <header>
+                    <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
+                </header>
+         <div className='desktop-side-nav-bar'>
              {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
             </div>
           <OverviewPage/>
 
-   </div>
+          </div>
+          </div>
     )
 }
 
