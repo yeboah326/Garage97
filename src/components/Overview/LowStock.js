@@ -9,7 +9,7 @@ const LowStock = () => {
                 <Stock name='Kako Papa' remaining='20'/>
                 <Stock name='Kako Mini' remaining='11'/>
                 <Stock name='Kako Cube' remaining='9'/>
-                <Stock name='Kako Bingi' remaining='1'/>
+                <Stock name='Kako Bingi' remaining='7'/>
             </p>
             
         </div>
