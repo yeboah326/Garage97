@@ -39,16 +39,17 @@ a:hover{
   flex-direction: column;
   height: 100%;
   width: 100%;
+  justify-items: center;
 }
 
 .rightdiv{
+  margin-top: 5rem;
   color: rgb(219,266,266);
   display: flex;
   text-align: center;
   padding: 7% 15%;
-  background-image:  linear-gradient(#2BBFD0, #9C89E7);
-  width: 30%;
-
+  width: 100%;
+  height: 100vh;
 }
 
 .input{
@@ -102,10 +103,11 @@ form input[type="text"], form input[type="email"], form input[type="password"]{
 
 .leftdiv{
   /* background-image: url('../images/rightpic.jpg'); */
-  padding: 7% 15%;
+  /* padding: 7% 15%;
   text-align: center;
-  width: 30%;
-  display: flex;
+  width: 100%;
+  display: flex;*/
+  display: none;
 }
 .rowflex{
   display: flex;
@@ -117,10 +119,19 @@ form input[type="text"], form input[type="email"], form input[type="password"]{
     height: 100vh;
   }
 
-  .leftdiv, .rightdiv{
+  .rightdiv{
     display: flex;
     height: auto;
     flex-direction: column;
+  }
+
+  .leftdiv{
+  padding: 7% 15%;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  height: auto;
+  flex-direction: column;
   }
 
 }

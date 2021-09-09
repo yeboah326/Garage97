@@ -124,7 +124,7 @@ const RegistrationForm = () => {
           </div>
           <div className="buttonAndLink">
           <a href="#" class="myButton">Sign Up</a><br/>
-           <a className="link"href="#">Already Have an Account?</a>
+           <Link to ='/login' className="link">Already Have an Account? Login!</Link>
           </div>
         </section>
       </form>

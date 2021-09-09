@@ -12,9 +12,9 @@ const SplashPage = () => {
       <h1>SIMA</h1>
       <nav class="navbar">
         <ul class="nav_links">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Sign Up</a></li>
+          <li><a href="#About">About</a></li>
+          <li><Link to ='/login'>Login</Link></li>
+          <li><Link to = '/register'>Sign Up</Link></li>
         </ul>
       </nav>
     </header>

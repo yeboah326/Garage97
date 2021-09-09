@@ -111,12 +111,12 @@ label{
 
 
 .myButton1 {
-	background-color: #F8F8F8;
+	background-color: black;
 	border-radius:6px;
 	border:2px solid #42371c;
 	display:inline-block;
 	cursor:pointer;
-	color:BLACK;
+	color:white;
 	font-family:Arial;
 	font-size:20px;
 	padding:3px 76px;
@@ -165,4 +165,16 @@ label{
     height: auto;
   }
 
+}
+
+.butt_link{
+  margin-top: 50px;
+  text-decoration: none;
+  color: black;
+}
+
+.butt_link:hover{
+  color: white;
+  /* font-weight: bold; */
+  text-decoration: underline;
 }

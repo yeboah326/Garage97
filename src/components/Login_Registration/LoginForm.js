@@ -85,7 +85,7 @@ const LoginForm = () => {
             </div>
             <div className="buttonAndLink">
               <a href="#" className="myButton1">Login</a><br />
-              <a href="#">Don't Have An Account? Sign Up with Us</a>
+              <Link to ='/register'className="butt_link">Don't Have An Account? Sign Up with Us</Link>
             </div>
             </section>
           </form>
