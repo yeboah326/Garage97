@@ -1,3 +1,4 @@
+from sima_web_api.api.business.utils import get_top_selling_products, report_compute_sales_for_product, report_compute_stocks_for_product
 from flask import Blueprint, jsonify, request
 from sima_web_api.api.users.utils import token_required
 from sima_web_api.api.product.models import Product
@@ -175,3 +176,33 @@ def product_delete_all_sale(current_user, product_id):
         return jsonify({"message": "Sales deleted successfully"}), 200
     except:
         return jsonify({"message": "Could not processs request"}), 400
+
+@product.route("/<product_id>/report")
+@token_required
+def product_get_report(current_user, product_id):
+    """Return an overview of the product performance in terms of sales and stock
+
+    Args:
+        current_user (db.Model): current user logged in
+        product_id (int): the id of the current product whose report is returned
+
+    Returns:
+        tuple(dict, int): Summary of the product performance in terms of sales and stock, HTTP status code
+    """
+    product = Product.query.filter_by(id=product_id).first()
+
+    sales = report_compute_sales_for_product(product_id=product.id)
+
+    stock = report_compute_stocks_for_product(product_id=product.id)
+
+    product_summary = {
+        "product_name": f"{product.name}",
+        "product_sales": str(sales["total_sales"]),
+        "product_stock": str(stock["total_stock"]),
+        "product_profit_loss": str(sales["total_sales"]),
+        "product_total_sold": str(sales["total_quantity"]),
+        "product_total_bought": str(stock["total_quantity"]),
+        "product_total_remaining": str(stock["total_quantity"] - sales["total_quantity"])
+    }
+    
+    return product_summary, 200
