@@ -15,6 +15,7 @@
 }
 .black_white{
     height: fit-content;
+    margin-bottom: 10%;
 }
 /* .top-section{
     display: grid;
@@ -60,7 +61,7 @@
     justify-content: center;
     font-size: 2rem;
     font-family: PoppinsBold;
-    color: #273475;
+    color: #6880fe;
 }
 
 .currency{
@@ -69,11 +70,11 @@
     color: #c0c0c0;
 }
 .revenue-head{
-    color: #c0c0c0;
-    font-size: 1rem;
-    font-family: PoppinsRegular;
-    align-self: center;
-    margin-bottom: 0;
+   
+    font-family: PoppinsBold;
+color: #6880fe;
+font-size: 1.5em;
+text-align: left;
 }
 
 .percent-increase{
@@ -97,9 +98,11 @@
     
 }
 .low-stock-header , .top-selling-header{
-    color: #c0c0c0;
-    font-family: PoppinsRegular;
-    font-size: 1rem;
+    
+font-family: PoppinsBold;
+color: #6880fe;
+font-size: 1.5em;
+text-align: left;
 }
 
 .low-stocks , .selling-products {
@@ -122,7 +125,9 @@
     margin: 5px;
     padding: 10px;
     color: #fcfcfc;
-    border-bottom: 1px solid #888;
+    border-bottom: 1px solid #6880fe;
+    border-left: 3px solid #6880fe;
+
     
 }
 
@@ -131,14 +136,14 @@
     font-size: 1.5rem;
     padding-left: 5%;
     margin-top: 10px;
-    color: #273475;
+    color: #6880fe;
     align-self: center;
 }
 
 .low-stock-number {
     font-family: PoppinsBold;
-    color:#273475;
-    font-size: 1.2rem;
+    color:#6880fe;
+    font-size: 1.2 em;
    padding-right: 10%;
     
     align-self: center;
@@ -153,7 +158,7 @@
     border-radius: 20px;
     font-family: PoppinsRegular;
     font-size: 1rem;
-    color: #273475;
+    color: #6880fe;
 } */
 .top-selling{
     background-color: #fcfcfc;
@@ -190,13 +195,13 @@
 }
 .top-product-units{
     font-family: PoppinsBold;
-    color:#273475;
+    color:#6880fe;
     font-size: 1.2rem;
 }
 
 
 .top-selling .top-selling-header {
-    font-size: 1.2rem;
+    font-size: 1.5 em;
     font-family: PoppinsBold;
 }
 
@@ -207,24 +212,32 @@
     height: 110%;
     text-align: center;
     background-color: #fff;
-    color: #273475;
+    color: #6880fe;
     font-family: PoppinsRegular;
+    border-collapse: collapse;
+    /* border: 2px solid #6880fe ; */
 }
-thead{
-    background-color:#fcfcfc ;
+table thead {
+    display: none;
 }
- /* tbody tr:nth-child(2n){
-  background-color: #fefefe;
-} */
- tbody tr td{
-  margin: 0;
-  border: 1px solid #888;
- }
  .customerTable p{
 font-family: PoppinsBold;
-color: #273475;
+color: #6880fe;
 font-size: 1.5rem;
+text-align: left;
  }
+ tr {
+     display: flex;
+     flex-direction: column;
+ }
+ tbody tr:nth-child(2n) td{ 
+  background-color: rgba(214, 207, 207 , 0.5);
+ }
+ table td , table thead {
+    padding:12px 15px ;
+    border: 1px solid #ddd;
+    text-align: center;
+}
 
 /* try this */
 @media screen and (min-width:700px){
@@ -244,6 +257,7 @@ font-size: 1.5rem;
     width: 60%;
 
 }
+
 .customerTable{
     width: 60%;
     height: fit-content;
@@ -253,6 +267,8 @@ font-size: 1.5rem;
 }
 .top-selling{
     width: 35%;
-    height: 110%;
+    height: 100%;
 }
+
 }
+

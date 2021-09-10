@@ -6,7 +6,7 @@ export default function CustomerTable() {
         <div className="customerTable">
             <p>           Most Popular Customers
 </p>
-            <table >
+            <table  >
                 <thead>
                 
                     <tr>
