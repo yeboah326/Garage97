@@ -4,7 +4,14 @@ const Stock = ({name,remaining}) => {
     return (
         <div className='actual-low-stock'>
             <span className='low-stock-name'>{name}</span>
-            <span className='low-stock-number'>{remaining}</span>
+            
+            
+            <div className='NUMBERS'>
+            <span className='low-stock-number'>{remaining} units</span>
+            <progress value={remaining} max='100'></progress>
+            </div>
+            
+
         </div>
     )
 }
