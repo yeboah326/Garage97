@@ -6,7 +6,7 @@ import CustomerTable from './customerTable'
 
 const OverviewPage = () => {
     return (
-        <div className='overview'>
+        <div className='overview-overview'>
                <div className="black_white">
                <TotalRevenue/>
                 <LowStock/>
