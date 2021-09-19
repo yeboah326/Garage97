@@ -6,6 +6,7 @@ import SvgMenu from '../../Assets/icons/Menu'
 import { useState } from 'react'
 
 
+
 const Overview = () => {
     const [showsidenavbar,setShowSideNavBar] = useState(false)
     const [showfullsidenavbar,setShowFullSideNavBar] = useState(false)
@@ -20,22 +21,35 @@ const Overview = () => {
     }
 
     return (
-        <div className="business-dashboard">
+        <div className="overview-overview-page">
             {showsidenavbar ?
-            <div className='side-nav-page'>
-                <SideNavBar onClick={onClickClose}/>
-            </div> :
-            null
-            }
-            <header>
+             
+               <div className='side-nav-page'>
+           <SideNavBar onClick={onClickClose}/>
+           </div>:null
+              }
+              <div >
+               <header>
                     <div className='menu' onClick={onClickMenu}><SvgMenu fill='#6842ff'/></div>
-                </header>
-        <div className='desktop-side-nav-bar'>
+                 </header>
+                 <OverviewPage/>
+
+            
+
+            
+
+            
+           
+
+              </div>
+              <div className='desktop-side-nav-bar'>
              {!showfullsidenavbar? <SideNavBar2 onHover={onHover}/> : <SideNavBar onHover={onHover}/>}
             </div>
-        
+                 
+           
 
-   </div>
+
+        </div>
     )
 }
 

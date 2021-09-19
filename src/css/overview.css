@@ -1,28 +1,41 @@
-.overview{
-    display:grid;
-    grid-template-rows: 1fr 1fr 2fr;
-    padding: 0 40px;
-    min-width: 900px;
-    height: 100vh;
-    row-gap: 10px;
+
+
+.overview-overview-page{
+ display: flex;
+ background-color: #fff;
+ flex-direction: row-reverse;
+
+
 }
 
-.top-section{
+
+.overview-overview{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    /* row-gap: 10px; */
+}
+.black_white{
+    height: fit-content;
+    margin-bottom: 10%;
+}
+/* .top-section{
     display: grid;
     grid-template-columns: 1fr 2fr;
     column-gap: 50px;
     margin-top: 20px;
-}
+} */
 
 .t-revenue{
     display: flex;
     flex-direction: column;
-    height:80%;
-    width:300px;
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 20px;
-    box-shadow: 0px 00px 5px #888;
+    height:35%;
+    width:320px;
+    background-color:#fcfcfc;
+    /* border-bottom: 1px solid #888; */
+    /* border-radius: 20px;
+    box-shadow: 0px 00px 5px #888; */
     padding: 10px;
 
 }
@@ -44,14 +57,14 @@
     display: flex;
     flex-direction: column;
     width:90%;
-    background-color: #f0f3f5;
+    background-color: #fdfdfd;
     border-radius: 10px;
     height: 80px;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
     font-family: PoppinsBold;
-    color: #273475;
+    color: #6880fe;
 }
 
 .currency{
@@ -60,11 +73,11 @@
     color: #c0c0c0;
 }
 .revenue-head{
-    color: #c0c0c0;
-    font-size: 1rem;
-    font-family: PoppinsRegular;
-    align-self: center;
-    margin-bottom: 0;
+   
+    font-family: PoppinsBold;
+color: #6880fe;
+font-size: 1.5em;
+text-align: left;
 }
 
 .percent-increase{
@@ -74,79 +87,210 @@
     color:red;
 }
 
-.low-stock{
+.low-stock {
     display: flex;
     flex-direction: column;
-    height:80%;
-    width:90%;
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 20px;
-    box-shadow: 0px 00px 5px #888;
-    padding: 10px;
+    height:fit-content;
+    width:100%;
+    background-color: #fcfcfc;
+    border-radius: 5px;
+   
+
+    /* border-radius: 20px;
+    box-shadow: 0px 00px 5px #888; */
     
 }
-.low-stock-header{
-    color: #c0c0c0;
-    font-family: PoppinsRegular;
-    font-size: 1rem;
+.low-stock-header , .top-selling-header{
+    
+font-family: PoppinsBold;
+color: #6880fe;
+font-size: 1.5em;
+text-align: left;
 }
 
-.low-stocks{
+.low-stocks , .selling-products {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 80%;
     width: 100%;
     margin: 0;
 }
-.actual-low-stock{
+.actual-low-stock {
     display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 80%;
-    background-color: #f0f3f5;
-    border-radius: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+    background-color: #fdfdfd;
+    box-shadow: 0px 00px 5px #fcfcfc;
+    border-radius: 8px;
     align-items: center;
-    margin-right: 10px;
+    margin: 5px;
+    padding: 10px;
+    color: #fcfcfc;
+    border-bottom: 1px solid #6880fe;
+    border-left: 3px solid #6880fe;
+
     
 }
 
-.low-stock-name{
+.low-stock-name , .top-product-name{
     font-family: PoppinsRegular;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    padding-left: 5%;
     margin-top: 10px;
-    color: #273475;
+    color: #6880fe;
     align-self: center;
 }
 
-.low-stock-number{
+.low-stock-number {
     font-family: PoppinsBold;
-    font-size: 4rem;
-    color:#273475;
-    margin-top: auto;
-    margin-bottom: 30px;
-    justify-self: center;
+    color:#6880fe;
+    font-size: 1.2 em;
+   padding-right: 10%;
+    
+    align-self: center;
+
 }
 
-.top-selling{
+/* .top-selling{
     height: 75%;
     width: 300px;
     padding: 10px;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 0px 00px 5px #888;
     font-family: PoppinsRegular;
     font-size: 1rem;
-    color: #273475;
-}
+    color: #6880fe;
+} */
+.top-selling{
+    background-color: #fcfcfc;
+    height: 110%;
 
-.top-selling p{
-    margin: 0;
-    margin-bottom: 5px;
-    margin-left: 20px;
 }
+.actual-selling-product{ display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+    box-shadow: 0px 00px 5px #888;
+    border-radius: 8px;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+    
 
-.top-selling .top-selling-header{
+    background-color:fdfdfd ;
+}
+.top-product-name{
+    font-weight: bold;
     font-size: 1.2rem;
+    margin-top: auto;
+    margin-bottom: 30px;
+}
+.NUMBERS{
+    display: flex;
+    flex-direction: column;
+    padding-right: 10%;
+}
+.top-product-amount{
+    font-size: 1rem;
+    font-family: cursive;
+}
+.top-product-units{
     font-family: PoppinsBold;
+    color:#6880fe;
+    font-size: 1.2rem;
+}
+
+
+.top-selling .top-selling-header {
+    font-size: 1.5 em;
+    font-family: PoppinsBold;
+}
+
+
+
+ .customerTable p{
+font-family: PoppinsBold;
+color: #6880fe;
+font-size: 1.5rem;
+text-align: left;
+ }
+ 
+ table{
+    table-layout: fixed;
+    width: 100%;
+    height: 110%;
+    text-align: center;
+    background-color: #fff;
+    color: #6880fe;
+    font-family: PoppinsRegular;
+    border-collapse: collapse;
+    /* border: 2px solid #6880fe ; */
+}
+tbody tr:nth-child(2n) td{ 
+    background-color: rgba(214, 207, 207 , 0.5);
+   }
+   table td , table thead {
+      padding:30px;
+      border: 1px solid #ddd;
+      text-align: center;
+  }
+/* try this */
+@media screen and (min-width:700px){
+.black_white{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.t-revenue{
+    width:30%;
+
+
+}
+thead th {
+    background-color: #6880fe;
+    color: #fff;
+    padding: 30px;
+
+}
+table td {
+    border: 0px;
+}
+.low-stock{
+    /* box-shadow: 0px 00px 5px #888; */
+    width: 60%;
+
+}
+
+.customerTable{
+    width: 60%;
+    height: fit-content;
+}
+.customerTable p{
+    text-align: center;
+}
+.top-selling{
+    width: 35%;
+    height: 100%;
+}
+
+}
+
+@media screen and (max-width:700px){
+
+   
+    table thead {
+        display: none;
+    }
+    table td , table thead {
+        padding: 12px 15px;
+    }
+    tr {
+        display: flex;
+        flex-direction: column;
+    }
+    
 }

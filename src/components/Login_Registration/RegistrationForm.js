@@ -90,29 +90,47 @@ const RegistrationForm = () => {
       
     return (
         userCreated && logged ? <Redirect to='/businesses'/>:
-        <div className='container-log-reg'>
-            <div className='left-section'>
-                <div className='button-desktop'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
-                <div className='left-section-image'></div>
-            </div>
-            <div className="register">
-            <form className="d-flex register-form" onSubmit={handleSubmit}>
-                <div className='button-mobile'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
-                <span className='logreg-header'>Sign Up</span>
-                <Input label="Name" type="text" name="name" onChange={handleChange} required="true"/>
-                <Input label="Email" type="email" name="email" onChange={handleChange} required="true"/>
-                <Input label="Password" type="password" name="password" onChange={handleChange} required="true"/>
-                <Input label="Confirm Password" type="password" name="confirm-password" onChange={handleChange} required="true"/>
-                <div className='log-reg-btns'>
-                    <input type="submit" id="sign-up" value="Register" />
-                    <Link to="/login" className="log-in">Already have an account?</Link>
-                </div>
-                
-            </form>
-
+       
+<div id='main'>
+  <div className="splitscreen">
+    <div className="leftdiv">
+      <div className="right_info">
+        <h1>Have Control Over Your business from anywhere with <em>SIMA</em></h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </div>
+    <div className="rightdiv">
+      <form onSubmit={handleSubmit}>
+        <div className="information">
+          <h1>Create An Account</h1>
+          <p className="textinfo2">Make it easier to manage your business. Ready? Sign Up</p>
         </div>
-        </div>
-        
+        <section id="inputs">
+          <div className="input">
+            <label className="label">Name</label><br/>
+            <input type="text" name="name"/>
+          </div>
+          <div className="input">
+            <label className="label">Email</label><br/>
+            <input type="email" name="email" value="" placeholder="example@gmail.com" onChange={handleChange}/>
+          </div>
+          <div className="input">
+            <label className="label">Password</label><br/>
+            <input type="password" name="password" value="" placeholder="********" onChange={handleChange}/>
+          </div>
+          <div className="input">
+            <label className="label">Confrim Password</label><br/>
+            <input type="password" name="" value="" placeholder="********" onChange={handleChange}/>
+          </div>
+          <div className="buttonAndLink">
+            <input type="submit">Sign UP </input>
+           <Link to ='/login' className="link">Already Have an Account? Login!</Link>
+          </div>
+        </section>
+      </form>
+    </div>
+  </div>
+  </div>
     )
 
 }

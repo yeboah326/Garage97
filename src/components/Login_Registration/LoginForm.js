@@ -1,86 +1,98 @@
 import React from 'react'
 import Input from '../Input'
-import {Link,Redirect} from 'react-router-dom'
-import {useState} from 'react'
-import {login,useAuth} from '../../auth/index'
+import { Link, Redirect } from 'react-router-dom'
+import { useState } from 'react'
+import { login, useAuth } from '../../auth/index'
 import Button from '../Button'
 import SvgBack from '../../Assets/icons/Back'
 
 
 
 const LoginForm = () => {
-    const [details,setDetails] = useState({'email':'','password':''})
-    const [logged] = useAuth() 
-    
-    
-    const fetchUser = async (user_id)=> {
-        const response = await fetch(`http://localhost:9000/users/${user_id}`,{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json'
-            }
-        })
-        const res = await response.json()
-        console.log(res)
-        localStorage.setItem('User',JSON.stringify(res))
-        console.log(localStorage.getItem('User'))
-    }
-    const onSubmitClick = async (e) => {
-        e.preventDefault()
-        const data = {
-            "email":details['email'],
-            "password":details['password']
-        }
-        const response = await fetch('http://localhost:9000/users/login',{
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        const res = await response.json()
-        if(res.token){
-           fetchUser(res.public_id)
-           login(res.token)
-        }
-        // if(response.status === 200){
-        //     alert('User successfully Logged in')
-        // }
-        else{
-            alert(res.message)
-        }
-        
-    }
-    const handleChange = (event) => {
-        const {name,value} = event.target
-        setDetails(prevDetails => ({
-            ...prevDetails,[name]:value
-        }))
-    }
-    
-    return (
-        !logged ?
-        <div className='container-log-reg'>
-            <div className='left-section'>
-            <div className='button-desktop'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
-                <div className='left-section-image'></div>
-            </div>
-            <div className="d-flex login-form">
-            <form onSubmit={onSubmitClick}>
-            <div className='button-mobile'><Link to='/'><SvgBack stroke='white' fill='white'/></Link></div>
-            <span className='logreg-header'>Login</span>
-                <Input type="email" name='email' required="true" onChange={handleChange} label="Email"/>
-                <Input type="password" name='password'required="true" onChange={handleChange} label="Password"/>
-                <p  className="forgot-pass"><Link className="forgot-pass-link">Forgot password?</Link></p>
-                <div className='log-reg-btns'>
-                    <input type="submit" id="login" value="Login"/>
-                    < Link to="/register" className="sign-up-link">Don't have an account?</Link>
-                </div>
-            </form>
+  const [details, setDetails] = useState({ 'email': '', 'password': '' })
+  const [logged] = useAuth()
 
+
+  const fetchUser = async (user_id) => {
+    const response = await fetch(`http://localhost:9000/users/${user_id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const res = await response.json()
+    console.log(res)
+    localStorage.setItem('User', JSON.stringify(res))
+    console.log(localStorage.getItem('User'))
+  }
+  const onSubmitClick = async (event) => {
+    event.preventDefault()
+    const data = {
+      "email": details['email'],
+      "password": details['password']
+    }
+    const response = await fetch('http://localhost:9000/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    const res = await response.json()
+    if (res.token) {
+      fetchUser(res.public_id)
+      login(res.token)
+    }
+    // if(response.status === 200){
+    //     alert('User successfully Logged in')
+    // }
+    else {
+      alert(res.message)
+    }
+
+  }
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setDetails(prevDetails => ({
+      ...prevDetails, [name]: value
+    }))
+  }
+
+  return (
+    !logged ?
+      <div className="split">
+        <div className="leftdivv">
+          <img src="../images/2.jpg" alt="" />
         </div>
-        </div>
-        : <Redirect to='/businesses'/>
+        <div className="rightdivv">
+          <form  onSubmit={onSubmitClick} >
+            <div className="headinginfo">
+              <h1>Login</h1>
+              <p>Make it easier to manage your business. Login and Get Started</p>
+            </div>
+            <section id="inputs">
+            {/* <div className="input">
+              <label className="label">Name</label><br/>
+              <input type="text" name="sign_up_name" />
+            </div> */}
+            <div className="input">
+              <label className="label">Email</label><br/>
+              <input type="email" name="email" placeholder="example@gmail.com" onChange={handleChange}/>
+            </div>
+            <div className="input">
+              <label className="label">Password</label><br />
+              <input type="password" name="password" placeholder="********" onChange={handleChange}/>
+            </div>
+            <div className="buttonAndLink">
+              <input type="submit" className="myButton1" value="Login"/><br />
+              <Link to ='/register'className="butt_link">Don't Have An Account? Sign Up with Us</Link>
+            </div>
+            </section>
+          </form>
+      </div>
+      </div>
+    
+        : <Redirect to='/businesses' />
     )
 }
 
