@@ -17,7 +17,7 @@ def test_business_hello(app, client):
     response = client.get("/business/hello")
     assert response.status_code == 200
 
-
+# TODO: Fix issue with test
 def test_business_create_new(app, client):
     login = login_user(app, client)
 
@@ -49,7 +49,7 @@ def test_business_get_all(app, client):
     assert response.status_code == 200
     assert len(response.json) == 1
 
-
+# TODO: Fix issue with test
 def test_business_get_by_id(app, client):
     login = login_user(app, client)
 
@@ -279,8 +279,8 @@ def test_business_delete_all_stock_list(app, client):
         "message": f"All stocklist from {Business.query.filter_by(id=business_id).first().name} have been deleted"
     }
 
-
 # Customer
+# TODO: Fix issue with test
 def test_business_get_all_customers(app, client):
     login = login_user(app, client)
 
@@ -337,3 +337,33 @@ def test_business_get_report(app, client):
     assert response.json["total_products_sold"] == 180
     assert response.json["total_products_bought"] == 200
     assert response.json["total_products_remaining"] == 20
+
+# TODO: Write test for business_get_dashboard_info endpoint
+def test_business_get_dashboard_info(app, client):
+    login = login_user(app, client)
+
+    create_new_business(client, login["token"])
+
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+    # Create a new sstocklist
+    create_business_stocklist(client, login["token"], product_id)
+
+    # Create a new salelist
+    create_business_salelist(client, login["token"], product_id)
+
+    response = client.get(
+        f"business/{business_id}/dashboard_info",
+        headers={"Authorization": f"Bearer {login['token']}"}
+    )
+
+    assert response.status_code == 200
+    assert "top_selling_product" in response.json
+    assert "product_low_on_stock" in response.json

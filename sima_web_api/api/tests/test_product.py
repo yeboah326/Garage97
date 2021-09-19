@@ -209,3 +209,37 @@ def test_product_delete_all_sale(app, client):
 
     assert response.status_code == 200
     assert response.json == {"message": "Sales deleted successfully"}
+
+
+def test_product_get_report(app, client):
+    # Login user
+    login = login_user(app, client)
+
+    # Create a new business
+    create_new_business(client, login["token"])
+
+    # Retrive created business
+    new_business = Business.query.filter_by(name="Kako Inc").first()
+    business_id = new_business.id
+
+    # Create products for the business
+    create_business_products(client, login["token"], business_id)
+
+    # Retrive created product
+    new_product = Product.query.filter_by(name="Product 1").first()
+    product_id = new_product.id
+
+    # Create stocks and a stock list for the created product
+    create_business_salelist(client, login["token"], product_id)
+
+    # Create sales and a sale list for the product created
+    create_business_salelist(client, login["token"], product_id)
+
+    response = client.get(
+        f"product/{product_id}/report",
+        headers={"Authorization": f"Bearer {login['token']}"},
+    )
+    print(response.json)
+    assert response.status_code == 200
+    assert "product_name" in response.json
+    assert "product_sales" in response.json

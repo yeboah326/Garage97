@@ -1,6 +1,8 @@
-from sima_web_api.api.sale.models import Sale
+from flask.json import dumps, jsonify
+from sima_web_api.api.product.models import Product
+from sima_web_api.api.sale.models import Sale, SaleList
 from sima_web_api.api.stock.models import Stock
-
+from collections import Counter
 
 def compute_total_buying_price(stock_list):
     data = {"total_buying_price": 0}
@@ -80,3 +82,59 @@ def next_page_items(items, items_per_page, page_number):
     except:
         detail["page_items"] = items[items_per_page * page_number :]
         return detail
+
+# TODO: Finish the implementation
+def get_top_customers(business_id):
+    business_salelists = SaleList.query.filter_by(business_id=business_id)
+    business_customer_json = list()
+    Counter
+    for salelist in business_salelists:
+        if salelist.customer_name == "None" or salelist.customer_contact == "None":
+            pass
+        else:
+            business_customer_json.append(
+                {
+                    "salelist_id": salelist.id,
+                    "customer_name": salelist.customer_name,
+                    "customer_contact": salelist.customer_contact,
+                }
+            )
+# TODO: Fix serialization problem
+def get_top_selling_products(business_id):
+    # Get all business products
+    business_products = Product.query.filter_by(business_id=business_id)
+    
+    # Business products info
+    business_products_info = {}
+    
+    for product in business_products:
+        sales_info = report_compute_sales_for_product(product_id=product.id)
+        business_products_info[f"{product.name}"] = {
+            "total_sales_quantity": dumps(sales_info["total_sales"]),
+            "total_sales_money": sales_info["total_quantity"]
+        }
+    business_products_info = dict(business_products_info.items(),key=lambda x:x[1]["total_sales_money"],reverse=True)
+    del business_products_info["key"]
+    del business_products_info["reverse"]
+    return business_products_info
+
+# TODO: Fix serialization problem
+def get_products_low_on_stock(business_id):
+    # Get all business products
+    business_products = Product.query.filter_by(business_id=business_id)
+
+    # Business products info
+    business_products_info = {}
+
+    for product in business_products:
+        sales_info = report_compute_sales_for_product(product_id=product.id)
+        stock_info = report_compute_stocks_for_product(product_id=product.id)
+        business_products_info[f"{product.name}"] = {
+            "total_sales_quantity": sales_info["total_quantity"],
+            "total_stock_quantity": stock_info["total_quantity"],
+            "total_items_remaining": dumps(stock_info["total_quantity"] - sales_info["total_quantity"])
+        }
+
+    business_products_info = dict(business_products_info.items(),key=lambda x:x[1]["total_items_remaining"])
+    del business_products_info["key"]
+    return business_products_info
