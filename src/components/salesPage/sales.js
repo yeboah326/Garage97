@@ -92,7 +92,7 @@ const SalesPage = () => {
           ) : (
             <SideNavBar onHover={onHover}  navwidth='220px'/>
           )}
-        </div>
+         </div>
 
        
           <div className='list'>

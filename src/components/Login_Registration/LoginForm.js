@@ -25,8 +25,8 @@ const LoginForm = () => {
     localStorage.setItem('User', JSON.stringify(res))
     console.log(localStorage.getItem('User'))
   }
-  const onSubmitClick = async (e) => {
-    e.preventDefault()
+  const onSubmitClick = async (event) => {
+    event.preventDefault()
     const data = {
       "email": details['email'],
       "password": details['password']
@@ -65,26 +65,26 @@ const LoginForm = () => {
           <img src="../images/2.jpg" alt="" />
         </div>
         <div className="rightdivv">
-          <form>
+          <form  onSubmit={onSubmitClick} >
             <div className="headinginfo">
               <h1>Login</h1>
               <p>Make it easier to manage your business. Login and Get Started</p>
             </div>
             <section id="inputs">
-            <div className="input">
-              <label className="label">Name</label><br />
+            {/* <div className="input">
+              <label className="label">Name</label><br/>
               <input type="text" name="sign_up_name" />
-            </div>
+            </div> */}
             <div className="input">
-              <label className="label">Email</label><br />
-              <input type="email" name="sign_up_email" value="" placeholder="example@gmail.com" />
+              <label className="label">Email</label><br/>
+              <input type="email" name="email" placeholder="example@gmail.com" onChange={handleChange}/>
             </div>
             <div className="input">
               <label className="label">Password</label><br />
-              <input type="password" name="" value="" placeholder="********" />
+              <input type="password" name="password" placeholder="********" onChange={handleChange}/>
             </div>
             <div className="buttonAndLink">
-              <a href="#" className="myButton1">Login</a><br />
+              <input type="submit" className="myButton1" value="Login"/><br />
               <Link to ='/register'className="butt_link">Don't Have An Account? Sign Up with Us</Link>
             </div>
             </section>

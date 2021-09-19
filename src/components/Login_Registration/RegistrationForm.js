@@ -100,7 +100,7 @@ const RegistrationForm = () => {
       </div>
     </div>
     <div className="rightdiv">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="information">
           <h1>Create An Account</h1>
           <p className="textinfo2">Make it easier to manage your business. Ready? Sign Up</p>
@@ -112,18 +112,18 @@ const RegistrationForm = () => {
           </div>
           <div className="input">
             <label className="label">Email</label><br/>
-            <input type="email" name="email" value="" placeholder="example@gmail.com"/>
+            <input type="email" name="email" value="" placeholder="example@gmail.com" onChange={handleChange}/>
           </div>
           <div className="input">
             <label className="label">Password</label><br/>
-            <input type="password" name="password" value="" placeholder="********"/>
+            <input type="password" name="password" value="" placeholder="********" onChange={handleChange}/>
           </div>
           <div className="input">
             <label className="label">Confrim Password</label><br/>
-            <input type="password" name="" value="" placeholder="********"/>
+            <input type="password" name="" value="" placeholder="********" onChange={handleChange}/>
           </div>
           <div className="buttonAndLink">
-          <a href="#" class="myButton">Sign Up</a><br/>
+            <input type="submit">Sign UP </input>
            <Link to ='/login' className="link">Already Have an Account? Login!</Link>
           </div>
         </section>
