@@ -24,7 +24,7 @@ const SalesPage = () => {
 
 
   const fetchSaleLists = async () => {
-    const response = await fetch(`http://localhost:9000/business/${business_id}/sale_list?items_per_page=9&page=${page}`, {
+    const response = await fetch(`http://localhost:9000/business/${business_id}/sale_list?items_per_page=8&page=${page}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
