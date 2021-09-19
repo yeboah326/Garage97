@@ -18,7 +18,7 @@ def test_sale_hello(app, client):
     assert response.status_code == 200
     assert response.json == {"message": "Sale blueprint working"}
 
-
+# TODO: Fix issue with test
 def test_sale_get_all_by_sale_list_id(app, client):
     # Login the user
     login = login_user(app, client)
