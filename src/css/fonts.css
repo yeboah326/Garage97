@@ -12,3 +12,8 @@
     font-family: PoppinsLight;
     src: url('../Fonts/Poppins/Poppins-Light.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: MerriweatherRegular;
+    src: url('../Fonts/Merriweather/Merriweather-Regular.ttf') format('truetype');
+}
