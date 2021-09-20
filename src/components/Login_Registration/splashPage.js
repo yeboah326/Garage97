@@ -78,11 +78,11 @@ const SplashPage = () => {
 
     <footer class="footer_section">
         <ul class="contact_links">
-            <li><a href="#"></a>LinkdIn</li>
-            <li><a href="#"></a>GitHub</li>
-            <li><a href="#"></a>Facebook</li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Facebook</a></li>
         </ul>
-            <p class="Garage97"> &copy Garage97 </p>
+            <p class="Garage97"> Garage97 </p>
     </footer>
         </>
             )
