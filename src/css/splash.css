@@ -11,19 +11,18 @@ body{
   background-image:  linear-gradient(#2BBFD0, #9C89E7);
   font-family: 'Poppins', sans-serif;
   color: white;
-
 }
 
 body h1{
   color: white;
 }
 li,a{
-  font-family: 'Poppins';
-  font-weight: 500;
+  font-family: PoppinsRegular;
+  /* font-weight: 500; */
   font-size: 16px;
-  color: #64C9CF;
+  color: white;
   text-decoration: none;
-  cursor: grabbing;
+  cursor: pointer;
 }
 
 /* Header Section */
@@ -39,7 +38,7 @@ header{
 header h1{
   font-size: 2rem;
   margin-right: auto;
-  font-family: 'Poppins';
+  font-family: PoppinsRegular;
 }
 
 .nav_links{

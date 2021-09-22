@@ -30,7 +30,7 @@ function About() {
                 
 
                 <div class="about-container">
-                    <img src="../Assets/Images/about.bg.png"/>
+                    
 
                 </div>
             

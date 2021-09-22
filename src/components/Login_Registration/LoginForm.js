@@ -62,19 +62,17 @@ const LoginForm = () => {
     !logged ?
       <div className="split">
         <div className="leftdivv">
-          <img src="../images/2.jpg" alt="" />
+          <div className='image'><img src="images/about.png" alt="" height='360px' width='240px' /></div>
         </div>
         <div className="rightdivv">
           <form  onSubmit={onSubmitClick} >
+            <div className='mobile-back'><Link to='/'><SvgBack/></Link></div>
             <div className="headinginfo">
               <h1>Login</h1>
-              <p>Make it easier to manage your business. Login and Get Started</p>
+              {/* <p>Making it easier to manage your business. <br/> Login and Get Started</p> */}
             </div>
             <section id="inputs">
-            {/* <div className="input">
-              <label className="label">Name</label><br/>
-              <input type="text" name="sign_up_name" />
-            </div> */}
+            
             <div className="input">
               <label className="label">Email</label><br/>
               <input type="email" name="email" placeholder="example@gmail.com" onChange={handleChange}/>
@@ -83,8 +81,9 @@ const LoginForm = () => {
               <label className="label">Password</label><br />
               <input type="password" name="password" placeholder="********" onChange={handleChange}/>
             </div>
+            <p>Forgot password?</p>
             <div className="buttonAndLink">
-              <input type="submit" className="myButton1" value="Login"/><br />
+              <input type="submit" className="myButton1" value="Login"/>
               <Link to ='/register'className="butt_link">Don't Have An Account? Sign Up with Us</Link>
             </div>
             </section>

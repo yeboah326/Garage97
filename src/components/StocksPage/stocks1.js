@@ -23,7 +23,7 @@ const StockPage = () => {
   const [stocklist_pages,setStockListPages] = useState()
 
   const fetchStockLists = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=7&page=${page}`,{
+        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=8&page=${page}`,{
             method: 'GET',
             headers:{
                 'Content-Type':'application/json',

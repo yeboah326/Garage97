@@ -34,8 +34,8 @@ const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDe
         <div className="business-section">
             
             {businesses.length === 0 ? 
-                <div className="no-business" onClick={onAdd}>
-                    <p>No businesses added yet? Click to add business</p>
+                <div className="no-business" >
+                    <p onClick={onAdd}>No businesses added yet? Click to add business</p>
                 </div> :
                 <div className="businesses">
                     {businesses.map(business => {
@@ -43,7 +43,7 @@ const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDe
                         <Business name={business.name} description={business.description} showDelete={()=>{showDelete(business.id)}} id={business.id} onClick={()=>{selectBusiness(business.id,business.name)}}/>
                         )
                         })
-            }
+                    }
             </div>
             }
         </div> :

@@ -94,16 +94,13 @@ const RegistrationForm = () => {
 <div id='main'>
   <div className="splitscreen">
     <div className="leftdiv">
-      <div className="right_info">
-        <h1>Have Control Over Your business from anywhere with <em>SIMA</em></h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
+    <div className='image'><img src="images/about.png" alt="" height='360px' width='240px' /></div>
     </div>
     <div className="rightdiv">
       <form onSubmit={handleSubmit}>
+        <div className='mobile-back'><SvgBack fill='#fff' stroke='#fff'/></div>
         <div className="information">
-          <h1>Create An Account</h1>
-          <p className="textinfo2">Make it easier to manage your business. Ready? Sign Up</p>
+          <h1>Sign Up</h1>
         </div>
         <section id="inputs">
           <div className="input">
@@ -112,19 +109,19 @@ const RegistrationForm = () => {
           </div>
           <div className="input">
             <label className="label">Email</label><br/>
-            <input type="email" name="email" value="" placeholder="example@gmail.com" onChange={handleChange}/>
+            <input type="email" name="email" placeholder="example@gmail.com" onChange={handleChange}/>
           </div>
           <div className="input">
             <label className="label">Password</label><br/>
-            <input type="password" name="password" value="" placeholder="********" onChange={handleChange}/>
+            <input type="password" name="password" placeholder="********" onChange={handleChange}/>
           </div>
           <div className="input">
-            <label className="label">Confrim Password</label><br/>
-            <input type="password" name="" value="" placeholder="********" onChange={handleChange}/>
+            <label className="label">Confirm Password</label><br/>
+            <input type="password" name="confirm-password" placeholder="********" onChange={handleChange}/>
           </div>
           <div className="buttonAndLink">
-            <input type="submit">Sign UP </input>
-           <Link to ='/login' className="link">Already Have an Account? Login!</Link>
+            <input className='myButton' type="submit" value="Sign Up"/>
+            <Link to ='/login' className="link">Already Have an Account? Login!</Link>
           </div>
         </section>
       </form>

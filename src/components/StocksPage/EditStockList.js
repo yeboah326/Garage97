@@ -203,11 +203,11 @@ const EditStockList = () => {
             alert('Session has expired')
         }
         else if(response.status === 200){
-            setStockList(res)
+            setStockList(res.stocks_by_stock_list_id)
         }
         else{
             alert(res.message)
-        }
+         }
     }
 
     const UpdateStockList = async () =>{
