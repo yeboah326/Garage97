@@ -62,7 +62,7 @@ const LoginForm = () => {
     !logged ?
       <div className="split">
         <div className="leftdivv">
-          <div className='image'><img src="images/about.png" alt="" height='360px' width='240px' /></div>
+          <div className='image'><img src="images/inventory-control.jpg" alt="" height='360px' width='240px' /></div>
         </div>
         <div className="rightdivv">
           <form  onSubmit={onSubmitClick} >
