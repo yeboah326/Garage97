@@ -82,7 +82,7 @@ const RegistrationForm = () => {
             body: JSON.stringify(data)
         })
         
-        if(response.status !== 201){
+        if(response.status !== 400){
             throw new Error(`Request failed:${response.status}`)
         }
     }
@@ -94,7 +94,7 @@ const RegistrationForm = () => {
 <div id='main'>
   <div className="splitscreen">
     <div className="leftdiv">
-    <div className='image'><img src="images/about.png" alt="" height='360px' width='240px' /></div>
+    <div className='image'><img src="images/inventory-control.jpg" alt="" height='360px' width='240px' /></div>
     </div>
     <div className="rightdiv">
       <form onSubmit={handleSubmit}>
@@ -105,19 +105,19 @@ const RegistrationForm = () => {
         <section id="inputs">
           <div className="input">
             <label className="label">Name</label><br/>
-            <input type="text" name="name"/>
+            <input type="text" name="name" required onChange={handleChange}/>
           </div>
           <div className="input">
             <label className="label">Email</label><br/>
-            <input type="email" name="email" placeholder="example@gmail.com" onChange={handleChange}/>
+            <input type="email" name="email" placeholder="example@gmail.com" onChange={handleChange} required/>
           </div>
           <div className="input">
             <label className="label">Password</label><br/>
-            <input type="password" name="password" placeholder="********" onChange={handleChange}/>
+            <input type="password" name="password" placeholder="********" onChange={handleChange} required/>
           </div>
           <div className="input">
             <label className="label">Confirm Password</label><br/>
-            <input type="password" name="confirm-password" placeholder="********" onChange={handleChange}/>
+            <input type="password" name="confirm-password" placeholder="********" onChange={handleChange} required/>
           </div>
           <div className="buttonAndLink">
             <input className='myButton' type="submit" value="Sign Up"/>
