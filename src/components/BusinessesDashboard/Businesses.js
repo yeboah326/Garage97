@@ -35,7 +35,7 @@ const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDe
             
             {businesses.length === 0 ? 
                 <div className="no-business" >
-                    <p onClick={onAdd}>No businesses added yet? Click to add business</p>
+                    <div className='no-business-p' onClick={onAdd}>No businesses added yet? Click to add business</div>
                 </div> :
                 <div className="businesses">
                     {businesses.map(business => {
