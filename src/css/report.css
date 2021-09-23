@@ -58,11 +58,11 @@
     padding-left: 10px;
     width: 80%;
     background-color: #f0f3f5;
-    margin-top: 10px;
     border-radius: 15px;
     font-family: PoppinsBold;
     font-size: 1.3rem;
     color:#968ce6;
+    display: inline-block;
 }
 
 .report-list .product-reports{
