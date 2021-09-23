@@ -14,12 +14,12 @@ import { logout } from '../../auth'
 
 
 const SideNavBar = ({onClick,onHover,navwidth}) => {
-    const user = JSON.parse(localStorage.getItem('User'))
+    const user = JSON.parse(localStorage.getItem('User')).name.split(" ")
     const business_name = localStorage.getItem('business_name')
     return (
         <div className="side-nav-bar" onMouseOut={onHover} style={{width:{navwidth}}}>
             <div className='close-side-nav-bar' onClick={onClick}><button>x</button></div>
-            <Avatar name={user.name} image="" business={business_name}/>
+            <Avatar name={`${user[0]} ${user.slice(-1)}`} image="" business={business_name}/>
             <div className='option main'><NavLink  to='/business/overview' className='options-link-1' activeClassName='active'><SvgHome fill='#c0c0c0'/><Options optionName="Dashboard"/></NavLink></div>
             <div className='option main'><NavLink  to='/businesses' className='options-link-1' activeClassName='active'><SvgBriefcase fill='#c0c0c0'/><Options optionName="Businesses"/></NavLink></div>
             <div className='option main'><NavLink  to='/business/products' className='options-link-1' activeClassName='active'><SvgBoxThin fill='#c0c0c0'/><Options optionName="Products"/></NavLink></div>

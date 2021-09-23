@@ -25,8 +25,8 @@ const Products = ({products,fetchData,onAdd,onClick,getId,onDelete}) => {
     return (
         <div className="business-section">
             {products.length === 0 ? 
-                <div className="no-business" onClick={onAdd}>
-                    <p>No products added yet? Click to add product</p>
+                <div className="no-business">
+                    <div onClick={onAdd} className='no-business-p'>No products added yet? Click to add product</div>
                 </div> :
                 <div className="businesses">
                     {products.map(product => {
