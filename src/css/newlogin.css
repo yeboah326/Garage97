@@ -6,20 +6,7 @@
 
 }
 
-body{
-  padding: 0;
-  margin: 0;
-  font-weight: 500;
-  font-family: MerriweatherRegular;
-}
-
-a{
-  text-decoration: none;
-  color: black;
-}
-
 a:hover{
-  color: white;
   font-weight: bold;
 }
 

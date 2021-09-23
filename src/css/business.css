@@ -96,10 +96,11 @@
   width: 100%;
   z-index: 1;
 }
-.no-business:hover{
-  cursor: pointer;
+.no-business-p{
+  height:max-content;
+  width:max-content;
+  cursor:pointer
 }
-
 
 .delete-product{
   display: flex;
