@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Business from './Business'
 import {Redirect} from 'react-router-dom'
+import SecureStorage from '../../auth/secure'
 
 
 
@@ -22,8 +23,8 @@ const Businesses = ({businesses,fetchData,setBusinessSelect,business_select,onDe
 
     const selectBusiness = (id,name) => {
         setBusinessSelect(true)
-        localStorage.setItem('Business',id)
-        localStorage.setItem('business_name',name)
+        SecureStorage.set('Business',id)
+        SecureStorage.set('business_name',name)
     }
 
 

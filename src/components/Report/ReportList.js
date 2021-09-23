@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { logout } from '../../auth'
+import SecureStorage from '../../auth/secure'
 
 const ReportList = () => {
-    const business_name = localStorage.getItem('business_name')
+    const business_name = SecureStorage.get('business_name')
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-    const business = localStorage.getItem('Business')
+    const business = SecureStorage.get('Business')
     const [products,setProducts] = useState([])
     const fetchProducts = async () => {
         const response = await fetch(`http://localhost:9000/business/${business}/product`,{

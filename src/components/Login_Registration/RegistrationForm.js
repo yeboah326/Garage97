@@ -4,6 +4,7 @@ import {useState} from 'react'
 import {Link,Redirect} from 'react-router-dom'
 import Button from '../Button'
 import SvgBack from '../../Assets/icons/Back'
+import SecureStorage from '../../auth/secure'
 
 
 const RegistrationForm = () => {
@@ -26,7 +27,7 @@ const RegistrationForm = () => {
             }
         })
         const res = await response.json()
-        localStorage.setItem('User',JSON.stringify(res))
+        SecureStorage.set('User',res)
     }
 
     const Login = async () => {
@@ -55,9 +56,6 @@ const RegistrationForm = () => {
             await createUser()
             Login()
             setUserCreated(true)
-            alert('Your registration was successfully submitted!')
-            
-            
         }
             else{
             alert('Passwords do not match')

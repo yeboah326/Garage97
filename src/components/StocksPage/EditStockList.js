@@ -10,6 +10,7 @@ import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import { logout } from '../../auth'
 import { Redirect } from 'react-router-dom'
 import DeleteStockList from './deleteStockList'
+import SecureStorage from '../../auth/secure'
 
 
 
@@ -26,11 +27,11 @@ const EditStockList = () => {
     const [displayInput,setDisplayInput] = useState(false)
     const [deletestocklist,setDeleteStockList] = useState(false)
     const [showstocks,setShowStocks] = useState(false)
-    const stock_list_id = localStorage.getItem('Stock_List_ID')
+    const stock_list_id = SecureStorage.get('Stock_List_ID')
     const [stock,setStock] = useState({product_id:'',quantity:'',buying_price:'',product:'',stock_list_id:`${stock_list_id}`})
     const [updatedStock,setUpdatedStock] = useState({quantity:'',buying_price:''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-    const business_id = localStorage.getItem('Business')
+    const business_id = SecureStorage.get('Business')
     
 
     let width = navwidth ? '220px' : '100px'

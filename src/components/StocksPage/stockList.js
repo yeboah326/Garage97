@@ -9,6 +9,7 @@ import TableRow from "./tableRow2";
 import SideNavBar2 from "../ProductDashboard/SideNavBar2";
 import { Link } from "react-router-dom";
 import Tfooter from '../StocksPage/tfooter'
+import SecureStorage from "../../auth/secure";
 
 const StockListPage = () => {
   const [showsidenavbar, setShowSideNavBar] = useState(false);
@@ -19,9 +20,13 @@ const StockListPage = () => {
   const [navwidth,setWidth] = useState(false)
   let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-  const stock_list_id = localStorage.getItem('Stock_List_ID')
+  const stock_list_id = SecureStorage.get('Stock_List_ID')
   const [page,setPage] = useState(1)
   const [stocklist_pages,setStockListPages] = useState()
+  const items_per_page_mobile = Math.floor((0.6 * window.innerHeight) / 55)
+  const items_per_page_desktop = Math.floor((0.7 * window.innerHeight) / 55)
+  let items_per_page = window.innerWidth < 700 ? items_per_page_mobile : items_per_page_desktop
+  
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -40,7 +45,7 @@ const StockListPage = () => {
     setWidth(!navwidth)
   };
     const fetchStockList = async () => {
-    const response = await fetch(`http://localhost:9000/stock/stock_list/${stock_list_id}?items_per_page=9&page=${page}`,{
+    const response = await fetch(`http://localhost:9000/stock/stock_list/${stock_list_id}?items_per_page=${items_per_page}&page=${page}`,{
         method: 'GET',
         headers:{
             'Content-Type':'application/json',
@@ -53,7 +58,6 @@ const StockListPage = () => {
         alert('Session has expired')
     }
     else if(response.status === 200){
-      console.log(res)
       setStockList(res.stocks_by_stock_list_id)
       setStockListPages(res.stocks_by_stock_list_id_pages)
 

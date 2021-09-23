@@ -3,6 +3,7 @@ import SVGclose from '../../Assets/icons/cancel';
 import {useState} from 'react'
 import DeleteSaleList from './deleteSaleList';
 import {NavLink} from 'react-router-dom'
+import SecureStorage from '../../auth/secure';
 
 function TableSales (props){
    const {rowData} =props
@@ -20,7 +21,7 @@ function TableSales (props){
     return (
       <div  className="tableRow" key={eachRow.id}> 
       <NavLink to="/business/sales/salelist"  style={{textDecoration:"none"}}>
-        <div  className="actual_data" key={eachRow.id} onClick={()=>localStorage.setItem('Sale_List_ID',eachRow.id)}> 
+        <div  className="actual_data" key={eachRow.id} onClick={()=>SecureStorage.set('Sale_List_ID',eachRow.id)}> 
 
         <div className='stock_id'>{eachRow.id}</div>
         <div className='qty'>{eachRow.total_quantity}</div>

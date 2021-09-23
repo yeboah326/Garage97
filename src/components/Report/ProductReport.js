@@ -1,10 +1,11 @@
 import React from 'react'
 import SummaryCard from './SummaryCard'
 import { Link } from 'react-router-dom'
+import SecureStorage from '../../auth/secure'
 
 const ProductReport = () => {
-    const business_name = localStorage.getItem('business_name')
-    const user = JSON.parse(localStorage.getItem('User'))
+    const business_name = SecureStorage.get('business_name')
+    const user = SecureStorage.get('User')
     const date = (new Date(Date.now())).toDateString()
     return (
         <div className='report-business'>

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { login, useAuth } from '../../auth/index'
 import Button from '../Button'
 import SvgBack from '../../Assets/icons/Back'
+import SecureStorage from '../../auth/secure'
 
 
 
@@ -21,9 +22,7 @@ const LoginForm = () => {
       }
     })
     const res = await response.json()
-    console.log(res)
-    localStorage.setItem('User', JSON.stringify(res))
-    console.log(localStorage.getItem('User'))
+    SecureStorage.set('User', res)
   }
   const onSubmitClick = async (event) => {
     event.preventDefault()
@@ -41,6 +40,7 @@ const LoginForm = () => {
     const res = await response.json()
     if (res.token) {
       fetchUser(res.public_id)
+      SecureStorage.set('REACT_TOKEN_AUTH_KEY',res.token)
       login(res.token)
     }
     // if(response.status === 200){

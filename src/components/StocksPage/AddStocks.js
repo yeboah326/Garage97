@@ -9,6 +9,7 @@ import SideNavBar from '../ProductDashboard/SideNavBar'
 import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import { logout } from '../../auth'
 import { Redirect } from 'react-router-dom'
+import SecureStorage from '../../auth/secure'
 
 
 
@@ -23,7 +24,7 @@ const AddStocks = () => {
     const [toggle,setToggle] = useState(false)
     const [stock,setStock] = useState({product_id:'',quantity:'',buying_price:'',product:''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-    const business_id = localStorage.getItem('Business')
+    const business_id = SecureStorage.get('Business')
 
     let width = navwidth ? '220px' : '100px'
 

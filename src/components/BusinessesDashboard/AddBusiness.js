@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Input from '../Input'
 import Button from '../Button'
-import { logout} from '../../auth'
+import { logout} from '../../auth/index'
+import SecureStorage from '../../auth/secure'
 
 const AddBusiness = ({toggle,onClick}) => {
     const [business,setBusiness] = useState({'name':'','description':''})

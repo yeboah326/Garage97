@@ -8,6 +8,7 @@ import AddBusiness from './AddBusiness'
 import DeleteBusiness from './DeleteBusiness'
 import '../../css/business.css'
 import {logout} from '../../auth/index'
+import SecureStorage from '../../auth/secure'
 
 
 const BusinessPage = () => {

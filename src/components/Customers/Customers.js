@@ -5,6 +5,7 @@ import {useState} from 'react'
 import SvgMenu from '../../Assets/icons/Menu'
 import CustomerList from './CustomerList'
 
+
 const Customers = () => {
     const [showsidenavbar,setShowSideNavBar] = useState(false)
     const [navwidth,setWidth] = useState(false)

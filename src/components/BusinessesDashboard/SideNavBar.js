@@ -3,11 +3,12 @@ import Avatar from '../Avatar'
 import SvgLogOut from '../../Assets/icons/LogOut'
 import { NavLink } from 'react-router-dom'
 import {logout} from '../../auth/index'
+import SecureStorage from '../../auth/secure'
 
 
 
 const SideNavBar = ({onClick,navwidth,onHover}) => {
-    const user = JSON.parse(localStorage.getItem('User')).name.split(" ")
+    const user = SecureStorage.get('User').name.split(" ")
 
 
     return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { logout } from '../../auth'
 import Button from '../Button'
+import SecureStorage from '../../auth/secure'
 
 const DeleteBusiness = ({onClick,id,fetchData}) => {
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))

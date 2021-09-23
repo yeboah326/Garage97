@@ -11,11 +11,12 @@ import SvgLogOut from '../../Assets/icons/LogOut'
 import SvgBriefcase from '../../Assets/icons/Briefcase'
 import SvgReport from '../../Assets/icons/Report'
 import { logout } from '../../auth'
+import SecureStorage from '../../auth/secure'
 
 
 const SideNavBar = ({onClick,onHover,navwidth}) => {
-    const user = JSON.parse(localStorage.getItem('User')).name.split(" ")
-    const business_name = localStorage.getItem('business_name')
+    const user = SecureStorage.get('User').name.split(" ")
+    const business_name = SecureStorage.get('business_name')
     return (
         <div className="side-nav-bar" onMouseOut={onHover} style={{width:{navwidth}}}>
             <div className='close-side-nav-bar' onClick={onClick}><button>x</button></div>

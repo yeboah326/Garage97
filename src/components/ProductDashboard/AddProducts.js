@@ -3,12 +3,13 @@ import Input from '../Input'
 import Button from '../Button'
 import { logout } from '../../auth/index'
 import { useState } from 'react'
+import SecureStorage from '../../auth/secure'
 
 
 const AddProducts = ({fetchData,toggle}) => {
     const [product,setProduct] = useState({'name':'','description':''})
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-    const business_id = localStorage.getItem('Business')
+    const business_id = SecureStorage.get('Business')
 
     const onHandleChange = (event) => {
         const {name,value} = event.target

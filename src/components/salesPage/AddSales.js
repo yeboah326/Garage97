@@ -11,6 +11,7 @@ import { logout } from '../../auth'
 import SalesHead from './SalesHead2'
 import TableSales from './tableSales2'
 import {Redirect} from 'react-router-dom'
+import SecureStorage from '../../auth/secure'
 
 
 const AddSales = () => {
@@ -23,7 +24,7 @@ const AddSales = () => {
     const [products,setProducts] = useState([])
     const [toggle,setToggle] = useState(false)
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-    const business_id = localStorage.getItem('Business')
+    const business_id = SecureStorage.get('Business')
 
 
     const onHover = () => {

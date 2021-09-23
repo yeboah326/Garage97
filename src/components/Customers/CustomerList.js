@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import {logout} from '../../auth/index'
+import SecureStorage from '../../auth/secure'
 
 
 
@@ -8,15 +9,16 @@ const CustomerList = () => {
     const [customers,setCustomers] = useState([])
     const [page,setPage] = useState(1)
     const [customer_pages,setCustomerPages] = useState()
-    const business_id = localStorage.getItem('Business')
+    const business_id = SecureStorage.get('Business')
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
     const lesser = '<'
     const greater = '>'
     let max_color = (page === customer_pages ? true : false)
     let min_color = (page === 1 ? true : false)
+    const items_per_page = Math.floor((0.5 * window.innerHeight) / 35) 
 
     const fetchCustomers = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/customers?items_per_page=10&page=${page}`,{
+        const response = await fetch(`http://localhost:9000/business/${business_id}/customers?items_per_page=${items_per_page}&page=${page}`,{
             method:'GET',
             headers:{
                 'Authorization':`Bearer ${token}`
@@ -51,6 +53,7 @@ const CustomerList = () => {
 
     useEffect(()=>{
         fetchCustomers()
+        console.log(items_per_page)
         console.log(window.innerHeight)
     },[page])
 

@@ -9,6 +9,7 @@ import AddButton from "../ProductDashboard/AddButton";
 import SideNavBar2 from "../ProductDashboard/SideNavBar2";
 import { Link } from "react-router-dom";
 import Tfooter from '../StocksPage/tfooter'
+import SecureStorage from "../../auth/secure";
 
 const StockPage = () => {
   const [showsidenavbar, setShowSideNavBar] = useState(false);
@@ -18,12 +19,15 @@ const StockPage = () => {
   const [navwidth,setWidth] = useState(false)
   let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-  const business_id = localStorage.getItem('Business')
+  const business_id = SecureStorage.get('Business')
   const [page,setPage] = useState(1)
   const [stocklist_pages,setStockListPages] = useState()
+  const items_per_page_mobile = Math.floor((0.6 * window.innerHeight) / 55)
+  const items_per_page_desktop = Math.floor((0.7 * window.innerHeight) / 55)
+  let items_per_page = window.innerWidth < 700 ? items_per_page_mobile : items_per_page_desktop
 
   const fetchStockLists = async () => {
-        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=8&page=${page}`,{
+        const response = await fetch(`http://localhost:9000/business/${business_id}/stock_list?items_per_page=${items_per_page}&page=${page}`,{
             method: 'GET',
             headers:{
                 'Content-Type':'application/json',

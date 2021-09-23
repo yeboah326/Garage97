@@ -3,6 +3,7 @@ import SVGclose from '../../Assets/icons/cancel';
 import {useState} from 'react'
 import DeleteStockList from './deleteStockList';
 import {NavLink} from 'react-router-dom'
+import SecureStorage from '../../auth/secure';
 
 function TableRow (props){
    const {rowData} =props;
@@ -19,7 +20,7 @@ function TableRow (props){
    const displayRow = rowData.map(eachRow=>{
     return (
       <div  className="tableRow"  key={eachRow.stocks_id} > 
-        <NavLink to="/business/stocks/stocklist"  style={{textDecoration:"none"}}>  <div  className="actual_data" key={eachRow.id} onClick={()=>{localStorage.setItem('Stock_List_ID',eachRow.id)}}> 
+        <NavLink to="/business/stocks/stocklist"  style={{textDecoration:"none"}}>  <div  className="actual_data" key={eachRow.id} onClick={()=>{SecureStorage.set('Stock_List_ID',eachRow.id)}}> 
 
           <div className='stock_id'>{eachRow.id}</div>
           <div className='qty'>{eachRow.total_quantity}</div>

@@ -1,10 +1,11 @@
-import React,{useState,useEffect} from 'react'
-// import ReactDOM from 'react-router-dom';
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 
 
+
 const SplashPage = () => {
+
   return (<>
 
 
@@ -21,7 +22,7 @@ const SplashPage = () => {
 
     <section id="pic_info">
       <div className="div_right">
-          <img className='image' src='images/splashimage.png' height='240px' width='360px'/>
+          <img className='image' src='images/splashimage.png' height='240px' width='360px' alt=''/>
           <div class="ad">
             <h1>Manage your business with Ease</h1> <br/>
             <p>"<em>Simplified-Inventory-Management-Application</em>" is a simple application to help business owners manage their business effectively</p>

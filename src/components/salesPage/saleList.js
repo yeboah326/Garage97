@@ -10,6 +10,7 @@ import AddButton from "../ProductDashboard/AddButton";
 import SideNavBar2 from "../ProductDashboard/SideNavBar2";
 import { Link } from "react-router-dom";
 import Tfooter from '../StocksPage/tfooter'
+import SecureStorage from "../../auth/secure";
 
 const SalesListPage = () => {
   const [showsidenavbar, setShowSideNavBar] = useState(false);
@@ -20,9 +21,12 @@ const SalesListPage = () => {
   const [navwidth,setWidth] = useState(false)
   let width = navwidth ? '220px' : '100px'
   const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-  const sale_list_id = localStorage.getItem('Sale_List_ID')
+  const sale_list_id = SecureStorage.get('Sale_List_ID')
   const [page,setPage] = useState(1)
   const [salelist_pages,setSaleListPages] = useState()
+  const items_per_page_mobile = Math.floor((0.6 * window.innerHeight) / 55)
+  const items_per_page_desktop = Math.floor((0.7 * window.innerHeight) / 55)
+  let items_per_page = window.innerWidth < 700 ? items_per_page_mobile : items_per_page_desktop
 
   const onClickMenu = () => {
     setShowSideNavBar(!showsidenavbar);
@@ -41,7 +45,7 @@ const SalesListPage = () => {
     setWidth(!navwidth)
   };
     const fetchSaleList = async () => {
-    const response = await fetch(`http://localhost:9000/sale/sale_list/${sale_list_id}?items_per_page=9&page=${page}`,{
+    const response = await fetch(`http://localhost:9000/sale/sale_list/${sale_list_id}?items_per_page=${items_per_page}&page=${page}`,{
         method: 'GET',
         headers:{
             'Content-Type':'application/json',
@@ -56,8 +60,7 @@ const SalesListPage = () => {
     else if(response.status === 200){
       setSaleList(res.sales_by_sale_list_id)
       setSaleListPages(res.sales_by_sale_list_id_pages)
-      localStorage.setItem('Customer',JSON.stringify({'customer_name':res.customer_name,'customer_contact':res.customer_contact}))
-      console.log(JSON.parse(localStorage.getItem('Customer')))
+      SecureStorage.set('Customer',{'customer_name':res.customer_name,'customer_contact':res.customer_contact})
     }
     else{
         alert(res.message)

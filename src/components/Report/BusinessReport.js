@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import SummaryCard from './SummaryCard'
 import { Link } from 'react-router-dom'
 import {logout} from '../../auth/index'
+import SecureStorage from '../../auth/secure'
 
 const BusinessReport = () => {
-    const business_name = localStorage.getItem('business_name')
-    const business_id = localStorage.getItem('Business')
-    const user = JSON.parse(localStorage.getItem('User'))
+    const business_name = SecureStorage.get('business_name')
+    const business_id = SecureStorage.get('Business')
+    const user = SecureStorage.get('User')
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
     const [business_report_summary,setBusinessReportSummary] = useState({'total_sales_made':0,'total_stock_purchased':0,
     'total_products_bought':0,'total_products_sold':0,'total_products_remaining':0,'total_profit_or_loss':0,'products_overview':[]})

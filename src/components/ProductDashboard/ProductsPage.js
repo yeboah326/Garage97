@@ -8,6 +8,7 @@ import AddProducts from './AddProducts'
 import '../../css/business.css'
 import {logout} from '../../auth/index'
 import DeleteProduct from './DeleteProduct'
+import SecureStorage from '../../auth/secure'
 
 
 
@@ -19,7 +20,7 @@ const ProductsPage = () => {
     const [deleteproduct,setDeleteProduct] = useState(false)
     const [showfullsidenavbar,setShowFullSideNavBar] = useState(false)
     const [id,setId ] = useState('')
-    const business = localStorage.getItem('Business')
+    const business = SecureStorage.get('Business')
 
     const fetchData = async () => {
         const response = await fetch(`http://localhost:9000/business/${business}/product`,{

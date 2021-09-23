@@ -10,6 +10,7 @@ import SideNavBar2 from '../ProductDashboard/SideNavBar2'
 import DeleteSaleList from './deleteSaleList'
 import { logout } from '../../auth'
 import {Redirect} from 'react-router-dom'
+import SecureStorage from '../../auth/secure'
 
 
 const EditSaleList = () => {
@@ -22,14 +23,14 @@ const EditSaleList = () => {
     const [displayInput,setDisplayInput] = useState(false)
     const [deletesalelist,setDeleteSaleList] = useState(false)
     const [showsales,setShowSales] = useState(false)
-    const sale_list_id = localStorage.getItem('Sale_List_ID')
+    const sale_list_id = SecureStorage.get('Sale_List_ID')
     const [updatedSale,setUpdatedSale] = useState({quantity:'',selling_price:''})
     const [sale,setSale] = useState({product_id:'',quantity:'',selling_price:'',product:''})
     const [customer,setCustomer] = useState({customer_name:'',customer_contact:''})
     const [products,setProducts] = useState([])
     const [toggle,setToggle] = useState(false)
-    const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_KEY'))
-    const business_id = localStorage.getItem('Business')
+    const token = SecureStorage.get('REACT_TOKEN_AUTH_KEY')
+    const business_id = SecureStorage.get('Business')
     const [salelistinfo,setSaleListInfo] = useState({})
 
 
