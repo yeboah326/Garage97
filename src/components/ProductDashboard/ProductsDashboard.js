@@ -1,14 +1,12 @@
-import React from 'react'
-import SideNavBar from './SideNavBar'
-
+import React from "react";
+import SideNavBar from "./SideNavBar";
 
 const BusinessesDashboard = () => {
-    return (
-        <div className="business-dashboard">
-             <SideNavBar/>
+  return (
+    <div className="business-dashboard">
+      <SideNavBar />
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default BusinessesDashboard
+export default BusinessesDashboard;

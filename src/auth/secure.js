@@ -1,5 +1,5 @@
-import SecureLS from 'secure-ls'
+import SecureLS from "secure-ls";
 
-var SecureStorage = new SecureLS({encodingType:'aes'})
+var SecureStorage = new SecureLS({ encodingType: "aes" });
 
 export default SecureStorage;

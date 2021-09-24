@@ -1,14 +1,7 @@
-import React from 'react'
-
-
+import React from "react";
 
 const Logo = () => {
-    return (
-        
-        <div className="logo">
-        </div>
-        
-    )
-}
+  return <div className="logo"></div>;
+};
 
-export default Logo
+export default Logo;

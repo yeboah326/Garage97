@@ -1,22 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 
-*{
+* {
   /* box-sizing: border-box; */
   margin: 0;
   padding: 0;
-   /* background-image: linear-gradient(#5e90d6,#752c8c); */
+  /* background-image: linear-gradient(#5e90d6,#752c8c); */
 }
 
-body{
-  background-image:  linear-gradient(#2BBFD0, #9C89E7);
-  font-family: 'Poppins', sans-serif;
+body {
+  background-image: linear-gradient(#2bbfd0, #9c89e7);
+  font-family: "Poppins", sans-serif;
   color: white;
 }
 
-body h1{
+body h1 {
   color: white;
 }
-li,a{
+li,
+a {
   font-family: PoppinsRegular;
   /* font-weight: 500; */
   font-size: 16px;
@@ -27,169 +28,164 @@ li,a{
 
 /* Header Section */
 
-.splash-header{
+.splash-header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 1% 5%;
 }
 
-.splash-header h1{
+.splash-header h1 {
   font-size: 2rem;
   margin-right: auto;
-  text-align:start;
+  text-align: start;
   font-family: MerriweatherRegular;
 }
 
-.nav_links{
+.nav_links {
   list-style: none;
 }
 
-.nav_links li{
+.nav_links li {
   display: inline-block;
   margin: 0 10px;
-
 }
 
-.nav_links li a{
+.nav_links li a {
   transition: all 0.3s ease 0s;
-    color: white;
+  color: white;
 }
 
 /* .nav_links li a:hover{
   color: black;
 } */
 
-
-#pic_info{
+#pic_info {
   margin: 50px 0 50px 0;
   display: flex;
   flex-direction: column;
 }
 
-.div_right{
-  width:100%;
-  height:80vh;
-  display:flex;
-  flex-direction:column;
+.div_right {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.div_right .image{
-  width:100%;
-  height:100%;
-  background:white;
-  border-radius:10px 0 0 10px;
+.div_right .image {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 10px 0 0 10px;
 }
 
-.splashimage{
+.splashimage {
   float: right;
   margin-left: 30px;
   height: 40%;
   width: 90%;
   text-align: right;
-  border-top-left-radius:1%;
+  border-top-left-radius: 1%;
   border-bottom-left-radius: 1%;
 }
 
-.ad{
+.ad {
   text-align: center;
-  padding: 10% ;
+  padding: 10%;
   color: white;
-  width:100%;
-  box-sizing:border-box;
+  width: 100%;
+  box-sizing: border-box;
 }
-.ad h1{
-  text-align:center;
+.ad h1 {
+  text-align: center;
 }
 /* emojis Sections */
 
-#emojis{
+#emojis {
   padding: 5% 5%;
   color: white;
   text-align: center;
   line-height: 1.5;
   margin: 50px 0 15px 0;
-  width:100%;
-  box-sizing:border-box;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.add_links li{
+.add_links li {
   display: inline-block;
   margin: 0 20px;
   color: white;
 }
 
-.add_links li div{
+.add_links li div {
   line-height: 1.5;
 }
 
-
 /* About Section */
-#About{
+#About {
   margin: 20px 0 20px 0;
   padding: 5% 5%;
   color: white;
 }
-#About h2{
-  text-align:center;
+#About h2 {
+  text-align: center;
 }
 
-.members_div{
-  font-family:PoppinsRegular;
+.members_div {
+  font-family: PoppinsRegular;
 }
 
 /* Footer Section */
-.footer_section{
+.footer_section {
   padding: 5% 5%;
   text-align: center;
   color: white;
 }
 
-
-.contact_links li{
+.contact_links li {
   display: inline-block;
   margin: 0 3px;
-
 }
 
-.contact_links li a{
+.contact_links li a {
   transition: all 0.3s ease 0s;
   color: white;
 }
 
-.contact_links li a:hover{
+.contact_links li a:hover {
   color: black;
 }
 
-.Garage97{
-  margin-top: 20px
+.Garage97 {
+  margin-top: 20px;
 }
-@media screen and (min-width:700px){
-  .div_right{
-    width:100%;
-    height:50vh;
-    display:flex;
-    flex-direction:row-reverse;
+@media screen and (min-width: 700px) {
+  .div_right {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: row-reverse;
   }
-  
-  .div_right .image{
-    width:70%;
-    height:100%;
-    background:white;
-    border-radius:10px 0 0 10px;
+
+  .div_right .image {
+    width: 70%;
+    height: 100%;
+    background: white;
+    border-radius: 10px 0 0 10px;
   }
-  .add_links{
+  .add_links {
     /* width:100%; */
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    box-sizing:border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
   }
-  .emoji{
-    width:25%;
-    margin:0;
+  .emoji {
+    width: 25%;
+    margin: 0;
   }
-  #emojis{
-    box-sizing:border-box;
+  #emojis {
+    box-sizing: border-box;
   }
 }

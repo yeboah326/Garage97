@@ -1,21 +1,19 @@
-:root{
+:root {
   font-size: 100%;
   font-size: 16px;
   line-height: 1.5;
-
 }
 
-
-a{
+a {
   text-decoration: none;
   color: white;
 }
 
-a:hover{
-  cursor:pointer;
+a:hover {
+  cursor: pointer;
 }
 
-.rightdiv .information h1{
+.rightdiv .information h1 {
   font-size: 2rem;
   font-weight: 700;
   color: white;
@@ -23,7 +21,7 @@ a:hover{
   font-family: MerriweatherRegular;
 }
 
-.splitscreen{
+.splitscreen {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -31,63 +29,64 @@ a:hover{
   justify-items: center;
 }
 
-.rightdiv{
+.rightdiv {
   color: white;
   display: flex;
   width: 100%;
   height: 100vh;
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
-.input{
+.input {
   text-align: left;
   margin-bottom: 20px;
 }
-.rightdiv form{
+.rightdiv form {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
 }
-.rightdiv #inputs{
+.rightdiv #inputs {
   width: 100%;
   margin-top: 5%;
   display: flex;
   flex-direction: column;
 }
 
-.rightdiv .buttonAndLink{
+.rightdiv .buttonAndLink {
   margin-top: 20px;
   align-self: center;
   width: 80%;
 }
 
 .myButton {
-	background-color: white;
-	border-radius:15px;
-	border:2px solid white;
-	display:inline-block;
-	cursor:pointer;
-	color:#9C89E7;
-	font-family:PoppinsRegular;
-	font-size:20px;
-	padding:0px 4%;
-	text-decoration:none;
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid white;
+  display: inline-block;
+  cursor: pointer;
+  color: #9c89e7;
+  font-family: PoppinsRegular;
+  font-size: 20px;
+  padding: 0px 4%;
+  text-decoration: none;
   height: 40px;
   margin-bottom: 5%;
   /* width: 50%; */
   align-self: center;
 }
 .myButton:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 .myButton:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 
-
-.rightdiv form input[type="text"], form input[type="email"], form input[type="password"]{
+.rightdiv form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
   width: 100%;
   height: 40px;
   border-left: none;
@@ -102,100 +101,101 @@ a:hover{
   font-size: 1rem;
 }
 
-.rightdiv form #inputs label{
+.rightdiv form #inputs label {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
   color: white;
   font-family: PoppinsRegular;
 }
 
-
-.leftdiv{
+.leftdiv {
   display: none;
 }
-.rowflex{
+.rowflex {
   display: flex;
   flex-direction: row;
 }
-.buttonAndLink a{
-  color:white;
+.buttonAndLink a {
+  color: white;
 }
 
-.buttonAndLink .link{
+.buttonAndLink .link {
   font-family: PoppinsRegular;
   font-size: 1rem;
 }
-.rightdiv .buttonAndLink{
+.rightdiv .buttonAndLink {
   display: flex;
   flex-direction: column;
 }
-@media screen and (min-width:700px){
-  .splitscreen{
+@media screen and (min-width: 700px) {
+  .splitscreen {
     flex-direction: row;
     height: 100vh;
-    width:100%
+    width: 100%;
   }
 
-  .rightdiv{
+  .rightdiv {
     display: flex;
     height: auto;
     flex-direction: column;
   }
-.myButton{
-  margin-right: 30px;
-}
-.rightdiv .information h1{
-  text-align: center;
-}
-  .leftdiv{
-  /* padding: 7% 15%; */
-  text-align: center;
-  width: 100%;
-  display: flex;
-  height: auto;
-  flex-direction: column;
+  .myButton {
+    margin-right: 30px;
+  }
+  .rightdiv .information h1 {
+    text-align: center;
+  }
+  .leftdiv {
+    /* padding: 7% 15%; */
+    text-align: center;
+    width: 100%;
+    display: flex;
+    height: auto;
+    flex-direction: column;
   }
 
-  .rightdiv form input[type="text"], form input[type="email"], form input[type="password"]{
+  .rightdiv form input[type="text"],
+  form input[type="email"],
+  form input[type="password"] {
     width: 80%;
   }
 
-  .rightdiv .buttonAndLink{
+  .rightdiv .buttonAndLink {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  .leftdiv .image{
-    height:100vh;
-    width:100%;
-    box-sizing:border-box;
+  .leftdiv .image {
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .leftdiv .image img{
+  .leftdiv .image img {
     width: 100%;
     height: 100%;
   }
 }
 
-.textinfo2{
+.textinfo2 {
   font-size: 1rem;
   font-weight: 700;
-  color: rgb(219,266,266);
+  color: rgb(219, 266, 266);
 }
 
-.rightdiv form{
+.rightdiv form {
   height: 100%;
   width: 100%;
-  padding:5% 10%;
+  padding: 5% 10%;
   box-sizing: border-box;
 }
 
-.link{
+.link {
   text-decoration: none;
 }
 
-.link:hover{
+.link:hover {
   /* text-decoration: underline; */
-  color:  rgb(219,266,266);
+  color: rgb(219, 266, 266);
 }

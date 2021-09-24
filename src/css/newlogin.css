@@ -1,24 +1,20 @@
-
-:root{
+:root {
   font-size: 100%;
   font-size: 16px;
   line-height: 1.5;
-
 }
 
 /* a:hover{
   font-weight: bold;
 } */
 
-
-
-h2{
+h2 {
   font-size: 1rem;
   font-weight: 700;
   font-family: PoppinsLight;
 }
 
-.split{
+.split {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -27,16 +23,15 @@ h2{
   overflow-y: hidden;
 }
 
-
-#Slider{
-  margin-top:  100px;
+#Slider {
+  margin-top: 100px;
 }
-.headingtext{
+.headingtext {
   font-size: 1rem;
   margin-bottom: 15px;
 }
 
-.car-images{
+.car-images {
   border-radius: 100%;
   width: 60%;
   height: 70%;
@@ -44,17 +39,17 @@ h2{
   margin-bottom: 1rem;
 }
 
-.rightdivv{
-  color: rgb(219,266,266);
+.rightdivv {
+  color: rgb(219, 266, 266);
   display: flex;
   box-sizing: border-box;
   padding: 5% 10%;
-  background-image:  linear-gradient(#2BBFD0, #9C89E7);
+  background-image: linear-gradient(#2bbfd0, #9c89e7);
   height: 100vh;
   align-items: center;
 }
 
-.rightdivv form{
+.rightdivv form {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -63,44 +58,45 @@ h2{
   margin-bottom: auto;
 }
 
-.rightdivv form svg{
+.rightdivv form svg {
   stroke: white;
   fill: white;
   margin-bottom: 5%;
 }
 
-.rightdivv form #inputs>p{
+.rightdivv form #inputs > p {
   text-align: start;
   font-family: PoppinsRegular;
   color: white;
 }
-.rightdivv form .headinginfo{
+.rightdivv form .headinginfo {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.rightdivv form .input{
+.rightdivv form .input {
   text-align: left;
   margin-left: 0;
 }
 
-.rightdivv #inputs{
+.rightdivv #inputs {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 10%;
-
 }
 
-.rightdivv .buttonAndLink{
+.rightdivv .buttonAndLink {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
   align-self: center;
 }
 
-.rightdivv form input[type="text"], form input[type="email"], form input[type="password"]{
+.rightdivv form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
   /* display: block; */
   width: 100%;
   height: 40px;
@@ -116,53 +112,49 @@ h2{
   font-size: 1rem;
 }
 
-.rightdivv form #inputs label{
+.rightdivv form #inputs label {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
   color: white;
   font-family: PoppinsRegular;
 }
 
-
-.leftdivv{
+.leftdivv {
   /* background-image: url('../images/rightpic.jpg'); */
-  color: rgb(219,266,266);
+  color: rgb(219, 266, 266);
   /* padding: 5% 15%; */
   display: none;
   /* background-image: url('../images/1.jpg'); */
 }
 
-
-
-
 .myButton1 {
-	background-color: white;
-	border-radius:15px;
-	border:2px solid white;
-	display:inline-block;
-	cursor:pointer;
-	color:#9C89E7;
-	font-family:PoppinsRegular;
-	font-size:20px;
-	padding:0px 5%;
-	text-decoration:none;
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid white;
+  display: inline-block;
+  cursor: pointer;
+  color: #9c89e7;
+  font-family: PoppinsRegular;
+  font-size: 20px;
+  padding: 0px 5%;
+  text-decoration: none;
   margin-bottom: 5%;
 }
 .myButton1:hover {
-	background-color:white;
+  background-color: white;
 }
 .myButton1:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 
-.leftfooter{
+.leftfooter {
   margin: 40px;
   padding: 40px 20px;
   color: white;
 }
 
-.headinginfo h1{
+.headinginfo h1 {
   color: white;
   text-align: center;
   margin-left: 0;
@@ -170,70 +162,69 @@ h2{
   font-weight: 700;
   font-family: MerriweatherRegular;
 }
-.headinginfo p{
+.headinginfo p {
   color: white;
   text-align: start;
   font-family: PoppinsLight;
 }
 
-@media screen and (min-width:700px){
-  .split{
+@media screen and (min-width: 700px) {
+  .split {
     flex-direction: row;
     height: 100%;
-
   }
-  
-  .rightdivv form .headinginfo{
+
+  .rightdivv form .headinginfo {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .leftdivv, .rightdivv{
+  .leftdivv,
+  .rightdivv {
     display: flex;
     width: 50%;
     height: auto;
   }
-  .mobile-back{
-    display:none;
+  .mobile-back {
+    display: none;
   }
-  .leftdivv{
+  .leftdivv {
     /* padding: 2% 5%; */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
   }
-  .rightdivv{
-    padding-top:2%;
+  .rightdivv {
+    padding-top: 2%;
   }
-  .rightdivv .headinginfo{
+  .rightdivv .headinginfo {
     margin-bottom: 50px;
   }
-  .leftdivv .image{
-    height:100vh;
-    width:100%;
+  .leftdivv .image {
+    height: 100vh;
+    width: 100%;
   }
-  .leftdivv .image img{
+  .leftdivv .image img {
     width: 100%;
     height: 100vh;
   }
   /* .buttonAndLink{
     align-self: center;
   } */
-
 }
-.myButton1{
+.myButton1 {
   align-self: center;
   width: 40%;
 }
-.butt_link{
+.butt_link {
   margin-top: 0px;
   text-decoration: none;
   color: white;
   font-family: PoppinsRegular;
 }
 
-.butt_link:hover{
+.butt_link:hover {
   color: white;
   /* font-weight: bold; */
   /* text-decoration: underline; */
