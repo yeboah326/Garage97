@@ -1,105 +1,108 @@
-.reports{
-    width: 100vw;
-    height: 100vh;
-    background-color: #f0f3f5;
-    box-sizing: border-box;
+.reports {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f3f5;
+  box-sizing: border-box;
 }
 
-.reports-container{
-    display: flex;
-    flex-direction: column;
-    padding: 2vw;
-    box-sizing: border-box;
-    background-color: #f0f3f5;
-    height: 100%;
-  }
-  .reports-container header{
+.reports-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2vw;
+  box-sizing: border-box;
+  background-color: #f0f3f5;
+  height: 100%;
+}
+.reports-container header {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+  background-color: #f0f3f5;
+}
+
+.report-list {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  width: 93vw;
+  background-color: white;
+  margin-left: 5vw;
+  padding: 20px;
+  padding-left: 30px;
+  border-radius: 20px 0 0 20px;
+  box-shadow: 0px 0px 5px #888;
+}
+.report-list .header {
+  font-size: 1.3rem;
+  font-family: PoppinsBold;
+  color: #968ce6;
+}
+
+.report-list .business-report {
+  margin-top: 20px;
+}
+.report-list .business-report .business-report-head,
+.report-list .product-reports .product-reports-head {
+  color: #968ce6;
+  font-family: PoppinsRegular;
+  font-size: 1.2rem;
+}
+.report-list .business-report .business-report-name,
+.report-list .product-reports .product-report {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  width: 80%;
+  background-color: #f0f3f5;
+  border-radius: 15px;
+  font-family: PoppinsBold;
+  font-size: 1.3rem;
+  color: #968ce6;
+  display: inline-block;
+}
+
+.report-list .product-reports {
+  margin-top: 40px;
+  overflow-x: auto;
+}
+.report-list .product-reports .product-reports-head {
+  position: sticky;
+  top: 0;
+}
+.report-list .product-reports .product-report {
+  margin-bottom: 30px;
+}
+
+@media screen and (min-width: 700px) {
+  .reports-container {
     display: flex;
     flex-direction: row;
-    height: 30px;
-    padding: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position:sticky;
-    top:0;
-    background-color: #f0f3f5;
+    padding: 0;
   }
-
-  .report-list{
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      height: 85vh;
-      width: 93vw;
-      background-color: white;
-      margin-left: 5vw;
-      padding: 20px;
-      padding-left: 30px;
-      border-radius: 20px 0 0 20px;
-      box-shadow: 0px 0px 5px #888;
+  .reports-container header {
+    display: none;
   }
-  .report-list .header{
-    font-size: 1.3rem;
-    font-family: PoppinsBold;
-    color:   #968ce6;
-}
-
-.report-list .business-report{
-    margin-top: 20px;
-}
-.report-list .business-report .business-report-head, .report-list .product-reports .product-reports-head{
-    color: #968ce6;
-    font-family: PoppinsRegular;
-    font-size: 1.2rem;
-}
-.report-list .business-report .business-report-name, .report-list .product-reports .product-report{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    width: 80%;
-    background-color: #f0f3f5;
-    margin-top: 10px;
+  .reports-container .report-list {
+    align-self: center;
+    width: 70%;
     border-radius: 15px;
-    font-family: PoppinsBold;
-    font-size: 1.3rem;
-    color:#968ce6;
-}
-
-.report-list .product-reports{
-    margin-top: 40px;
-    overflow-x: auto;
-}
-.report-list .product-reports .product-reports-head{
-    position: sticky;
-    top: 0;
-}
-.report-list .product-reports .product-report{
-    margin-bottom: 30px;
-}
-
-@media screen and (min-width:700px){
-    .reports-container{
-        display: flex;
-        flex-direction: row;
-        padding: 0;
-    }
-    .reports-container header{
-        display: none;
-    }
-    .reports-container .report-list{
-        align-self: center;
-        width:70%;
-        border-radius:15px;
-        padding-left:30px;
-        padding-right: 30px;
-    }
-    .report-list .business-report .business-report-name, .report-list .product-reports .product-report{
-        width: 30%;
-        margin-right: 20px;
-    }
-    .product-reports .product-reports-list{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .report-list .business-report .business-report-name,
+  .report-list .product-reports .product-report {
+    width: 30%;
+    margin-right: 20px;
+  }
+  .product-reports .product-reports-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }

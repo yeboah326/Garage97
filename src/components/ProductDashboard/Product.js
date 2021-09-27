@@ -1,15 +1,16 @@
-import React from 'react'
-import DeleteButton from './DeleteButton'
+import React from "react";
+import DeleteButton from "./DeleteButton";
 
-
-const Product = ({name,description,showDelete,id}) => {
-
-    return (
-        <div className="business" >
-        <p className='header'><span >{name}</span><DeleteButton onClick={showDelete} id={id}/></p>
-        <p >{description}</p>
+const Product = ({ name, description, showDelete, id }) => {
+  return (
+    <div className="business">
+      <p className="header">
+        <span>{name}</span>
+        <DeleteButton onClick={showDelete} id={id} />
+      </p>
+      <p>{description}</p>
     </div>
-    )
-}
+  );
+};
 
-export default Product
+export default Product;

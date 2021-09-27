@@ -1,10 +1,10 @@
 .pop {
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: auto;
-	position: fixed;
+  position: fixed;
   width: 350px;
   height: fit-content;
   border-radius: 20px;
@@ -12,74 +12,75 @@
   box-sizing: border-box;
   background: #ecf0f3;
   box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-
 }
 
-.pop input , .pop Input {
-    text-align: left;
-    margin-bottom: 30px;
-    margin-top: 10px;
-  }
-
-.pop label, .pop input, .pop button , .pop select  {
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: none;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
-  .pop label , .pop select {
-    margin-top: 4px;
-  }
-  
-
-   .pop:target{
-    
-        opacity: 1;
-        margin-top: 0px;
-        visibility: visible;	
-    
-   }
-
-.pop label{ 
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-.pop p{
-    font-family: PoppinsBold;
-    font-size: 24px;
-
+.pop input,
+.pop Input {
+  text-align: left;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
-.add{
+.pop label,
+.pop input,
+.pop button,
+.pop select {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.pop label,
+.pop select {
+  margin-top: 4px;
+}
+
+.pop:target {
+  opacity: 1;
+  margin-top: 0px;
+  visibility: visible;
+}
+
+.pop label {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+.pop p {
+  font-family: PoppinsBold;
+  font-size: 24px;
+}
+
+/* .add{
     width: fit-content;
-}
+} */
 /* input::placeholder {
     color: gray;
   } */
-  
- .pop   input , .pop select {
-    background: #ecf0f3;
-    padding: 10px;
-    padding-left: 20px;
-    height: 50px;
-    font-size: 14px;
-    border-radius: 50px;
-    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-  }
-  
-  .pop button {
-    margin-top: 20px;
-    background: #1DA1F2;
-    height: 40px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 900;
-    box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-    transition: 0.5s;
-  }
-  
-  button:hover {
-    box-shadow: none;
-  }
+
+.pop input,
+.pop select {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+
+.pop button {
+  margin-top: 20px;
+  background: #1da1f2;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  transition: 0.5s;
+}
+
+button:hover {
+  box-shadow: none;
+}

@@ -1,30 +1,20 @@
-@import url('./css/overview.css');
+@import url("./css/overview.css");
 
-@import url('./css/newlogin.css');
-@import url('./css/newSignup.css');
+@import url("./css/newlogin.css");
+@import url("./css/newSignup.css");
 @import url("./css/stocks.css");
-@import url('./css/fonts.css');
+@import url("./css/fonts.css");
 /* @import url('./css/login_register.css'); */
-@import url('./css/side-nav-bar.css');
-@import url('./css/business.css');
-@import url('./css/splash.css');
-@import url('./css/addstocks.css');
-@import url('./css/customers.css');
-@import url('./css/report.css');
-@import url('./css/businessreport.css');
+@import url("./css/side-nav-bar.css");
+@import url("./css/business.css");
+@import url("./css/splash.css");
+@import url("./css/addstocks.css");
+@import url("./css/customers.css");
+@import url("./css/report.css");
+@import url("./css/businessreport.css");
 /* @import url('./css/about.css'); */
 
-
-
-
-
-
-
-
-
-
-
-html{
+html {
   min-height: 100vh;
 }
 body {
@@ -33,19 +23,17 @@ body {
   padding: 0;
 }
 
-
-
 #root {
   width: 100%;
   margin: 0;
   padding: 0;
   height: 100%;
 }
-.container{
-  height:100%;
+.container {
+  height: 100%;
   width: 100%;
 }
-.container-main{
+.container-main {
   margin: 0;
   width: 100%;
   padding: 0;
@@ -54,6 +42,5 @@ body {
 /* Background for splash page */
 
 /* Side Nav Bar */
-
 
 /* Businesses Page */
