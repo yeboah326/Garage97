@@ -83,7 +83,7 @@ const RegistrationForm = () => {
       body: JSON.stringify(data),
     });
 
-    if (response.status !== 400) {
+    if (response.status === 400) {
       throw new Error(`Request failed:${response.status}`);
     }
   };
