@@ -83,7 +83,7 @@ const RegistrationForm = () => {
       body: JSON.stringify(data),
     });
 
-    if (response.status !== 400) {
+    if (response.status === 400) {
       throw new Error(`Request failed:${response.status}`);
     }
   };
@@ -96,7 +96,7 @@ const RegistrationForm = () => {
         <div className="leftdiv">
           <div className="image">
             <img
-              src="images/inventory-control.jpg"
+              src="Images/inventory-control.jpg"
               alt=""
               height="360px"
               width="240px"
