@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
-import SVGPencil from "../../Assets/icons/Pencil";
+import SVGPencil from "../../Assets/icons/pencil";
 import SalesHead from "./SalesHead2";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableSales from "./tableSales2";
