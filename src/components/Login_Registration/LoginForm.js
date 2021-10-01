@@ -60,7 +60,7 @@ const LoginForm = () => {
       <div className="leftdivv">
         <div className="image">
           <img
-            src="images/inventory-control.jpg"
+            src="Images/inventory-control.jpg"
             alt=""
             height="360px"
             width="240px"
