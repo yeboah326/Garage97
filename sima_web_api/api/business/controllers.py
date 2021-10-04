@@ -5,6 +5,8 @@ from sima_web_api.api.business.utils import (
     compute_total_buying_price,
     compute_total_quantity_salelist,
     compute_total_selling_price,
+    get_products_low_on_stock,
+    get_top_selling_products,
     report_compute_sales_for_product,
     report_compute_stocks_for_product,
     next_page_items
@@ -441,3 +443,18 @@ def business_get_report(current_user, business_id):
     business_overview["products_overview"] = business_products_details
 
     return business_overview, 200
+
+@business.route("<business_id>/dashboard_info")
+@token_required
+def business_get_dashboard_info(current_user, business_id):
+    #  TODO: Return {Top Customer, Top Selling Products, Products Low on Stock}
+    top_selling_products = get_top_selling_products(business_id=business_id)
+    products_low_on_stock = get_products_low_on_stock(business_id=business_id)
+    print(top_selling_products)
+    print(products_low_on_stock)
+    dashboard_info = {
+        "top_selling_products": top_selling_products,
+        "product_low_on_stock": products_low_on_stock
+    }
+
+    return dashboard_info, 200
