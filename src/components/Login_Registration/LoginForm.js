@@ -12,12 +12,15 @@ const LoginForm = () => {
   const [logged] = useAuth();
 
   const fetchUser = async (user_id) => {
-    const response = await fetch(`http://localhost:9000/users/${user_id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `http://yeboah326.pythonanywhere.com/users/${user_id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const res = await response.json();
     SecureStorage.set("User", res);
   };
@@ -27,13 +30,16 @@ const LoginForm = () => {
       email: details["email"],
       password: details["password"],
     };
-    const response = await fetch("http://localhost:9000/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "http://yeboah326.pythonanywhere.com/users/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     const res = await response.json();
     if (res.token) {
       fetchUser(res.public_id);

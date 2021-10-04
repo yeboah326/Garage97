@@ -21,13 +21,16 @@ const BusinessPage = () => {
   const [id, setId] = useState(null);
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:9000/business", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "http://yeboah326.pythonanywhere.com/business",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const res = await response.json();
     if (response.status === 401) {
       logout();
