@@ -20,18 +20,18 @@ export default function CustomerTable() {
             customer_contact="0348508385"
           />
           <CustomerRecord
-            name="Etikc"
-            sales_purchased="50"
+            name="shantelle"
+            sales_purchased="500"
             customer_contact="0348508385"
           />
           <CustomerRecord
-            name="Etikc"
-            sales_purchased="50"
+            name="Estelle"
+            sales_purchased="70"
             customer_contact="0348508385"
           />
           <CustomerRecord
-            name="Etikc"
-            sales_purchased="50"
+            name="dEville"
+            sales_purchased="150"
             customer_contact="0348508385"
           />
         </tbody>

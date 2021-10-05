@@ -8,8 +8,9 @@ const OverviewPage = () => {
   return (
     <div className="overview-overview">
       <div className="black_white">
+      <LowStock />
+
         <TotalRevenue />
-        <LowStock />
       </div>
       <div className="black_white">
         <TopSelling />

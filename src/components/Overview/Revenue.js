@@ -3,13 +3,14 @@ import React from "react";
 const Revenue = ({ revenue, date, percentage, increase }) => {
   return (
     <div className="revenue">
+      <span>{date}'s revenue</span>
       <div className="revenue-amount">
-        <span>{revenue}</span>
-        <span className="currency">GHC</span>
+       <div className="currency">GHC</div>
+            {revenue}
       </div>
-
-      <span>{date}</span>
-      <span className={increase}>{percentage}</span>
+      <div className={increase}>{percentage}
+      <span>percental change on sales</span>
+      </div>
     </div>
   );
 };

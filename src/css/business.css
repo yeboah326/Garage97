@@ -342,11 +342,17 @@
     bottom: 0;
     top: 0;
   }
+
   .desktop-side-nav-bar .side-nav-bar {
     position: sticky;
     left: 0;
     bottom: 0;
     top: 0;
+  
+  }
+  .side-nav-bar2{
+    margin: 0;
+    padding: 0;
   }
 
   .desktop-side-nav-bar .close-side-nav-bar {

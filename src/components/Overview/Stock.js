@@ -7,7 +7,7 @@ const Stock = ({ name, remaining }) => {
 
       <div className="NUMBERS">
         <span className="low-stock-number">{remaining} units</span>
-        <progress value={remaining} max="100"></progress>
+        <progress value={remaining} max="100" className="progress"></progress>
       </div>
     </div>
   );

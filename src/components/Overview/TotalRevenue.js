@@ -4,7 +4,6 @@ import Revenue from "./Revenue";
 const TotalRevenue = () => {
   return (
     <div className="t-revenue">
-      <p className="revenue-head">Total Revenue Generated</p>
       <p className="actual-revenue">
         <Revenue
           revenue="21,753"
