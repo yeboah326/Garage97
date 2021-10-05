@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../../build", static_url_path="/")
 
 # Configuration
 app.config[
@@ -36,4 +36,8 @@ app.register_blueprint(stock)
 # Error Handling Pages
 @app.errorhandler(404)
 def page_not_found(error):
-    return jsonify({"message": "Page not found"}), 404
+    return app.send_static_file("index.html")
+
+@app.route("/")
+def index():
+    return app.send_static_file("index.html")
