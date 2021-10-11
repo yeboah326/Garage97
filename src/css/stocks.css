@@ -214,7 +214,7 @@ h1 {
 
   .desktop-side-nav-bar {
     display: block;
-    width: 100%;
+    /* width: 100%; */
   }
 
   .mobile_stockList {
