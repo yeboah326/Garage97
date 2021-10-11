@@ -26,7 +26,11 @@ const SideNavBar = ({ onClick, onHover, navwidth }) => {
         <button>x</button>
       </div>
       <Avatar
-        name={`${user[0]} ${user.slice(-1)}`}
+        name={
+          user.length === 1
+            ? `${user[0]}`.toUpperCase()
+            : `${user[0]} ${user.slice(-1)}`.toUpperCase()
+        }
         image=""
         business={business_name}
       />
