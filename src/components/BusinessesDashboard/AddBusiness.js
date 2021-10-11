@@ -17,14 +17,17 @@ const AddBusiness = ({ toggle, onClick }) => {
   };
   const Submit = async () => {
     const newBusiness = business;
-    const response = await fetch("http://localhost:9000/business", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(newBusiness),
-    });
+    const response = await fetch(
+      "https://sima-backend.herokuapp.com/business",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newBusiness),
+      }
+    );
     if (response.status === 401) {
       logout();
       alert("Session has expired");

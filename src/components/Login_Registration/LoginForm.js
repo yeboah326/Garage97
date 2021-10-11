@@ -13,7 +13,7 @@ const LoginForm = () => {
 
   const fetchUser = async (user_id) => {
     const response = await fetch(
-      `http://yeboah326.pythonanywhere.com/users/${user_id}`,
+      `https://sima-backend.herokuapp.com/users/${user_id}`,
       {
         method: "GET",
         headers: {
@@ -31,7 +31,7 @@ const LoginForm = () => {
       password: details["password"],
     };
     const response = await fetch(
-      "http://yeboah326.pythonanywhere.com/users/login",
+      "https://sima-backend.herokuapp.com/users/login",
       {
         method: "POST",
         headers: {

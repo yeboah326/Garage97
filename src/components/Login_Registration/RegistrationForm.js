@@ -25,7 +25,7 @@ const RegistrationForm = () => {
   };
 
   const fetchUser = async (user_id) => {
-    const response = await fetch(`http://yeboah326.pythonanywhere.com/users/${user_id}`, {
+    const response = await fetch(`https://sima-backend.herokuapp.com/users/${user_id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const RegistrationForm = () => {
       password: user["password"],
     };
     const response = await fetch(
-      "http://yeboah326.pythonanywhere.com/users/login",
+      "https://sima-backend.herokuapp.com/users/login",
       {
         method: "POST",
         headers: {
@@ -78,7 +78,7 @@ const RegistrationForm = () => {
       email: user.email,
       password: user.password,
     };
-    const response = await fetch("http://yeboah326.pythonanywhere.com/users", {
+    const response = await fetch("https://sima-backend.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

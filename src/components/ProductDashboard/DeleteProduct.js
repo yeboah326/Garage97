@@ -8,13 +8,16 @@ const DeleteProduct = ({ onClick, id, fetchData }) => {
   const [product_name, setProductName] = useState("");
 
   const fetchProduct = async () => {
-    const response = await fetch(`http://localhost:9000/product/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://sima-backend.herokuapp.com/product/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const res = await response.json();
     if (response.status === 401) {
@@ -28,13 +31,16 @@ const DeleteProduct = ({ onClick, id, fetchData }) => {
     }
   };
   const deleteproduct = async () => {
-    const response = await fetch(`http://localhost:9000/product/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://sima-backend.herokuapp.com/product/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const res = await response.json;
     if (response.status === 401) {
       logout();

@@ -114,7 +114,7 @@ const EditStockList = () => {
   };
   const deleteStockList = async () => {
     const response = await fetch(
-      `http://localhost:9000/stock/list/${stock_list_id}`,
+      `https://sima-backend.herokuapp.com/stock/list/${stock_list_id}`,
       {
         method: "DELETE",
         headers: {
@@ -135,14 +135,17 @@ const EditStockList = () => {
   };
 
   const updateStock = async (id, index) => {
-    const response = await fetch(`http://localhost:9000/stock/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(updatedStock),
-    });
+    const response = await fetch(
+      `https://sima-backend.herokuapp.com/stock/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedStock),
+      }
+    );
     if (response.status === 401) {
       logout();
       alert("Session has expired");
@@ -158,13 +161,16 @@ const EditStockList = () => {
     setDisplayInput(false);
   };
   const deleteStock = async (id) => {
-    const response = await fetch(`http://localhost:9000/stock/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://sima-backend.herokuapp.com/stock/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     if (response.status === 401) {
       logout();
       alert("Session has expired");
@@ -177,7 +183,7 @@ const EditStockList = () => {
 
   const fetchProducts = async () => {
     const response = await fetch(
-      `http://localhost:9000/business/${business_id}/product`,
+      `https://sima-backend.herokuapp.com/business/${business_id}/product`,
       {
         method: "GET",
         headers: {
@@ -199,7 +205,7 @@ const EditStockList = () => {
 
   const fetchStocks = async () => {
     const response = await fetch(
-      `http://localhost:9000/stock/stock_list/${stock_list_id}`,
+      `https://sima-backend.herokuapp.com/stock/stock_list/${stock_list_id}`,
       {
         method: "GET",
         headers: {
@@ -224,7 +230,7 @@ const EditStockList = () => {
     if (newstocklist.length !== 0) {
       const data = { stocks: newstocklist };
       const response = await fetch(
-        `http://localhost:9000/stock/add/${stock_list_id}`,
+        `https://sima-backend.herokuapp.com/stock/add/${stock_list_id}`,
         {
           method: "POST",
           headers: {

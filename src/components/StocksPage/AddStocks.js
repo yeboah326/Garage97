@@ -80,7 +80,7 @@ const AddStocks = () => {
 
   const fetchProducts = async () => {
     const response = await fetch(
-      `http://localhost:9000/business/${business_id}/product`,
+      `https://sima-backend.herokuapp.com/business/${business_id}/product`,
       {
         method: "GET",
         headers: {
@@ -102,14 +102,17 @@ const AddStocks = () => {
 
   const postStockList = async () => {
     const data = { stock_list: stocklist, business_id: `${business_id}` };
-    const response = await fetch("http://localhost:9000/stock/list", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "https://sima-backend.herokuapp.com/stock/list",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      }
+    );
     const res = await response.json();
     if (stocklist.length === 0) {
       alert("Could not add empty stock");
