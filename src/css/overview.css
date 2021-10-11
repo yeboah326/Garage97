@@ -1,6 +1,6 @@
 .overview-overview-page {
   display: flex;
-  background-color: #fff;
+  background-color: #e6e6e6;
   flex-direction: row-reverse;
 }
 
@@ -13,51 +13,62 @@
 }
 .black_white {
   height: fit-content;
-  margin-bottom: 10%;
+  padding-top:10px;
+  align-items: center;
+  
 }
-/* .top-section{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    column-gap: 50px;
-    margin-top: 20px;
-} */
+
 
 .t-revenue {
   display: flex;
   flex-direction: column;
   height: 35%;
-  width: 320px;
-  background-color: #fcfcfc;
-  /* border-bottom: 1px solid #888; */
-  /* border-radius: 20px;
-    box-shadow: 0px 00px 5px #888; */
-  padding: 10px;
+  /* width: 70%; */
+  /* background-color: #fcfcfc; */
+  box-shadow:0 2 #0072a7 ;
 }
-
-.actual-revenue {
+/* .progress{
+  background: rgba(255,255,255,0.1);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
   display: flex;
-  flex-direction: row;
-  font-family: PoppinsLight;
-}
+  height: 40px;
+  width: 500px;
+} */
+/* .actual-revenue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+} */
 
 .revenue {
   display: flex;
   flex-direction: column;
   width: 80%;
-  align-items: center;
+  height: fit-content;
+  background-color: #0072a7;
+  margin: 10px 10px;
+}
+
+.revenue span{
+  align-self: left;
+  font-family: cursive;
+  font-weight: bold;
+  padding-left: 20px;
 }
 
 .revenue-amount {
   display: flex;
-  flex-direction: column;
-  width: 90%;
-  background-color: #fdfdfd;
-  border-radius: 10px;
+  flex-direction: row;
+  width: 100%;
   height: 80px;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  font-family: PoppinsBold;
+  font-size: 2.5rem;
+  font-family: cursive;
   color: #6880fe;
 }
 
@@ -66,37 +77,33 @@
   font-size: 1rem;
   color: #c0c0c0;
 }
-.revenue-head {
-  font-family: PoppinsBold;
-  color: #6880fe;
-  font-size: 1.5em;
-  text-align: left;
-}
 
-.percent-increase {
+
+.percent-increase , .percent-decrease {
   color: green;
+  height: 70px;
+  text-align: center;
+  background-color: #fff;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center ;
+  justify-content: space-around;
 }
 .percent-decrease {
   color: red;
 }
 
-.low-stock {
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  width: 100%;
-  background-color: #fcfcfc;
-  border-radius: 5px;
 
-  /* border-radius: 20px;
-    box-shadow: 0px 00px 5px #888; */
-}
+
 .low-stock-header,
 .top-selling-header {
   font-family: PoppinsBold;
   color: #6880fe;
-  font-size: 1.5em;
+  font-size: 1.3em;
   text-align: left;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .low-stocks,
@@ -107,24 +114,23 @@
   width: 100%;
   margin: 0;
 }
-.actual-low-stock {
+/* .actual-low-stock {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 90%;
   height: 100%;
-  background-color: #fdfdfd;
+  background-color: #57b5e1;
   box-shadow: 0px 00px 5px #fcfcfc;
   border-radius: 8px;
   align-items: center;
   margin: 5px;
-  padding: 10px;
   color: #fcfcfc;
   border-bottom: 1px solid #6880fe;
-  border-left: 3px solid #6880fe;
-}
+  border-left: 3px solid #fff;
+} */
 
-.low-stock-name,
+/* .low-stock-name,
 .top-product-name {
   font-family: PoppinsRegular;
   font-size: 1.5rem;
@@ -132,7 +138,7 @@
   margin-top: 10px;
   color: #6880fe;
   align-self: center;
-}
+} */
 
 .low-stock-number {
   font-family: PoppinsBold;
@@ -143,21 +149,11 @@
   align-self: center;
 }
 
-/* .top-selling{
-    height: 75%;
-    width: 300px;
-    padding: 10px;
-    background-color: white;
-    border-radius: 20px;
-    font-family: PoppinsRegular;
-    font-size: 1rem;
-    color: #6880fe;
-} */
 .top-selling {
-  background-color: #fcfcfc;
-  height: 110%;
+  /* background-color: #fcfcfc; */
+  height: 100%;
 }
-.actual-selling-product {
+.actual-selling-product , .actual-low-stock{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -169,18 +165,19 @@
   margin: 5px;
   padding: 10px;
 
-  background-color: fdfdfd;
+  background-color: #57b5e1;
 }
-.top-product-name {
+/* .top-product-name {
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: auto;
   margin-bottom: 30px;
-}
+} */
 .NUMBERS {
   display: flex;
   flex-direction: column;
-  padding-right: 10%;
+  justify-self: stretch;
+
 }
 .top-product-amount {
   font-size: 1rem;
@@ -198,16 +195,16 @@
 }
 
 .customerTable p {
-  font-family: PoppinsBold;
+  font-family: cursive;
   color: #6880fe;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: left;
 }
 
 table {
   table-layout: fixed;
-  width: 100%;
-  height: 110%;
+  width: 80%;
+  /* height: 10%; */
   text-align: center;
   background-color: #fff;
   color: #6880fe;
@@ -216,13 +213,14 @@ table {
   /* border: 2px solid #6880fe ; */
 }
 tbody tr:nth-child(2n) td {
-  background-color: rgba(214, 207, 207, 0.5);
+  background-color:#a3e2ff;
+  /* opacity: 0.5; */
 }
 table td,
 table thead {
-  padding: 30px;
+  padding: 15px;
   border: 1px solid #ddd;
-  text-align: center;
+  /* text-align: center; */
 }
 /* try this */
 @media screen and (min-width: 700px) {
@@ -230,35 +228,39 @@ table thead {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
   }
 
   .t-revenue {
-    width: 30%;
+    width: 70%;
+    height: 500px;
   }
   thead th {
-    background-color: #6880fe;
+    background-color: #0072a7;
     color: #fff;
     padding: 30px;
   }
   table td {
     border: 0px;
   }
-  .low-stock {
-    /* box-shadow: 0px 00px 5px #888; */
+  /* .low-stock {
     width: 60%;
-  }
+  } */
 
-  .customerTable {
+  .customerTable , .t-revenue {
     width: 60%;
     height: fit-content;
   }
   .customerTable p {
+    width: 60%;
     text-align: center;
+    font-weight: bold;
   }
-  .top-selling {
+  .top-selling ,.low-stock {
     width: 35%;
     height: 100%;
   }
+ 
 }
 
 @media screen and (max-width: 700px) {
@@ -273,4 +275,5 @@ table thead {
     display: flex;
     flex-direction: column;
   }
+  
 }

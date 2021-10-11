@@ -10,6 +10,8 @@ const LowStock = () => {
         <Stock name="Kako Mini" remaining="11" />
         <Stock name="Kako Cube" remaining="9" />
         <Stock name="Kako Bingi" remaining="7" />
+        <Stock name="Kako Bingi" remaining="5" />
+
       </p>
     </div>
   );
