@@ -119,6 +119,10 @@
 }
 
 @media screen and (min-width: 700px) {
+  .main-report{
+    width: 100%;
+    background-color: white;
+  }
   .business-summaries {
     display: none;
   }
