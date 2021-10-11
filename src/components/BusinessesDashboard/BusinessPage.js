@@ -21,17 +21,21 @@ const BusinessPage = () => {
   const [id, setId] = useState(null);
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:9000/business", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://sima-backend.herokuapp.com/business",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const res = await response.json();
     if (response.status === 401) {
       logout();
       alert("Session has expired");
+      console.log(response.statusText);
     } else if (response.status === 400) {
       alert(res.message);
     } else {

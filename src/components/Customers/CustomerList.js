@@ -17,7 +17,7 @@ const CustomerList = () => {
 
   const fetchCustomers = async () => {
     const response = await fetch(
-      `http://localhost:9000/business/${business_id}/customers?items_per_page=${items_per_page}&page=${page}`,
+      `https://sima-backend.herokuapp.com/business/${business_id}/customers?items_per_page=${items_per_page}&page=${page}`,
       {
         method: "GET",
         headers: {

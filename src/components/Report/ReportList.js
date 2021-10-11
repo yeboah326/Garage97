@@ -10,7 +10,7 @@ const ReportList = () => {
   const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
     const response = await fetch(
-      `http://localhost:9000/business/${business}/product`,
+      `https://sima-backend.herokuapp.com/business/${business}/product`,
       {
         method: "GET",
         headers: {

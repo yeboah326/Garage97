@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SvgMenu from "../../Assets/icons/Menu";
 import "../../css/business.css";
 import { logout } from "../../auth/index";
-import SVGPencil from "../../Assets/icons/pencil";
+import SVGPencil from "../../Assets/icons/Pencil";
 import TableHead from "./tableHead2";
 import SideNavBar from "../ProductDashboard/SideNavBar";
 import TableRow from "./tableRow2";
@@ -46,7 +46,7 @@ const StockListPage = () => {
   };
   const fetchStockList = async () => {
     const response = await fetch(
-      `http://localhost:9000/stock/stock_list/${stock_list_id}?items_per_page=${items_per_page}&page=${page}`,
+      `https://sima-backend.herokuapp.com/stock/stock_list/${stock_list_id}?items_per_page=${items_per_page}&page=${page}`,
       {
         method: "GET",
         headers: {

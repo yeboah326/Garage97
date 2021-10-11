@@ -84,7 +84,7 @@ const AddSales = () => {
   };
   const fetchProducts = async () => {
     const response = await fetch(
-      `http://localhost:9000/business/${business_id}/product`,
+      `https://sima-backend.herokuapp.com/business/${business_id}/product`,
       {
         method: "GET",
         headers: {
@@ -113,14 +113,17 @@ const AddSales = () => {
       },
       business_id: `${business_id}`,
     };
-    const response = await fetch("http://localhost:9000/sale/list", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "https://sima-backend.herokuapp.com/sale/list",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      }
+    );
     const res = await response.json();
     if (response.status === 201) {
       alert(res.message);

@@ -17,7 +17,7 @@ const SideNavBar = ({ onClick, navwidth, onHover }) => {
       <div className="close-side-nav-bar" onClick={onClick}>
         <button>x</button>
       </div>
-      <Avatar name={`${user[0]} ${user.slice(-1)}`} image="" />
+      <Avatar name={user.length === 1 ? `${user[0]}`.toUpperCase() :  `${user[0]} ${user.slice(-1)}`.toUpperCase()} image="" />
       <div className="logout">
         <NavLink
           to=""

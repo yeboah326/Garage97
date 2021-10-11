@@ -20,7 +20,7 @@ const AddProducts = ({ fetchData, toggle }) => {
   const Submit = async () => {
     const newProduct = product;
     const response = await fetch(
-      `http://localhost:9000/business/${business_id}/product`,
+      `https://sima-backend.herokuapp.com/business/${business_id}/product`,
       {
         method: "POST",
         headers: {

@@ -126,7 +126,7 @@ const EditSaleList = () => {
   };
   const deleteSaleList = async () => {
     const response = await fetch(
-      `http://localhost:9000/sale/list/${sale_list_id}`,
+      `https://sima-backend.herokuapp.com/sale/list/${sale_list_id}`,
       {
         method: "DELETE",
         headers: {
@@ -146,14 +146,17 @@ const EditSaleList = () => {
     }
   };
   const updateSale = async (id, index) => {
-    const response = await fetch(`http://localhost:9000/sale/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(updatedSale),
-    });
+    const response = await fetch(
+      `https://sima-backend.herokuapp.com/sale/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedSale),
+      }
+    );
     if (response.status === 401) {
       logout();
       alert("Session has expired");
@@ -170,13 +173,16 @@ const EditSaleList = () => {
   };
 
   const deleteSale = async (id) => {
-    const response = await fetch(`http://localhost:9000/sale/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://sima-backend.herokuapp.com/sale/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     if (response.status === 401) {
       logout();
       alert("Session has expired");
@@ -187,7 +193,7 @@ const EditSaleList = () => {
 
   const fetchProducts = async () => {
     const response = await fetch(
-      `http://localhost:9000/business/${business_id}/product`,
+      `https://sima-backend.herokuapp.com/business/${business_id}/product`,
       {
         method: "GET",
         headers: {
@@ -208,7 +214,7 @@ const EditSaleList = () => {
   };
   const fetchSales = async () => {
     const response = await fetch(
-      `http://localhost:9000/sale/sale_list/${sale_list_id}`,
+      `https://sima-backend.herokuapp.com/sale/sale_list/${sale_list_id}`,
       {
         method: "GET",
         headers: {
@@ -231,7 +237,7 @@ const EditSaleList = () => {
 
   const fetchSaleList = async () => {
     const response = await fetch(
-      `http://localhost:9000/sale/list/${sale_list_id}`,
+      `https://sima-backend.herokuapp.com/sale/list/${sale_list_id}`,
       {
         method: "GET",
         headers: {
@@ -255,7 +261,7 @@ const EditSaleList = () => {
   const UpdateSaleList = async () => {
     const data = { sales: newsalelist };
     const response = await fetch(
-      `http://localhost:9000/sale/add/${sale_list_id}`,
+      `https://sima-backend.herokuapp.com/sale/add/${sale_list_id}`,
       {
         method: "POST",
         headers: {
@@ -281,7 +287,7 @@ const EditSaleList = () => {
 
   const updateCustomer = async () => {
     const response = await fetch(
-      `http://localhost:9000/sale/list/${sale_list_id}`,
+      `https://sima-backend.herokuapp.com/sale/list/${sale_list_id}`,
       {
         method: "PUT",
         headers: {
