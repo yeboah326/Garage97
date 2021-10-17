@@ -109,7 +109,9 @@ const RegistrationForm = () => {
         <div className="rightdiv">
           <form onSubmit={handleSubmit}>
             <div className="mobile-back">
-              <SvgBack fill="#fff" stroke="#fff" />
+              <Link to="/">
+                <SvgBack stroke='#fff' fill='#fff'/>
+              </Link>
             </div>
             <div className="information">
               <h1>Sign Up</h1>
