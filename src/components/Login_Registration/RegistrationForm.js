@@ -99,7 +99,7 @@ const RegistrationForm = () => {
         <div className="leftdiv">
           <div className="image">
             <img
-              src="Images/inventory-control.jpg"
+              src="Images/registration.jpg"
               alt=""
               height="360px"
               width="240px"
