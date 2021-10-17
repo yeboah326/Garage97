@@ -52,7 +52,7 @@ const BusinessReport = () => {
       <div className="report-business">
         <div className="business-report-header">
           <div className="business-report-head">
-            <Link className="business-name" to="/business/overview">
+            <Link className="business-name" to="/business/report">
               {" "}
               {business_name}
             </Link>

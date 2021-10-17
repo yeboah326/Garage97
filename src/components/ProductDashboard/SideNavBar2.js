@@ -18,7 +18,7 @@ const SideNavBar2 = ({ onHover, navwidth }) => {
       style={{ width: navwidth }}
     >
       <Avatar name="" image="" business="" />
-      <div className="option main">
+      {/* <div className="option main">
         <NavLink
           to="/business/overview"
           className="options-link-1"
@@ -26,7 +26,7 @@ const SideNavBar2 = ({ onHover, navwidth }) => {
         >
           <SvgHome fill="#c0c0c0" />
         </NavLink>
-      </div>
+      </div> */}
       <div className="option main">
         <NavLink
           to="/businesses"

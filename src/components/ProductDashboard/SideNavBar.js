@@ -34,7 +34,7 @@ const SideNavBar = ({ onClick, onHover, navwidth }) => {
         image=""
         business={business_name}
       />
-      <div className="option main">
+      {/* <div className="option main">
         <NavLink
           to="/business/overview"
           className="options-link-1"
@@ -43,7 +43,7 @@ const SideNavBar = ({ onClick, onHover, navwidth }) => {
           <SvgHome fill="#c0c0c0" />
           <Options optionName="Dashboard" />
         </NavLink>
-      </div>
+      </div> */}
       <div className="option main">
         <NavLink
           to="/businesses"
