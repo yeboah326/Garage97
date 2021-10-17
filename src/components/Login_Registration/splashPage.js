@@ -25,7 +25,7 @@ const SplashPage = () => {
         <div className="div_right">
           <img
             className="image"
-            src="Images/splashimage.png"
+            src="Images/landing.jpg"
             height="240px"
             width="360px"
             alt=""
