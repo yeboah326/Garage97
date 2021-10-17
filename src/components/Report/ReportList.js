@@ -28,6 +28,10 @@ const ReportList = () => {
     }
   };
 
+  const setProductId = (id) => {
+    SecureStorage.set('product_id',id)
+  }
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -49,6 +53,7 @@ const ReportList = () => {
               <NavLink
                 to="/business/product/productreport"
                 className="product-report"
+                onClick={()=>setProductId(product.product_id)}
               >
                 <div>{product.name}</div>
               </NavLink>

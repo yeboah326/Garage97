@@ -59,7 +59,7 @@ const Businesses = ({
       )}
     </div>
   ) : (
-    <Redirect to="/business/overview" />
+    <Redirect to="/business/products" />
   );
 };
 

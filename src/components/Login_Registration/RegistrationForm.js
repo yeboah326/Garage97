@@ -99,7 +99,7 @@ const RegistrationForm = () => {
         <div className="leftdiv">
           <div className="image">
             <img
-              src="Images/inventory-control.jpg"
+              src="Images/registration.jpg"
               alt=""
               height="360px"
               width="240px"
@@ -109,7 +109,9 @@ const RegistrationForm = () => {
         <div className="rightdiv">
           <form onSubmit={handleSubmit}>
             <div className="mobile-back">
-              <SvgBack fill="#fff" stroke="#fff" />
+              <Link to="/">
+                <SvgBack stroke='#fff' fill='#fff'/>
+              </Link>
             </div>
             <div className="information">
               <h1>Sign Up</h1>

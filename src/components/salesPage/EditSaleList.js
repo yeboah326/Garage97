@@ -39,7 +39,7 @@ const EditSaleList = () => {
   });
   const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(false);
-  const token = SecureStorage.get("REACT_TOKEN_AUTH_KEY");
+  const token = JSON.parse(localStorage.getItem("REACT_TOKEN_AUTH_KEY"));
   const business_id = SecureStorage.get("Business");
   const [salelistinfo, setSaleListInfo] = useState({});
 

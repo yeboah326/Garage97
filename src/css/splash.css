@@ -74,7 +74,7 @@ a {
 }
 
 .div_right .image {
-  width: 100%;
+  width: 70%;
   height: 100%;
   background: white;
   border-radius: 10px 0 0 10px;
@@ -83,8 +83,8 @@ a {
 .splashimage {
   float: right;
   margin-left: 30px;
-  height: 40%;
-  width: 90%;
+  height: 50%;
+  width: 50%;
   text-align: right;
   border-top-left-radius: 1%;
   border-bottom-left-radius: 1%;
