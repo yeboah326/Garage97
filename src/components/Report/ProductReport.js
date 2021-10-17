@@ -66,9 +66,9 @@ const ProductReport = () => {
             Product Overview ({product_report_summary.product_name})
           </div>
           <div className="business-summary">
-            <SummaryCard title="Total Sales Made" value={product_report_summary.product_total_sold} />
-            <SummaryCard title="Total Stock Purchased" value={product_report_summary.product_total_bought} />
-            <SummaryCard title="Profit/Loss" value={product_report_summary.product_profit_loss} />
+            <SummaryCard title="Total Sales Made" value={`GHC ${product_report_summary.product_sales}`} />
+            <SummaryCard title="Total Stock Purchased" value={`GHC ${product_report_summary.product_stock}`} />
+            <SummaryCard title="Profit/Loss" value={`GHC ${product_report_summary.product_profit_loss}`} />
             <SummaryCard title="Total Products Bought" value={product_report_summary.product_total_bought} />
             <SummaryCard title="Total Products Sold" value={product_report_summary.product_total_sold} />
             <SummaryCard title="Products Remaining" value={product_report_summary.product_total_remaining} />
