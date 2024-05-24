@@ -12,7 +12,7 @@
     "react-hook": "0.0.1",
     "react-hooks": "^1.0.1",
     "react-router": "^5.2.1",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.0",
     "react-token-auth": "^1.1.8",
     "secure-ls": "^1.2.6",
